@@ -1,3 +1,5 @@
+//global variables
+//
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -5,17 +7,16 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-//Global Variables
 String path = new File("").getAbsolutePath(); //Exported Program
 String directory = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3"; //Not Exported
-//Reminder: \n is a character escape, so pathway must have forward slashes
+//reminder: \n is a character escape, change the backward slashes to forward slashes "/n"
 //
 Minim minim; //creates an object to access all functions
-AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV, AIFF, AU, SND, and MP3
+AudioPlayer[] songs = new AudioPlayer[4]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 //
 void setup() {
   //
-  minim = new Minim (this); //load from data directory, loadFile should also load from project folder, like loadImage
+  minim = new Minim (this); //load from data directory
   //
   File anyDirectory = new File(path); //Used when exported
   println ("Exported Directory", anyDirectory);
@@ -34,7 +35,7 @@ void setup() {
     }
   }
   //
-  //When Prototyping, songs is not loaded from anyDirectory
+  //when prototyping songs is not loaded from anyDirectory
   File[] FileListGitHubDir = githubDirectory.listFiles();
   if ( songs[0] == null ) {
     printArray(FileListGitHubDir);
@@ -49,15 +50,14 @@ void setup() {
     }
   } //Catch when Pathway NULL, not exported
   songs[3].loop(0); //Change the index manually
-}//End setup
-//
+}
+//end setup
 void draw() {
-}//End draw
+}//end draw
 //
 void keyPressed() {
-}//End keyPressed
+}//end keyPressed
 //
 void mousePressed() {
-}//End mousePressed
+}//end mousePressed
 //
-//End MAIN Program (Driver)
