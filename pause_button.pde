@@ -1,4 +1,11 @@
 //Global Variables
+float pauseX1, pauseY1, pauseX2, pauseY2, pauseWidth, pauseHeight; //pause button
+float pauseScaleWidth, pauseScaleHeight; //pause button
+float stopX, stopY, stopWidth, stopHeight; //stop button
+float skipX1, skipY1, skipX2, skipY2, skipX3, skipY3; //skip button
+float pauseX12, pauseY12, pauseWidth2, pauseHeight2; //skipbutton rect
+color resetcolorNightMode=#F0FF4B, black=#1DB954; //the color of the buttons :)
+color resetcolorDayMode=#FFFFFF; //the altcolor of the buttons
 //
 void setup() {
   size(700 , 400); //width and height
@@ -24,6 +31,19 @@ void setup() {
   stopWidth = pauseHeight; //width of the stop button
   stopHeight = pauseHeight; //height of the stop button
   //end stop button stuff
+  //skip button stuff ;)
+  skipX1 = musicButtonDrawX - (width*2.3/30); 
+  skipY1 = musicButtonDrawY - (height*1/50);
+  skipX2 = skipX1;
+  skipY2 = musicButtonDrawY - (height*-3.2/13);
+  skipX3 = musicButtonDrawX - (width*1/5);
+  skipY3 = pauseY1 - (height*-1/5.7);
+  //
+  pauseWidth2 = width * pauseScaleWidth - 10;
+  pauseX12 = musicButtonDrawX - (pauseWidth*5);
+  pauseY12 = musicButtonDrawY - pauseWidth;
+  pauseHeight2 = height * pauseScaleHeight;
+  //end skip button stuff
 }//end setup
 //
 void draw() {
