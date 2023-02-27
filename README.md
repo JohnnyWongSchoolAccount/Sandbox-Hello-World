@@ -1,8 +1,8 @@
 # Sandbox-Hello-World
 
 # list of buttons and their functions
-  -stop - stops the song from being played 
-  -previous track - plays the previous track in the playlist - - array
+  - stop - stops the song from being played 
+  - previous track - plays the previous track in the playlist - - array
   -reverse skip - moves back in the song's track length
   -play/pause - pauses the song/continues playing the song/playlist
   -forward skip - moves forward in the song's track length
