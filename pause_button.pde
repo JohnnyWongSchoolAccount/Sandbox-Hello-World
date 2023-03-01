@@ -1,4 +1,5 @@
 //Global Variables
+int appWidth, appHeight;
 //pause button
 float pauseX1, pauseY1, pauseX2, pauseY2, pauseWidth, pauseHeight; // rect
 float pauseScaleWidth, pauseScaleHeight;
@@ -12,7 +13,7 @@ float skipBarX1, skipBarY1, skipBarWidth, skipBarHeight; //skipbutton bar rect
 float skipX12, skipY12, skipX22, skipY22, skipX32, skipY32; //skip button triangle
 float skipBarX2, skipBarY2;//skipbutton bar 2 rect
 //loopbutton
-float loopX, loopY, loopWidth, loopHeight; //loop button rect
+float loopX1, loopY1, loopWidth, loopHeight; //loop button rect
 float loopX2, loopY2, loopWidth2, loopHeight2; //loop button 2 rect
 float looptX1, looptY1, looptX2, looptY2, looptX3, looptY3; //loop button triangle
 //skip forward and backward buttons
@@ -36,128 +37,134 @@ void setup() {
   strokeJoin(ROUND); //the outlines of the shapes
   size(700 , 400); //width and height
   //fullScreen(); //display width and height
+  //
+  // ERROR: CANVAS is bigger than display
+  // ERROR: stating display geometry (i.e. landscape, portrait)
+  appWidth = width; //display width = x in the size line of code
+  appHeight = height; //display height = y in the size line of code
+  //
   //population visual data
-  float musicButtonDrawX = width*1.0/2.0; //moves the pause bars
-  float musicButtonDrawY = height*1.0/2.0; //moves the pause bars
+  float startingX = appWidth*1.0/2.0; //moves the pause bars
+  float startingY = appHeight*1.0/2.0; //moves the pause bars
   //the size of the pause bars
   //pausebutton stuff
   pauseScaleWidth = (1.0/25.0); //change x-size
   pauseScaleHeight = (1.0/3.0); //change y-axis
   println(pauseScaleWidth);
-  pauseHeight = musicButtonDrawY*1/4;
-  pauseWidth = musicButtonDrawX*1/25;
-  pauseX1 = musicButtonDrawX - pauseWidth - (pauseWidth/2);
-  pauseY1 = musicButtonDrawY - (pauseHeight/2) ;
-  pauseX2 = musicButtonDrawX + (pauseWidth/2) ;
+  pauseHeight = startingY*1/4;
+  pauseWidth = startingX*1/25;
+  pauseX1 = startingX - pauseWidth - (pauseWidth/2.0);
+  pauseY1 = startingY - (pauseHeight/2.0) ;
+  pauseX2 = startingX + (pauseWidth/2.0) ;
   pauseY2 = pauseY1;
   //end pause button stuff
   // stop button stuff ;) underneath
-  stopX = musicButtonDrawX - (pauseX1);//position on the X-axis   
+  stopX = startingX - (pauseX1);//position on the X-axis   
   stopY = pauseY1; //position on the Y-axis
   stopWidth = pauseHeight; //width of the stop button
   stopHeight = pauseHeight; //height of the stop button
   //end stop button stuff
   //skip button stuff ;)
-  skipX1 = musicButtonDrawX - (pauseX1/3); //position on the X-axis
-  skipY1 = musicButtonDrawY + (pauseX1/15); //position of the bottom corner point Y-axis
-  skipX2 = musicButtonDrawX - (pauseX1*1/2.3);
-  skipY2 = musicButtonDrawY;
+  skipX1 = startingX - (pauseX1/3.0); //position on the X-axis
+  skipY1 = startingY + (pauseX1/15.0); //position of the bottom corner point Y-axis
+  skipX2 = startingX - (pauseX1*1/2.3);
+  skipY2 = startingY;
   skipX3 = skipX1;
   skipY3 = pauseY1;
   // skip bar
-  skipBarHeight = musicButtonDrawY*1/4;
-  skipBarWidth = musicButtonDrawX*1/35;
-  skipBarX1 = musicButtonDrawX - (pauseX1/2.1);
-  skipBarY1 = musicButtonDrawY - (pauseHeight/2) ;
+  skipBarHeight = startingY*1/4.0;
+  skipBarWidth = startingX*1/35.0;
+  skipBarX1 = startingX - (pauseX1/2.1);
+  skipBarY1 = startingY - (pauseHeight/2.0) ;
   //second triangle
-  skipX12 = musicButtonDrawX + (pauseX1/3); 
-  skipY12 = musicButtonDrawY + (musicButtonDrawY/8);
-  skipX22 = musicButtonDrawX + (pauseX1*1/2.3);
-  skipY22 = musicButtonDrawY;
+  skipX12 = startingX + (pauseX1/3.0); 
+  skipY12 = startingY + (startingY/8.0);
+  skipX22 = startingX + (pauseX1*1/2.3);
+  skipY22 = startingY;
   skipX32 = skipX12;
   skipY32 = pauseY1;
-  //
-  skipBarX2 = musicButtonDrawX + (pauseX1/2.25); //x-axis
-  skipBarY2 = musicButtonDrawY - (pauseHeight/2); //y-axis
+  //rectangle
+  skipBarX2 = startingX + (pauseX1/2.25); //x-axis
+  skipBarY2 = startingY - (pauseHeight/2.0); //y-axis
   //end skip button stuff
   //loop button stuff
-  loopX = musicButtonDrawX + (pauseX1/1.2);//position on the X-axis  
-  loopY = pauseY1; //position on the Y-axis
+  loopX1 = startingX + (pauseX1/1.2);//position on the X-axis  
+  loopY1 = pauseY1; //position on the Y-axis
   loopWidth = pauseHeight; //width of the loop button
   loopHeight = pauseHeight; //height of the loop button
   //square 2
-  loopX2 = musicButtonDrawX + (pauseX1/1.05); //position on the X-axis
-  loopY2 = musicButtonDrawY*1.075; //position on the Y-axis
-  loopWidth2 = pauseHeight - (musicButtonDrawY/2.5); //width of the loop button
-  loopHeight2 = pauseHeight - (musicButtonDrawY/2.5); //height of the loop button
+  loopX2 = startingX + (pauseX1/1.05); //position on the X-axis
+  loopY2 = startingY*1.075; //position on the Y-axis
+  loopWidth2 = pauseHeight - (startingY/2.5); //width of the loop button
+  loopHeight2 = pauseHeight - (startingY/2.5); //height of the loop button
   //triangle
-  looptX1 = musicButtonDrawX + (musicButtonDrawX*1/1.26); 
-  looptY1 = musicButtonDrawY - (musicButtonDrawY/9);
-  looptX2 = musicButtonDrawX + (pauseX1*1/1.25);
-  looptY2 = musicButtonDrawY;
-  looptX3 = musicButtonDrawX + (musicButtonDrawX/1.2);
-  looptY3 = musicButtonDrawY;
+  looptX1 = startingX + (startingX*1/1.26); 
+  looptY1 = startingY - (startingY/9);
+  looptX2 = startingX + (pauseX1*1/1.25);
+  looptY2 = startingY;
+  looptX3 = startingX + (startingX/1.2);
+  looptY3 = startingY;
   //end loop button stuff
   //skip forward button
-  skipfX1 = musicButtonDrawX + (pauseX1/5); 
-  skipfY1 = musicButtonDrawY + (musicButtonDrawY/11);//width
-  skipfX2 = musicButtonDrawX + (pauseX1/3.5);
-  skipfY2 = musicButtonDrawY;
+  skipfX1 = startingX + (pauseX1/5.0); 
+  skipfY1 = startingY + (startingY/11.0);//width
+  skipfX2 = startingX + (pauseX1/3.5);
+  skipfY2 = startingY;
   skipfX3 = skipfX1;
-  skipfY3 = musicButtonDrawY - (musicButtonDrawY/11);//width
+  skipfY3 = startingY - (startingY/11.0);//width
   //second forward triangle behind
-  skipfX12 = musicButtonDrawX + (pauseX1/8.5); 
-  skipfY12 = musicButtonDrawY + (musicButtonDrawY/11);//width
-  skipfX22 = musicButtonDrawX + (pauseX1/5);
-  skipfY22 = musicButtonDrawY;
+  skipfX12 = startingX + (pauseX1/8.5); 
+  skipfY12 = startingY + (startingY/11.0);//width
+  skipfX22 = startingX + (pauseX1/5.0);
+  skipfY22 = startingY;
   skipfX32 = skipfX12;
-  skipfY32 = musicButtonDrawY - (musicButtonDrawY/11);//width
+  skipfY32 = startingY - (startingY/11.0);//width
   //skip backward button
-  skipbX1 = musicButtonDrawX - (pauseX1/5); 
-  skipbY1 = musicButtonDrawY + (musicButtonDrawY/11);//width
-  skipbX2 = musicButtonDrawX - (pauseX1/3.5);
-  skipbY2 = musicButtonDrawY;
+  skipbX1 = startingX - (pauseX1/5.0); 
+  skipbY1 = startingY + (startingY/11.0);//width
+  skipbX2 = startingX - (pauseX1/3.5);
+  skipbY2 = startingY;
   skipbX3 = skipbX1;
-  skipbY3 = musicButtonDrawY - (musicButtonDrawY/11);//with
+  skipbY3 = startingY - (startingY/11.0);//with
   //second backward triangle behind
-  skipbX12 = musicButtonDrawX - (pauseX1/8.5); 
-  skipbY12 = musicButtonDrawY + (musicButtonDrawY/11);//width
-  skipbX22 = musicButtonDrawX - (pauseX1/5);
-  skipbY22 = musicButtonDrawY;
+  skipbX12 = startingX - (pauseX1/8.5); 
+  skipbY12 = startingY + (startingY/11.0);//width
+  skipbX22 = startingX - (pauseX1/5.0);
+  skipbY22 = startingY;
   skipbX32 = skipbX12;
-  skipbY32 = musicButtonDrawY - (musicButtonDrawY/11);//width
+  skipbY32 = startingY - (startingY/11.0);//width
   //end skipFB
   //play button
-  playX1 = musicButtonDrawX - (musicButtonDrawX/20);//length
-  playY1 = musicButtonDrawY + (musicButtonDrawY/8);//width
-  playX2 = musicButtonDrawX + (musicButtonDrawX/20);//length
-  playY2 = musicButtonDrawY;
+  playX1 = startingX - (startingX/20.0);//length
+  playY1 = startingY + (startingY/8.0);//width
+  playX2 = startingX + (startingX/20.0);//length
+  playY2 = startingY;
   playX3 = playX1;
-  playY3 = musicButtonDrawY - (musicButtonDrawY/8);//width
+  playY3 = startingY - (startingY/8.0);//width
   //mute button
-  mutetX1 = musicButtonDrawX - (pauseX1/1.8); //position on the X-axis
-  mutetY1 = musicButtonDrawY + (pauseX1/15); //position of the bottom corner point Y-axis
-  mutetX2 = musicButtonDrawX - (pauseX1*1/1.45);
-  mutetY2 = musicButtonDrawY;
+  mutetX1 = startingX - (pauseX1/1.8); //position on the X-axis
+  mutetY1 = startingY + (pauseX1/15.0); //position of the bottom corner point Y-axis
+  mutetX2 = startingX - (pauseX1*1/1.45);
+  mutetY2 = startingY;
   mutetX3 = mutetX1;
   mutetY3 = pauseY1;
   //rectangle
-  muteX = musicButtonDrawX - (pauseX1/1.45);//position on the X-axis  
-  muteY = pauseY1 + (musicButtonDrawY/18); //position on the Y-axis
+  muteX = startingX - (pauseX1/1.45);//position on the X-axis  
+  muteY = pauseY1 + (startingY/18.0); //position on the Y-axis
   muteWidth = pauseWidth; //width of the loop button
-  muteHeight = pauseHeight - (pauseHeight/2); //height of the loop button
-  //
-  muteX2 = musicButtonDrawX - (musicButtonDrawX/2.05);//position on the X-axis  
+  muteHeight = pauseHeight - (pauseHeight/2.0); //height of the loop button
+  //rectangle
+  muteX2 = startingX - (startingX/2.05);//position on the X-axis  
   muteY2 = pauseY1;
   muteWidth2 = pauseWidth - (pauseWidth/.8);
   muteHeight2 = pauseHeight;
-  //
-  mutetX12 = musicButtonDrawX;
-  mutetY12 = musicButtonDrawY;
-  mutetX22 = musicButtonDrawX;
+  //triangle
+  mutetX12 = startingX;
+  mutetY12 = startingY;
+  mutetX22 = startingX;
   mutetY22 = pauseHeight;
   mutetX32 = mutetX12;
-  mutetY32 = musicButtonDrawY;//width
+  mutetY32 = startingY;//width
 }//end setup
 //
 void draw() {
