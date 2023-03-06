@@ -8,9 +8,9 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 void setup() {
   //
-  songs[currentSong].loop(0); //Change the index manually
-  //
   setupMusic();
+  //
+  songs[currentSong].loop(0); //Change the index manually
   //
 }//end setup
 void draw() {
