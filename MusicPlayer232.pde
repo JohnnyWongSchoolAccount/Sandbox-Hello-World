@@ -63,10 +63,29 @@ void keyPressedMusic(){
   }// end loop infinite
   //
   //stop button
-  if () {}//end stop
-  if ( songs[currentSong].isPlaying() ) { .pause(); .rewind(); } else{ .rewind(); }
+  if ( key == 'S' || key == 's' ) {
+    if ( songs[currentSong].isPlaying() ) {
+      songs[currentSong].pause(); 
+      songs[currentSong].rewind(); 
+    } else { 
+      songs[currentSong].rewind(); 
+    }
+  }//end stop
   //
   //play pause
+  if ( key == 'P' || key == 'p' ) {
+    if ( songs[currentSong].isPlaying() ) {
+      songs[currentSong].pause();
+    } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
+      /*
+       student to finish
+       .pause(), rewind(), then cue the next song
+      */
+    } else {
+      songs[currentSong].play();
+    }
+  }// end play-pause button
+  //
 }//end keyPressedMusic
 //
 void mousePressedMusic(){}//end mousePressedMusic
@@ -79,4 +98,4 @@ void concatenationOfMusicFiles() {
   woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenation
 //
-//end Music subProgram
+//end MusicPlayer232 subProgram
