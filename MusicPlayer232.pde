@@ -3,7 +3,7 @@ Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor;
-int currentSong = 1;
+int currentSong = 0;
 //
 void setupMusic() {
   //
@@ -50,9 +50,14 @@ void keyPressedMusic(){
   //
   //single loop
   if ( key == '1' ){
-   delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
+    if ( songs[currentSong].isPlaying() ) {
+      songs[currentSong].pause();
+      } else {
+        songs[currentSong].loop(0);
+    }
+   //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
    //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
-   songs[currentSong].loop(0);
+   //songs[currentSong].loop(0);
   }
   //
   // loop infinite
@@ -77,6 +82,7 @@ void keyPressedMusic(){
     if ( songs[currentSong].isPlaying() ) {
       songs[currentSong].pause();
     } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
+      songs[currentSong].rewind();
       /*
        student to finish
        .pause(), rewind(), then cue the next song
