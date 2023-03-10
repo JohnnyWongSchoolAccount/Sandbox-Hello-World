@@ -14,12 +14,13 @@ void setup() {
   //
 }//end setup
 void draw() {
-  //debugging in consol
-  println( "current song position:", songs[currentSong].position() );
-  println("\t end of song:", songs[currentSong].length());
+  drawMusic();
 }//end draw
 void keyPressed() {
   keyPressedMusic();
 }//end keyPressed
 //
-void mousePressed() {}//end mousePressed
+void mousePressed() {
+  mousePressedMusic();
+}//end mousePressed
+//end AppEngine
