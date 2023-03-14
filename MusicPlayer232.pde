@@ -30,37 +30,26 @@ void drawMusic() {
   autoPlayMusic();
 }//end drawMusic
 //
-void keyPressedMusic(){
-  if (key == 'm' || key == 'M') {//mute button
-  /*
-  ERROR: Only works when song is playing
-  ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) 
-  */
-    if ( songs[currentSong].isMuted() ) {
-      songs[currentSong].unmute();
-    } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
-      songs[currentSong].rewind();
-    }
-    else{
-      songs[currentSong].mute();
-    }// else mute
+void keyPressedMusic() {
+  //mute button
+  if (key == 'm' || key == 'M'){
+  mute();
   }//end mute button
   /*
   forward and reverse button
-  forward
-  */
-  if ( key == 'F' || key == 'f') {
+  forward  */
+  if ( key == 'F' || key == 'f'){
     songs[currentSong] .skip(3000); //paramiters in milliseconds
   } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
   }// end forward //if else () {}//end forward
   //reverse
-  if ( key == 'R' || key == 'r') {
+  if ( key == 'R' || key == 'r'){
      songs[currentSong] .skip(-3000);//paramiters in milliseconds
   }//end reverse
   //
   //single loop
-  if ( key == '1' ){
-    if ( songs[currentSong].isPlaying() ) {
+  if ( key == '1' ) {
+    if ( songs[currentSong].isPlaying() ){
       songs[currentSong].pause();
       songs[currentSong].loop(0);
       songs[currentSong].play();
@@ -81,7 +70,7 @@ void keyPressedMusic(){
   }// end loop infinite
   //stop button
   if ( key == 'S' || key == 's' ) {
-    if ( songs[currentSong].isPlaying() ) {
+    if ( songs[currentSong].isPlaying() ){
       songs[currentSong].pause(); 
       songs[currentSong].rewind(); 
     } else { 
@@ -90,37 +79,37 @@ void keyPressedMusic(){
   }//end stop
   //play pause
   if ( key == 'P' || key == 'p' ) {
-    if ( songs[currentSong].isPlaying() ) {
+    if ( songs[currentSong].isPlaying() ){
       songs[currentSong].pause();
     } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
       songs[currentSong].rewind();
       /* student to finish
         .pause(), rewind(), then cue the next song */
-    } else {
+    } else{
       songs[currentSong].play();
     }
   }// end play-pause button
   //Autoplay button
-  if ( key == 'A' || key == 'a' ) { // turning autoPlayOn false or true
-    if ( autoPlayOn == false ) {
+  if ( key == 'A' || key == 'a' ){ // turning autoPlayOn false or true
+    if ( autoPlayOn == false ){
       autoPlayOn = true;
-    } else {
+    } else{
       autoPlayOn = false;
     }
   } //end Autoplay Button
   //
   //next button
   // * very simple next button, needs to be smarter *
-  if ( key == 'G' || key == 'g' ) {
-    if( songs[currentSong].isPlaying() ) {
+  if ( key == 'G' || key == 'g' ){
+    if( songs[currentSong].isPlaying() ){
       //empty if statement on purpose you dont want to happen
-    } else if ( currentSong == songs.length - 1 ) { //ERROR catch:
+    } else if ( currentSong == songs.length - 1 ){ //ERROR catch:
       currentSong = songs.length - songs.length; // intention is zero
       songs[currentSong].rewind();
       songs[currentSong].pause();
       songs[currentSong].play();
       // if at the end of playlist this sets it to zero
-    } else {
+    } else{
       //throws Array out of bounds error
       currentSong++;
       songs[currentSong].rewind();
@@ -130,15 +119,15 @@ void keyPressedMusic(){
     //
     //previous song button, bakc button
     //students to develop, based on next button 'g'
-    if (key == 'H' || key == 'h') {
-      if ( songs[currentSong].isPlaying() ) {
+    if (key == 'H' || key == 'h'){
+      if ( songs[currentSong].isPlaying() ){
         //empty if
-      } else if ( currentSong == songs.length + 1 ) {
+      } else if ( currentSong == songs.length + 1 ){
         currentSong = songs.length - songs.length;
         songs[currentSong].rewind();
         songs[currentSong].pause();
         songs[currentSong].play();
-      } else {
+      } else{
         currentSong--;
         songs[currentSong].rewind();
         songs[currentSong].pause();
@@ -152,7 +141,7 @@ void keyPressedMusic(){
 void mousePressedMusic(){
 }//end mousePressedMusic
 //
-void concatenationOfMusicFiles() {
+void concatenationOfMusicFiles(){
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
   groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
@@ -161,8 +150,8 @@ void concatenationOfMusicFiles() {
   woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenation
 //
-void autoPlayMusic() {
-    if ( autoPlayOn ) {
+void autoPlayMusic(){
+    if ( autoPlayOn ){
     //if () {} else if () {} else {}
     /*
     ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
@@ -170,4 +159,19 @@ void autoPlayMusic() {
     */
     }//end autoplayon
 }//end autoplaymusic
+//
+void mute() {
+/*
+ERROR: Only works when song is playing
+ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) 
+*/
+  if ( songs[currentSong].isMuted() ) {
+    songs[currentSong].unmute();
+  } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
+    songs[currentSong].rewind();
+  } else {
+    songs[currentSong].mute();
+  }
+}//end mute
+//
 //end MusicPlayer232 subProgram
