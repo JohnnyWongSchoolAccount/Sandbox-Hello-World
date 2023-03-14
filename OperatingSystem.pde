@@ -1,11 +1,10 @@
 /*code not finished
   also see music subprogram
 */
-
 //Global Variables
 String path = new File("").getAbsolutePath(); //Exported Program
 String directory = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3"; //Not Exported
-//reminder: \n is a character escape, change the backward slashes to forward slashes "/n"
+//reminder: '\' = character escape, change the backward slashes to forward slashes "/n"
 //
 void setupOS(){
   File anyDirectory = new File(path); //used when exported
@@ -38,4 +37,5 @@ void setupOS(){
     }
   }
 }// end setupOS
-//End Operating System Subprogram
+//
+//End OperatingSystem Subprogram
