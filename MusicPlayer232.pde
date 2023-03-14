@@ -27,6 +27,7 @@ void drawMusic() {
   println( "End of Song:", songs[currentSong].length() );//songs length
   //AutoPlay
   println( "Current song:", currentSong );// song being played
+  println( "Muted:", songs[currentSong].isMuted() );
   autoPlayMusic();
 }//end drawMusic
 //
