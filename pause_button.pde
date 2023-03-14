@@ -31,11 +31,11 @@ color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode
 color black= #CCC1FF; //The Button color
 color purp= #FFFBE3; //The outline color FFFBE3
 color background=#9EA9F0; //The background color
-//setup
-void setup() {
-  background(background);//background color
-  strokeJoin(ROUND); //the outlines of the shapes
-  size(700 , 400); //width and height
+//
+void setup() { //setup
+  background( background );//background color
+  strokeJoin( ROUND ); //the outlines of the shapes
+  size( 700 , 400 ); //width and height
   //fullScreen(); //display width and height
   //
   // ERROR: CANVAS is bigger than display
@@ -48,26 +48,25 @@ void setup() {
   float startingY = appHeight*1.0/2.0; //moves the pause bars
   //the size of the pause bars
   //pausebutton stuff
-  pauseScaleWidth = (1.0/25.0); //change x-size
-  pauseScaleHeight = (1.0/3.0); //change y-axis
-  println(pauseScaleWidth);
+  pauseScaleWidth = ( 1.0 / 25.0 ); //change x-size
+  pauseScaleHeight = ( 1.0 / 3.0 ); //change y-axis
   pauseHeight = startingY*1/4;
   pauseWidth = startingX*1/25;
-  pauseX1 = startingX - pauseWidth - (pauseWidth/2.0);
-  pauseY1 = startingY - (pauseHeight/2.0) ;
-  pauseX2 = startingX + (pauseWidth/2.0) ;
+  pauseX1 = startingX - pauseWidth - ( pauseWidth / 2.0 );
+  pauseY1 = startingY - (pauseHeight / 2.0) ;
+  pauseX2 = startingX + (pauseWidth / 2.0) ;
   pauseY2 = pauseY1;
   //end pause button stuff
   // stop button stuff ;) underneath
-  stopX = startingX - (pauseX1);//position on the X-axis   
+  stopX = startingX - ( pauseX1 );//position on the X-axis   
   stopY = pauseY1; //position on the Y-axis
   stopWidth = pauseHeight; //width of the stop button
   stopHeight = pauseHeight; //height of the stop button
   //end stop button stuff
   //skip button stuff ;)
-  skipX1 = startingX - (pauseX1/3.0); //position on the X-axis
-  skipY1 = startingY + (pauseX1/15.0); //position of the bottom corner point Y-axis
-  skipX2 = startingX - (pauseX1*1/2.3);
+  skipX1 = startingX - ( pauseX1 / 3.0 ); //position on the X-axis
+  skipY1 = startingY + ( pauseX1 / 15.0 ); //position of the bottom corner point Y-axis
+  skipX2 = startingX - ( pauseX1 * 1 / 2.3 );
   skipY2 = startingY;
   skipX3 = skipX1;
   skipY3 = pauseY1;
