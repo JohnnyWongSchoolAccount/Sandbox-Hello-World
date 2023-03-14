@@ -131,6 +131,19 @@ void keyPressedMusic(){
     //previous song button, bakc button
     //students to develop, based on next button 'g'
     if (key == 'H' || key == 'h') {
+      if ( songs[currentSong].isPlaying() ) {
+        //empty if
+      } else if ( currentSong == songs.length + 1 ) {
+        currentSong = songs.length - songs.length;
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        songs[currentSong].play();
+      } else {
+        currentSong--;
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        songs[currentSong].play();
+      }
     }//end back button
     //
   }//end next song button
