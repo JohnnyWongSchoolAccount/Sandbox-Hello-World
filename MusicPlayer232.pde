@@ -5,6 +5,7 @@ AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable 
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
 int currentSong = 0; // current song
 boolean autoPlayOn = false; //setting autoPlayOn off
+boolean wentBack = false; //setting the forward button
 //
 void setupMusic() {
   //
@@ -103,27 +104,31 @@ void keyPressedMusic() {
   // * very simple next button, needs to be smarter *
   if ( key == 'G' || key == 'g' ){
     if( songs[currentSong].isPlaying() ){
-      //empty if statement on purpose you dont want to happen
-    } else if ( currentSong == songs.length - 1 ){ //ERROR catch:
-      currentSong = songs.length - songs.length; // intention is zero
-      songs[currentSong].rewind();
-      songs[currentSong].pause();
-      songs[currentSong].play();
+      if ( currentSong == songs.length - 1 ){ //ERROR catch:
+        currentSong = songs.length - songs.length; // intention is zero
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        songs[currentSong].play();
+        wentBack = true;
       // if at the end of playlist this sets it to zero
-    } else{
-      //throws Array out of bounds error
-      currentSong++;
-      songs[currentSong].rewind();
-      songs[currentSong].pause();
-      songs[currentSong].play();
+    } else {
+      wentBack = false;
+    } 
+      if ( wentBack == false ) {
+        currentSong++;
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        songs[currentSong].play();
+      }
     }
+  }//end next button
     //
     //previous song button, bakc button
     //students to develop, based on next button 'g'
     if (key == 'H' || key == 'h'){
       if ( songs[currentSong].isPlaying() ){
         //empty if
-      } else if ( currentSong == songs.length + 1 ){
+      } else if ( currentSong == songs.length - 1 ){
         currentSong = songs.length - songs.length;
         songs[currentSong].rewind();
         songs[currentSong].pause();
@@ -136,7 +141,6 @@ void keyPressedMusic() {
       }
     }//end back button
     //
-  }//end next song button
 }//end keyPressedMusic
 //
 void mousePressedMusic(){
