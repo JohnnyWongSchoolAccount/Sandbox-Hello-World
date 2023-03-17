@@ -124,7 +124,7 @@ void setup() { //setup
   skipbX2 = startingX - (pauseX1/3.5);
   skipbY2 = startingY;
   skipbX3 = skipbX1;
-  skipbY3 = startingY - (startingY/11.0);//with
+  skipbY3 = startingY - (startingY/11.0);//width
   //second backward triangle behind
   skipbX12 = startingX - (pauseX1/8.5); 
   skipbY12 = startingY + (startingY/11.0);//width
@@ -175,4 +175,4 @@ void keyPressed() {
 //
 void mousePressed() {
 }//end mousePressed
-//end pausebutton program
+// end pause button program
