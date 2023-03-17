@@ -42,11 +42,14 @@ void keyPressedMusic() {
   forward  */
   if ( key == 'F' || key == 'f'){
     songs[currentSong] .skip(3000); //paramiters in milliseconds
-  } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
-  }// end forward //if else () {}//end forward
+  } else if ( songs[currentSong].position() >= songs[currentSong].length()* 1/8 ) {
+    //empty if
+  } // end forward //if else () {}//end forward
   //reverse
   if ( key == 'R' || key == 'r'){
      songs[currentSong] .skip(-3000);//paramiters in milliseconds
+  } if ( songs[currentSong].position() <= songs[currentSong].length()* 1/7 ) {
+    songs[currentSong].rewind();
   }//end reverse
   //
   //single loop
@@ -105,7 +108,9 @@ void keyPressedMusic() {
   if ( key == 'G' || key == 'g' ){
     if( songs[currentSong].isPlaying() ){
       if ( currentSong == songs.length - 1 ){ //ERROR catch:
+        songs[currentSong].mute();
         currentSong = songs.length - songs.length; // intention is zero
+        songs[currentSong].unmute();
         songs[currentSong].rewind();
         songs[currentSong].pause();
         songs[currentSong].play();
@@ -115,32 +120,34 @@ void keyPressedMusic() {
       wentBack = false;
     } 
       if ( wentBack == false ) {
+        songs[currentSong].mute();
         currentSong++;
+        songs[currentSong].unmute();
         songs[currentSong].rewind();
         songs[currentSong].pause();
         songs[currentSong].play();
       }
     }
   }//end next button
-    //
-    //previous song button, bakc button
-    //students to develop, based on next button 'g'
-    if (key == 'H' || key == 'h'){
-      if ( songs[currentSong].isPlaying() ){
-        //empty if
-      } else if ( currentSong == songs.length - 1 ){
-        currentSong = songs.length - songs.length;
-        songs[currentSong].rewind();
-        songs[currentSong].pause();
-        songs[currentSong].play();
-      } else{
-        currentSong--;
-        songs[currentSong].rewind();
-        songs[currentSong].pause();
-        songs[currentSong].play();
-      }
-    }//end back button
-    //
+  //
+  //previous song button, back button
+  //students to develop, based on next button 'g'
+  if (key == 'H' || key == 'h'){
+    if ( songs[currentSong].isPlaying() ){
+      //empty if
+    } else if ( currentSong == songs.length - 1 ){
+      currentSong = songs.length - songs.length;
+      songs[currentSong].rewind();
+      songs[currentSong].pause();
+      songs[currentSong].play();
+    } else{
+      currentSong--;
+      songs[currentSong].rewind();
+      songs[currentSong].pause();
+      songs[currentSong].play();
+    }
+  }//end back button
+  //
 }//end keyPressedMusic
 //
 void mousePressedMusic(){
