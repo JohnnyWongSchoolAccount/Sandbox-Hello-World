@@ -199,7 +199,6 @@ void concatenationOfMusicFiles(){
   woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenation
 void autoPlayMusic() {
-void autoPlayMusic() {
     if ( autoPlayOn ) {
       if ( autoPlayOn == true ) {
       } if ( songs[currentSong].isPlaying() ) {
