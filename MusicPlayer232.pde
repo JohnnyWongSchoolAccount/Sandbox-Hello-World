@@ -134,22 +134,34 @@ void keyPressedMusic() {
   //
   //previous song button, back button
   //students to develop, based on next button 'g'
-  if (key == 'H' || key == 'h'){
-    if ( songs[currentSong].isPlaying() ){
-      //empty if
-    } else if ( currentSong == songs.length - 1 ){
-      currentSong = songs.length - songs.length;
-      songs[currentSong].rewind();
-      songs[currentSong].pause();
-      songs[currentSong].play();
-    } else{
-      currentSong--;
-      songs[currentSong].rewind();
-      songs[currentSong].pause();
-      songs[currentSong].play();
-    }
-  }//end back button
   //
+  //previous button
+  if ( key == 'H' || key == 'h' ){
+    if( songs[currentSong].isPlaying() ){
+      if ( currentSong <= songs.length - songs.length ){ //ERROR catch:
+        songs[currentSong].mute();
+        currentSong = 1; //moves to top of the playlist
+        songs[currentSong].unmute();
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        songs[currentSong].play();
+        wentBack = true;
+      // if at the end of playlist this sets it to zero
+    } else {
+      wentBack = false;
+    } 
+      if ( wentBack == false ) {
+        songs[currentSong].mute();
+        currentSong--;
+        songs[currentSong].unmute();
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        songs[currentSong].play();
+      }
+    } else {
+      songs[currentSong].loop(0);
+    }
+  }//end previous button
 }//end keyPressedMusic
 //
 void mousePressedMusic(){
