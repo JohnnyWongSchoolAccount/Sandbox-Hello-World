@@ -4,6 +4,7 @@ Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
+float rand;
 int currentSong = 0; // current song
 boolean autoPlayOn = false; //setting autoPlayOn off
 boolean wentBack = false; //setting the forward button
@@ -27,11 +28,22 @@ void drawMusic() {
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "End of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
+  println( "Random:", rand );
   //AutoPlay
   println( "Current song:", currentSong );// song being played
   autoPlayMusic();
 }//end drawMusic
 void keyPressedMusic() {
+  //Shuffle button
+  if (key == 'W' || key == 'w'){
+    rand = random(songs.length);
+    songs[currentSong].mute();
+    currentSong = int(rand);
+    songs[currentSong].unmute();
+    songs[currentSong].rewind();
+    songs[currentSong].pause();
+    songs[currentSong].play();
+  }// end shuffle
   //mute button
   if (key == 'M' || key == 'm'){
   mute();
@@ -69,8 +81,6 @@ void keyPressedMusic() {
           songs[currentSong].rewind();
           songs[currentSong].pause();
         }
-      } else {
-        songs[currentSong].loop(0);
       }
     }
   }//end reverse
