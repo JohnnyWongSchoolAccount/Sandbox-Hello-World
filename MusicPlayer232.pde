@@ -215,7 +215,7 @@ void autoPlayMusic(){
     ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
     ex#2: .isPlaying(), when false rewind(), currentSong+1, .play()
     */
-    }//end autoplayon
+  }//end autoplayon
 }//end autoplaymusic
 //
 void mute() {
