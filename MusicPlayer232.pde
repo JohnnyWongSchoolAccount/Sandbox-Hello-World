@@ -69,10 +69,15 @@ void keyPressedMusic() {
   } // end single loop
   // loop infinite
   if ( key <= '9' && key !='1' ){
-    delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
-   //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
-    songs[currentSong].loop(-1);
-  }// end loop infinite
+    //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
+    //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
+   if ( songs[currentSong].isPlaying() ) {
+     songs[currentSong].pause();
+     songs[currentSong].play();
+   } else {
+     songs[currentSong].loop(-1);
+   }
+ }// end loop infinite
   //stop button
   if ( key == 'S' || key == 's' ) {
     if ( songs[currentSong].isPlaying() ){
