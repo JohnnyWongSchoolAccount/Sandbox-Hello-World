@@ -1,4 +1,4 @@
-/*Code is incomplete */
+/*this code is a work in progress */
 //Gobal variables
 Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
@@ -53,14 +53,14 @@ void keyPressedMusic() {
       //if the song is at the very beginning the reverse button will skip the the previous song paused
     } if ( songs[currentSong].position() == songs.length - songs.length ) {
       if( songs[currentSong].isPlaying() ) {
-        if ( currentSong <= songs.length - songs.length ){ //ERROR catch:
-        songs[currentSong].mute();
-        currentSong = songs.length - 1; //moves to top of the playlist
-        songs[currentSong].unmute();
-        songs[currentSong].rewind();
-        songs[currentSong].pause();
-        wentBack = true;
-        // if at the end of playlist this sets it to zero
+        if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
+          songs[currentSong].mute();
+          currentSong = songs.length - 1; //moves to top of the playlist
+          songs[currentSong].unmute();
+          songs[currentSong].rewind();
+          songs[currentSong].pause();
+          wentBack = true;
+          // if at the end of playlist this sets it to zero
         } else {
           wentBack = false;
         } 
@@ -72,55 +72,56 @@ void keyPressedMusic() {
           songs[currentSong].pause();
         }
       } else {
-    songs[currentSong].loop(0);
-  }
-  }
+        songs[currentSong].loop(0);
+      }
+    }
   }//end reverse
   //
   //single loop
   if ( key == '1' ) {
-    if ( songs[currentSong].isPlaying() ){
+    if ( songs[currentSong].isPlaying() ) {
       songs[currentSong].pause();
       songs[currentSong].loop(0);
       songs[currentSong].play();
-      } else {
-        songs[currentSong].loop(0);
-      }
+    } else {
+      songs[currentSong].loop(0);
+    }
     /*
    delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
    //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
    songs[currentSong].loop(0);
    */
-  } // end single loop
+  }// end single loop
   // loop infinite
-  if ( key <= '9' && key !='1' ){
+  if ( key <= '9' && key !='1' ) {
     //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
     //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
-   if ( songs[currentSong].isPlaying() ) {
-     songs[currentSong].pause();
-     songs[currentSong].play();
-   } else {
-     songs[currentSong].loop(-1);
-   }
- }// end loop infinite
+    if ( songs[currentSong].isPlaying() ) {
+      songs[currentSong].pause();
+      songs[currentSong].play();
+    } else {
+      songs[currentSong].loop(-1);
+    }
+  }// end loop infinite
   //stop button
   if ( key == 'S' || key == 's' ) {
-    if ( songs[currentSong].isPlaying() ){
+    if ( songs[currentSong].isPlaying() ) {
       songs[currentSong].pause(); 
-      songs[currentSong].rewind(); 
+      songs[currentSong].rewind();
     } else { 
       songs[currentSong].rewind(); 
     }
   }//end stop
   //play pause
   if ( key == 'P' || key == 'p' ) {
-    if ( songs[currentSong].isPlaying() ){
+    if ( songs[currentSong].isPlaying() ) {
       songs[currentSong].pause();
     } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
       songs[currentSong].rewind();
-      /* student to finish
-        .pause(), rewind(), then cue the next song */
-    } else{
+      /* 
+      student to finish
+      .pause(), rewind(), then cue the next song */
+    } else {
       songs[currentSong].play();
     }
   }// end play-pause button
@@ -128,7 +129,7 @@ void keyPressedMusic() {
   if ( key == 'A' || key == 'a' ){ // turning autoPlayOn false or true
     if ( autoPlayOn == false ){
       autoPlayOn = true;
-    } else{
+    } else {
       autoPlayOn = false;
     }
   } //end Autoplay Button
@@ -137,7 +138,7 @@ void keyPressedMusic() {
   // * very simple next button, needs to be smarter *
   if ( key == 'G' || key == 'g' ){
     if( songs[currentSong].isPlaying() ){
-      if ( currentSong == songs.length - 1 ){ //ERROR catch:
+      if ( currentSong == songs.length - 1 ) { //ERROR catch:
         songs[currentSong].mute();
         currentSong = songs.length - songs.length; // intention is zero
         songs[currentSong].unmute();
@@ -145,10 +146,10 @@ void keyPressedMusic() {
         songs[currentSong].pause();
         songs[currentSong].play();
         wentBack = true;
-      // if at the end of playlist this sets it to zero
-    } else {
-      wentBack = false;
-    } 
+        // if at the end of playlist this sets it to zero
+      } else {
+        wentBack = false;
+      } 
       if ( wentBack == false ) {
         songs[currentSong].mute();
         currentSong++;
@@ -166,9 +167,9 @@ void keyPressedMusic() {
   //students to develop, based on next button 'g'
   //
   //previous button
-  if ( key == 'H' || key == 'h' ){
-    if( songs[currentSong].isPlaying() ){
-      if ( currentSong <= songs.length - songs.length ){ //ERROR catch:
+  if ( key == 'H' || key == 'h' ) {
+    if( songs[currentSong].isPlaying() ) {
+      if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
         songs[currentSong].mute();
         currentSong = songs.length - 1; //moves to top of the playlist
         songs[currentSong].unmute();
@@ -176,10 +177,10 @@ void keyPressedMusic() {
         songs[currentSong].pause();
         songs[currentSong].play();
         wentBack = true;
-      // if at the end of playlist this sets it to zero
-    } else {
-      wentBack = false;
-    } 
+        // if at the end of playlist this sets it to zero
+      } else {
+        wentBack = false;
+      } 
       if ( wentBack == false ) {
         songs[currentSong].mute();
         currentSong--;
@@ -192,6 +193,7 @@ void keyPressedMusic() {
       songs[currentSong].loop(0);
     }
   }//end previous button
+  //
 }//end keyPressedMusic
 //
 void mousePressedMusic(){
@@ -217,14 +219,13 @@ void autoPlayMusic(){
 }//end autoplaymusic
 //
 void mute() {
-/*
-ERROR: Only works when song is playing
-ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) 
-*/
   if ( songs[currentSong].isMuted() ) {
     songs[currentSong].unmute();
   } else {
     songs[currentSong].mute();
+    /*
+    ERROR: Only works when song is playing
+    ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) */
   }
 }//end mute
 //
