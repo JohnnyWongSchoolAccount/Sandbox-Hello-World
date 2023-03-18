@@ -2,8 +2,10 @@
 Music Player Project
   - Buttons and Their Functions
   - AppEngine subprograms
-    - MusicPlayer
+    - MusicPlayer232
     - OperatingSystem
+  - Pause_Button subprograms
+    - Music_Player_Buttons
 # Buttons and Their Functions - Music Player
 - Play-Pause:
   - keybind = P, p
