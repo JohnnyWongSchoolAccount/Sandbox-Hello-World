@@ -46,4 +46,3 @@
 - Auto-Play:
   - keybind = A, a
   - The button when clicked will continuously play songs within the playlist one after another until pressed again
----
