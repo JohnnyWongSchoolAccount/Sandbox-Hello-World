@@ -22,7 +22,6 @@ void setupMusic() {
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
 }//end setupmusic
-//
 void drawMusic() {
   //debugging in consol
   println( "Current Song Position:", songs[currentSong].position() );//songs position
@@ -32,7 +31,6 @@ void drawMusic() {
   println( "Current song:", currentSong );// song being played
   autoPlayMusic();
 }//end drawMusic
-//
 void keyPressedMusic() {
   //mute button
   if (key == 'M' || key == 'm'){
@@ -45,7 +43,7 @@ void keyPressedMusic() {
     if ( songs[currentSong].position() <= songs[currentSong].length() * 7.5/10) {
       songs[currentSong].skip(3000); //paramiters in milliseconds
     }// end forward //if else () {}//end forward
-  }
+  }//end forward
   //reverse
   if ( key == 'R' || key == 'r'){
     if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {
@@ -76,7 +74,6 @@ void keyPressedMusic() {
       }
     }
   }//end reverse
-  //
   //single loop
   if ( key == '1' ) {
     if ( songs[currentSong].isPlaying() ) {
@@ -133,7 +130,6 @@ void keyPressedMusic() {
       autoPlayOn = false;
     }
   } //end Autoplay Button
-  //
   //next button
   // * very simple next button, needs to be smarter *
   if ( key == 'G' || key == 'g' ){
@@ -162,11 +158,10 @@ void keyPressedMusic() {
       songs[currentSong].loop(0);
     }
   }//end next button
-  //
+  /*
   //previous song button, back button
   //students to develop, based on next button 'g'
-  //
-  //previous button
+  previous button */
   if ( key == 'H' || key == 'h' ) {
     if( songs[currentSong].isPlaying() ) {
       if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
@@ -193,12 +188,8 @@ void keyPressedMusic() {
       songs[currentSong].loop(0);
     }
   }//end previous button
-  //
 }//end keyPressedMusic
-//
-void mousePressedMusic(){
-}//end mousePressedMusic
-//
+void mousePressedMusic(){}//end mousePressedMusic
 void concatenationOfMusicFiles(){
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
