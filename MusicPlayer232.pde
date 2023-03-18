@@ -42,14 +42,12 @@ void keyPressedMusic() {
   forward  */
   if ( key == 'F' || key == 'f'){
     if ( songs[currentSong].position() <= songs[currentSong].length() * 7/10) {
-      songs[currentSong].pause();
       songs[currentSong].skip(3000); //paramiters in milliseconds
     }// end forward //if else () {}//end forward
   }
   //reverse
   if ( key == 'R' || key == 'r'){
     if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {
-      songs[currentSong].pause();
       songs[currentSong].skip(-3000);//paramiters in milliseconds
     }
   }//end reverse
