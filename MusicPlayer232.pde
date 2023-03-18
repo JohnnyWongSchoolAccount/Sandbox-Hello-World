@@ -85,7 +85,7 @@ void keyPressedMusic() {
   if ( key == 'P' || key == 'p' ) {
     if ( songs[currentSong].isPlaying() ){
       songs[currentSong].pause();
-    } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
+    } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
       songs[currentSong].rewind();
       /* student to finish
         .pause(), rewind(), then cue the next song */
