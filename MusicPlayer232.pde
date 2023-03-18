@@ -127,6 +127,8 @@ void keyPressedMusic() {
         songs[currentSong].pause();
         songs[currentSong].play();
       }
+    } else {
+      songs[currentSong].loop(0);
     }
   }//end next button
   //
