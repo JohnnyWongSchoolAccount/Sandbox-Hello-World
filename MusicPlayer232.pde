@@ -27,9 +27,9 @@ void drawMusic() {
   //debugging in consol
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "End of Song:", songs[currentSong].length() );//songs length
+  println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   //AutoPlay
   println( "Current song:", currentSong );// song being played
-  println( "Muted:", songs[currentSong].isMuted() );
   autoPlayMusic();
 }//end drawMusic
 //
