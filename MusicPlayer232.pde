@@ -213,10 +213,10 @@ void concatenationOfMusicFiles(){
   woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenation
 void autoPlayMusic() {
-    if ( autoPlayOn ) {
-      if ( autoPlayOn == true ) {
-      } if ( songs[currentSong].isPlaying() ) {
-      } else {
+  if ( autoPlayOn ) {
+    if ( autoPlayOn == true ) {
+    } if ( songs[currentSong].isPlaying() ) {
+    } else {
       if ( currentSong == songs.length - 1 ) { //ERROR catch:
         songs[currentSong].mute();
         currentSong = songs.length - songs.length; // intention is zero
@@ -239,11 +239,11 @@ void autoPlayMusic() {
       }
     }
   }//end autoPlayOn
+}//end autoPlayMusic
     /*
     ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
     ex#2: .isPlaying(), when false rewind(), currentSong+1, .play()
     */
-}//end autoPlayMusic
 void mute() {
   if ( songs[currentSong].isMuted() ) {
     songs[currentSong].unmute();
