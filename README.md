@@ -3,11 +3,11 @@ Music Player Project
   - Buttons and Their Functions
 
 # AppEngine.pde and Pause_Button.pde have subprograms
-    - AppEngine.pde subprograms
-      - MusicPlayer232.pde
-      - OperatingSystem.pde
-    - Pause_Button.pde subprograms
-      - Music_Player_Buttons.pde
+  - AppEngine.pde subprograms
+    - MusicPlayer232.pde
+    - OperatingSystem.pde
+  - Pause_Button.pde subprograms
+    - Music_Player_Buttons.pde
      
 # Buttons and Their Functions - Music Player
 - Play-Pause:
