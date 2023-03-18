@@ -31,7 +31,7 @@
   - When the audio track has finished playing the track, the user may loop the track on click
   - The track will continously playing until another track is selected
 - Next Track:
-  -keybinds = G, g
+  - keybinds = G, g
   - The button allows the user to skip to the next track of the playlist durring the current track playing
   - if the at the end of the playlist button will reselect the first track in the playlist.
   - if the track is not playing the button will function as a Single-Loop button
