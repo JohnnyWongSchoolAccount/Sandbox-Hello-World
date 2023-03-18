@@ -222,8 +222,6 @@ ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song)
 */
   if ( songs[currentSong].isMuted() ) {
     songs[currentSong].unmute();
-  } else if ( songs[currentSong].position() >= songs[currentSong].length()*6/7 ) {
-    songs[currentSong].rewind();
   } else {
     songs[currentSong].mute();
   }
