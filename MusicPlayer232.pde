@@ -49,7 +49,31 @@ void keyPressedMusic() {
   if ( key == 'R' || key == 'r'){
     if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {
       songs[currentSong].skip(-3000);//paramiters in milliseconds
-    }
+      //if the song is at the very beginning the reverse button will skip the the previous song paused
+    } if ( songs[currentSong].position() == songs.length - songs.length ) {
+      if( songs[currentSong].isPlaying() ) {
+        if ( currentSong <= songs.length - songs.length ){ //ERROR catch:
+        songs[currentSong].mute();
+        currentSong = songs.length - 1; //moves to top of the playlist
+        songs[currentSong].unmute();
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        wentBack = true;
+        // if at the end of playlist this sets it to zero
+        } else {
+          wentBack = false;
+        } 
+        if ( wentBack == false ) {
+          songs[currentSong].mute();
+          currentSong--;
+          songs[currentSong].unmute();
+          songs[currentSong].rewind();
+          songs[currentSong].pause();
+        }
+      } else {
+    songs[currentSong].loop(0);
+  }
+  }
   }//end reverse
   //
   //single loop
