@@ -140,7 +140,7 @@ void keyPressedMusic() {
     if( songs[currentSong].isPlaying() ){
       if ( currentSong <= songs.length - songs.length ){ //ERROR catch:
         songs[currentSong].mute();
-        currentSong = 1; //moves to top of the playlist
+        currentSong = songs.length - 1; //moves to top of the playlist
         songs[currentSong].unmute();
         songs[currentSong].rewind();
         songs[currentSong].pause();
