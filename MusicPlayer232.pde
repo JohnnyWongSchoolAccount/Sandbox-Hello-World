@@ -35,14 +35,18 @@ void drawMusic() {
 }//end drawMusic
 void keyPressedMusic() {
   //Shuffle button
-  if (key == 'W' || key == 'w'){
+  if (key == 'W' || key == 'w') {
     rand = random(songs.length);
-    songs[currentSong].mute();
-    currentSong = int(rand);
-    songs[currentSong].unmute();
-    songs[currentSong].rewind();
-    songs[currentSong].pause();
-    songs[currentSong].play();
+    if ( rand >= songs.length ) { //ERROR catch
+      rand = songs.length - 1;
+    } else {
+      songs[currentSong].mute();
+      currentSong = int(rand);
+      songs[currentSong].unmute();
+      songs[currentSong].rewind();
+      songs[currentSong].pause();
+      songs[currentSong].play();
+    }
   }// end shuffle
   //mute button
   if (key == 'M' || key == 'm'){
