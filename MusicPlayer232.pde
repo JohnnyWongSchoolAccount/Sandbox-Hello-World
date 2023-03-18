@@ -47,7 +47,7 @@ void keyPressedMusic() {
   }
   //reverse
   if ( key == 'R' || key == 'r'){
-  } if ( songs[currentSong].position() >= songs[currentSong].length()*9.9/10 ) {
+  } if ( songs[currentSong].position() <= songs[currentSong].length()*9.9/10 ) {
      songs[currentSong].skip(-3000);//paramiters in milliseconds
   }//end reverse
   //
