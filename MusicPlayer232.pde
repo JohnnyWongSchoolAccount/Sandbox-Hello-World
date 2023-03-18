@@ -198,9 +198,8 @@ void concatenationOfMusicFiles(){
   carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
   woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenation
-//
-void autoPlayMusic(){
-    if ( autoPlayOn ){
+void autoPlayMusic() {
+    if ( autoPlayOn ) {
     //if () {} else if () {} else {}
     /*
     ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
@@ -208,7 +207,6 @@ void autoPlayMusic(){
     */
   }//end autoplayon
 }//end autoplaymusic
-//
 void mute() {
   if ( songs[currentSong].isMuted() ) {
     songs[currentSong].unmute();
@@ -219,5 +217,4 @@ void mute() {
     ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) */
   }
 }//end mute
-//
 //end MusicPlayer232 subProgram
