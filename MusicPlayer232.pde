@@ -35,7 +35,7 @@ void drawMusic() {
 //
 void keyPressedMusic() {
   //mute button
-  if (key == 'm' || key == 'M'){
+  if (key == 'M' || key == 'm'){
   mute();
   }//end mute button
   /*
