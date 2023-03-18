@@ -3,7 +3,9 @@
 # list of buttons and their functions
 - Play-Pause:
   - keybind = P, p
-  - The Play-Pause button plays and pauses playing the audio from the current track.
+  - The Play-Pause button will play the track when paused
+  - The play-Pause button will pause the track when playing
+  - If the track is 90% completed the Play-Pause button will function as a rewind button
 - Stop:
   - keybind = S, s
   - The button stops the track from playing
