@@ -41,15 +41,14 @@ void keyPressedMusic() {
   forward and reverse button
   forward  */
   if ( key == 'F' || key == 'f'){
-    songs[currentSong] .skip(3000); //paramiters in milliseconds
-  } else if ( songs[currentSong].position() >= songs[currentSong].length()* 1/8 ) {
-    //empty if
-  } // end forward //if else () {}//end forward
+   if ( songs[currentSong].position() <= songs[currentSong].length()*9.9/10) {
+     songs[currentSong].skip(3000); //paramiters in milliseconds
+  }// end forward //if else () {}//end forward
+  }
   //reverse
   if ( key == 'R' || key == 'r'){
-     songs[currentSong] .skip(-3000);//paramiters in milliseconds
-  } if ( songs[currentSong].position() <= songs[currentSong].length()* 1/7 ) {
-    songs[currentSong].rewind();
+  } if ( songs[currentSong].position() >= songs[currentSong].length()*9.9/10 ) {
+     songs[currentSong].skip(-3000);//paramiters in milliseconds
   }//end reverse
   //
   //single loop
