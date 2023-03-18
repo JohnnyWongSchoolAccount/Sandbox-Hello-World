@@ -7,23 +7,23 @@
      
 # Buttons and Their Functions - Music Player
 - Play-Pause:
-  - keybind = P, p
+  - keybinds = P, p
   - The Play-Pause button will play the track when paused
   - The play-Pause button will pause the track when playing
   - If the track is 90% completed the Play-Pause button will function as a rewind button
 - Stop:
-  - keybind = S, s
+  - keybinds = S, s
   - The button stops the track from playing
 - Fast-Forward:
-  - keybind = F, f
+  - keybinds = F, f
   - The button permits the user to go forward in the tracks positon by 3 seconds per click.
   - If the track is at 75% completion the track no longer skips.
 - Reverse:
-  - keybind = R, r
+  - keybinds = R, r
   - The button allows the user to litsen to previous parts of the track by skipping back 3 seconds in the track per click.
   - If the track position is at 0 when the reverse button is clicked, the previous audio track will be selected and paused.
 - Single-Loop:
-  - keybind = 1
+  - keybinds = 1
   - when the audio track has finished playing the track, the user may loop the track on click
   - The track will loop once on click
 - Infinite-Loop:
@@ -44,5 +44,5 @@
   - keybinds = M, m
   - The button allows the user to mute the audio until clicked again
 - Auto-Play:
-  - keybind = A, a
+  - keybinds = A, a
   - The button when clicked will continuously play songs within the playlist one after another until pressed again
