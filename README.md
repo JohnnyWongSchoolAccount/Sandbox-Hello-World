@@ -1,5 +1,6 @@
 # Sandbox-Hello-World
 Music Player Project
+  - Buttons and Their Functions
 # Buttons and Their Functions - Music Player
 - Play-Pause:
   - keybind = P, p
