@@ -41,7 +41,7 @@ void keyPressedMusic() {
   forward and reverse button
   forward  */
   if ( key == 'F' || key == 'f'){
-    if ( songs[currentSong].position() <= songs[currentSong].length() * 7/10) {
+    if ( songs[currentSong].position() <= songs[currentSong].length() * 7.5/10) {
       songs[currentSong].skip(3000); //paramiters in milliseconds
     }// end forward //if else () {}//end forward
   }
