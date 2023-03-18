@@ -1,6 +1,6 @@
 # Sandbox-Hello-World
 ---
-# Buttons and Their Functions
+# Buttons and Their Functions - Music Player
 - Play-Pause:
   - keybind = P, p
   - The Play-Pause button will play the track when paused
