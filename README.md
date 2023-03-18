@@ -11,6 +11,9 @@
   - The Play-Pause button will play the track when paused
   - The play-Pause button will pause the track when playing
   - If the track is 90% completed the Play-Pause button will function as a rewind button
+- Shuffle:
+  - keybinds = W, w
+  - The Suffle button will play a random song from the playlist when clicked
 - Stop:
   - keybinds = S, s
   - The button stops the track from playing
