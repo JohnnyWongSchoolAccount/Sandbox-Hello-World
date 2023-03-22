@@ -1,13 +1,14 @@
 /*this code is a work in progress */
 //Gobal variables
 Minim minim; //creates an object to access all functions
-AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
+AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
 float rand;
 int currentSong = 0; // current song
 boolean autoPlayOn = false; //setting autoPlayOn off
 boolean wentBack = false; //setting the forward button
+boolean pauseAutoStop = false;
 //
 void setupMusic() {
   //
@@ -20,6 +21,7 @@ void setupMusic() {
   concatenationOfMusicFiles();
   songs[0] = minim.loadFile( pathway + groove ); //song
   songs[1] = minim.loadFile( pathway + beatYourCompetition ); //song
+  songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
 }//end setupmusic
@@ -126,6 +128,10 @@ void keyPressedMusic() {
   //play pause
   if ( key == 'P' || key == 'p' ) {
     if ( songs[currentSong].isPlaying() ) {
+      if ( autoPlayOn == true ){
+        autoPlayOn = false;
+        pauseAutoStop = true;
+      }
       songs[currentSong].pause();
     } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
       songs[currentSong].rewind();
@@ -134,6 +140,10 @@ void keyPressedMusic() {
       .pause(), rewind(), then cue the next song */
     } else {
       songs[currentSong].play();
+      if ( pauseAutoStop == true ) {
+        autoPlayOn = true;
+        pauseAutoStop = false;
+      }
     }
   }// end play-pause button
   //Autoplay button
