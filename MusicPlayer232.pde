@@ -33,28 +33,29 @@ void drawMusic() { // debugging in consol
 }//end drawMusic
 //
 void keyPressedMusic() {
+  //pause-play
+  if ( key == 'P' || key == 'p' ) { pausePlay(); }// end pause-play button
   //Shuffle button
   if (key == 'W' || key == 'w') { Shuffle(); }//end shuffle keybind
-  //mute button
-  if (key == 'M' || key == 'm'){ mute(); }//end mute button
   /* forward and reverse button
   forward  */
   if ( key == 'F' || key == 'f'){ forward(); }//end forward
   //reverse
   if ( key == 'R' || key == 'r'){ rewind(); }//end reverse
-  //single loop
+  /* Loop Buttons
+  single loop */
   if ( key == '1' ) { loop1(); }//end single loop
-  // loop infinite
+  //loop infinite
   if ( key <= '9' && key !='1' ) { loopInf(); }// end loop infinite
   //stop button
   if ( key == 'S' || key == 's' ) { Stop(); }//end stop
-  //play-pause
-  if ( key == 'P' || key == 'p' ) { pausePlay(); }// end play-pause button
+  //mute button
+  if (key == 'M' || key == 'm') { mute(); }//end mute button
   //Autoplay button
-  if ( key == 'A' || key == 'a' ){ autoPlay(); } //end Autoplay Button
+  if ( key == 'A' || key == 'a' ) { autoPlay(); } //end Autoplay Button
   //next button
   // * very simple next button, needs to be smarter *
-  if ( key == 'G' || key == 'g' ){ next(); }//end next button
+  if ( key == 'G' || key == 'g' ) { next(); }//end next button
   /* previous song button, back button
   students to develop, based on next button 'g'
   previous button */
