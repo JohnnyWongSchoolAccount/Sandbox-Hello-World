@@ -9,6 +9,9 @@ import ddf.minim.ugens.*;
 void setup() {
   //
   setupMusic();
+  size( 700 , 400 ); //width and height
+  population();
+  drawMusicButtons();
   //
   songs[currentSong].loop(0); //Change the index manually
   //
