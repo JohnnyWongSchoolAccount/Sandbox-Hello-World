@@ -83,10 +83,10 @@ void concatenationOfMusicFiles(){
 // all the music button funcitons ;)
 void autoPlay() {//autoPlay -> turning autoplay on or off
   if ( autoPlayOn == false ){
-    autoPlayOn = true;
-  } else {
-    autoPlayOn = false;
-  }
+    autoPlayOn = true;//turns autoplay on
+  } else {//if autoplay is on turns the boolean off
+    autoPlayOn = false;//turns autoplay off
+  }//end autoplay button
 }//end autoPlay
 void autoPlayMusic() { //auto-Play button -> automatically plays through the playlist
   if ( autoPlayOn ) {//empty if -> does nothing
@@ -110,7 +110,7 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
         repapla();//.rewind(), .pause(), .play()
       }
     }
-  }//end autoPlayOn
+  }//end autoPlayOn button
 }//end autoPlayMusic
 /*
 ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
@@ -124,7 +124,7 @@ void mute() { //mute button
     /*
     ERROR: Only works when song is playing
     ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) */
-  }
+  }//end mute button
 }//end mute
 void Shuffle() { //shuffle button
   rand = random(songs.length);//picks a random #
@@ -135,7 +135,7 @@ void Shuffle() { //shuffle button
     currentSong = int(rand);//changes to the song chosen
     songs[currentSong].unmute();//plays desired song
     repapla();//.rewind(), .pause(), .play()
-  }//end shuffle
+  }//end shuffle button
 }// end shuffle()
 void forward() { //forward button
   if ( songs[currentSong].position() <= songs[currentSong].length() * 7.5/10) {//prevents the song being skipped too far
@@ -167,7 +167,7 @@ void rewind() {//rewind button
         songs[currentSong].pause();
       }
     }
-  }
+  }//end rewind button
 }//end rewind
 void loop1() {//loop1
   if ( songs[currentSong].isPlaying() ) {
@@ -176,7 +176,7 @@ void loop1() {//loop1
     songs[currentSong].play();
   } else {//loop the song at the end of the track -> so that delay() != used
     songs[currentSong].loop(0);//loops song 1 time
-  }
+  }//end loop 1 button
   /*
  delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
  //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
@@ -191,7 +191,7 @@ void loopInf() {//loop inf
     songs[currentSong].play();
   } else {//if song != playing song replays -> so delay() != used
     songs[currentSong].loop(-1);//plays the song infinitely
-  }
+  }//end loop inf button
 }//end loopInf
   void Stop() {//Stop
   if ( songs[currentSong].isPlaying() ) {//stops the song from playing
@@ -207,7 +207,7 @@ void loopInf() {//loop inf
       autoPlayOn = true;
       pauseAutoStop = false;
     }
-  }
+  }//end stop button
 }//end Stop
 void pausePlay() {//pause-play button
   if ( songs[currentSong].isPlaying() ) {//if song was playing then pauses the song
