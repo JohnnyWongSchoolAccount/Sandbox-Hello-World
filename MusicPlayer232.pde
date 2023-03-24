@@ -1,7 +1,7 @@
 /*this code is a work in progress */
 //Gobal variables
 Minim minim; //creates an object to access all functions
-AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
+AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
 float rand;
@@ -18,9 +18,15 @@ void setupMusic() {
   concatenationOfMusicFiles();
   songs[0] = minim.loadFile( pathway + groove ); //song
   songs[1] = minim.loadFile( pathway + beatYourCompetition ); //song
-  songs[2] = minim.loadFile( pathway + eureka ); //song
+  //songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
+  background( background );//background color
+  strokeJoin( ROUND ); //the outlines of the shapes
+  //fullScreen();//display width and height
+  //
+  // ERROR: CANVAS is bigger than display
+  // ERROR: stating display geometry (i.e. landscape, portrait)
 }//end setupmusic
 //
 void drawMusic() { // debugging in consol
@@ -89,9 +95,7 @@ void autoPlayMusic() { //auto-Play button
         songs[currentSong].mute();
         currentSong = songs.length - songs.length; // intention is zero
         songs[currentSong].unmute();
-        songs[currentSong].rewind();
-        songs[currentSong].pause();
-        songs[currentSong].play();
+        repapla();
         wentBack = true;
         // if at the end of playlist this sets it to zero
       } else {
@@ -101,9 +105,7 @@ void autoPlayMusic() { //auto-Play button
         songs[currentSong].mute();
         currentSong++;
         songs[currentSong].unmute();
-        songs[currentSong].rewind();
-        songs[currentSong].pause();
-        songs[currentSong].play();
+        repapla();
       }
     }
   }//end autoPlayOn
@@ -130,9 +132,7 @@ rand = random(songs.length);
     songs[currentSong].mute();
     currentSong = int(rand);
     songs[currentSong].unmute();
-    songs[currentSong].rewind();
-    songs[currentSong].pause();
-    songs[currentSong].play();
+    repapla();
   }
 }// end shuffle
 void forward() { //forward button
@@ -233,9 +233,7 @@ if( songs[currentSong].isPlaying() ){
     songs[currentSong].mute();
     currentSong = songs.length - songs.length; // intention is zero
     songs[currentSong].unmute();
-    songs[currentSong].rewind();
-    songs[currentSong].pause();
-    songs[currentSong].play();
+    repapla();
     wentBack = true;
     // if at the end of playlist this sets it to zero
   } else {
@@ -245,9 +243,7 @@ if( songs[currentSong].isPlaying() ){
     songs[currentSong].mute();
     currentSong++;
     songs[currentSong].unmute();
-    songs[currentSong].rewind();
-    songs[currentSong].pause();
-    songs[currentSong].play();
+    repapla();
   }
 } else {
   songs[currentSong].loop(0);
@@ -259,9 +255,7 @@ if( songs[currentSong].isPlaying() ) {
     songs[currentSong].mute();
     currentSong = songs.length - 1; //moves to top of the playlist
     songs[currentSong].unmute();
-    songs[currentSong].rewind();
-    songs[currentSong].pause();
-    songs[currentSong].play();
+    repapla();
     wentBack = true;
     // if at the end of playlist this sets it to zero
   } else {
@@ -271,12 +265,15 @@ if( songs[currentSong].isPlaying() ) {
     songs[currentSong].mute();
     currentSong--;
     songs[currentSong].unmute();
-    songs[currentSong].rewind();
-    songs[currentSong].pause();
-    songs[currentSong].play();
+    repapla();
   }
 } else {
   songs[currentSong].loop(0);
 }
 }//end previous
+void repapla() {
+  songs[currentSong].rewind();
+  songs[currentSong].pause();
+  songs[currentSong].play();
+}//end repapla
 //end MusicPlayer232 subProgram
