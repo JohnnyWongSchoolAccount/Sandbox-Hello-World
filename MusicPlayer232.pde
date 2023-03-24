@@ -40,32 +40,32 @@ void drawMusic() { // debugging in consol
 //
 void keyPressedMusic() {
   //pause-play
-  if ( key == 'P' || key == 'p' ) { pausePlay(); }// end pause-play button
+  if ( key == 'P' || key == 'p' ) { pausePlay(); }// end pause-play button keybind
   //Shuffle button
   if (key == 'W' || key == 'w') { Shuffle(); }//end shuffle keybind
   /* forward and reverse button
   forward  */
-  if ( key == 'F' || key == 'f'){ forward(); }//end forward
+  if ( key == 'F' || key == 'f'){ forward(); }//end forward keybind
   //reverse
-  if ( key == 'R' || key == 'r'){ rewind(); }//end reverse
+  if ( key == 'R' || key == 'r'){ rewind(); }//end reverse keybind
   /* Loop Buttons
   single loop */
-  if ( key == '1' ) { loop1(); }//end single loop
+  if ( key == '1' ) { loop1(); }//end single loop keybind
   //loop infinite
-  if ( key <= '9' && key !='1' ) { loopInf(); }// end loop infinite
+  if ( key <= '9' && key !='1' ) { loopInf(); }// end loop infinite keybind
   //stop button
-  if ( key == 'S' || key == 's' ) { Stop(); }//end stop
+  if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
   //mute button
-  if (key == 'M' || key == 'm') { mute(); }//end mute button
+  if (key == 'M' || key == 'm') { mute(); }//end mute button keybind
   //Autoplay button
-  if ( key == 'A' || key == 'a' ) { autoPlay(); } //end Autoplay Button
+  if ( key == 'A' || key == 'a' ) { autoPlay(); } //end Autoplay Button keybind
   //next button
   // * very simple next button, needs to be smarter *
-  if ( key == 'G' || key == 'g' ) { next(); }//end next button
+  if ( key == 'G' || key == 'g' ) { next(); }//end next button keybind
   /* previous song button, back button
   students to develop, based on next button 'g'
   previous button */
-  if ( key == 'H' || key == 'h' ) { previous(); }//end previous button
+  if ( key == 'H' || key == 'h' ) { previous(); }//end previous button keybind
 }//end keyPressedMusic
 //
 void mousePressedMusic(){}//end mousePressedMusic
@@ -79,199 +79,199 @@ void concatenationOfMusicFiles(){
   woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenation
 // all the music button funcitons ;)
-void autoPlay() {//autoPlay
-if ( autoPlayOn == false ){
-  autoPlayOn = true;
-} else {
-  autoPlayOn = false;
-}
+void autoPlay() {//autoPlay -> turning autoplay on or off
+  if ( autoPlayOn == false ){
+    autoPlayOn = true;
+  } else {
+    autoPlayOn = false;
+  }
 }//end autoPlay
-void autoPlayMusic() { //auto-Play button
-  if ( autoPlayOn ) {
-    if ( autoPlayOn == true ) {
-    } if ( songs[currentSong].isPlaying() ) {
-    } else {
+void autoPlayMusic() { //auto-Play button -> automatically plays through the playlist
+  if ( autoPlayOn ) {//empty if -> does nothing
+    if ( autoPlayOn == true ) {//empty if -> does nothing
+    } if ( songs[currentSong].isPlaying() ) {//empty if -> does nothing
+    } else {//if song != playing then exicutes skipping the song -> so delay() is not used
       if ( currentSong == songs.length - 1 ) { //ERROR catch:
-        songs[currentSong].mute();
-        currentSong = songs.length - songs.length; // intention is zero
-        songs[currentSong].unmute();
-        repapla();
-        wentBack = true;
+        songs[currentSong].mute();//ERROR catch -> so that songs do not play on top of eachother
+        currentSong = songs.length - songs.length; // intention is zero -> switches song
+        songs[currentSong].unmute();//plays the desired the song
+        repapla();//.rewind(), .pause(), .play()
+        wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else {
-        wentBack = false;
+        wentBack = false;//turning ERROR catch off
       } 
-      if ( wentBack == false ) {
-        songs[currentSong].mute();
-        currentSong++;
-        songs[currentSong].unmute();
-        repapla();
+      if ( wentBack == false ) {//plays the next song
+        songs[currentSong].mute();//ERROR catch -> so that songs do not play on top of eachother
+        currentSong++;//switches song
+        songs[currentSong].unmute();//plays desired song
+        repapla();//.rewind(), .pause(), .play()
       }
     }
   }//end autoPlayOn
 }//end autoPlayMusic
-    /*
-    ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
-    ex#2: .isPlaying(), when false rewind(), currentSong+1, .play()
-    */
+/*
+ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
+ex#2: .isPlaying(), when false rewind(), currentSong+1, .play()
+*/
 void mute() { //mute button
-  if ( songs[currentSong].isMuted() ) {
-    songs[currentSong].unmute();
-  } else {
-    songs[currentSong].mute();
+  if ( songs[currentSong].isMuted() ) {//button works when song is not playing
+    songs[currentSong].unmute();//switches off .mute()
+  } else {//if song is not muted
+    songs[currentSong].mute();//mutes song
     /*
     ERROR: Only works when song is playing
     ERROR FIX: unmute or rewind when song is not playing (ie. unmute next song) */
   }
 }//end mute
 void Shuffle() { //shuffle button
-rand = random(songs.length);
+  rand = random(songs.length);//picks a random #
   if ( rand >= songs.length ) { //ERROR catch
-    rand = songs.length - 1;
-  } else {
-    songs[currentSong].mute();
-    currentSong = int(rand);
-    songs[currentSong].unmute();
-    repapla();
-  }
-}// end shuffle
+    rand = songs.length - 1;//if the song picked is the highest # in array plays the top song in playlist
+  } else {//if the song is below the array #
+    songs[currentSong].mute();//prevents songs playing ontop of eachother
+    currentSong = int(rand);//changes to the song chosen
+    songs[currentSong].unmute();//plays desired song
+    repapla();//.rewind(), .pause(), .play()
+  }//end shuffle
+}// end shuffle()
 void forward() { //forward button
-if ( songs[currentSong].position() <= songs[currentSong].length() * 7.5/10) {
-    songs[currentSong].skip(3000); //paramiters in milliseconds
+  if ( songs[currentSong].position() <= songs[currentSong].length() * 7.5/10) {//prevents the song being skipped too far
+    songs[currentSong].skip(3000); //paramiters in milliseconds -> skips song 3 seconds
   }// end forward //if else () {}//end forward
 }//end forward button
 void rewind() {//rewind button
-if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {
-  songs[currentSong].skip(-3000);//paramiters in milliseconds
-  //if the song is at the very beginning the reverse button will skip the the previous song paused
-} if ( songs[currentSong].position() == songs.length - songs.length ) {
-  if( songs[currentSong].isPlaying() ) {
-    if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
-      songs[currentSong].mute();
-      currentSong = songs.length - 1; //moves to top of the playlist
-      songs[currentSong].unmute();
-      songs[currentSong].rewind();
-      songs[currentSong].pause();
-      wentBack = true;
-      // if at the end of playlist this sets it to zero
-    } else {
-      wentBack = false;
-    } 
-    if ( wentBack == false ) {
-      songs[currentSong].mute();
-      currentSong--;
-      songs[currentSong].unmute();
-      songs[currentSong].rewind();
-      songs[currentSong].pause();
+  if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {//prevents song being rewinded too far
+    songs[currentSong].skip(-3000);//paramiters in milliseconds -> goes back 3 seconds
+    //if the song is at the very beginning the reverse button will skip the the previous song paused
+  } if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
+    if( songs[currentSong].isPlaying() ) {
+      if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
+        songs[currentSong].mute();//so songs do not play ontop of eachother
+        currentSong = songs.length - 1; //moves to top of the playlist
+        songs[currentSong].unmute();//plays desired song
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+        wentBack = true;//ERROR catch
+        // if at the end of playlist this sets it to zero
+      } else {
+        wentBack = false;
+      } 
+      if ( wentBack == false ) {
+        songs[currentSong].mute();//so songs do not play ontop of eachother
+        currentSong--;//switiches to the previous song
+        songs[currentSong].unmute();//plays desired song
+        songs[currentSong].rewind();
+        songs[currentSong].pause();
+      }
     }
   }
-}
 }//end rewind
 void loop1() {//loop1
-if ( songs[currentSong].isPlaying() ) {
-  songs[currentSong].pause();
-  songs[currentSong].loop(0);
-  songs[currentSong].play();
-} else {
-  songs[currentSong].loop(0);
+  if ( songs[currentSong].isPlaying() ) {
+    songs[currentSong].pause();
+    songs[currentSong].loop(0);//loops song 1 time
+    songs[currentSong].play();
+  } else {//loop the song at the end of the track -> so that delay() != used
+    songs[currentSong].loop(0);//loops song 1 time
   }
-    /*
-   delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
-   //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
-   songs[currentSong].loop(0);
-   */
+  /*
+ delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
+ //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
+ songs[currentSong].loop(0);
+ */
 }//end loop1
 void loopInf() {//loop inf
 //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
 //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
-  if ( songs[currentSong].isPlaying() ) {
+  if ( songs[currentSong].isPlaying() ) {//empty if
     songs[currentSong].pause();
     songs[currentSong].play();
-  } else {
-    songs[currentSong].loop(-1);
+  } else {//if song != playing song replays -> so delay() != used
+    songs[currentSong].loop(-1);//plays the song infinitely
   }
 }//end loopInf
-void Stop() {//Stop
-if ( songs[currentSong].isPlaying() ) {
-  if (autoPlayOn == true) {
-    autoPlayOn = false;
-    pauseAutoStop = true;
-  }
-  songs[currentSong].pause(); 
-  songs[currentSong].rewind();
+  void Stop() {//Stop
+  if ( songs[currentSong].isPlaying() ) {//stops the song from playing
+    if (autoPlayOn == true) {//ERROR catch -> when auto play was on if the song != playing it would switch the song preventing stop from working
+      autoPlayOn = false;
+      pauseAutoStop = true;//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
+    }
+    songs[currentSong].pause(); //stops the song from playing
+    songs[currentSong].rewind();
   } else { 
     songs[currentSong].rewind(); 
-    if (pauseAutoStop == true){
+    if (pauseAutoStop == true){//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
       autoPlayOn = true;
       pauseAutoStop = false;
     }
   }
 }//end Stop
 void pausePlay() {//pause-play button
-if ( songs[currentSong].isPlaying() ) {
-  if ( autoPlayOn == true ){
-    autoPlayOn = false;
-    pauseAutoStop = true;
-  }
-  songs[currentSong].pause();
+  if ( songs[currentSong].isPlaying() ) {//if song was playing then pauses the song
+    if ( autoPlayOn == true ){//ERROR catch
+      autoPlayOn = false;
+      pauseAutoStop = true;
+    }
+    songs[currentSong].pause();
   } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
     songs[currentSong].rewind();
-      /* 
-      student to finish
-      .pause(), rewind(), then cue the next song */
-  } else {
-    songs[currentSong].play();
-    if ( pauseAutoStop == true ) {
+    /* 
+    student to finish
+    .pause(), rewind(), then cue the next song */
+  } else {//if the song was already paused/'not playing' then starts playing the song again
+    songs[currentSong].play();//plays the song
+    if ( pauseAutoStop == true ) {//ERROR catch
       autoPlayOn = true;
       pauseAutoStop = false;
     }
-  }
+  }//end pause button
 }//end pause-play
 void next() {//next
-if( songs[currentSong].isPlaying() ){
-  if ( currentSong == songs.length - 1 ) { //ERROR catch:
-    songs[currentSong].mute();
-    currentSong = songs.length - songs.length; // intention is zero
-    songs[currentSong].unmute();
-    repapla();
-    wentBack = true;
-    // if at the end of playlist this sets it to zero
-  } else {
-    wentBack = false;
-  } 
-  if ( wentBack == false ) {
-    songs[currentSong].mute();
-    currentSong++;
-    songs[currentSong].unmute();
-    repapla();
-  }
-} else {
-  songs[currentSong].loop(0);
-}
+  if( songs[currentSong].isPlaying() ){
+    if ( currentSong == songs.length - 1 ) { //ERROR catch:
+      songs[currentSong].mute();//so that songs do not play on top of eachother
+      currentSong = songs.length - songs.length; // intention is zero
+      songs[currentSong].unmute();//plays desired song
+      repapla();//.rewind(), .pause(), .play()
+      wentBack = true;//ERROR catch
+      // if at the end of playlist this sets it to zero
+    } else {
+      wentBack = false;
+    } 
+    if ( wentBack == false ) {
+      songs[currentSong].mute();//stops the song from playing ontop of eachother
+      currentSong++;//switches the song
+      songs[currentSong].unmute();//plays desired song
+      repapla();//.rewind(), .pause(), .play()
+    }
+  } else { //if the song was not playing the song would be looped
+    songs[currentSong].loop(0);//song looped 1 time
+  }//end next button
 }//end next
 void previous() {//previous
-if( songs[currentSong].isPlaying() ) {
-  if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
-    songs[currentSong].mute();
-    currentSong = songs.length - 1; //moves to top of the playlist
-    songs[currentSong].unmute();
-    repapla();
-    wentBack = true;
-    // if at the end of playlist this sets it to zero
-  } else {
-    wentBack = false;
-  } 
-  if ( wentBack == false ) {
-    songs[currentSong].mute();
-    currentSong--;
-    songs[currentSong].unmute();
-    repapla();
-  }
-} else {
-  songs[currentSong].loop(0);
-}
+  if( songs[currentSong].isPlaying() ) {
+    if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
+      songs[currentSong].mute();//stops songs from playing ontop of eachother
+      currentSong = songs.length - 1; //moves to top of the playlist
+      songs[currentSong].unmute();//plays the desired song
+      repapla();//.rewind(), .pause(), .play()
+      wentBack = true;//ERROR catch
+      // if at the end of playlist this sets it to zero
+    } else {
+      wentBack = false;//ERROR catch
+    } 
+    if ( wentBack == false ) {
+      songs[currentSong].mute();//stops songs from playing ontop of eachother
+      currentSong--;//plays the previous song
+      songs[currentSong].unmute();//plays desired song
+      repapla();//.rewind(), .pause(), .play()
+    }
+  } else {//if the song is not playing then the song is looped
+    songs[currentSong].loop(0);//loop song
+  }//end previous button
 }//end previous
-void repapla() {
+void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
   songs[currentSong].play();
