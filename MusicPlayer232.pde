@@ -3,7 +3,7 @@
 */
 //Gobal variables
 Minim minim; //creates an object to access all functions
-AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
+AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
 float rand;//random variable
@@ -20,7 +20,7 @@ void setupMusic() {
   concatenationOfMusicFiles();
   songs[0] = minim.loadFile( pathway + groove ); //song
   songs[1] = minim.loadFile( pathway + beatYourCompetition ); //song
-  //songs[2] = minim.loadFile( pathway + eureka ); //song
+  songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   background( background );//background color
@@ -32,11 +32,13 @@ void setupMusic() {
 }//end setupmusic
 //
 void drawMusic() { // debugging in consol
+/*
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "End of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Random:", rand );
   println( "Current song:", currentSong );// song being played
+  */
   autoPlayMusic();
 }//end drawMusic
 //
@@ -70,7 +72,16 @@ void keyPressedMusic() {
   if ( key == 'H' || key == 'h' ) { previous(); }//end previous button keybind
 }//end keyPressedMusic
 //
-void mousePressedMusic(){}//end mousePressedMusic
+void mousePressedMusic(){
+      if(mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
+  {
+    println("it worke");
+  } 
+  else 
+  {
+    
+  }
+}//end mousePressedMusic
 //
 void concatenationOfMusicFiles(){
   pathway = "data/";
@@ -278,4 +289,15 @@ void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].pause();
   songs[currentSong].play();
 }//end repapla
+//
+void drawhitboxes() {
+    if(mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
+  { println("imbassing");
+  } else {
+  }
+ rect(pauseX1, pauseY1, BOXW, pauseHeight);
+ if (mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+pauseHeight ) 
+ {} else {}
+ rect(skipbX2, skipbY3, BOXW, SH);
+}//end drawhitboxes
 //end MusicPlayer232 subProgram
