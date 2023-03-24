@@ -6,11 +6,11 @@ Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
-float rand;
+float rand;//random variable
 int currentSong = 0; // current song
 boolean autoPlayOn = false; //setting autoPlayOn off
 boolean wentBack = false; //setting the forward button
-boolean pauseAutoStop = false;
+boolean pauseAutoStop = false;//setting the boolean false
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
