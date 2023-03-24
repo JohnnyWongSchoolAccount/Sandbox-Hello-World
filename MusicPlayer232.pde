@@ -1,4 +1,6 @@
-/*this code is a work in progress */
+/*this code is a work in progress 
+  - mouse pressed interface
+*/
 //Gobal variables
 Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
