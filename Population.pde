@@ -1,4 +1,7 @@
 //Global Variables
+//custom variables
+float BOXW, SW, SH;
+//
 int appWidth, appHeight;
 //pause button
 float pauseX1, pauseY1, pauseX2, pauseY2, pauseWidth, pauseHeight; // rect
@@ -157,6 +160,10 @@ void population() {
   mutetY22 = pauseHeight;
   mutetX32 = mutetX12;
   mutetY32 = startingY;//width
+  //button hitbox custom variables
+  BOXW = pauseWidth * 9/3;
+  SH = pauseHeight * 2/3;
+  
 }//end population
 void drawMusicButtons() {
   //drawPlayButton(); // playbutton - triangle
