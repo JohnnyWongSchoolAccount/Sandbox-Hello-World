@@ -41,19 +41,19 @@ void drawMusic() { // debugging in consol
 }//end drawMusic
 //
 void keyPressedMusic() {
-  //pause-play
+  //pause-play button
   if ( key == 'P' || key == 'p' ) { pausePlay(); }// end pause-play button keybind
   //Shuffle button
   if (key == 'W' || key == 'w') { Shuffle(); }//end shuffle keybind
   /* forward and reverse button
-  forward  */
+  forward button */
   if ( key == 'F' || key == 'f'){ forward(); }//end forward keybind
-  //reverse
+  //reverse button
   if ( key == 'R' || key == 'r'){ rewind(); }//end reverse keybind
   /* Loop Buttons
-  single loop */
+  single loop button */
   if ( key == '1' ) { loop1(); }//end single loop keybind
-  //loop infinite
+  //loop infinite button
   if ( key <= '9' && key !='1' ) { loopInf(); }// end loop infinite keybind
   //stop button
   if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
