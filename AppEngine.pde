@@ -10,6 +10,7 @@ void setup() {
   //
   setupMusic();
   size( 700 , 400 ); //width and height
+  //fullScreen();
   population();
   drawMusicButtons();
   //
