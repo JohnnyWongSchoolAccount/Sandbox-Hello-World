@@ -25,7 +25,6 @@ void setupMusic() {
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   background( background );//background color
   strokeJoin( ROUND ); //the outlines of the shapes
-  //fullScreen();//display width and height
   //
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
