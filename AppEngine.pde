@@ -1,5 +1,5 @@
 //Global Variables
-//
+// 748 total lines of code
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
