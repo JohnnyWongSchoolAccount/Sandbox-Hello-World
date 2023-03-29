@@ -113,6 +113,10 @@ void drawMusic() { // debugging in consol
   { fill(test); } else {fill(black);}
   triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
   fill(black);
+  if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
+  { fill(test); } else {fill(black);}
+  triangle(shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3); // bottom
+  triangle(shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32); // top
 }//end drawMusic
 //
 void keyPressedMusic() {
@@ -173,15 +177,17 @@ void mousePressedMusic(){
   { loop1(); } else {}
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { loopInf(); } else {}
+  if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
+  { Shuffle(); } else {}
 }//end mousePressedMusic
 //
-void drawhitboxes() {
+void drawhitboxes() { 
   //pause-play button
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);
   //rewind button
-  //rect(skipbX2, skipbY3, BOXW, BOXW);
+  //rect(skipbX2, skipbY3, BOXW, BOXW); 
   //forward button
-  //rect(skipfX32, skipfY3, BOXW, BOXW);
+  //rect(skipfX32, skipfY3, BOXW, BOXW); 
   //previous track button
   //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);
   //next track button
@@ -194,6 +200,8 @@ void drawhitboxes() {
   //rect(loopX1, loopY1, pauseHeight, pauseHeight);
   //loop Infinite button
   //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);
+  //shuffle
+  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);
 }//end drawhitboxes
 //
 void concatenationOfMusicFiles(){
