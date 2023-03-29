@@ -117,6 +117,16 @@ void drawMusic() { // debugging in consol
   { fill(test); } else {fill(black);}
   triangle(shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3); // bottom
   triangle(shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32); // top
+  //autoplay
+  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
+  { fill(test); } else if ( autoPlayOn == true ) {fill(test2);} else {fill(black);}
+  rect(autoX1, autoY1, autoWidth, autoHeight, 22); // outside rect
+  fill(background); // inside rect
+  rect(autoX2, autoY2, autoWidth2, autoHeight2, 13); // inside rect
+  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
+  { fill(test); } else if ( autoPlayOn == true ) {fill(test2);} else {fill(black);}
+  triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
+  triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
 }//end drawMusic
 //
 void keyPressedMusic() {
@@ -152,7 +162,7 @@ void keyPressedMusic() {
 void mousePressedMusic(){
   //pause button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
-  {  if (pauseplaycolor == false ) {pausePlay(); pauseplaycolor = true;}
+  {  if (pauseplaycolor == false ) {pauseplaycolor = true; pausePlay();}
    else {pauseplaycolor = false; pausePlay(); } }
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
@@ -179,6 +189,8 @@ void mousePressedMusic(){
   { loopInf(); } else {}
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
   { Shuffle(); } else {}
+  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
+  { autoPlay(); } else {}
 }//end mousePressedMusic
 //
 void drawhitboxes() { 
@@ -200,6 +212,8 @@ void drawhitboxes() {
   //rect(loopX1, loopY1, pauseHeight, pauseHeight);
   //loop Infinite button
   //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);
+  //auto-play
+  //rect(autoX1, autoY1, pauseHeight, pauseHeight);
   //shuffle
   //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);
 }//end drawhitboxes
@@ -350,6 +364,7 @@ void pausePlay() {//pause-play button
     songs[currentSong].pause();
   } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
     songs[currentSong].rewind();
+    pauseplaycolor = true;
     /* 
     student to finish
     .pause(), rewind(), then cue the next song */
