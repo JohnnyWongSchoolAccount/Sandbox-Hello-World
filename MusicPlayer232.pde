@@ -190,7 +190,7 @@ void mousePressedMusic(){
   { autoPlay(); } else {}
 }//end mousePressedMusic
 //
-void drawhitboxes() { 
+void drawhitboxes() { //for debugging
   //pause-play button
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);
   //rewind button
@@ -344,6 +344,7 @@ void loopInf() {//loop inf
     }
     songs[currentSong].pause(); //stops the song from playing
     songs[currentSong].rewind();
+    pauseplaycolor = true;
   } else { 
     songs[currentSong].rewind(); 
     if (pauseAutoStop == true){//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
