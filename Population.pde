@@ -19,6 +19,10 @@ float skipBarX2, skipBarY2;//skipbutton bar 2 rect
 float loopX1, loopY1, loopWidth, loopHeight; //loop button rect
 float loopX2, loopY2, loopWidth2, loopHeight2; //loop button 2 rect
 float looptX1, looptY1, looptX2, looptY2, looptX3, looptY3; //loop button triangle
+//loop Infinite button
+float loopiX1, loopiY1, loopiWidth, loopiHeight; //loop button rect
+float loopiX2, loopiY2, loopiWidth2, loopiHeight2; //loop button 2 rect
+float looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3; //loop button triangle
 //skip forward and backward buttons
 float skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3; //skipF button triangle
 float skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32; //skipF button behind triangle
@@ -34,6 +38,8 @@ color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode
 color black= #CCC1FF; //The Button color
 color purp= #FFFBE3; //The outline color FFFBE3
 color background=#9EA9F0; //The background color
+color test = #000000; //test color
+color test2 = #FFFFFF;
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
@@ -100,6 +106,24 @@ void population() {
   looptX3 = startingX + (startingX/1.2);
   looptY3 = startingY;
   //end loop button stuff
+  //loop Infinite button stuff
+  loopiX1 = startingX + (startingX/1.7);//position on the X-axis  
+  loopiY1 = pauseY1; //position on the Y-axis
+  loopiWidth = pauseHeight; //width of the loop button
+  loopiHeight = pauseHeight; //height of the loop button
+  //square 2
+  loopiX2 = startingX + (startingX/1.425); //position on the X-axis
+  loopiY2 = startingY*1.075; //position on the Y-axis
+  loopiWidth2 = pauseHeight - (startingY/2.5); //width of the loop button
+  loopiHeight2 = pauseHeight - (startingY/2.5); //height of the loop button
+  //triangle
+  looptiX1 = startingX + (startingX*1/1.66); 
+  looptiY1 = startingY - (startingY/9);
+  looptiX2 = startingX + (startingX*1/1.55);
+  looptiY2 = startingY;
+  looptiX3 = startingX + (startingX/1.8);
+  looptiY3 = startingY;
+  //end loop infinite button stuff
   //skip forward button
   skipfX1 = startingX + (pauseX1/5.0); 
   skipfY1 = startingY + (startingY/11.0);//width
@@ -171,6 +195,7 @@ void drawMusicButtons() {
   drawStopButton(); // stopbutton - rect
   drawSkipButton(); // skipbutton - triangle, rect
   drawLoopButton(); // loop button - triangle, 2 rect
+  drawLoopButtonInf(); // loop infinite button - triangle, 2 rect
   drawSkipFBButton(); // skipbutton - 2 triangle
   drawMuteButton(); // mute button - 2 rect, triangle
 }//end drawMusicButtons
@@ -212,6 +237,15 @@ void drawLoopButton() {
   rect(loopX2, loopY2, loopWidth2, loopHeight2, 13); // inside rect
   fill(black); // triangle
   triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
+  fill(resetcolorDayMode);
+}//end drawloopButton
+void drawLoopButtonInf() {
+  fill(black); // outside rect
+  rect(loopiX1, loopiY1, loopiWidth, loopiHeight, 22); // outside rect
+  fill(background); // inside rect
+  rect(loopiX2, loopiY2, loopiWidth2, loopiHeight2, 13); // inside rect
+  fill(black); // triangle
+  triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
   fill(resetcolorDayMode);
 }//end drawloopButton
 void drawSkipFBButton() {
