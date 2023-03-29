@@ -42,7 +42,7 @@ void drawMusic() { // debugging in consol
   // music buttons
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  { fill(test); } else if (pauseplaycolor == true) {fill(test2);} else { fill(black); }
+  { fill(test); } else if (pauseplaycolor == true) {fill(test2);} else { fill(black);} 
   rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
   rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
   //rewind button
