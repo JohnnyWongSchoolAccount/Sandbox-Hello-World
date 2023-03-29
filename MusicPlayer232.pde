@@ -38,6 +38,65 @@ void drawMusic() { // debugging in consol
   println( "Random:", rand );
   println( "Current song:", currentSong );// song being played
   autoPlayMusic();
+  // music buttons
+  //pause-play button
+  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
+  { fill(test); } else { fill(black); }
+  rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
+  rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
+  fill(black);
+  //rewind button
+  if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  { fill(test); } else { fill(black); }
+  triangle(skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32); // right side
+  triangle(skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3); // right side
+  fill(black);
+  //forward buton
+  if ( mouseX>=skipfX32 && mouseX<=skipfX1+BOXW && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
+  { fill(test); } else { fill(black); }
+  triangle(skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32); // left side
+  triangle(skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3); // left side
+  fill(black);
+  //previous button
+  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
+  {fill(test);} else {fill(black);}
+  triangle( skipX1, skipY1, skipX2, skipY2, skipX3, skipY3 );//triange skip1
+  rect( skipBarX1, skipBarY1, skipBarWidth, skipBarHeight, 22 );//bar skip1
+  //next button
+  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight ) 
+  {fill(test);} else {fill(black);}
+  triangle( skipX12, skipY12, skipX22, skipY22, skipX32, skipY32 );//triange skip2
+  rect( skipBarX2, skipBarY2, skipBarWidth, skipBarHeight, 22 );//bar skip2
+  //mute button
+  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
+  { fill(test); } else {fill(black);}
+  triangle(mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3); // triangle
+  rect(muteX, muteY, muteWidth, muteHeight); // rectangle
+  rect(muteX2, muteY2, muteWidth2, muteHeight2); // blocking rectangle left side
+  //triangle(mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32);
+  //stop button
+  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
+  { fill(test); } else {fill(black);}
+  rect( stopX, stopY, stopWidth, stopHeight, 22 ); //square
+  //loop button
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
+  { fill(test); } else {fill(black);}
+  rect(loopX1, loopY1, loopWidth, loopHeight, 22); // outside rect
+  fill(background); // inside rect
+  rect(loopX2, loopY2, loopWidth2, loopHeight2, 13); // inside rect
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
+  { fill(test); } else {fill(black);}
+  triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
+  //loop infinite button
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
+  { fill(test); } else {fill(black);}
+  rect(loopiX1, loopiY1, loopiWidth, loopiHeight, 22); // outside rect
+  fill(background); // inside rect
+  rect(loopiX2, loopiY2, loopiWidth2, loopiHeight2, 13); // inside rect
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
+  { fill(test); } else {fill(black);}
+  triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
+  fill(black);
 }//end drawMusic
 //
 void keyPressedMusic() {
@@ -101,40 +160,22 @@ void mousePressedMusic(){
 //
 void drawhitboxes() {
   //pause-play button
-  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  {} else {}
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);
   //rewind button
-  if ( mouseX>=skipbX2 && mouseX<=skipbX2+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW ) 
-  {} else {}
-  //rect(skipbX2, skipbY3, pauseHeight, BOXW);
+  //rect(skipbX2, skipbY3, BOXW, BOXW);
   //forward button
-  if ( mouseX>=skipfX32 && mouseX<=skipfX32+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW ) 
-  {} else {}
-  //rect(skipfX32, skipfY3, pauseHeight, BOXW);
+  //rect(skipfX32, skipfY3, BOXW, BOXW);
   //previous track button
-  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
-  {} else {}
   //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);
   //next track button
-  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight ) 
-  {} else {}
   //rect(skipX12, skipY32, pauseHeight, pauseHeight);
   //mute button
-  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight ) 
-  {} else {}
   //rect(muteX, muteY2, pauseHeight, pauseHeight);
   //stop button
-  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight ) 
-  {} else {}
   //rect(stopX, stopY, pauseHeight, pauseHeight);
   //loop button
-  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight ) 
-  {} else {}
   //rect(loopX1, loopY1, pauseHeight, pauseHeight);
   //loop Infinite button
-  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight ) 
-  {} else {}
   //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);
 }//end drawhitboxes
 //
