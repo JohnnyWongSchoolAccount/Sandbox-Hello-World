@@ -1,4 +1,4 @@
-//global variables
+//Global Variables
 //
 import ddf.minim.*;
 import ddf.minim.analysis.*;
