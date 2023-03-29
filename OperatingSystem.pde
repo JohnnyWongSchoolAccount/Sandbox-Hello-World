@@ -1,5 +1,5 @@
 /*code not finished
-  also see music subprogram
+  also see music subProgram
 */
 //Global Variables
 String path = new File("").getAbsolutePath(); //Exported Program
