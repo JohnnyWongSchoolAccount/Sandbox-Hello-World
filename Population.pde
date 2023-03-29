@@ -32,6 +32,9 @@ float mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3; // triangle
 float muteX, muteY, muteWidth, muteHeight; // rect
 float mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32; // triangle
 float muteX2, muteY2, muteWidth2, muteHeight2; // rect
+//suffle button
+float shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3; //shuffle button triangle top
+float shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32;//shuffle button triangle bottom
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
 color black= #CCC1FF; //The Button color
@@ -186,7 +189,21 @@ void population() {
   //button hitbox custom variables
   BOXW = pauseWidth * 9/3;
   SH = pauseHeight * 2/3;
-  
+  //shuffle button
+  //triangle bottom
+  shuffleX1 = startingX;
+  shuffleY1 = startingY + (startingY/1.9);
+  shuffleX2 = startingX + (startingY/8);
+  shuffleY2 = startingY + (startingY/2.5);
+  shuffleX3 = startingX - (startingY/8);
+  shuffleY3 = startingY + (startingY/2.5);
+  //triangle top
+  shuffleX12 = startingX;
+  shuffleY12 = startingY + (startingY/4);
+  shuffleX22 = startingX + (startingY/8);
+  shuffleY22 = startingY + (startingY/2.5);
+  shuffleX32 = startingX - (startingY/8);
+  shuffleY32 = startingY + (startingY/2.5);
 }//end population
 void drawMusicButtons() {
   //drawPlayButton(); // playbutton - triangle
@@ -197,6 +214,7 @@ void drawMusicButtons() {
   drawLoopButtonInf(); // loop infinite button - triangle, 2 rect
   drawSkipFBButton(); // skipbutton - 2 triangle
   drawMuteButton(); // mute button - 2 rect, triangle
+  drawShuffleButton(); //shuffle button - 2 triangles
 }//end drawMusicButtons
 //
 void drawPauseButton() {
@@ -268,5 +286,11 @@ void drawMuteButton() {
   //triangle(mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32);
   fill(resetcolorDayMode);
 }//end DrawMuteFBButtons
+void drawShuffleButton() {
+  fill(black);
+  triangle(shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3); // bottom
+  triangle(shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32); // top
+  fill(resetcolorDayMode);
+}//end drawSkipFBButton
 //end Music Player Buttons
 //end population SubProgram
