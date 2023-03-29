@@ -37,8 +37,8 @@ color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode
 color black= #CCC1FF; //The Button color
 color purp= #FFFBE3; //The outline color FFFBE3
 color background=#9EA9F0; //The background color
-color test = #E45545; //test color
-color test2 = #014022; //test color
+color test = #FF0000; //test color
+color test2 = #00FF4A; //test color
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
@@ -209,6 +209,9 @@ void drawPauseButton() {
 }//end draw
 void drawPlayButton() {
   strokeWeight(4); //controls the borders width
+  stroke(background); // outline color
+  fill(background); // button color
+  rect(pauseX1, pauseY1, BOXW, pauseHeight);
   stroke(purp); // outline color
   fill(black); // button color
   triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
