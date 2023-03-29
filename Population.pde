@@ -118,7 +118,7 @@ void population() {
   loopiHeight2 = pauseHeight - (startingY/2.5); //height of the loop button
   //triangle
   looptiX1 = startingX + (startingX*1/1.66); 
-  looptiY1 = startingY - (startingY/9);
+  looptiY1 = startingY + (startingY/9);
   looptiX2 = startingX + (startingX*1/1.55);
   looptiY2 = startingY;
   looptiX3 = startingX + (startingX/1.8);
