@@ -11,6 +11,7 @@ int currentSong = 0; // current song
 boolean autoPlayOn = false; //setting autoPlayOn off
 boolean wentBack = false; //setting the forward button
 boolean pauseAutoStop = false;//setting the boolean false
+boolean pauseplaycolor = false;//setting the boolean false
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
@@ -35,16 +36,15 @@ void drawMusic() { // debugging in consol
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "End of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
-  println( "Random:", rand );
+  println( "Random:", pauseplaycolor );
   println( "Current song:", currentSong );// song being played
   autoPlayMusic();
   // music buttons
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  { fill(test); } else { fill(black); }
+  { fill(test); } else if (pauseplaycolor == true) {fill(test2);} else { fill(black); }
   rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
   rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
-  fill(black);
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
   { fill(test); } else { fill(black); }
@@ -132,9 +132,10 @@ void keyPressedMusic() {
 void mousePressedMusic(){
   //pause button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
-  { pausePlay(); } else {}
+  {  if (pauseplaycolor == false ) {pausePlay(); pauseplaycolor = true;}
+   else {pauseplaycolor = false; pausePlay(); } }
   //rewind button
-  if ( mouseX>=skipbX2 && mouseX<=skipbX1+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
   { rewind(); } else {}
   //forward button
   if ( mouseX>=skipfX32 && mouseX<=skipfX1+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
