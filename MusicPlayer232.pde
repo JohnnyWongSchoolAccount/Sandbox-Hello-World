@@ -1,5 +1,7 @@
 /*this code is a work in progress 
   - mouse pressed interface
+  - autoplay button
+  - shuffle button
 */
 //Gobal variables
 Minim minim; //creates an object to access all functions
