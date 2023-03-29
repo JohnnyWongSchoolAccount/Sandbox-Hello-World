@@ -22,6 +22,11 @@ float looptX1, looptY1, looptX2, looptY2, looptX3, looptY3; //loop button triang
 float loopiX1, loopiY1, loopiWidth, loopiHeight; //loop button rect
 float loopiX2, loopiY2, loopiWidth2, loopiHeight2; //loop button 2 rect
 float looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3; //loop button triangle
+//auto skip button
+float autoX1, autoY1, autoWidth, autoHeight; //auto skip button rect
+float autoX2, autoY2, autoWidth2, autoHeight2; //auto skip button 2 rect
+float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto skip button triangle
+float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto skip button triangle
 //skip forward and backward buttons
 float skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3; //skipF button triangle
 float skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32; //skipF button behind triangle
@@ -126,6 +131,31 @@ void population() {
   looptiX3 = startingX + (startingX/1.8);
   looptiY3 = startingY;
   //end loop infinite button stuff
+  //auto skip button stuff
+  autoX1 = startingX + (pauseX1/1.2);//position on the X-axis  
+  autoY1 = startingY + (startingY/4); //position on the Y-axis
+  autoWidth = pauseHeight; //width of the loop button
+  autoHeight = pauseHeight; //height of the loop button
+  //square 2
+  autoX2 = startingX + (pauseX1/1.05); //position on the X-axis
+  autoY2 = startingY + (startingY/2.2); //position on the Y-axis
+  autoWidth2 = pauseHeight - (startingY/2.5); //width of the loop button
+  autoHeight2 = pauseHeight - (startingY/2.5); //height of the loop button
+  //triangle
+  autotX1 = startingX + (startingX/1.2); 
+  autotY1 = startingY + (startingY/2.8);
+  autotX2 = startingX + (pauseX1*1/1.25);
+  autotY2 = startingY + (startingY/2.8);
+  autotX3 = startingX + (startingX/1.26);
+  autotY3 = startingY + (startingY/4);
+  //triangle
+  autotX12 = startingX + (startingX/1.05); 
+  autotY12 = startingY + (startingY/2.5);
+  autotX22 = startingX + (startingX/1.15);
+  autotY22 = startingY + (startingY/2.5);
+  autotX32 = startingX + (startingX/1.1);
+  autotY32 = startingY + (startingY/2);
+  //end autoskip
   //skip forward button
   skipfX1 = startingX + (pauseX1/5.0); 
   skipfY1 = startingY + (startingY/11.0);//width
@@ -204,6 +234,7 @@ void population() {
   shuffleY22 = startingY + (startingY/2.5);
   shuffleX32 = startingX - (startingY/8);
   shuffleY32 = startingY + (startingY/2.5);
+  //end shuffle button
 }//end population
 void drawMusicButtons() {
   //drawPlayButton(); // playbutton - triangle
@@ -212,6 +243,7 @@ void drawMusicButtons() {
   drawSkipButton(); // skipbutton - triangle, rect
   drawLoopButton(); // loop button - triangle, 2 rect
   drawLoopButtonInf(); // loop infinite button - triangle, 2 rect
+  drawAustoSkipButton(); //auto skip button - 2 trangle, 2 rect
   drawSkipFBButton(); // skipbutton - 2 triangle
   drawMuteButton(); // mute button - 2 rect, triangle
   drawShuffleButton(); //shuffle button - 2 triangles
@@ -292,5 +324,15 @@ void drawShuffleButton() {
   triangle(shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32); // top
   fill(resetcolorDayMode);
 }//end drawSkipFBButton
+void drawAustoSkipButton() {
+  fill(black); // outside rect
+  rect(autoX1, autoY1, autoWidth, autoHeight, 22); // outside rect
+  fill(background); // inside rect
+  rect(autoX2, autoY2, autoWidth2, autoHeight2, 13); // inside rect
+  fill(black); // triangle
+  triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
+  triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
+  fill(resetcolorDayMode);
+}//end drawloopButton
 //end Music Player Buttons
 //end population SubProgram
