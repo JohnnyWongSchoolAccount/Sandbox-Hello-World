@@ -3,7 +3,7 @@
 */
 //Gobal variables
 Minim minim; //creates an object to access all functions
-AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
+AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
 float rand;//random variable
@@ -20,7 +20,7 @@ void setupMusic() {
   concatenationOfMusicFiles();
   songs[0] = minim.loadFile( pathway + groove ); //song
   songs[1] = minim.loadFile( pathway + beatYourCompetition ); //song
-  songs[2] = minim.loadFile( pathway + eureka ); //song
+  //songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   background( background );//background color
@@ -32,13 +32,11 @@ void setupMusic() {
 }//end setupmusic
 //
 void drawMusic() { // debugging in consol
-/*
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "End of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Random:", rand );
   println( "Current song:", currentSong );// song being played
-  */
   autoPlayMusic();
 }//end drawMusic
 //
@@ -73,23 +71,80 @@ void keyPressedMusic() {
 }//end keyPressedMusic
 //
 void mousePressedMusic(){
-      if(mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  {
-    println("it worke");
-  } 
-  else 
-  {
-    
-  }
+  //pause button
+  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
+  { pausePlay(); } else {}
+  //rewind button
+  if ( mouseX>=skipbX2 && mouseX<=skipbX1+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  { rewind(); } else {}
+  //forward button
+  if ( mouseX>=skipfX32 && mouseX<=skipfX1+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
+  { forward(); } else {}
+  //previous track button
+  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight )
+  { previous(); } else {}
+  //next track button
+  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight )
+  { next(); } else {}
+  //mute button
+  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
+  { mute(); } else {}
+  //stop button
+  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
+  { Stop(); } else {}
+  //loop button
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
+  { loop1(); } else {}
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
+  { loopInf(); } else {}
 }//end mousePressedMusic
+//
+void drawhitboxes() {
+  //pause-play button
+  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
+  {} else {}
+  //rect(pauseX1, pauseY1, BOXW, pauseHeight);
+  //rewind button
+  if ( mouseX>=skipbX2 && mouseX<=skipbX2+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW ) 
+  {} else {}
+  //rect(skipbX2, skipbY3, pauseHeight, BOXW);
+  //forward button
+  if ( mouseX>=skipfX32 && mouseX<=skipfX32+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW ) 
+  {} else {}
+  //rect(skipfX32, skipfY3, pauseHeight, BOXW);
+  //previous track button
+  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
+  {} else {}
+  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);
+  //next track button
+  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight ) 
+  {} else {}
+  //rect(skipX12, skipY32, pauseHeight, pauseHeight);
+  //mute button
+  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight ) 
+  {} else {}
+  //rect(muteX, muteY2, pauseHeight, pauseHeight);
+  //stop button
+  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight ) 
+  {} else {}
+  //rect(stopX, stopY, pauseHeight, pauseHeight);
+  //loop button
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight ) 
+  {} else {}
+  //rect(loopX1, loopY1, pauseHeight, pauseHeight);
+  //loop Infinite button
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight ) 
+  {} else {}
+  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);
+}//end drawhitboxes
 //
 void concatenationOfMusicFiles(){
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
-  groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
+  groove = "Music_groove.mp3"; //song
   eureka = "Eureka.mp3";//song
   carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
-  woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
+  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
 }//end concatenation
 // all the music button funcitons ;)
 void autoPlay() {//autoPlay -> turning autoplay on or off
@@ -289,15 +344,4 @@ void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].pause();
   songs[currentSong].play();
 }//end repapla
-//
-void drawhitboxes() {
-    if(mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  { println("imbassing");
-  } else {
-  }
- rect(pauseX1, pauseY1, BOXW, pauseHeight);
- if (mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+pauseHeight ) 
- {} else {}
- rect(skipbX2, skipbY3, BOXW, SH);
-}//end drawhitboxes
 //end MusicPlayer232 subProgram
