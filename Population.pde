@@ -1,5 +1,4 @@
 //Global Variables
-//custom variables
 float BOXW, SW, SH;
 //
 int appWidth, appHeight;
@@ -38,8 +37,8 @@ color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode
 color black= #CCC1FF; //The Button color
 color purp= #FFFBE3; //The outline color FFFBE3
 color background=#9EA9F0; //The background color
-color test = #000000; //test color
-color test2 = #FFFFFF;
+color test = #E45545; //test color
+color test2 = #014022; //test color
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
