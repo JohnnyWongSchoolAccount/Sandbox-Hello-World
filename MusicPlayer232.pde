@@ -36,15 +36,29 @@ void drawMusic() { // debugging in consol
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "End of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
-  println( "Random:", pauseplaycolor );
+  println( "Random:", rand );
   println( "Current song:", currentSong );// song being played
   autoPlayMusic();
   // music buttons
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  { fill(test); } else if (pauseplaycolor == true) {fill(test2);} else { fill(black);} 
-  rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
-  rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
+  { fill(test); 
+    rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
+  } else if (pauseplaycolor == true) {
+    stroke(background); // outline color
+    fill(background); // button color
+    rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
+    stroke(purp);
+    fill(test2);
+    triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
+  } else { fill(black);
+    stroke(background); // outline color
+    fill(background); // button color
+    rect(pauseX1, pauseY1, BOXW, pauseHeight);
+    fill(black); stroke(purp);
+    rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
+    rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
+  } fill(black); stroke(purp);
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
   { fill(test); } else { fill(black); }
