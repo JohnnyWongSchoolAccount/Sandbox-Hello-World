@@ -1,16 +1,15 @@
-/*this code is a work in progress 
-*/
+/*this code is a work in progress */
 //Gobal variables
 Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
-String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; // the songs/SFX
+String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; //the songs/SFX
 float rand;//random variable
-int currentSong = 0; // current song
-boolean autoPlayOn = false; //setting autoPlayOn off
-boolean wentBack = false; //setting the forward button
-boolean pauseAutoStop = false;//setting the boolean false
-boolean pauseplaycolor = false;//setting the boolean false
+int currentSong = 0; //current song
+boolean autoPlayOn = false; //setting defult - auto-play
+boolean wentBack = false; //setting defult - auto-play ERROR catch
+boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
+boolean pauseplaycolor = false;//setting defult - pause-play mouse pressed
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
@@ -28,16 +27,17 @@ void setupMusic() {
   //
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
-}//end setupmusic
+}//end setupMusic()
 //
-void drawMusic() { // debugging in consol
+void drawMusic() { 
+  //debugging in consol
   println( "Current Song Position:", songs[currentSong].position() );//songs position
-  println( "End of Song:", songs[currentSong].length() );//songs length
+  println( "end of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
-  println( "Random:", rand );
+  println( "Random:", rand );//song that shuffle chose
   println( "Current song:", currentSong );// song being played
+  //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER
   autoPlayMusic();
-  // music buttons
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(test); 
@@ -123,11 +123,11 @@ void drawMusic() { // debugging in consol
   { fill(test); } else if ( autoPlayOn == true ) {fill(test2);} else {fill(black);}
   triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
   triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
-}//end drawMusic
+}//end drawMusic()
 //
-void keyPressedMusic() {
+void keyPressedMusic() {//keybinds
   //pause-play button
-  if ( key == 'P' || key == 'p' ) { pausePlay(); }// end pause-play button keybind
+  if ( key == 'P' || key == 'p' ) { pausePlay(); }//end pause-play button keybind
   //Shuffle button
   if (key == 'W' || key == 'w') { Shuffle(); }//end shuffle keybind
   /* forward and reverse button
@@ -139,7 +139,7 @@ void keyPressedMusic() {
   single loop button */
   if ( key == '1' ) { loop1(); }//end single loop keybind
   //loop infinite button
-  if ( key <= '9' && key !='1' ) { loopInf(); }// end loop infinite keybind
+  if ( key <= '9' && key !='1' ) { loopInf(); }//end loop infinite keybind
   //stop button
   if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
   //mute button
@@ -367,9 +367,9 @@ void pausePlay() {//pause-play button
 void next() {//next
   if( songs[currentSong].isPlaying() ){
     if ( currentSong == songs.length - 1 ) { //ERROR catch:
-      songs[currentSong].mute();//so that songs do not play on top of eachother
+      songs[currentSong].pause();//so that songs do not play on top of eachother
       currentSong = songs.length - songs.length; // intention is zero
-      songs[currentSong].unmute();//plays desired song
+      songs[currentSong].play();//plays desired song
       repapla();//.rewind(), .pause(), .play()
       wentBack = true;//ERROR catch
       // if at the end of playlist this sets it to zero
@@ -377,9 +377,9 @@ void next() {//next
       wentBack = false;
     } 
     if ( wentBack == false ) {
-      songs[currentSong].mute();//stops the song from playing ontop of eachother
+      songs[currentSong].pause();//stops the song from playing ontop of eachother
       currentSong++;//switches the song
-      songs[currentSong].unmute();//plays desired song
+      songs[currentSong].play();//plays desired song
       repapla();//.rewind(), .pause(), .play()
     }
   } else { //if the song was not playing the song would be looped
@@ -389,9 +389,9 @@ void next() {//next
 void previous() {//previous
   if( songs[currentSong].isPlaying() ) {
     if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
-      songs[currentSong].mute();//stops songs from playing ontop of eachother
+      songs[currentSong].pause();//stops songs from playing ontop of eachother
       currentSong = songs.length - 1; //moves to top of the playlist
-      songs[currentSong].unmute();//plays the desired song
+      songs[currentSong].play();//plays the desired song
       repapla();//.rewind(), .pause(), .play()
       wentBack = true;//ERROR catch
       // if at the end of playlist this sets it to zero
@@ -399,9 +399,9 @@ void previous() {//previous
       wentBack = false;//ERROR catch
     } 
     if ( wentBack == false ) {
-      songs[currentSong].mute();//stops songs from playing ontop of eachother
+      songs[currentSong].pause();//stops songs from playing ontop of eachother
       currentSong--;//plays the previous song
-      songs[currentSong].unmute();//plays desired song
+      songs[currentSong].play();//plays desired song
       repapla();//.rewind(), .pause(), .play()
     }
   } else {//if the song is not playing then the song is looped
