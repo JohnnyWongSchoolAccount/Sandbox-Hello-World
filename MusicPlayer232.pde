@@ -240,6 +240,7 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
         currentSong = songs.length - songs.length; // intention is zero -> switches song
         songs[currentSong].unmute();//plays the desired the song
         repapla();//.rewind(), .pause(), .play()
+        pauseplaycolor = false;
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else {
@@ -250,6 +251,7 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
         currentSong++;//switches song
         songs[currentSong].unmute();//plays desired song
         repapla();//.rewind(), .pause(), .play()
+        pauseplaycolor = false;
       }
     }
   }//end autoPlayOn button
@@ -277,6 +279,7 @@ void Shuffle() { //shuffle button
     currentSong = int(rand);//changes to the song chosen
     songs[currentSong].unmute();//plays desired song
     repapla();//.rewind(), .pause(), .play()
+    pauseplaycolor = false;
   }//end shuffle button
 }// end shuffle()
 void forward() { //forward button
@@ -296,6 +299,7 @@ void rewind() {//rewind button
         songs[currentSong].unmute();//plays desired song
         songs[currentSong].rewind();
         songs[currentSong].pause();
+        pauseplaycolor = true;
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else {
@@ -307,17 +311,16 @@ void rewind() {//rewind button
         songs[currentSong].unmute();//plays desired song
         songs[currentSong].rewind();
         songs[currentSong].pause();
+        pauseplaycolor = true;
       }
     }
   }//end rewind button
 }//end rewind
 void loop1() {//loop1
-  if ( songs[currentSong].isPlaying() ) {
-    songs[currentSong].pause();
-    songs[currentSong].loop(0);//loops song 1 time
-    songs[currentSong].play();
+  if ( songs[currentSong].isPlaying() ) {//empty if
   } else {//loop the song at the end of the track -> so that delay() != used
     songs[currentSong].loop(0);//loops song 1 time
+    pauseplaycolor = false;
   }//end loop 1 button
   /*
  delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
@@ -329,10 +332,9 @@ void loopInf() {//loop inf
 //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
 //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
   if ( songs[currentSong].isPlaying() ) {//empty if
-    songs[currentSong].pause();
-    songs[currentSong].play();
   } else {//if song != playing song replays -> so delay() != used
     songs[currentSong].loop(-1);//plays the song infinitely
+    pauseplaycolor = false;
   }//end loop inf button
 }//end loopInf
   void Stop() {//Stop
