@@ -47,7 +47,7 @@ void drawMusic() { // debugging in consol
     fill(background); // button color
     rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
     stroke(purp);
-    fill(test2);
+    fill(black);
     triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
   } else { fill(black);
     stroke(background); // outline color
