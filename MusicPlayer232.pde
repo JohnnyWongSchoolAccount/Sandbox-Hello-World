@@ -283,9 +283,9 @@ void rewind() {//rewind button
   } if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
     if( songs[currentSong].isPlaying() ) {
       if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
-        songs[currentSong].mute();//so songs do not play ontop of eachother
+        songs[currentSong].pause();//so songs do not play ontop of eachother
         currentSong = songs.length - 1; //moves to top of the playlist
-        songs[currentSong].unmute();//plays desired song
+        songs[currentSong].play();//plays desired song
         songs[currentSong].rewind();
         songs[currentSong].pause();
         pauseplaycolor = true;
@@ -295,9 +295,9 @@ void rewind() {//rewind button
         wentBack = false;
       } 
       if ( wentBack == false ) {
-        songs[currentSong].mute();//so songs do not play ontop of eachother
+        songs[currentSong].pause();//so songs do not play ontop of eachother
         currentSong--;//switiches to the previous song
-        songs[currentSong].unmute();//plays desired song
+        songs[currentSong].play();//plays desired song
         songs[currentSong].rewind();
         songs[currentSong].pause();
         pauseplaycolor = true;
