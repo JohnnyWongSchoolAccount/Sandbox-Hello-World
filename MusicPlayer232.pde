@@ -190,28 +190,17 @@ void mousePressedMusic(){
 }//end mousePressedMusic
 //
 void drawhitboxes() { //for debugging
-  //pause-play button
-  //rect(pauseX1, pauseY1, BOXW, pauseHeight);
-  //rewind button
-  //rect(skipbX2, skipbY3, BOXW, BOXW); 
-  //forward button
-  //rect(skipfX32, skipfY3, BOXW, BOXW); 
-  //previous track button
-  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);
-  //next track button
-  //rect(skipX12, skipY32, pauseHeight, pauseHeight);
-  //mute button
-  //rect(muteX, muteY2, pauseHeight, pauseHeight);
-  //stop button
-  //rect(stopX, stopY, pauseHeight, pauseHeight);
-  //loop button
-  //rect(loopX1, loopY1, pauseHeight, pauseHeight);
-  //loop Infinite button
-  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);
-  //auto-play
-  //rect(autoX1, autoY1, pauseHeight, pauseHeight);
-  //shuffle
-  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);
+  //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
+  //rect(skipbX2, skipbY3, BOXW, BOXW);   //rewind button
+  //rect(skipfX32, skipfY3, BOXW, BOXW);   //forward button
+  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);  //previous track button
+  //rect(skipX12, skipY32, pauseHeight, pauseHeight);  //next track button
+  //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
+  //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
+  //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
+  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);  //loop Infinite button
+  //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
+  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
 }//end drawhitboxes
 //
 void concatenationOfMusicFiles(){
