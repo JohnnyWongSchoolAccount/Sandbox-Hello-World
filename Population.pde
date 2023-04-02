@@ -1,6 +1,5 @@
 //Global Variables
-float BOXW, SW, SH;
-//
+float BOXW;//creating hit boxes for mousePressed
 int appWidth, appHeight;
 //pause button
 float pauseX1, pauseY1, pauseX2, pauseY2, pauseWidth, pauseHeight; // rect
@@ -218,7 +217,6 @@ void population() {
   mutetY32 = startingY;//width
   //button hitbox custom variables
   BOXW = pauseWidth * 9/3;
-  SH = pauseHeight * 2/3;
   //shuffle button
   //triangle bottom
   shuffleX1 = startingX;
