@@ -278,20 +278,16 @@ void rewind() {//rewind button
       if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
         songs[currentSong].pause();//so songs do not play ontop of eachother
         currentSong = songs.length - 1; //moves to top of the playlist
-        songs[currentSong].play();//plays desired song
         songs[currentSong].rewind();
-        songs[currentSong].pause();
+        songs[currentSong].pause();//for the desired song
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
-      } else {
-        wentBack = false;
-      } 
+      } else { wentBack = false; } 
       if ( wentBack == false ) {
         songs[currentSong].pause();//so songs do not play ontop of eachother
         currentSong--;//switiches to the previous song
-        songs[currentSong].play();//plays desired song
         songs[currentSong].rewind();
-        songs[currentSong].pause();
+        songs[currentSong].pause();//for the desired song
       }
     }
   }//end rewind button
@@ -382,9 +378,9 @@ void previous() {//previous
       repapla();//.rewind(), .pause(), .play()
       wentBack = true;//ERROR catch
       // if at the end of playlist this sets it to zero
-    } else {
+    } else { 
       wentBack = false;//ERROR catch
-    } 
+  } 
     if ( wentBack == false ) {
       songs[currentSong].pause();//stops songs from playing ontop of eachother
       currentSong--;//plays the previous song
