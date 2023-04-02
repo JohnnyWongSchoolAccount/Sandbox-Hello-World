@@ -31,7 +31,7 @@
   - when the audio track has finished playing the track, the user may loop the track on click
   - The track will loop once on click
 - Infinite-Loop:
-  - keybind = 2, 3, 4, 5, 6, 7, 8, 9
+  - keybinds = 2, 3, 4, 5, 6, 7, 8, 9
   - When the audio track has finished playing the track, the user may loop the track on click
   - The track will continously playing until another track is selected
 - Next Track:
