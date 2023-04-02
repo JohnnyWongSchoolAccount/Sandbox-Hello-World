@@ -9,7 +9,6 @@ int currentSong = 0; //current song
 boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
 boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
-boolean pauseplaycolor = false;//setting defult - pause-play mouse pressed
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
@@ -43,20 +42,20 @@ void drawMusic() {
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(test); 
     rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
-  } else if (pauseplaycolor == true) {
-    stroke(background); // outline color
-    fill(background); // button color
-    rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
-    stroke(purp);
-    fill(black);
-    triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
-  } else { fill(black);
+  } else if ( songs[currentSong].isPlaying() ) {
     stroke(background); // outline color
     fill(background); // button color
     rect(pauseX1, pauseY1, BOXW, pauseHeight);
     fill(black); stroke(purp);
     rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
     rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
+  } else { fill(black);
+    stroke(background); // outline color
+    fill(background); // button color
+    rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
+    stroke(purp);
+    fill(black);
+    triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
   } fill(black); stroke(purp);
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
@@ -159,35 +158,34 @@ void keyPressedMusic() {//keybinds
 void mousePressedMusic(){
   //pause button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
-  {  if (pauseplaycolor == false ) {pauseplaycolor = true; pausePlay();}
-   else {pauseplaycolor = false; pausePlay(); } }
+  { pausePlay(); }
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
-  { rewind(); } else {}
+  { rewind(); }
   //forward button
   if ( mouseX>=skipfX32 && mouseX<=skipfX1+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
-  { forward(); } else {}
+  { forward(); }
   //previous track button
   if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight )
-  { previous(); } else {}
+  { previous(); }
   //next track button
   if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight )
-  { next(); } else {}
+  { next(); }
   //mute button
   if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
-  { mute(); } else {}
+  { mute(); }
   //stop button
   if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
-  { Stop(); } else {}
+  { Stop(); }
   //loop button
   if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
-  { loop1(); } else {}
+  { loop1(); }
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
-  { loopInf(); } else {}
+  { loopInf(); }
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
-  { Shuffle(); } else {}
+  { Shuffle(); }
   if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
-  { autoPlay(); } else {}
+  { autoPlay(); }
 }//end mousePressedMusic
 //
 void drawhitboxes() { //for debugging
@@ -230,7 +228,6 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
         currentSong = songs.length - songs.length; // intention is zero -> switches song
         songs[currentSong].unmute();//plays the desired the song
         repapla();//.rewind(), .pause(), .play()
-        pauseplaycolor = false;
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else {
@@ -241,7 +238,6 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
         currentSong++;//switches song
         songs[currentSong].unmute();//plays desired song
         repapla();//.rewind(), .pause(), .play()
-        pauseplaycolor = false;
       }
     }
   }//end autoPlayOn button
@@ -269,7 +265,6 @@ void Shuffle() { //shuffle button
     currentSong = int(rand);//changes to the song chosen
     songs[currentSong].play();//plays desired song
     repapla();//.rewind(), .pause(), .play()
-    pauseplaycolor = false;
   }//end shuffle button
 }// end shuffle()
 void forward() { //forward button
@@ -289,7 +284,6 @@ void rewind() {//rewind button
         songs[currentSong].play();//plays desired song
         songs[currentSong].rewind();
         songs[currentSong].pause();
-        pauseplaycolor = true;
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else {
@@ -301,7 +295,6 @@ void rewind() {//rewind button
         songs[currentSong].play();//plays desired song
         songs[currentSong].rewind();
         songs[currentSong].pause();
-        pauseplaycolor = true;
       }
     }
   }//end rewind button
@@ -310,7 +303,6 @@ void loop1() {//loop1
   if ( songs[currentSong].isPlaying() ) {//empty if
   } else {//loop the song at the end of the track -> so that delay() != used
     songs[currentSong].loop(0);//loops song 1 time
-    pauseplaycolor = false;
   }//end loop 1 button
   /*
  delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
@@ -324,7 +316,6 @@ void loopInf() {//loop inf
   if ( songs[currentSong].isPlaying() ) {//empty if
   } else {//if song != playing song replays -> so delay() != used
     songs[currentSong].loop(-1);//plays the song infinitely
-    pauseplaycolor = false;
   }//end loop inf button
 }//end loopInf
   void Stop() {//Stop
@@ -335,7 +326,6 @@ void loopInf() {//loop inf
     }
     songs[currentSong].pause(); //stops the song from playing
     songs[currentSong].rewind();
-    pauseplaycolor = true;
   } else { 
     songs[currentSong].rewind(); 
     if (pauseAutoStop == true){//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
@@ -353,7 +343,6 @@ void pausePlay() {//pause-play button
     songs[currentSong].pause();
   } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
     songs[currentSong].rewind();
-    pauseplaycolor = true;
     /* 
     student to finish
     .pause(), rewind(), then cue the next song */
