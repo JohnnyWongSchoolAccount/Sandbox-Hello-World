@@ -38,6 +38,7 @@ void drawMusic() {
   println( "Current song:", currentSong );// song being played
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER
   autoPlayMusic();
+  drawhitboxes();
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(test); 
