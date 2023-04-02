@@ -264,9 +264,9 @@ void Shuffle() { //shuffle button
   if ( rand >= songs.length ) { //ERROR catch
     rand = songs.length - 1;//if the song picked is the highest # in array plays the top song in playlist
   } else {//if the song is below the array #
-    songs[currentSong].mute();//prevents songs playing ontop of eachother
+    songs[currentSong].pause();//prevents songs playing ontop of eachother
     currentSong = int(rand);//changes to the song chosen
-    songs[currentSong].unmute();//plays desired song
+    songs[currentSong].play();//plays desired song
     repapla();//.rewind(), .pause(), .play()
     pauseplaycolor = false;
   }//end shuffle button
