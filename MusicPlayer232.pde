@@ -56,19 +56,17 @@ void drawMusic() {
     stroke(purp);
     fill(black);
     triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
-  } fill(black); stroke(purp);
+  }//end pause-play button
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
   { fill(test); } else { fill(black); }
   triangle(skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32); // right side
   triangle(skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3); // right side
-  fill(black);
   //forward buton
   if ( mouseX>=skipfX32 && mouseX<=skipfX1+BOXW && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
   { fill(test); } else { fill(black); }
   triangle(skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32); // left side
   triangle(skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3); // left side
-  fill(black);
   //previous button
   if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
   {fill(test);} else {fill(black);}
@@ -108,7 +106,6 @@ void drawMusic() {
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(test); } else {fill(black);}
   triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
-  fill(black);
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
   { fill(test); } else {fill(black);}
   triangle(shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3); // bottom
@@ -224,9 +221,9 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
     } if ( songs[currentSong].isPlaying() ) {//empty if -> does nothing
     } else {//if song != playing then exicutes skipping the song -> so delay() is not used
       if ( currentSong == songs.length - 1 ) { //ERROR catch:
-        songs[currentSong].mute();//ERROR catch -> so that songs do not play on top of eachother
+        songs[currentSong].pause();//ERROR catch -> so that songs do not play on top of eachother
         currentSong = songs.length - songs.length; // intention is zero -> switches song
-        songs[currentSong].unmute();//plays the desired the song
+        songs[currentSong].play();//plays the desired the song
         repapla();//.rewind(), .pause(), .play()
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
@@ -234,9 +231,9 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
         wentBack = false;//turning ERROR catch off
       } 
       if ( wentBack == false ) {//plays the next song
-        songs[currentSong].mute();//ERROR catch -> so that songs do not play on top of eachother
+        songs[currentSong].pause();//ERROR catch -> so that songs do not play on top of eachother
         currentSong++;//switches song
-        songs[currentSong].unmute();//plays desired song
+        songs[currentSong].play();//plays desired song
         repapla();//.rewind(), .pause(), .play()
       }
     }
