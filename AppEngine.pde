@@ -19,7 +19,6 @@ void setup() {
 }//end setup
 void draw() {
   drawMusic();
-  drawhitboxes();
 }//end draw
 void keyPressed() {
   keyPressedMusic();
