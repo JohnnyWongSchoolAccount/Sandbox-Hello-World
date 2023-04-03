@@ -44,8 +44,8 @@ color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode
 color black= #CCC1FF; //The Button color
 color purp= #FFFBE3; //The outline color FFFBE3
 color background=#9EA9F0; //The background color
-color test = #FF0000; //test color
-color test2 = #00FF4A; //test color
+color hoverOver = #FF0000; //hover over color
+color toggleOn = #00FF4A; //toggle on color
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
