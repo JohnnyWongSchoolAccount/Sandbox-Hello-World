@@ -42,19 +42,16 @@ void drawMusic() {
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(test); 
     rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
-  } else if ( songs[currentSong].isPlaying() ) {
-    stroke(background); // outline color
-    fill(background); // button color
+  } else if ( songs[currentSong].isPlaying() ) { //play button
+    stroke(background); fill(background);//covers undesired shape
     rect(pauseX1, pauseY1, BOXW, pauseHeight);
-    fill(black); stroke(purp);
+    fill(black); stroke(purp);//defult button colors
     rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
     rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
-  } else { fill(black);
-    stroke(background); // outline color
-    fill(background); // button color
+  } else { //pause button
+    stroke(background); fill(background);//covers undesired shape
     rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
-    stroke(purp);
-    fill(black);
+    fill(black); stroke(purp);//defult button colors
     triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
   }//end pause-play button
   //rewind button
@@ -223,8 +220,7 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
       if ( currentSong == songs.length - 1 ) { //ERROR catch:
         songs[currentSong].pause();//ERROR catch -> so that songs do not play on top of eachother
         currentSong = songs.length - songs.length; // intention is zero -> switches song
-        songs[currentSong].play();//plays the desired the song
-        repapla();//.rewind(), .pause(), .play()
+        repapla();//.rewind(), .pause(), .play() -> plays desired song
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else {
@@ -233,8 +229,7 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
       if ( wentBack == false ) {//plays the next song
         songs[currentSong].pause();//ERROR catch -> so that songs do not play on top of eachother
         currentSong++;//switches song
-        songs[currentSong].play();//plays desired song
-        repapla();//.rewind(), .pause(), .play()
+        repapla();//.rewind(), .pause(), .play() -> plays desired song
       }
     }
   }//end autoPlayOn button
@@ -260,8 +255,7 @@ void Shuffle() { //shuffle button
   } else {//if the song is below the array #
     songs[currentSong].pause();//prevents songs playing ontop of eachother
     currentSong = int(rand);//changes to the song chosen
-    songs[currentSong].play();//plays desired song
-    repapla();//.rewind(), .pause(), .play()
+    repapla();//.rewind(), .pause(), .play() -> plays desired song
   }//end shuffle button
 }// end shuffle()
 void forward() { //forward button
@@ -311,22 +305,14 @@ void loopInf() {//loop inf
     songs[currentSong].loop(-1);//plays the song infinitely
   }//end loop inf button
 }//end loopInf
-  void Stop() {//Stop
-  if ( songs[currentSong].isPlaying() ) {//stops the song from playing
-    if (autoPlayOn == true) {//ERROR catch -> when auto play was on if the song != playing it would switch the song preventing stop from working
-      autoPlayOn = false;
-      pauseAutoStop = true;//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
-    }
-    songs[currentSong].pause(); //stops the song from playing
-    songs[currentSong].rewind();
-  } else { 
-    songs[currentSong].rewind(); 
-    if (pauseAutoStop == true){//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
-      autoPlayOn = true;
-      pauseAutoStop = false;
-    }
-  }//end stop button
-}//end Stop
+void Stop() {//Stop
+  if (autoPlayOn == true) {//ERROR catch -> when auto play was on if the song != playing it would switch the song preventing stop from working
+    autoPlayOn = false;
+    pauseAutoStop = true;//ERROR catch -> so that autoPlayOn could be turned on again when desired from user
+  }
+  songs[currentSong].pause(); //stops the song from playing
+  songs[currentSong].rewind();
+}//end stop()
 void pausePlay() {//pause-play button
   if ( songs[currentSong].isPlaying() ) {//if song was playing then pauses the song
     if ( autoPlayOn == true ){//ERROR catch
@@ -352,8 +338,7 @@ void next() {//next
     if ( currentSong == songs.length - 1 ) { //ERROR catch:
       songs[currentSong].pause();//so that songs do not play on top of eachother
       currentSong = songs.length - songs.length; // intention is zero
-      songs[currentSong].play();//plays desired song
-      repapla();//.rewind(), .pause(), .play()
+      repapla();//.rewind(), .pause(), .play() -> plays desired song
       wentBack = true;//ERROR catch
       // if at the end of playlist this sets it to zero
     } else {
@@ -362,8 +347,7 @@ void next() {//next
     if ( wentBack == false ) {
       songs[currentSong].pause();//stops the song from playing ontop of eachother
       currentSong++;//switches the song
-      songs[currentSong].play();//plays desired song
-      repapla();//.rewind(), .pause(), .play()
+      repapla();//.rewind(), .pause(), .play() -> plays desired song
     }
   } else { //if the song was not playing the song would be looped
     songs[currentSong].loop(0);//song looped 1 time
@@ -374,8 +358,7 @@ void previous() {//previous
     if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
       songs[currentSong].pause();//stops songs from playing ontop of eachother
       currentSong = songs.length - 1; //moves to top of the playlist
-      songs[currentSong].play();//plays the desired song
-      repapla();//.rewind(), .pause(), .play()
+      repapla();//.rewind(), .pause(), .play() -> plays desired song
       wentBack = true;//ERROR catch
       // if at the end of playlist this sets it to zero
     } else { 
@@ -384,8 +367,7 @@ void previous() {//previous
     if ( wentBack == false ) {
       songs[currentSong].pause();//stops songs from playing ontop of eachother
       currentSong--;//plays the previous song
-      songs[currentSong].play();//plays desired song
-      repapla();//.rewind(), .pause(), .play()
+      repapla();//.rewind(), .pause(), .play() -> plays desired song
     }
   } else {//if the song is not playing then the song is looped
     songs[currentSong].loop(0);//loop song
