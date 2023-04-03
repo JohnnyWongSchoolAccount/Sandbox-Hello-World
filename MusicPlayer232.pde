@@ -223,7 +223,7 @@ void pausePlay() {//pause-play button
   }//end pause button
 }//end pause-play
 void rewind() {//rewind button
-  if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {//prevents song being rewinded too far
+  if ( songs[currentSong].position() <= songs[currentSong].length() * 9.5/10 ) {//prevents song being rewinded too far
     songs[currentSong].skip(-3000);//paramiters in milliseconds -> goes back 3 seconds
     //if the song is at the very beginning the reverse button will skip the the previous song paused
   } if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
