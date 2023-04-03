@@ -210,6 +210,7 @@ void pausePlay() {//pause-play button
     songs[currentSong].pause();
   } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
     songs[currentSong].rewind();
+    songs[currentSong].play();
     /* 
     student to finish
     .pause(), rewind(), then cue the next song */
