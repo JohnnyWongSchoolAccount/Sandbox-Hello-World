@@ -208,7 +208,7 @@ void pausePlay() {//pause-play button
       pauseAutoStop = true;
     }
     songs[currentSong].pause();
-  } else if ( songs[currentSong].position() >= songs[currentSong].length()*9/10 ) {
+  } else if ( songs[currentSong].position() >= songs[currentSong].length()*9.5/10 ) {
     songs[currentSong].rewind();
     songs[currentSong].play();
     /* 
@@ -223,7 +223,7 @@ void pausePlay() {//pause-play button
   }//end pause button
 }//end pause-play
 void rewind() {//rewind button
-  if ( songs[currentSong].position() <= songs[currentSong].length() * 9.5/10 ) {//prevents song being rewinded too far
+  if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {//prevents song being rewinded too far
     songs[currentSong].skip(-3000);//paramiters in milliseconds -> goes back 3 seconds
     //if the song is at the very beginning the reverse button will skip the the previous song paused
   } if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
@@ -269,7 +269,9 @@ void Stop() {//Stop
   songs[currentSong].rewind();
 }//end stop()
 void loop1() {//loop1
-  if ( songs[currentSong].isPlaying() ) {//empty if
+  if ( songs[currentSong].isPlaying() ) {
+  songs[currentSong].pause();//saves the spot in the song prevents the use of delay()
+  songs[currentSong].loop(1);
   } else {//loop the song at the end of the track -> so that delay() != used
     songs[currentSong].loop(0);//loops song 1 time
   }//end loop 1 button
@@ -282,7 +284,9 @@ void loop1() {//loop1
 void loopInf() {//loop inf
 //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
 //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
-  if ( songs[currentSong].isPlaying() ) {//empty if
+  if ( songs[currentSong].isPlaying() ) {
+  songs[currentSong].pause();//saves the spot in the song prevents the use of delay()
+  songs[currentSong].loop(-1);
   } else {//if song != playing song replays -> so delay() != used
     songs[currentSong].loop(-1);//plays the song infinitely
   }//end loop inf button
