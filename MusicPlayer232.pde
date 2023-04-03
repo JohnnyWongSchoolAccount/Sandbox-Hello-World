@@ -270,7 +270,7 @@ void Stop() {//Stop
 }//end stop()
 void loop1() {//loop1
   if ( songs[currentSong].isPlaying() ) {
-  songs[currentSong].pause();//saves the spot in the song prevents the use of delay()
+  songs[currentSong].pause();//substitute for delay() does not break the rest of code
   songs[currentSong].loop(1);
   } else {//loop the song at the end of the track -> so that delay() != used
     songs[currentSong].loop(0);//loops song 1 time
@@ -285,7 +285,7 @@ void loopInf() {//loop inf
 //delay( songs[currentSong].length() - songs[currentSong].position() ); //finishes the song
 //ERROR: delay stops all player functions, comp doesn't recognize if song is playing
   if ( songs[currentSong].isPlaying() ) {
-  songs[currentSong].pause();//saves the spot in the song prevents the use of delay()
+  songs[currentSong].pause();//substitute for delay() does not break the rest of code
   songs[currentSong].loop(-1);
   } else {//if song != playing song replays -> so delay() != used
     songs[currentSong].loop(-1);//plays the song infinitely
