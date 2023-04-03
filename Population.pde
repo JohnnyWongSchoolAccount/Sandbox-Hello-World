@@ -6,13 +6,23 @@ float pauseX1, pauseY1, pauseX2, pauseY2, pauseWidth, pauseHeight; // rect
 float pauseScaleWidth, pauseScaleHeight;
 //play button
 float playX1, playY1, playX2, playY2, playX3, playY3;// triangle
-//stop button
-float stopX, stopY, stopWidth, stopHeight; // rect
-//skipbutton
+//forward/rewind buttons
+float skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3; //skipF button triangle
+float skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32; //skipF button behind triangle
+float skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3; //skipB button triangle
+float skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32; //skipB button behind triangle
+//previous/next buttons
 float skipX1, skipY1, skipX2, skipY2, skipX3, skipY3; //skip button triangle
 float skipBarX1, skipBarY1, skipBarWidth, skipBarHeight; //skipbutton bar rect
 float skipX12, skipY12, skipX22, skipY22, skipX32, skipY32; //skip button triangle
 float skipBarX2, skipBarY2;//skipbutton bar 2 rect
+//mute button
+float mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3; // triangle
+float muteX, muteY, muteWidth, muteHeight; // rect
+float mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32; // triangle
+float muteX2, muteY2, muteWidth2, muteHeight2; // rect
+//stop button
+float stopX, stopY, stopWidth, stopHeight; // rect
 //loopbutton
 float loopX1, loopY1, loopWidth, loopHeight; //loop button rect
 float loopX2, loopY2, loopWidth2, loopHeight2; //loop button 2 rect
@@ -21,24 +31,14 @@ float looptX1, looptY1, looptX2, looptY2, looptX3, looptY3; //loop button triang
 float loopiX1, loopiY1, loopiWidth, loopiHeight; //loop button rect
 float loopiX2, loopiY2, loopiWidth2, loopiHeight2; //loop button 2 rect
 float looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3; //loop button triangle
-//auto skip button
+//suffle button
+float shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3; //shuffle button triangle top
+float shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32;//shuffle button triangle bottom
+//auto-skip button
 float autoX1, autoY1, autoWidth, autoHeight; //auto skip button rect
 float autoX2, autoY2, autoWidth2, autoHeight2; //auto skip button 2 rect
 float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto skip button triangle
 float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto skip button triangle
-//skip forward and backward buttons
-float skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3; //skipF button triangle
-float skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32; //skipF button behind triangle
-float skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3; //skipB button triangle
-float skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32; //skipB button behind triangle
-//mute button
-float mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3; // triangle
-float muteX, muteY, muteWidth, muteHeight; // rect
-float mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32; // triangle
-float muteX2, muteY2, muteWidth2, muteHeight2; // rect
-//suffle button
-float shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3; //shuffle button triangle top
-float shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32;//shuffle button triangle bottom
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
 color black= #CCC1FF; //The Button color
@@ -73,7 +73,7 @@ void population() {
   playX3 = playX1;
   playY3 = startingY - (startingY/8.0);//width
   //end pause-play button
-  //reverse button - triangle
+  //rewind button - triangle
   skipbX1 = startingX - (pauseX1/5.0); 
   skipbY1 = startingY + (startingY/11.0);//width
   skipbX2 = startingX - (pauseX1/3.5);
@@ -87,7 +87,7 @@ void population() {
   skipbY22 = startingY;
   skipbX32 = skipbX12;
   skipbY32 = startingY - (startingY/11.0);//width
-  //end forward/reverse button
+  //end forward/rewind button
   //forward button - triangle
   skipfX1 = startingX + (pauseX1/5.0); 
   skipfY1 = startingY + (startingY/11.0);//width
