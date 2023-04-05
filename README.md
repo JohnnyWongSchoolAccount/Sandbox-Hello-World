@@ -1,12 +1,4 @@
-# AppEngine.pde and Pause_Button.pde Have Subprograms
-  - AppEngine.pde subprograms
-    - MusicPlayer232.pde
-    - OperatingSystem.pde
-    - Population.pde
-  - Pause_Button.pde subprograms
-    - Music_Player_Buttons.pde
-     
-# Buttons and Their Functions - Music Player
+  # Buttons and Their Functions - Music Player
 - Play-Pause:
   - keybinds = P, p
   - The Play-Pause button will play the track when paused
