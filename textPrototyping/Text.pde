@@ -1,8 +1,10 @@
 //Global Variable
 PFont font;
 int alignHorizontal, alignVertical;//display or canvas values
+String string = "Global Variable of string";
 //colors
-color ink, resetcolor = #FFFFFF;
+color ink, purpleink = #AF00FD; //not for night mode
+color resetcolor = #FFFFFF;
 //
 void textSetup() {
   /*
@@ -26,7 +28,7 @@ void textDraw( float height, color ink, int alignHorizontal, int alignVertical, 
   text(string, rectX, rectY, rectWidth, rectHeight);
   textReset();
 }// end textDraw
-void textReset() { resetcolor(); }// end textReset
+void textReset() { }// end textReset
 //
 float textCalculator( float size, String string, float rectWidth ) {
   textSize( size );
