@@ -1,18 +1,50 @@
-/* Prototyping text
-  - Copy a rectangle
-  - Add a rectangle to put text in it
-  - Note: could also be a "Hover over" feature */
+/* Prototyping Text
+ - Copy a rectangle from the 2D Music Button Shapes
+ - Add a Rectangle to put text in
+ - Note: could also be a "HoverOver" Feature
+ */
 //Global Variables
 //
-void setup() { 
-  size( 700 , 400 );
+void setup() {
+  size(700, 400);
+  //flatText();
   textSetup();
-  // population of local variables
-  textDraw( height, purpleink, CENTER, CENTER, font, string, playX1, playY1, playWidth, playHeight );
+  //population local variables
+  textDraw( height, purpInk, CENTER, CENTER, Font, string, playX1, playY1, playWidth, playHeight ); //can be anywhere
+  textDraw( height, purpInk, CENTER, CENTER, Font, stringAlternate, playX1, playY1+height/3, playWidth, playHeight ); //can be anywhere
 }//end setup
-void draw() {}//end draw
-void keyPressed() { textKeyPressed(); }//end keyPressed
-void mousePressed() { textMousePressed(); }//end mousePressed
-void flatText() {}//end flatText
 //
-//end main Program
+void draw() {}//end draw
+//
+void keyPressed() {}//end keyPressed
+//
+void mousePressed() {}//end mousePressed
+//
+void flatText() { //Reviewing Introductory Text Code
+  //Variables Needed, usually Global Variables
+  float textRectX, textRectY, textRectWidth, textRectHeight;
+  PFont Font;
+  color purpInk=#2C08FF, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
+  String string = "I need off the learning bus! Spring Break is not over.";
+  //
+  //Population, from display
+  textRectX = width*1/5;
+  textRectY = height*1/10;
+  textRectWidth = width*3/5;
+  textRectHeight = height*1/10;
+  //
+  rect( textRectX, textRectY, textRectWidth, textRectHeight );
+  /*
+  println("Start of Console");
+   String[] FontList = PFont.list(); //To list all Fonts available on system
+   printArray(FontList); //For listing all possible Fonts to choose, then createFont
+   */
+  Font = createFont ("Harrington", 50);
+  //
+  fill(purpInk);
+  textAlign (CENTER, CENTER);
+  textSize( 50 );
+  text( string, textRectX, textRectY, textRectWidth, textRectHeight );
+  fill(resetresetInk);
+}//end Flat Text Review
+//end Main Program
