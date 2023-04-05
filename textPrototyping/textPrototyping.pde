@@ -7,7 +7,8 @@
 void setup() { 
   size( 700 , 400 );
   textSetup();
-  textDraw();
+  // population of local variables
+  textDraw( height, purpleink, CENTER, CENTER, font, string, playX1, playY1, playWidth, playHeight );
 }//end setup
 void draw() {}//end draw
 void keyPressed() { textKeyPressed(); }//end keyPressed
