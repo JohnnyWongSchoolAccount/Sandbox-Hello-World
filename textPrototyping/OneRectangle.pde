@@ -1,6 +1,6 @@
 //Global Variables
 float playX1, playY1, playWidth, playHeight;
-float playX2, playY2, playX3, playY3;
+float playX2, playY2;
 float appWidth = width;
 float appHeight = height;
 void drawOneRectangle()
@@ -17,13 +17,10 @@ void drawOneRectangle()
   playY1 = startingY - (buttonHeight/2);
   playWidth = buttonWidth;
   playHeight = buttonHeight;
-  playX3 = playX1;
-  playY3 = playY1 + playHeight;
-  playX2 = playX3 + playWidth;
-  playY2 = playY1 + (playY3 - playY1)/2;
+  playX2 = playX1 + playWidth;
+  playY2 = playY1 + (playY1 - playY1)/2;
   //
   rect( playX1, playY1, playWidth, playHeight );
-  //triangle( playX1, playY1, playX2, playY2, playX3, playY3 );
 }//end Draw One Rectangle
 //
 //end One Rectangle SubProgram
