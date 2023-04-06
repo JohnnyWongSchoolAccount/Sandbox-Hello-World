@@ -25,9 +25,8 @@ void textReset() { fill(resetInk); }//end textReset
 //
 float textCalculator( float size, String string, float rectWidth ) {
   textSize(size); //For text width sizing
-  while ( textWidth(string) > rectWidth )
-  {
-    size = size * 0.99; //size-- will do pixels
+  while ( textWidth(string) > rectWidth ){
+    size = size/2; //size in pixels
     textSize(size);
   }
   return size;
