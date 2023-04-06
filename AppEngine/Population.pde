@@ -233,7 +233,7 @@ void population() {
   autotY32 = startingY + (startingY/2);
   //end auto-skip
   //button hitbox variable
-  BOXW = pauseWidth * 9/3;
+  BOXW = pauseWidth * 3/1;
 }//end population
 void drawMusicButtons() {
   //drawPlayButton(); // playbutton - triangle
