@@ -25,7 +25,7 @@ void flatText() { //Reviewing Introductory Text Code
   float textRectX, textRectY, textRectWidth, textRectHeight;
   PFont Font;
   color purpInk=#2C08FF, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
-  String string = "I need off the learning bus! Spring Break is not over.";
+  String string = "Zing";
   //
   //Population, from display
   textRectX = width*1/5;
