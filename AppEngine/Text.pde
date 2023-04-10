@@ -43,7 +43,7 @@ void flatText() { //Reviewing Introductory Text Code
   textSize( 50 );
   text( string, loopX1, loopY1, loopWidth, loopHeight);
   fill(resetresetInk);
-}//end FlatText
+}//end flatText
 //
 void textKeyPressed() {}//end textKeyPressed
 //
