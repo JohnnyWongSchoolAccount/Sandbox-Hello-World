@@ -28,7 +28,7 @@ void flatText() { //Reviewing Introductory Text Code
   textSize( 50 );
   text( string, loopX1, loopY1, loopWidth, loopHeight);
   fill(resetresetInk);
-}//end Flat Text Review
+}//end FlatText
 void draw() { drawMusic(); }//end draw()
 void keyPressed() { keyPressedMusic(); }//end keyPressed()
 void mousePressed() { mousePressedMusic(); }//end mousePressed()
