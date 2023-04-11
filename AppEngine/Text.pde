@@ -1,6 +1,6 @@
 //Global Variable
 PFont Font;
-color ink, purpInk=#000000, resetInk=#FFFFFF; //Not Nightmode Friendly
+color ink, purpInk=#FFFFFF, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
 String text = "SINGLE", text2 = "INFINITE", text3 = "AUTO-PLAY";//button text
 //
@@ -13,7 +13,7 @@ void preTextDraw( color ink, float appHeight, int alignHorizontal, int alignVert
   fill(ink);
   textAlign (alignHorizontal, alignVertical);
   textFont(Font, appHeight);
-}//end preTextDraw
+}//end preTextDraw 
 //
 void textDraw( float appHeight, color ink, int alignHorizontal, int alignVertical, PFont Font, String text, float loopX1, float loopY1, float loopWidth, float loopHeight ) {
   preTextDraw( ink, appHeight, alignHorizontal, alignVertical, Font ); //passing parameters
@@ -31,18 +31,6 @@ float textCalculator( float size, String text, float loopWidth ) {
   }
   return size;
 }//end textCalculator
-void flatText() { //Reviewing Introductory Text Code
-  color purpInk = #000000, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
-  String text = "ERROR";
-  //
-  Font = createFont ("Calibri", 32);
-  //
-  fill(purpInk);
-  textAlign (CENTER, CENTER);
-  textSize( 32 );
-  text( text, loopX1, loopY1, loopWidth, loopHeight);
-  fill(resetresetInk);
-}//end flatText
 //
 void textKeyPressed() {}//end textKeyPressed
 //
