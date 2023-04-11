@@ -236,6 +236,7 @@ void rewind() {//rewind button
         currentSong = songs.length - 1; //moves to top of the playlist
         songs[currentSong].rewind();
         songs[currentSong].pause();//for the desired song
+        songs[currentSong].unmute();
         wentBack = true;//ERROR catch
         // if at the end of playlist this sets it to zero
       } else { wentBack = false; } 
@@ -244,6 +245,7 @@ void rewind() {//rewind button
         currentSong--;//switiches to the previous song
         songs[currentSong].rewind();
         songs[currentSong].pause();//for the desired song
+        songs[currentSong].unmute();
       }
     }
   }//end rewind button
@@ -381,5 +383,6 @@ void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
   songs[currentSong].play();
+  songs[currentSong].unmute();
 }//end repapla
 //end MusicPlayer232 subProgram
