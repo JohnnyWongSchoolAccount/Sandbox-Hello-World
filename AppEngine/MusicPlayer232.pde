@@ -94,7 +94,7 @@ void drawMusic() {
   if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
   triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
-  textDraw( height, purpInk, CENTER, CENTER, Font, string, loopX1, loopY1, loopWidth, loopHeight); //can be anywhere
+  textDraw( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1, loopWidth, loopHeight);
   //loop infinite button
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
@@ -104,7 +104,7 @@ void drawMusic() {
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
   triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
-  textDraw( height, purpInk, CENTER, CENTER, Font, string2, loopiX1, loopiY1, loopWidth, loopHeight ); //can be anywhere
+  textDraw( height, purpInk, CENTER, CENTER, Font, text2, loopiX1, loopiY1, loopWidth, loopHeight );
   //shuffle button
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
@@ -120,7 +120,7 @@ void drawMusic() {
   { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
   triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
   triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
-  textDraw( height, purpInk, CENTER, CENTER, Font, string3, autoX1, autoY1, autoWidth, autoHeight ); //can be anywhere
+  textDraw( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1, autoWidth, autoHeight );
 }//end drawMusic()
 //
 void keyPressedMusic() {//keybinds
