@@ -1,38 +1,26 @@
-//Global Variable
-PFont Font;
-color ink, purpInk=purp, resetInk=#FFFFFF; //Not Nightmode Friendly
-int alignHorizontal, alignVertical; //Display or CANVAS Values
-String text = "SingleLoop", text2 = "InfiniteLoop", text3 = "Autoplay";//button text
+/* Background Image Example
+No aspect ratio
+filling the Rect */
+//Global Variables
+int appWidth, appHeight;
+float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
+PImage picture;
+Boolean nightMode = false;
 //
-void textSetup() {
-  Font = createFont ("Calibri", 32); 
-  population(); 
-}//end textSetup
+size( 500, 100 ); //landScape
+appWidth = width;
+appHeight = height;
 //
-void preTextDraw( color ink, float appHeight, int alignHorizontal, int alignVertical, PFont Font ) {
-  fill(ink);
-  textAlign (alignHorizontal, alignVertical);
-  textFont(Font, appHeight);
-}//end preTextDraw 
+//Population
+backgroundImageX = appWidth*0;
+backgroundImageY = appHeight*0;
+backgroundImageWidth = appWidth-1;//Note: - pixel in order to show rect properly
+backgroundImageHeight = appHeight-1;//Note: - pixel in order to show rect properly
+picture = loadImage("//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/Images/01backgroundImage/41586_2015_Article_BF528452a_Figg_HTML.jpg");
 //
-void textDraw( float appHeight, color ink, int alignHorizontal, int alignVertical, PFont Font, String text, float loopX1, float loopY1, float loopWidth, float loopHeight ) {
-  preTextDraw( ink, appHeight, alignHorizontal, alignVertical, Font ); //passing parameters
-  textSize(textCalculator(appHeight, text, loopWidth));
-  text(text, loopX1, loopY1, loopWidth, loopHeight);
-  textReset();
-}//end textDraw
-//
-void textReset() { fill(resetInk); }//end textReset
-//
-float textCalculator( float size, String text, float loopWidth ) {
-  textSize(size); //For text width sizing
-  while ( textWidth(text) > loopWidth ){
-    textSize(size *= 0.9); //decreases text size by 10%
-  }
-  return size;
-}//end textCalculator
-//
-void textKeyPressed() {}//end textKeyPressed
-//
-void textMousePressed() {}//end textMousePressed
-//end Text SubProgram
+//Rectangle layoutand image drawing to canvas
+rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+if (nightMode == false) {tint( 255, 23 );}//GreyScale day mode - 1/2 tint used for white (128/255=.5)
+if (nightMode == true) { tint( 64, 64, 40 ); }//RGB Night mode
+image( picture, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
+//end mainProgram
