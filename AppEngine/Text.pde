@@ -32,7 +32,7 @@ float textCalculator( float size, String text, float loopWidth ) {
   return size;
 }//end textCalculator
 void flatText() { //Reviewing Introductory Text Code
-  color purpInk=#2C08FF, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
+  color purpInk = #000000, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
   String text = "ERROR";
   //
   Font = createFont ("Calibri", 32);
