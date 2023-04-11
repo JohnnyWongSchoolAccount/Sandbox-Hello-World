@@ -5,7 +5,7 @@ int alignHorizontal, alignVertical; //Display or CANVAS Values
 String text = "SINGLE", text2 = "INFINITE", text3 = "AUTO-PLAY";//button text
 //
 void textSetup() {
-  Font = createFont ("Calibri", 50); 
+  Font = createFont ("Calibri", 32); 
   population(); 
 }//end textSetup
 //
@@ -35,11 +35,11 @@ void flatText() { //Reviewing Introductory Text Code
   color purpInk=#2C08FF, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
   String text = "ERROR";
   //
-  Font = createFont ("Calibri", 50);
+  Font = createFont ("Calibri", 32);
   //
   fill(purpInk);
   textAlign (CENTER, CENTER);
-  textSize( 50 );
+  textSize( 32 );
   text( text, loopX1, loopY1, loopWidth, loopHeight);
   fill(resetresetInk);
 }//end FlatText
