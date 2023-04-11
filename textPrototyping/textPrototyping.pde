@@ -24,7 +24,7 @@ void flatText() {//intro to text code
   //Variables needed
   float textRectX, textRectY, textRectWidth, textRectHeight;//local variables
   PFont Font;
-  color purpInk=#2C08FF, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
+  color purpInk=#000000, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
   String string = "Zing";
   //
   //Population from display
