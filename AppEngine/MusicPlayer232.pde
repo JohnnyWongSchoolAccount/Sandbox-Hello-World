@@ -354,10 +354,9 @@ void autoPlay() {//autoPlay -> turning autoplay on or off
   }//end autoplay button
 }//end autoPlay
 void autoPlayMusic() { //auto-Play button -> automatically plays through the playlist
-  if ( autoPlayOn ) {//empty if -> does nothing
-    if ( autoPlayOn == true ) {//empty if -> does nothing
-    } if ( songs[currentSong].isPlaying() ) {//empty if -> does nothing
-    } else {//if song != playing then exicutes skipping the song -> so delay() is not used
+  if ( autoPlayOn ) {//empty if -> does nothing 
+    if ( songs[currentSong].isPlaying() ) {//empty if -> does nothing
+    } else {//if song != playing then exicutes skipping the song -> so delay() is not used 
       if ( currentSong == songs.length - 1 ) { //ERROR catch:
         songs[currentSong].pause();//ERROR catch -> so that songs do not play on top of eachother
         currentSong = songs.length - songs.length; // intention is zero -> switches song
