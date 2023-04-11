@@ -41,7 +41,18 @@ void drawMusic() {
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(hoverOver); 
+    if (songs[currentSong].isPlaying()){
+    stroke(background); fill(background);//covers undesired shape
+    rect(pauseX1, pauseY1, BOXW, pauseHeight);
+    fill(hoverOver); stroke(purp);//defult button colors
+    rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
+    rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
+    } else {
+    stroke(background); fill(background);//covers undesired shape
     rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
+    fill(hoverOver); stroke(purp);//defult button colors
+    triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
+    } stroke(background);
   } else if ( songs[currentSong].isPlaying() ) { //play button
     stroke(background); fill(background);//covers undesired shape
     rect(pauseX1, pauseY1, BOXW, pauseHeight);
@@ -53,7 +64,7 @@ void drawMusic() {
     rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
     fill(black); stroke(purp);//defult button colors
     triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
-  }//end pause-play button
+  }fill(black); stroke(purp);//defult button colors//end pause-play button
   //rewind button
   if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
   { fill(hoverOver); } else { fill(black); }
