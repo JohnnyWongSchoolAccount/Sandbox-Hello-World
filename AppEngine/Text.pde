@@ -27,8 +27,7 @@ void textReset() { fill(resetInk); }//end textReset
 float textCalculator( float size, String string, float loopWidth ) {
   textSize(size); //For text width sizing
   while ( textWidth(string) > loopWidth ){
-    size = size * 0.99; //size in pixels
-    textSize(size);
+    textSize(size *= 0.9); //decreases text size by 10%
   }
   return size;
 }//end textCalculator
@@ -43,7 +42,7 @@ void flatText() { //Reviewing Introductory Text Code
   textSize( 50 );
   text( string, loopX1, loopY1, loopWidth, loopHeight);
   fill(resetresetInk);
-}//end flatText
+}//end FlatText
 //
 void textKeyPressed() {}//end textKeyPressed
 //
