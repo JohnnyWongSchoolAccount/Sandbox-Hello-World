@@ -1,6 +1,6 @@
 //Global Variable
 PFont Font;
-color ink, purpInk=#000A00, resetInk=#FFFFFF; //Not Nightmode Friendly
+color ink, purpInk=#000000, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
 String text = "SINGLE", text2 = "INFINITE", text3 = "AUTO-PLAY";//button text
 //
