@@ -20,14 +20,14 @@ void keyPressed() {}//end keyPressed
 //
 void mousePressed() {}//end mousePressed
 //
-void flatText() { //Reviewing Introductory Text Code
-  //Variables Needed, usually Global Variables
-  float textRectX, textRectY, textRectWidth, textRectHeight;
+void flatText() {//intro to text code
+  //Variables needed
+  float textRectX, textRectY, textRectWidth, textRectHeight;//local variables
   PFont Font;
   color purpInk=#2C08FF, resetresetInk=#FFFFFF; //Not nice for Night Mode, Blue Content
   String string = "Zing";
   //
-  //Population, from display
+  //Population from display
   textRectX = width*1/5;
   textRectY = height*1/10;
   textRectWidth = width*3/5;
@@ -35,16 +35,15 @@ void flatText() { //Reviewing Introductory Text Code
   //
   rect( textRectX, textRectY, textRectWidth, textRectHeight );
   /*
-  println("Start of Console");
-   String[] FontList = PFont.list(); //To list all Fonts available on system
-   printArray(FontList); //For listing all possible Fonts to choose, then createFont
-   */
-  Font = createFont ("Harrington", 50);
+  println("You are a cool dude c;");
+  String[] FontList = PFont.list(); //To list all Fonts available on system
+  printArray(FontList); //For listing all possible Fonts to choose, then createFont */
+  Font = createFont ("Calibri", 32);
   //
   fill(purpInk);
   textAlign (CENTER, CENTER);
   textSize( 50 );
   text( string, textRectX, textRectY, textRectWidth, textRectHeight );
   fill(resetresetInk);
-}//end Flat Text Review
+}//end flatText
 //end Main Program
