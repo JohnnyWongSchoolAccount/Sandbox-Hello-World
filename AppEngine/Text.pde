@@ -1,8 +1,8 @@
 //Global Variable
 PFont Font;
-color ink, purpInk=#FFFFFF, resetInk=#FFFFFF; //Not Nightmode Friendly
+color ink, purpInk=purp, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
-String text = "SINGLE", text2 = "INFINITE", text3 = "AUTO-PLAY";//button text
+String text = "SingleLoop", text2 = "InfiniteLoop", text3 = "Autoplay";//button text
 //
 void textSetup() {
   Font = createFont ("Calibri", 32); 
