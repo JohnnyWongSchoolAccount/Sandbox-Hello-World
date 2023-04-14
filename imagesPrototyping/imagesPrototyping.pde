@@ -1,67 +1,68 @@
-/* Background Image Example
-No aspect ratio
-filling the Rect */
+/* Background Image Example */
 //Global Variables
-int appWidth, appHeight;
-float backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight;
-float imageWidthAdj=0.0, imageHeightAdj=0.0;
-float empty=0.0, PictureYAdj=0.0, pictureXAdj=0.0;
 PImage picture;
-Boolean nightMode = false;
-Boolean imageCenter = true, imageBottomRight = false;//variable image justification
+int appWidth, appHeight;
+float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
+float empty=0.0, pictureXAdj=0.0, pictureYAdj=0.0;
+float pictureWidthAdj=0.0, pictureHeightAdj=0.0;
+Boolean nightMode=false;
+Boolean imageCenter=true, imageBottomRight=false; //changes the orientation of image in relation to empty
 //
-size( 500, 100 ); //landScape
+size(500, 600); //Landscape
 appWidth = width;
 appHeight = height;
-//
 //Population
-backgroundImageX = appWidth*0;
-backgroundImageY = appHeight*0;
-backgroundImageWidth = appWidth-1;//Note: - pixel in order to show rect properly
-backgroundImageHeight = appHeight-1;//Note: - pixel in order to show rect properly
-//Pathway and files 
-/* String upFolder = "..";
-String openFolder = "/";
-String folder = "imagesPrototyping";
-String folder1 = "imagesUsed";
-String folder2 = "01backgroundImage"; */
-String fileName = "41586_2015_Article_BF528452a_Figg_HTML.jpg";
-picture = loadImage("//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/01backgroundImage/"+fileName);//Kamodo Dragon image
-int pictureWidthKamodo = 703;//original dimensions ;) in pixels by the way~
-int pictureHeightKamodo = 512;//original dimensions :\
-//larger dimension algorithem - any image thats larger than aspect ratio
-int smallerDimension, largerDimension;
-float imageHeightRatio, imageWidthRatio;
-if (pictureWidthKamodo >= pictureHeightKamodo ){
-  largerDimension = pictureWidthKamodo;
-  smallerDimension = pictureHeightKamodo;
-  imageHeightRatio = float(smallerDimension) / float(largerDimension);//CASTING making variables float
-  imageWidthAdj = backgroundImageWidth;
-  imageHeightAdj = backgroundImageWidth * imageHeightRatio;
-  //If the image fits in the rect center the smaller dimension
-  empty = backgroundImageHeight-imageHeightAdj;
-  if (imageCenter == true) imageWidthAdj = backgroundImageY + empty*1/2;
-  if (imageBottomRight == true) imageWidthAdj = backgroundImageY + empty;
-  //
-  //pictureXAdj = backgroundImageX*imageWidthRatio;
-  PictureYAdj = backgroundImageY*imageHeightRatio;
-  //
-  if ( imageHeightAdj > backgroundImageHeight ) {//ERROR catch
-    imageHeightAdj = backgroundImageHeight;
-    imageWidthAdj *= imageHeightRatio;
-    empty = backgroundImageWidth - imageWidthAdj;
+imageBackgroundX = appWidth * 0;
+imageBackgroundY = appHeight * 0;
+imageBackgroundWidth = appWidth - 1;//computer ERROR if pixel is not - border is not present
+imageBackgroundHeight =appHeight - 1;//in pixels~
+//Pathway & Files
+/*String upFolder = "..";
+String openFolder = "/"; */
+String fileName = "tripleself.jpg";
+//String pathway = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/01backgroundImage/";
+String pathway = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/03portraitImage/";
+picture = loadImage(pathway+fileName);//Kamodo Dragon image
+int pictureWidth = 500;//Kamodo 703,trippleself 500
+int pictureHeight = 639;//Kamodo 512, trippleself 639
+//large Dimension Algorithm - any image- ASPECT RATIO
+int smallDimension, largeDimension; //Local Variable
+float imageHeigthRatio, imageWidthRatio; //Local Variable
+if ( pictureWidth >= pictureHeight ) { //TRUE for Landscape or Square
+  largeDimension = pictureWidth;
+  smallDimension = pictureHeight;
+  imageHeigthRatio = float (smallDimension) / float (largeDimension); //fixed by CASTING ratio is < 1 - float()
+  pictureWidthAdj = imageBackgroundWidth; //fits into rect
+  pictureHeightAdj = pictureWidthAdj * imageHeigthRatio;
+  empty = imageBackgroundHeight - pictureHeightAdj;
+  pictureXAdj = imageBackgroundX;
+  pictureYAdj = imageBackgroundY; 
+  if ( imageCenter==true ) pictureYAdj = imageBackgroundY + empty*1/2;
+  if ( imageBottomRight==true) pictureYAdj = imageBackgroundY + empty;
+  if ( pictureHeightAdj > imageBackgroundHeight ) { //ERROR Catch - adusted height > height
+    pictureHeightAdj = imageBackgroundHeight;
+    pictureWidthAdj = pictureWidthAdj * imageHeigthRatio;
+    //
+    empty = imageBackgroundWidth - pictureWidthAdj;
+    //
+    pictureXAdj = imageBackgroundX;
+    pictureYAdj = imageBackgroundY;
+    if ( imageCenter==true ) pictureXAdj = imageBackgroundX + empty*1/2;
+    if ( imageBottomRight==true) pictureXAdj = imageBackgroundX + empty;
   }
-} else {//Student to finish - false if portrait //work in progress
-  largerDimension = pictureHeightKamodo;
-  smallerDimension = pictureWidthKamodo;
-  imageWidthRatio = float(largerDimension) / float(smallerDimension);
-  imageWidthAdj = backgroundImageHeight;
-  imageHeightAdj = backgroundImageHeight * imageWidthRatio;
-}//end imgae aspect ratio algorithim
-//Rectangle layoutand image drawing to canvas
-rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
-if (nightMode == false) {tint( 255, 128 );}//GreyScale day mode - 1/2 tint used for white (128/255=.5)
-if (nightMode == true) { tint( 64, 64, 40 ); }//RGB Night mode
-//image( picture, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
-image( picture, backgroundImageX, backgroundImageY, imageWidthAdj, imageHeightAdj );
-//end mainProgram
+} else { //image portrait
+   largeDimension = pictureHeight;
+   smallDimension = pictureWidth;
+   imageWidthRatio = float(smallDimension) / float(largeDimension);
+   pictureHeightAdj = imageBackgroundWidth;
+   pictureWidthAdj = pictureWidthAdj * imageWidthRatio;
+}
+rect( imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
+if ( nightMode==false ) tint(255, 128); //Gray Scale, day use: used 1/2 tint for white (128/255=1/2)
+if ( nightMode==true ) tint(64, 64, 40); //RGB: Night Mode
+//background image no empty
+image( picture, imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
+//aspect ratio
+println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
+image( picture, pictureXAdj, pictureYAdj, pictureWidthAdj, pictureHeightAdj );
+//end main Program
