@@ -213,9 +213,9 @@ void timeline() {
   time = songs[currentSong].position();
   float progress = time/duration;
   fill(background); stroke(background);
-  rect(0, 390, 390 * appWidth, appHeight);
+  rect(0, 10, 10 * appWidth, -appHeight);
   fill(hoverOver); stroke(hoverOver);
-  rect(0, 390, progress*appWidth, appHeight);
+  rect(0, 10, progress*appWidth, -appHeight);
 }//end timeline
 void concatenationOfMusicFiles(){
   pathway = "data/";
