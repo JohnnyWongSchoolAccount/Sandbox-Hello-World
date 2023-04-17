@@ -39,7 +39,7 @@ void drawMusic() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER
   autoPlayMusic();
   drawhitboxes();
-  time();
+  timeline();
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(hoverOver); 
@@ -208,15 +208,15 @@ void drawhitboxes() { //for debugging
   //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
 }//end drawhitboxes
 //
-void time() {
+void timeline() {
   duration = songs[currentSong].length();
   time = songs[currentSong].position();
   float progress = time/duration;
   fill(background); stroke(background);
-  rect(0, 390, 390 * width, height);
-  fill(black); stroke(purp);
-  rect(0, 390, progress * width, height);
-}//end elapsed
+  rect(0, 390, 390 * appWidth, appHeight);
+  fill(hoverOver); stroke(hoverOver);
+  rect(0, 390, progress*appWidth, appHeight);
+}//end timeline
 void concatenationOfMusicFiles(){
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
