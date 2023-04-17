@@ -5,6 +5,7 @@ AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; //the songs/SFX
 float rand;//random variable
+float time, duration;//time line
 int currentSong = 0; //current song
 boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
@@ -38,6 +39,7 @@ void drawMusic() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER
   autoPlayMusic();
   drawhitboxes();
+  time();
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(hoverOver); 
@@ -206,6 +208,15 @@ void drawhitboxes() { //for debugging
   //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
 }//end drawhitboxes
 //
+void time() {
+  duration = songs[currentSong].length();
+  time = songs[currentSong].position();
+  float progress = time/duration;
+  fill(background); stroke(background);
+  rect(0, 390, 390 * width, height);
+  fill(black); stroke(purp);
+  rect(0, 390, progress * width, height);
+}//end elapsed
 void concatenationOfMusicFiles(){
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
