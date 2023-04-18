@@ -273,9 +273,9 @@ void rewind() {//rewind button
   }//end rewind button
 }//end rewind
 void forward() { //forward button
-  if ( songs[currentSong].position() <= songs[currentSong].length() * 7.5/10) {//prevents the song being skipped too far
-    songs[currentSong].skip(3000); //paramiters in milliseconds -> skips song 3 seconds
-  }// end forward //if else () {}//end forward
+  if ( songs[currentSong].length()-songs[currentSong].position()>=4000  ){
+    songs[currentSong].skip(3000);//paramiters in milliseconds -> skips song 3 seconds
+  }//end forward 
 }//end forward button
 void mute() { //mute button
   if ( songs[currentSong].isMuted() ) {//button works when song is not playing
