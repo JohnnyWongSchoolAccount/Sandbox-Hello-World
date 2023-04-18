@@ -248,32 +248,16 @@ void pausePlay() {//pause-play button
   }//end pause button
 }//end pause-play
 void rewind() {//rewind button
-  if ( songs[currentSong].position() <= songs[currentSong].length() * 9/10 ) {//prevents song being rewinded too far
+  if ( songs[currentSong].position() <= songs[currentSong].length()*9/10 ) {//prevents song being rewinded too far
     songs[currentSong].skip(-3000);//paramiters in milliseconds -> goes back 3 seconds
     //if the song is at the very beginning the reverse button will skip the the previous song paused
   } if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
-    if( songs[currentSong].isPlaying() ) {
-      if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
-        songs[currentSong].pause();//so songs do not play ontop of eachother
-        currentSong = songs.length - 1; //moves to top of the playlist
-        songs[currentSong].rewind();
-        songs[currentSong].pause();//for the desired song
-        songs[currentSong].unmute();
-        wentBack = true;//ERROR catch
-        // if at the end of playlist this sets it to zero
-      } else { wentBack = false; } 
-      if ( wentBack == false ) {
-        songs[currentSong].pause();//so songs do not play ontop of eachother
-        currentSong--;//switiches to the previous song
-        songs[currentSong].rewind();
-        songs[currentSong].pause();//for the desired song
-        songs[currentSong].unmute();
-      }
-    }
+    previous();
+    songs[currentSong].pause();
   }//end rewind button
 }//end rewind
 void forward() { //forward button
-  if ( songs[currentSong].length()-songs[currentSong].position()>=4000  ){
+  if ( songs[currentSong].length()-songs[currentSong].position()>=3001  ){
     songs[currentSong].skip(3000);//paramiters in milliseconds -> skips song 3 seconds
   }//end forward 
 }//end forward button
