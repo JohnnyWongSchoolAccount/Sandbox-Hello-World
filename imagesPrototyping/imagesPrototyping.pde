@@ -52,13 +52,25 @@ if ( pictureWidth >= pictureHeight ) { //TRUE for Landscape or Square
     if ( imageBottomRight==true) pictureXAdj = imageBackgroundX + empty;
   }
 } else { //image portrait
-   largeDimension = pictureHeight;
-   smallDimension = pictureWidth;
-   imageWidthRatio = float(smallDimension) / float(largeDimension);
-   pictureHeightAdj = imageBackgroundHeight;
-   pictureWidthAdj *= imageWidthRatio;
-   pictureXAdj = imageBackgroundX;
-   pictureYAdj = imageBackgroundY; 
+  largeDimension = pictureHeight;
+  smallDimension = pictureWidth;
+  imageWidthRatio = float(smallDimension) / float(largeDimension); //fixed by CASTING ratio is < 1 - float()
+  pictureHeightAdj = imageBackgroundHeight; // fits into rect
+  pictureWidthAdj = pictureHeightAdj * imageWidthRatio;
+  empty = imageBackgroundWidth - pictureWidthAdj;
+  pictureXAdj = imageBackgroundX;
+  pictureYAdj = imageBackgroundY;
+  if (imageCenter == true) pictureXAdj = imageBackgroundX + empty * 1/2;
+  if (imageBottomRight == true) pictureXAdj = imageBackgroundX + empty;
+  if (pictureWidthAdj > imageBackgroundWidth) { // ERROR Catch - adjusted width > width
+    pictureWidthAdj = imageBackgroundWidth;
+    pictureHeightAdj *= imageWidthRatio;
+    empty = imageBackgroundHeight - pictureHeightAdj;
+    pictureXAdj = imageBackgroundX;
+    pictureYAdj = imageBackgroundY;
+    if (imageCenter == true) pictureYAdj = imageBackgroundY + empty * 1/2;
+    if (imageBottomRight == true) pictureYAdj = imageBackgroundY + empty;
+  }
 }
 rect( imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
 if ( nightMode==false ) tint(255, 128); //Gray Scale, day use: used 1/2 tint for white (128/255=1/2)
