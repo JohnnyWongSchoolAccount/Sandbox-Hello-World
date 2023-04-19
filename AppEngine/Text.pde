@@ -5,7 +5,7 @@ int alignHorizontal, alignVertical; //Display or CANVAS Values
 String text = "SingleLoop", text2 = "InfiniteLoop", text3 = "Autoplay";//button text
 String texto = "time: ";
 //
-void drawText(int minuites, int seconds, String divider) {
+void drawTextMusic(int minuites, int seconds, String divider) {
   //% means divide by both 1000 and 60 when 60 is needed
   seconds = (songs[currentSong].position()/1000) % 60;
   minuites = (songs[currentSong].position()/(1000*60)) % 60;
