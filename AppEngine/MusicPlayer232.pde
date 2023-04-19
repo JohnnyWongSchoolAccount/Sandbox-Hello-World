@@ -89,7 +89,7 @@ void drawMusic() {
   rect( skipBarX2, skipBarY2, skipBarWidth, skipBarHeight, 22 );//bar skip2
   //mute button
   if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
+  { fill(hoverOver); } else if( songs[currentSong].isMuted() ){fill(toggleOn);} else {fill(black);}
   triangle(mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3); // triangle
   rect(muteX, muteY, muteWidth, muteHeight); // rectangle
   rect(muteX2, muteY2, muteWidth2, muteHeight2); // blocking rectangle left side
