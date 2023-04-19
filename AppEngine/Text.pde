@@ -3,7 +3,13 @@ PFont Font;
 color ink, purpInk=purp, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
 String text = "SingleLoop", text2 = "InfiniteLoop", text3 = "Autoplay";//button text
+String texto = "Song:";
 //
+void drawText() {
+  fill(background); stroke(background);
+  rect(pauseWidth, pauseHeight/3, loopWidth, loopHeight/1.5);
+  textDraw( height, purpInk, CENTER, CENTER, Font, texto+currentSong, pauseWidth, pauseHeight/7, loopWidth, loopHeight);
+}//end drawText
 void textSetup() {
   Font = createFont ("Calibri", 32); 
   population(); 
