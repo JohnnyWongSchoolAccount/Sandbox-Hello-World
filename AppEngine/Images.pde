@@ -2,7 +2,6 @@
 //Global Variables
 PImage picture;
 int appWidth, appHeight;
-float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 float empty=0.0, pictureXAdj=0.0, pictureYAdj=0.0;
 float pictureWidthAdj=0.0, pictureHeightAdj=0.0;
 Boolean nightMode=false;
@@ -14,7 +13,7 @@ String fileName = "tripleself.jpg";//trippleself
 //String pathway = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/03portraitImage/";
 String pathway = "data/";
 picture = loadImage(pathway+fileName);//Kamodo Dragon image
-int pictureWidth = 500;//Kamodo 703, trippleself 500
+int pictureWidth = 500;//Kamodo 703,trippleself 500
 int pictureHeight = 639;//Kamodo 512, trippleself 639
 void setupImage() {
   //large Dimension Algorithm - any image- ASPECT RATIO
