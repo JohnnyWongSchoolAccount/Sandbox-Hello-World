@@ -46,6 +46,8 @@ color purp= #FFFBE3; //The outline color FFFBE3
 color background=#9EA9F0; //The background color
 color hoverOver = #FF0000; //hover over color
 color toggleOn = #00FF4A; //toggle on color
+//images
+float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
@@ -232,6 +234,11 @@ void population() {
   autotX32 = startingX + (startingX/1.1);
   autotY32 = startingY + (startingY/2);
   //end auto-skip
+  //images
+  imageBackgroundX = appWidth * 0;
+  imageBackgroundY = appHeight * 0;
+  imageBackgroundWidth = appWidth - 1;//computer ERROR if pixel is not - border is not present
+  imageBackgroundHeight =appHeight - 1;//in pixels~
   //button hitbox variable
   BOXW = pauseWidth * 3/1;
 }//end population
@@ -246,6 +253,7 @@ void drawMusicButtons() {
   drawLoopButtonInf(); // loop infinite button - triangle, 2 rect
   drawShuffleButton(); //shuffle button - 2 triangle
   drawAustoSkipButton(); //auto skip button - 2 trangle, 2 rect
+  drawImages();
 }//end drawMusicButtons
 //
 void drawPauseButton() {
@@ -331,5 +339,12 @@ void drawAustoSkipButton() {
   triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
   fill(resetcolorDayMode);
 }//end drawloopButton
+void drawImages() {
+  //image( picture, imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
+  //aspect ratio
+  //println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
+  //image( picture, pictureXAdj, pictureYAdj, pictureWidthAdj, pictureHeightAdj );
+  //rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
+}//end drawImages
 //end Music Player Buttons
 //end population SubProgram
