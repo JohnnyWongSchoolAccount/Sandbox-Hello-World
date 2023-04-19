@@ -41,11 +41,11 @@ float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto skip button t
 float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto skip button triangle
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
-color black= #CCC1FF; //The Button color
+color black= #CCC1FF; //The Button color CCC1FF
 color purp= #FFFBE3; //The outline color FFFBE3
-color background=#9EA9F0; //The background color
-color hoverOver = #FF0000; //hover over color
-color toggleOn = #00FF4A; //toggle on color
+color background=#9EA9F0; //The background color 9EA9F0
+color hoverOver = #8D9EFF; //hover over color FF0000
+color toggleOn = #D6E5FA; //toggle on color 00FF4A
 //images
 float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 //
