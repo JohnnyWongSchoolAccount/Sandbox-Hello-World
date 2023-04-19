@@ -9,7 +9,7 @@ boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
 boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
 boolean nit = false;//setting defult - night mode
-boolean SauseMusic = true;
+boolean SauseMusic = false;//setting defult - MusicPlayer
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
