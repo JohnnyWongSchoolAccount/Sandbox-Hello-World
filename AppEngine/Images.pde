@@ -1,4 +1,4 @@
-/* Background Image Example -> code is work in progress currently does not work
+/* Work in progress does not function -> likely pathway issue
 //Global Variables
 PImage picture;
 int appWidth, appHeight;
@@ -7,46 +7,42 @@ float empty=0.0, pictureXAdj=0.0, pictureYAdj=0.0;
 float pictureWidthAdj=0.0, pictureHeightAdj=0.0;
 Boolean nightMode=false;
 Boolean imageCenter=true, imageBottomRight=false; //changes the orientation of image in relation to empty
-//
-//Population
-imageBackgroundX = appWidth * 0;
-imageBackgroundY = appHeight * 0;
-imageBackgroundWidth = appWidth - 1;//computer ERROR if pixel is not - border is not present
-imageBackgroundHeight =appHeight - 1;//in pixels~
 //Pathway / Files
 //String fileName = "41586_2015_Article_BF528452a_Figg_HTML.jpg";//Kamodo
 String fileName = "tripleself.jpg";//trippleself
 //String pathway = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/01backgroundImage/";
-String pathway = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/03portraitImage/";
+//String pathway = "//FS-052/studuser$/Gr11/j.wong59/My Documents/GitHub/Sandbox-Hello-World-P3/imagesPrototyping/imagesUsed/03portraitImage/";
+String pathway = "data/";
 picture = loadImage(pathway+fileName);//Kamodo Dragon image
-int pictureWidth = 500;//Kamodo 703,trippleself 500
+int pictureWidth = 500;//Kamodo 703, trippleself 500
 int pictureHeight = 639;//Kamodo 512, trippleself 639
-//large Dimension Algorithm - any image- ASPECT RATIO
-int smallDimension, largeDimension; //Local Variable
-float imageHeigthRatio, imageWidthRatio; //Local Variable
-if ( pictureWidth >= pictureHeight ) { //TRUE for Landscape or Square
-  largeDimension = pictureWidth;
-  smallDimension = pictureHeight;
-  imageHeigthRatio = float (smallDimension) / float (largeDimension); //fixed by CASTING ratio is < 1 - float()
-  pictureWidthAdj = imageBackgroundWidth; //fits into rect
-  pictureHeightAdj = pictureWidthAdj * imageHeigthRatio;
-  empty = imageBackgroundHeight - pictureHeightAdj;
-  pictureXAdj = imageBackgroundX;
-  pictureYAdj = imageBackgroundY; 
-  if ( imageCenter==true ) pictureYAdj = imageBackgroundY + empty*1/2;
-  if ( imageBottomRight==true) pictureYAdj = imageBackgroundY + empty;
-  if ( pictureHeightAdj > imageBackgroundHeight ) { //ERROR Catch - adusted height > height
-    pictureHeightAdj = imageBackgroundHeight;
-    pictureWidthAdj *= imageHeigthRatio;
-    //
-    empty = imageBackgroundWidth - pictureWidthAdj;
-    //
+void setupImage() {
+  //large Dimension Algorithm - any image- ASPECT RATIO
+  int smallDimension, largeDimension; //Local Variable
+  float imageHeigthRatio, imageWidthRatio; //Local Variable
+  if ( pictureWidth >= pictureHeight ) { //TRUE for Landscape or Square
+    largeDimension = pictureWidth;
+    smallDimension = pictureHeight;
+    imageHeigthRatio = float (smallDimension) / float (largeDimension); //fixed by CASTING ratio is < 1 - float()
+    pictureWidthAdj = imageBackgroundWidth; //fits into rect
+    pictureHeightAdj = pictureWidthAdj * imageHeigthRatio;
+    empty = imageBackgroundHeight - pictureHeightAdj;
     pictureXAdj = imageBackgroundX;
-    pictureYAdj = imageBackgroundY;
-    if ( imageCenter==true ) pictureXAdj = imageBackgroundX + empty*1/2;
-    if ( imageBottomRight==true) pictureXAdj = imageBackgroundX + empty;
-  }
-} else { //image portrait
+    pictureYAdj = imageBackgroundY; 
+    if ( imageCenter==true ) pictureYAdj = imageBackgroundY + empty*1/2;
+    if ( imageBottomRight==true) pictureYAdj = imageBackgroundY + empty;
+    if ( pictureHeightAdj > imageBackgroundHeight ) { //ERROR Catch - adusted height > height
+      pictureHeightAdj = imageBackgroundHeight;
+      pictureWidthAdj *= imageHeigthRatio;
+      //
+      empty = imageBackgroundWidth - pictureWidthAdj;
+      //
+      pictureXAdj = imageBackgroundX;
+      pictureYAdj = imageBackgroundY;
+      if ( imageCenter==true ) pictureXAdj = imageBackgroundX + empty*1/2;
+      if ( imageBottomRight==true) pictureXAdj = imageBackgroundX + empty;
+    }
+  } else { //image portrait
   largeDimension = pictureHeight;
   smallDimension = pictureWidth;
   imageWidthRatio = float(smallDimension) / float(largeDimension); //fixed by CASTING ratio is < 1 - float()
