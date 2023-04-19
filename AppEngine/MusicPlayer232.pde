@@ -9,6 +9,7 @@ boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
 boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
 boolean nit = false;//setting defult - night mode
+boolean SauseMusic = true;
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
@@ -21,8 +22,6 @@ void setupMusic() {
   //songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
-  background( background );//background color
-  strokeJoin( ROUND ); //the outlines of the shapes
   //
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
@@ -34,12 +33,115 @@ void drawMusic() {
   println( "end of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Current song:", currentSong );// song being played
+  if (SauseMusic == true){
+    hoverOverMusicButtons();
+  }
+}//end drawMusic()
+//
+void keyPressedMusic() {//keybinds
+  //pause-play button
+  if ( key == 'P' || key == 'p' ) { pausePlay(); }//end pause-play button keybind
+  //rewind button
+  if ( key == 'R' || key == 'r'){ rewind(-3000); }//end reverse keybind
+  //forward button
+  if ( key == 'F' || key == 'f'){ forward(3000); }//end forward keybind
+  //previous button
+  if ( key == 'H' || key == 'h' ) { previous(); }//end previous button keybind
+  //next button
+  if ( key == 'G' || key == 'g' ) { next(); }//end next button keybind
+  //mute button
+  if (key == 'M' || key == 'm') { mute(); }//end mute button keybind
+  //stop button
+  if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
+  //single loop button
+  if ( key == '1' ) { loop1(1,0); }//end single loop keybind
+  //loop infinite button
+  if ( key <= '9' && key !='1' ) { loopInf(-1); }//end loop infinite keybind
+  //Shuffle button
+  if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
+  //Autoplay button
+  if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
+  //night mode
+  if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
+}//end keyPressedMusic
+//
+void mousePressedMusic(){
+  //pause button
+  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
+  { pausePlay(); }
+  //rewind button
+  if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  { rewind(-3000); }
+  //forward button
+  if ( mouseX>=skipfX32 && mouseX<=skipfX1+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
+  { forward(3000); }
+  //previous track button
+  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight )
+  { previous(); }
+  //next track button
+  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight )
+  { next(); }
+  //mute button
+  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
+  { mute(); }
+  //stop button
+  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
+  { Stop(); }
+  //loop button
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
+  { loop1(1,0); }
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
+  { loopInf(-1); }
+  if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
+  { Shuffle(0); }
+  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
+  { autoPlay(); }
+}//end mousePressedMusic
+//
+void drawhitboxes() { //for debugging
+  //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
+  //rect(skipbX2, skipbY3, pauseHeight, BOXW);   //rewind button
+  //rect(skipfX32, skipfY3, pauseHeight, BOXW);   //forward button
+  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);  //previous track button
+  //rect(skipX12, skipY32, pauseHeight, pauseHeight);  //next track button
+  //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
+  //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
+  //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
+  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);  //loop Infinite button
+  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
+  //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
+}//end drawhitboxes
+//
+void timeline(int HeightTL, int WidthTL, float time, float duration ) {
+  duration = songs[currentSong].length();
+  time = songs[currentSong].position();
+  float progress = time/duration;
+  fill(purp); stroke(purp);
+  rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
+  fill(hoverOver); stroke(hoverOver);
+  rect(WidthTL, HeightTL, progress*appWidth, - appHeight);
+}//end timeline
+void concatenationOfMusicFiles(){
+  pathway = "data/";
+  beatYourCompetition = "Beat_Your_Competition.mp3"; //song
+  groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
+  eureka = "Eureka.mp3";//song
+  carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
+  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
+}//end concatenation
+//all the mouse pressed/Hoverover features for music player
+void hoverOverMusicButtons() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
+  //fill(background); stroke(background);
+  //rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
+  background( background );//background color
+  strokeJoin( ROUND ); //the outlines of the shapes
+  population();//Popululation subProgram
+  drawMusicButtons();//Popululation subProgram
   autoPlayMusic();
   drawhitboxes();
+  drawTextMusic(0,0,":");//text subProgram
   timeline(10, 0, 0, 0);
-  fill(background); stroke(background);
-  rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(hoverOver); 
@@ -134,99 +236,7 @@ void drawMusic() {
   triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
   triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
   textDraw( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
-}//end drawMusic()
-//
-void keyPressedMusic() {//keybinds
-  //pause-play button
-  if ( key == 'P' || key == 'p' ) { pausePlay(); }//end pause-play button keybind
-  //rewind button
-  if ( key == 'R' || key == 'r'){ rewind(-3000); }//end reverse keybind
-  //forward button
-  if ( key == 'F' || key == 'f'){ forward(3000); }//end forward keybind
-  //previous button
-  if ( key == 'H' || key == 'h' ) { previous(); }//end previous button keybind
-  //next button
-  if ( key == 'G' || key == 'g' ) { next(); }//end next button keybind
-  //mute button
-  if (key == 'M' || key == 'm') { mute(); }//end mute button keybind
-  //stop button
-  if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
-  //single loop button
-  if ( key == '1' ) { loop1(1,0); }//end single loop keybind
-  //loop infinite button
-  if ( key <= '9' && key !='1' ) { loopInf(-1); }//end loop infinite keybind
-  //Shuffle button
-  if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
-  //Autoplay button
-  if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
-  //night mode
-  if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
-}//end keyPressedMusic
-//
-void mousePressedMusic(){
-  //pause button
-  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
-  { pausePlay(); }
-  //rewind button
-  if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
-  { rewind(-3000); }
-  //forward button
-  if ( mouseX>=skipfX32 && mouseX<=skipfX1+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
-  { forward(3000); }
-  //previous track button
-  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight )
-  { previous(); }
-  //next track button
-  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight )
-  { next(); }
-  //mute button
-  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
-  { mute(); }
-  //stop button
-  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
-  { Stop(); }
-  //loop button
-  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
-  { loop1(1,0); }
-  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
-  { loopInf(-1); }
-  if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
-  { Shuffle(0); }
-  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
-  { autoPlay(); }
-}//end mousePressedMusic
-//
-void drawhitboxes() { //for debugging
-  //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
-  //rect(skipbX2, skipbY3, pauseHeight, BOXW);   //rewind button
-  //rect(skipfX32, skipfY3, pauseHeight, BOXW);   //forward button
-  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);  //previous track button
-  //rect(skipX12, skipY32, pauseHeight, pauseHeight);  //next track button
-  //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
-  //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
-  //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
-  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);  //loop Infinite button
-  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
-  //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
-}//end drawhitboxes
-//
-void timeline(int HeightTL, int WidthTL, float time, float duration ) {
-  duration = songs[currentSong].length();
-  time = songs[currentSong].position();
-  float progress = time/duration;
-  fill(purp); stroke(purp);
-  rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
-  fill(hoverOver); stroke(hoverOver);
-  rect(WidthTL, HeightTL, progress*appWidth, - appHeight);
-}//end timeline
-void concatenationOfMusicFiles(){
-  pathway = "data/";
-  beatYourCompetition = "Beat_Your_Competition.mp3"; //song
-  groove = "Music_groove.mp3"; //song
-  eureka = "Eureka.mp3";//song
-  carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
-  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
-}//end concatenation
+}//end hoverOverMusicButtons
 // all the music button funcitons ;)
 void pausePlay() {//pause-play button
   if ( songs[currentSong].isPlaying() ) {//if song was playing then pauses the song
@@ -342,7 +352,7 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
       next();
     }
   }//end autoPlayOn button
-}//end autoPlayMusic
+}//end autoPlayMusic 
 void nightMode() {
   if (nit == false){ nit = true; } else { nit = false; }//turing on and off
   if (nit == true){
