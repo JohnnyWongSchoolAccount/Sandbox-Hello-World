@@ -206,7 +206,6 @@ void drawhitboxes() { //for debugging
 }//end drawhitboxes
 //
 void timeline(int HeightTL, int WidthTL, float time, float duration ) {
-  
   duration = songs[currentSong].length();
   time = songs[currentSong].position();
   float progress = time/duration;
