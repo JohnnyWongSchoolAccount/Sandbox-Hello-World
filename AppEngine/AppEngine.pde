@@ -17,7 +17,10 @@ void setup() {
   //fullScreen();//display width and height
   songs[currentSong].loop(0);//Change the index manually
 }//end setup
-void draw() { drawMusic(); }//end draw()
+void draw() { 
+  drawMusic();
+  drawText();
+}//end draw()
 void keyPressed() { keyPressedMusic(); }//end keyPressed()
 void mousePressed() { mousePressedMusic(); }//end mousePressed()
 //end AppEngine Program
