@@ -4,8 +4,6 @@ Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; //the songs/SFX
-float rand;//random variable
-float time, duration;//time line
 int currentSong = 0; //current song
 boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
@@ -34,12 +32,11 @@ void drawMusic() {
   println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "end of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
-  println( "Random:", rand );//song that shuffle chose
   println( "Current song:", currentSong );// song being played
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER
   autoPlayMusic();
   drawhitboxes();
-  timeline(10, 0);
+  timeline(10, 0, 0, 0);
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(hoverOver); 
@@ -152,11 +149,11 @@ void keyPressedMusic() {//keybinds
   //stop button
   if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
   //single loop button
-  if ( key == '1' ) { loop1(); }//end single loop keybind
+  if ( key == '1' ) { loop1(1,0); }//end single loop keybind
   //loop infinite button
-  if ( key <= '9' && key !='1' ) { loopInf(); }//end loop infinite keybind
+  if ( key <= '9' && key !='1' ) { loopInf(-1); }//end loop infinite keybind
   //Shuffle button
-  if (key == 'W' || key == 'w') { Shuffle(); }//end shuffle keybind
+  if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
   //Autoplay button
   if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
 }//end keyPressedMusic
@@ -185,11 +182,11 @@ void mousePressedMusic(){
   { Stop(); }
   //loop button
   if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
-  { loop1(); }
+  { loop1(1,0); }
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
-  { loopInf(); }
+  { loopInf(-1); }
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
-  { Shuffle(); }
+  { Shuffle(0); }
   if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
   { autoPlay(); }
 }//end mousePressedMusic
@@ -208,7 +205,8 @@ void drawhitboxes() { //for debugging
   //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
 }//end drawhitboxes
 //
-void timeline(int HeightTL, int WidthTL) {
+void timeline(int HeightTL, int WidthTL, float time, float duration ) {
+  
   duration = songs[currentSong].length();
   time = songs[currentSong].position();
   float progress = time/duration;
@@ -272,17 +270,17 @@ void Stop() {//Stop
   songs[currentSong].pause(); //stops the song from playing
   songs[currentSong].rewind();
 }//end stop()
-void loop1() {//loop1
+void loop1(int loop1, int loop12) {//loop1
   if ( songs[currentSong].isPlaying() ) {
   songs[currentSong].pause();//substitute for delay() does not break the rest of code
-  songs[currentSong].loop(1);
+  songs[currentSong].loop(loop1);
   } else {//loop the song at the end of the track -> so that delay() != used
-    songs[currentSong].loop(0);//loops song 1 time
+    songs[currentSong].loop(loop12);//loops song 1 time
   }//end loop 1 button
 }//end loop1
-void loopInf() {//loop inf
+void loopInf(int loopInf) {//loop inf
   songs[currentSong].pause();//substitute for delay() does not break the rest of code
-  songs[currentSong].loop(-1);
+  songs[currentSong].loop(loopInf);
 }//end loopInf
 void previous() {//previous
   if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
@@ -316,7 +314,7 @@ void next() {//next
     repapla();//.rewind(), .pause(), .play() -> plays desired song
   }//end next button
 }//end next
-void Shuffle() { //shuffle button
+void Shuffle(float rand) { //shuffle button
   rand = random(songs.length);//picks a random #
   if ( rand >= songs.length ) { //ERROR catch
     rand = songs.length - 1;//if the song picked is the highest # in array plays the top song in playlist
