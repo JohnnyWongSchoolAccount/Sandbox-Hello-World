@@ -8,7 +8,7 @@ int currentSong = 0; //current song
 boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
 boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
-boolean nit = false;
+boolean nit = false;//setting defult - night mode
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
@@ -30,7 +30,7 @@ void setupMusic() {
 //
 void drawMusic() { 
   //debugging in consol 
-  /*println( "Current Song Position:", songs[currentSong].position() );//songs position
+  println( "Current Song Position:", songs[currentSong].position() );//songs position
   println( "end of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Current song:", currentSong );// song being played
@@ -38,6 +38,8 @@ void drawMusic() {
   autoPlayMusic();
   drawhitboxes();
   timeline(10, 0, 0, 0);
+  fill(background); stroke(background);
+  rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   { fill(hoverOver); 
