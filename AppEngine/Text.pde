@@ -3,7 +3,7 @@ PFont Font;
 color ink, purpInk=purp, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
 String text = "SingleLoop", text2 = "InfiniteLoop", text3 = "Autoplay";//button text
-String texto = "time: ";
+String texto = "Time - ";
 //
 void drawTextMusic(int minuites, int seconds, String divider) {
   //% means divide by both 1000 and 60 when 60 is needed
