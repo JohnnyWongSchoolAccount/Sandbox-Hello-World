@@ -22,50 +22,116 @@ void setupMusic() {
   //songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
-  //
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
 }//end setupMusic()
 //
 void drawMusic() { 
-  //debugging in consol 
-  println( "Current Song Position:", songs[currentSong].position() );//songs position
-  println( "end of Song:", songs[currentSong].length() );//songs length
-  println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
-  println( "Current song:", currentSong );// song being played
-  if (SauseMusic == true){
-    hoverOverMusicButtons();
-  }
+  debugging();//debugging in consol
+  if (SauseMusic == true){ hoverOverMusicButtons(); }
+  musicPlayerOnOffFunction();
 }//end drawMusic()
-//
+void mousePressedMusic(){ 
+  if (SauseMusic == true) { mousePressedMusicButtons(); } 
+}//end mousePressedMusic
 void keyPressedMusic() {//keybinds
-  //pause-play button
-  if ( key == 'P' || key == 'p' ) { pausePlay(); }//end pause-play button keybind
-  //rewind button
-  if ( key == 'R' || key == 'r'){ rewind(-3000); }//end reverse keybind
-  //forward button
-  if ( key == 'F' || key == 'f'){ forward(3000); }//end forward keybind
-  //previous button
-  if ( key == 'H' || key == 'h' ) { previous(); }//end previous button keybind
-  //next button
-  if ( key == 'G' || key == 'g' ) { next(); }//end next button keybind
-  //mute button
-  if (key == 'M' || key == 'm') { mute(); }//end mute button keybind
-  //stop button
-  if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
-  //single loop button
-  if ( key == '1' ) { loop1(1,0); }//end single loop keybind
-  //loop infinite button
-  if ( key <= '9' && key !='1' ) { loopInf(-1); }//end loop infinite keybind
-  //Shuffle button
-  if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
-  //Autoplay button
-  if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
-  //night mode
-  if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
+  if (SauseMusic) { keyPressedMusicButtons(); }
 }//end keyPressedMusic
 //
-void mousePressedMusic(){
+void concatenationOfMusicFiles(){
+  pathway = "data/";
+  beatYourCompetition = "Beat_Your_Competition.mp3"; //song
+  groove = "Music_groove.mp3"; //song
+  eureka = "Eureka.mp3";//song
+  carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
+  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
+}//end concatenation
+//all the mouse pressed/Hoverover features for music player
+void hoverOverMusicButtons() {
+  //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
+  background( background );//background color
+  strokeJoin( ROUND ); //the outlines of the shapes
+  strokeWeight(4);
+  population();//Popululation subProgram
+  autoPlayMusic();
+  drawhitboxes();
+  drawTextMusic(0,0,":");//text subProgram
+  timeline(10, 0, 0, 0);
+  //pause-play button
+  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
+  {
+    if (songs[currentSong].isPlaying()){
+      drawPBPBcoverer();//Popululation subProgram
+      fill(hoverOver); stroke(purp);
+      drawPauseButton();//Popululation subProgram
+    } else {
+      drawPBPBcoverer();
+      fill(hoverOver); stroke(purp);
+      drawPlayButton();//Popululation subProgram
+    } //stroke(background);
+  } else if ( songs[currentSong].isPlaying() ) { //play button
+      drawPBPBcoverer();//Popululation subProgram
+      fill(black); stroke(purp);
+      drawPauseButton();//Popululation subProgram
+  } else { //pause button
+      drawPBPBcoverer();//Popululation subProgram
+      fill(black); stroke(purp);
+      drawPlayButton();//Popululation subProgram
+  }
+  //rewind button
+  if ( mouseX>=skipbX2 && mouseX<=skipbX2+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  { fill(hoverOver); } else { fill(black); }
+  drawSkipBButton();//Popululation subProgram
+  //forward buton
+  if ( mouseX>=skipfX32 && mouseX<=skipfX32+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
+  { fill(hoverOver); } else { fill(black); }
+  drawSkipFButton();//Popululation subProgram
+  //previous button
+  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
+  {fill(hoverOver);} else {fill(black);}
+  drawPreviousButton();//Popululation subProgram
+  //next button
+  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight ) 
+  {fill(hoverOver);} else {fill(black);}
+  drawNextButton();//Popululation subProgram
+  //mute button
+  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
+  { fill(hoverOver); } else if( songs[currentSong].isMuted() ){fill(toggleOn);} else {fill(black);}
+  drawMuteButton();//Popululation subProgram
+  //stop button
+  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
+  { fill(hoverOver); } else {fill(black);}
+  drawStopButton();//Popululation subProgram
+  //loop button
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
+  { fill(hoverOver); } else {fill(black);}
+  drawLoopButton();//Popululation subProgram
+  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
+  { fill(hoverOver); } else {fill(black);}
+  drawLoopTButton();//Popululation subProgram
+  textDraw( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1/1.3, loopWidth, loopHeight);
+  //loop infinite button
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
+  { fill(hoverOver); } else {fill(black);}
+  drawLoopButtonInf();//Popululation subProgram
+  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
+  { fill(hoverOver); } else {fill(black);}
+  drawLoopTButtonInf();//Popululation subProgram
+  textDraw( height, purpInk, CENTER, CENTER, Font, text2, loopiX1, loopiY1/1.3, loopWidth, loopHeight );
+  //shuffle button
+  if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
+  { fill(hoverOver); } else {fill(black);}
+  drawShuffleButton();//Popululation subProgram
+  //autoplay
+  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
+  { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
+  drawAutoPlayButton();//Popululation subProgram
+  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
+  { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
+  drawAutoPlayTButton();//Popululation subProgram
+  textDraw( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
+}//end hoverOverMusicButtons
+void mousePressedMusicButtons() {
   //pause button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
   { pausePlay(); }
@@ -96,147 +162,33 @@ void mousePressedMusic(){
   { Shuffle(0); }
   if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
   { autoPlay(); }
-}//end mousePressedMusic
-//
-void drawhitboxes() { //for debugging
-  //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
-  //rect(skipbX2, skipbY3, pauseHeight, BOXW);   //rewind button
-  //rect(skipfX32, skipfY3, pauseHeight, BOXW);   //forward button
-  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);  //previous track button
-  //rect(skipX12, skipY32, pauseHeight, pauseHeight);  //next track button
-  //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
-  //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
-  //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
-  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);  //loop Infinite button
-  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
-  //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
-}//end drawhitboxes
-//
-void timeline(int HeightTL, int WidthTL, float time, float duration ) {
-  duration = songs[currentSong].length();
-  time = songs[currentSong].position();
-  float progress = time/duration;
-  fill(purp); stroke(purp);
-  rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
-  fill(hoverOver); stroke(hoverOver);
-  rect(WidthTL, HeightTL, progress*appWidth, - appHeight);
-}//end timeline
-void concatenationOfMusicFiles(){
-  pathway = "data/";
-  beatYourCompetition = "Beat_Your_Competition.mp3"; //song
-  groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
-  eureka = "Eureka.mp3";//song
-  carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
-  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
-}//end concatenation
-//all the mouse pressed/Hoverover features for music player
-void hoverOverMusicButtons() {
-  //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
-  //fill(background); stroke(background);
-  //rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
-  background( background );//background color
-  strokeJoin( ROUND ); //the outlines of the shapes
-  population();//Popululation subProgram
-  drawMusicButtons();//Popululation subProgram
-  autoPlayMusic();
-  drawhitboxes();
-  drawTextMusic(0,0,":");//text subProgram
-  timeline(10, 0, 0, 0);
+}//end mousePressedMusicButtons
+void keyPressedMusicButtons() {
   //pause-play button
-  if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
-  { fill(hoverOver); 
-    if (songs[currentSong].isPlaying()){
-    stroke(background); fill(background);//covers undesired shape
-    rect(pauseX1, pauseY1, BOXW, pauseHeight);
-    fill(hoverOver); stroke(purp);//defult button colors
-    rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
-    rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
-    } else {
-    stroke(background); fill(background);//covers undesired shape
-    rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
-    fill(hoverOver); stroke(purp);//defult button colors
-    triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
-    } stroke(background);
-  } else if ( songs[currentSong].isPlaying() ) { //play button
-    stroke(background); fill(background);//covers undesired shape
-    rect(pauseX1, pauseY1, BOXW, pauseHeight);
-    fill(black); stroke(purp);//defult button colors
-    rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
-    rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
-  } else { //pause button
-    stroke(background); fill(background);//covers undesired shape
-    rect(pauseX1, pauseY1, BOXW, pauseHeight);//rectangle
-    fill(black); stroke(purp);//defult button colors
-    triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
-  }fill(black); stroke(purp);//defult button colors//end pause-play button
+  if ( key == 'P' || key == 'p' ) { pausePlay(); }//end pause-play button keybind
   //rewind button
-  if ( mouseX>=skipbX2 && mouseX<=skipbX2+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
-  { fill(hoverOver); } else { fill(black); }
-  triangle(skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32); // right side
-  triangle(skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3); // right side
-  //forward buton
-  if ( mouseX>=skipfX32 && mouseX<=skipfX32+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
-  { fill(hoverOver); } else { fill(black); }
-  triangle(skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32); // left side
-  triangle(skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3); // left side
+  if ( key == 'R' || key == 'r'){ rewind(-3000); }//end reverse keybind
+  //forward button
+  if ( key == 'F' || key == 'f'){ forward(3000); }//end forward keybind
   //previous button
-  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
-  {fill(hoverOver);} else {fill(black);}
-  triangle( skipX1, skipY1, skipX2, skipY2, skipX3, skipY3 );//triange skip1
-  rect( skipBarX1, skipBarY1, skipBarWidth, skipBarHeight, 22 );//bar skip1
+  if ( key == 'H' || key == 'h' ) { previous(); }//end previous button keybind
   //next button
-  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight ) 
-  {fill(hoverOver);} else {fill(black);}
-  triangle( skipX12, skipY12, skipX22, skipY22, skipX32, skipY32 );//triange skip2
-  rect( skipBarX2, skipBarY2, skipBarWidth, skipBarHeight, 22 );//bar skip2
+  if ( key == 'G' || key == 'g' ) { next(); }//end next button keybind
   //mute button
-  if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
-  { fill(hoverOver); } else if( songs[currentSong].isMuted() ){fill(toggleOn);} else {fill(black);}
-  triangle(mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3); // triangle
-  rect(muteX, muteY, muteWidth, muteHeight); // rectangle
-  rect(muteX2, muteY2, muteWidth2, muteHeight2); // blocking rectangle left side
-  //triangle(mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32);
+  if (key == 'M' || key == 'm') { mute(); }//end mute button keybind
   //stop button
-  if ( mouseX>=stopX && mouseX<=stopX+pauseHeight && mouseY>=stopY && mouseY<=stopY+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
-  rect( stopX, stopY, stopWidth, stopHeight, 22 ); //square
-  //loop button
-  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
-  rect(loopX1, loopY1, loopWidth, loopHeight, 22); // outside rect
-  fill(background); // inside rect
-  rect(loopX2, loopY2, loopWidth2, loopHeight2, 13); // inside rect
-  if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
-  triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
-  textDraw( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1/1.3, loopWidth, loopHeight);
+  if ( key == 'S' || key == 's' ) { Stop(); }//end stop keybind
+  //single loop button
+  if ( key == '1' ) { loop1(1,0); }//end single loop keybind
   //loop infinite button
-  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
-  rect(loopiX1, loopiY1, loopiWidth, loopiHeight, 22); // outside rect
-  fill(background); // inside rect
-  rect(loopiX2, loopiY2, loopiWidth2, loopiHeight2, 13); // inside rect
-  if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
-  triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
-  textDraw( height, purpInk, CENTER, CENTER, Font, text2, loopiX1, loopiY1/1.3, loopWidth, loopHeight );
-  //shuffle button
-  if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
-  { fill(hoverOver); } else {fill(black);}
-  triangle(shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3); // bottom
-  triangle(shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32); // top
-  //autoplay
-  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
-  { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
-  rect(autoX1, autoY1, autoWidth, autoHeight, 22); // outside rect
-  fill(background); // inside rect
-  rect(autoX2, autoY2, autoWidth2, autoHeight2, 13); // inside rect
-  if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
-  { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
-  triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
-  triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
-  textDraw( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
-}//end hoverOverMusicButtons
+  if ( key <= '9' && key !='1' ) { loopInf(-1); }//end loop infinite keybind
+  //Shuffle button
+  if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
+  //Autoplay button
+  if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
+  //night mode
+  if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
+}//end keyPressedMusicButtons
 // all the music button funcitons ;)
 void pausePlay() {//pause-play button
   if ( songs[currentSong].isPlaying() ) {//if song was playing then pauses the song
@@ -370,14 +322,52 @@ void nightMode() {
   }
   background(background);
 }//end nightMode
-/*
-ex#1: .postion() >= .length(), then rewind(), currentSong+=1, .play()
-ex#2: .isPlaying(), when false rewind(), currentSong+1, .play()
-*/
+void musicPlayer() {
+  if (SauseMusic == false){
+    SauseMusic = true; 
+  } else {
+    SauseMusic = false;
+  }
+}//end musicPlayer
+void musicPlayerOnOffFunction() {
+  if (SauseMusic == false){
+    background(255);
+  }
+}//end musicPlayerOnOffFunction
 void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
   songs[currentSong].play();
   songs[currentSong].unmute();
 }//end repapla
+void timeline(int HeightTL, int WidthTL, float time, float duration ) {
+  duration = songs[currentSong].length();
+  time = songs[currentSong].position();
+  float progress = time/duration;
+  fill(purp); stroke(purp);
+  rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
+  fill(hoverOver); stroke(hoverOver);
+  rect(WidthTL, HeightTL, progress*appWidth, - appHeight);
+}//end timeline
+//DEBUGGING
+void debugging() { //debugging in consol 
+  println( "Current Song Position:", songs[currentSong].position() );//songs position
+  println( "end of Song:", songs[currentSong].length() );//songs length
+  println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
+  println( "Current song:", currentSong );// song being played
+}//end debugging */
+void drawhitboxes() { //debugging
+  //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
+  //rect(skipbX2, skipbY3, pauseHeight, BOXW);   //rewind button
+  //rect(skipfX32, skipfY3, pauseHeight, BOXW);   //forward button
+  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);  //previous track button
+  //rect(skipX12, skipY32, pauseHeight, pauseHeight);  //next track button
+  //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
+  //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
+  //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
+  //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);  //loop Infinite button
+  //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
+  //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
+}//end drawhitboxes
+//
 //end MusicPlayer232 subProgram
