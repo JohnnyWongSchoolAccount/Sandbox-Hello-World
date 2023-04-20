@@ -236,11 +236,11 @@ void population() {
   autotX32 = startingX + (startingX/1.1);
   autotY32 = startingY + (startingY/2);
   //end auto-skip
-  //music
-  musicX1 = appWidth/8;
-  musicY1 = appHeight/8;
-  musicWidth = appWidth/8;
-  musicHeight = appHeight/8;
+  //music pauseWidth, pauseHeight/7, appWidth/6, pauseHeight
+  musicX1 = pauseWidth;
+  musicY1 = pauseHeight*6.7;
+  musicWidth = appWidth/6;
+  musicHeight = pauseHeight;
   //images
   imageBackgroundX = appWidth * 0;
   imageBackgroundY = appHeight * 0;
