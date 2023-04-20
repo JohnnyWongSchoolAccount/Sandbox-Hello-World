@@ -10,12 +10,15 @@ import ddf.minim.ugens.*;
 void setup() {
   setupMusic();//MusicPlayer232 subProgram
   textSetup();//Text subProgram
-  //
   size( 700 , 400 );//width and height
   //fullScreen();//display width and height
-  songs[currentSong].loop(0);//Change the index manually
+  //songs[currentSong].loop(0);//Change the index manually
 }//end setup
 void draw() { drawMusic(); }//end draw()
-void keyPressed() { keyPressedMusic(); }//end keyPressed()
+void keyPressed() { 
+  keyPressedMusic();
+  //musicPlayer
+  if ( key == 'N' || key == 'n' ) { musicPlayer(); }//end musicPlayer Button keybind
+}//end keyPressed()
 void mousePressed() { mousePressedMusic(); }//end mousePressed()
 //end AppEngine Program
