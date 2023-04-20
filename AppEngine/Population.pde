@@ -240,105 +240,88 @@ void population() {
   imageBackgroundWidth = appWidth - 1;//computer ERROR if pixel is not - border is not present
   imageBackgroundHeight =appHeight - 1;//in pixels~
   //button hitbox variable
-  BOXW = pauseWidth * 3/1;
+  BOXW = startingX/8;
 }//end population
-void drawMusicButtons() {
-  //drawPlayButton(); // playbutton - triangle
-  drawPauseButton(); // pausebutton - 2 rect
-  drawSkipFBButton(); // skipbutton - 2 triangle
-  drawSkipButton(); // skipbutton - triangle, rect
-  drawMuteButton(); // mute button - 2 rect, triangle
-  drawStopButton(); // stopbutton - rect
-  drawLoopButton(); // loop button - triangle, 2 rect
-  drawLoopButtonInf(); // loop infinite button - triangle, 2 rect
-  drawShuffleButton(); //shuffle button - 2 triangle
-  drawAustoSkipButton(); //auto skip button - 2 trangle, 2 rect
-  drawImages();
-}//end drawMusicButtons
-//
 void drawPauseButton() {
-  strokeWeight(4); //controls the borders width
-  stroke(purp); // outline color
-  fill(black); // button color
   rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
   rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
   fill(resetcolorDayMode);
 }//end drawPauseButton()
 void drawPlayButton() {
-  strokeWeight(4); //controls the borders width
-  stroke(background); // outline color
-  fill(background); // button color
-  rect(pauseX1, pauseY1, BOXW, pauseHeight);
-  stroke(purp); // outline color
-  fill(black); // button color
   triangle(playX1, playY1, playX2, playY2, playX3, playY3 ); //triangle
   fill(resetcolorDayMode);
 }//end drawPlayButton()
-void drawSkipFBButton() {
-  fill(black);
-  triangle(skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32); // left side
-  triangle(skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3); // left side
+void drawPBPBcoverer() {
+  stroke(background); fill(background);//covers undesired shape
+  rect(pauseX1, pauseY1, BOXW, pauseHeight);
+}//end drawPBPBcoverer
+void drawSkipBButton() {
   triangle(skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32); // right side
   triangle(skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3); // right side
   fill(resetcolorDayMode);
-}//end drawSkipFBButton
-void drawSkipButton() {
-  fill(black);
+}//end drawSkipBButton
+void drawSkipFButton() {
+  triangle(skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32); // left side
+  triangle(skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3); // left side
+  fill(resetcolorDayMode);
+}//end drawSkipFButton
+void drawPreviousButton() {
   triangle( skipX1, skipY1, skipX2, skipY2, skipX3, skipY3 );//triange skip1
   rect( skipBarX1, skipBarY1, skipBarWidth, skipBarHeight, 22 );//bar skip1
+  fill(resetcolorDayMode);
+}//end drawSkipButton
+void drawNextButton() {
   triangle( skipX12, skipY12, skipX22, skipY22, skipX32, skipY32 );//triange skip2
   rect( skipBarX2, skipBarY2, skipBarWidth, skipBarHeight, 22 );//bar skip2
   fill(resetcolorDayMode);
 }//end drawSkipButton
 void drawMuteButton() {
-  fill(black);
   triangle(mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3); // triangle
   rect(muteX, muteY, muteWidth, muteHeight); // rectangle
-  //fill(#CF455C);
-  //stroke(#CF455C);
   rect(muteX2, muteY2, muteWidth2, muteHeight2); // blocking rectangle left side
   //triangle(mutetX12, mutetY12, mutetX22, mutetY22, mutetX32, mutetY32);
   fill(resetcolorDayMode);
 }//end DrawMuteFBButtons
 void drawStopButton() {
-  fill(black);
   rect( stopX, stopY, stopWidth, stopHeight, 22 ); //square
   fill(resetcolorDayMode);
 }//end drawStopButton()
 void drawLoopButton() {
-  fill(black); // outside rect
   rect(loopX1, loopY1, loopWidth, loopHeight, 22); // outside rect
   fill(background); // inside rect
   rect(loopX2, loopY2, loopWidth2, loopHeight2, 13); // inside rect
-  fill(black); // triangle
-  triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
   fill(resetcolorDayMode);
 }//end drawloopButton
+void drawLoopTButton() {
+  triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
+  fill(resetcolorDayMode);
+}//end drawloopTButton
 void drawLoopButtonInf() {
-  fill(black); // outside rect
   rect(loopiX1, loopiY1, loopiWidth, loopiHeight, 22); // outside rect
   fill(background); // inside rect
   rect(loopiX2, loopiY2, loopiWidth2, loopiHeight2, 13); // inside rect
-  fill(black); // triangle
-  triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
   fill(resetcolorDayMode);
 }//end drawloopButton
+void drawLoopTButtonInf() {
+  triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
+  fill(resetcolorDayMode);
+}//end drawloopTButtonInf
 void drawShuffleButton() {
-  fill(black);
   triangle(shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3); // bottom
   triangle(shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32); // top
   fill(resetcolorDayMode);
-}//end drawSkipFBButton
-void drawAustoSkipButton() {
-  fill(black); // outside rect
+}//end drawShuffleButton
+void drawAutoPlayButton() {
   rect(autoX1, autoY1, autoWidth, autoHeight, 22); // outside rect
   fill(background); // inside rect
   rect(autoX2, autoY2, autoWidth2, autoHeight2, 13); // inside rect
-  fill(black); // triangle
+  fill(resetcolorDayMode);
+}//end drawAutoPlayButton
+void drawAutoPlayTButton() {
   triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
   triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
   fill(resetcolorDayMode);
-}//end drawloopButton
+}//end drawAutoPlayButton
 void drawImages() {
   //image( picture, imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
   //aspect ratio
