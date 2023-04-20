@@ -9,7 +9,7 @@ boolean autoPlayOn = false; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
 boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
 boolean nit = false;//setting defult - night mode
-boolean SauseMusic = false;//setting defult - MusicPlayer
+boolean ONOFF_MUSICPLAYER = false;//setting defult - MusicPlayer
 //
 void setupMusic() {
   minim = new Minim (this); //load from data directory
@@ -28,14 +28,13 @@ void setupMusic() {
 //
 void drawMusic() { 
   debugging();//debugging in consol
-  if (SauseMusic == true){ hoverOverMusicButtons(); }
-  musicPlayerOnOffFunction();
+  if (ONOFF_MUSICPLAYER){ hoverOverMusicButtons(); }
 }//end drawMusic()
 void mousePressedMusic(){ 
-  if (SauseMusic == true) { mousePressedMusicButtons(); } 
+  if (ONOFF_MUSICPLAYER) { mousePressedMusicButtons(); } 
 }//end mousePressedMusic
 void keyPressedMusic() {//keybinds
-  if (SauseMusic) { keyPressedMusicButtons(); }
+  if (ONOFF_MUSICPLAYER) { keyPressedMusicButtons(); }
 }//end keyPressedMusic
 //
 void concatenationOfMusicFiles(){
@@ -322,18 +321,6 @@ void nightMode() {
   }
   background(background);
 }//end nightMode
-void musicPlayer() {
-  if (SauseMusic == false){
-    SauseMusic = true; 
-  } else {
-    SauseMusic = false;
-  }
-}//end musicPlayer
-void musicPlayerOnOffFunction() {
-  if (SauseMusic == false){
-    background(255);
-  }
-}//end musicPlayerOnOffFunction
 void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
@@ -355,6 +342,8 @@ void debugging() { //debugging in consol
   println( "end of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Current song:", currentSong );// song being played
+  println( "musicPlayer:", ONOFF_MUSICPLAYER );// song being played
+  println( "port:", Port );// song being played
 }//end debugging */
 void drawhitboxes() { //debugging
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
@@ -369,5 +358,4 @@ void drawhitboxes() { //debugging
   //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
   //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
 }//end drawhitboxes
-//
 //end MusicPlayer232 subProgram
