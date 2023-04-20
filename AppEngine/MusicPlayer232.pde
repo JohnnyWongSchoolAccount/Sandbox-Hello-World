@@ -129,6 +129,10 @@ void hoverOverMusicButtons() {
   { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
   drawAutoPlayTButton();//Popululation subProgram
   textDraw( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
+  if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
+  {fill(hoverOver);} else {fill(black);}
+  music();//Population subProgram
+  textDraw( height, purpInk, CENTER, CENTER, Font, textPortAlt, pauseWidth, pauseHeight*6.7, appWidth/6, pauseHeight);
 }//end hoverOverMusicButtons
 void mousePressedMusicButtons() {
   //pause button
@@ -185,8 +189,6 @@ void keyPressedMusicButtons() {
   if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
   //Autoplay button
   if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
-  //night mode
-  if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
 }//end keyPressedMusicButtons
 // all the music button funcitons ;)
 void pausePlay() {//pause-play button
@@ -304,23 +306,6 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
     }
   }//end autoPlayOn button
 }//end autoPlayMusic 
-void nightMode() {
-  if (nit == false){ nit = true; } else { nit = false; }//turing on and off
-  if (nit == true){
-    black= #FFC300; //The Button color CCC1FF
-    purp= #FFFDD0; //The outline color FFFBE3
-    background=#3B3B3B; //The background color 9EA9F0
-    hoverOver = #9B9B9B; //hover over color FF0000 8D9EFF
-    toggleOn = #FFF799; //toggle on color 00FF4A D6E5FA
-  } if (nit == false){
-    black= #CCC1FF; //The Button color CCC1FF
-    purp= #FFFBE3; //The outline color FFFBE3
-    background=#9EA9F0; //The background color 9EA9F0
-    hoverOver = #8D9EFF; //hover over color FF0000 8D9EFF
-    toggleOn = #D6E5FA; //toggle on color 00FF4A D6E5FA
-  }
-  background(background);
-}//end nightMode
 void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
