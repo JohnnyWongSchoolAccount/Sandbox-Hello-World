@@ -1,6 +1,6 @@
 //Global Variables
 boolean Port = true;
-String textPort = "Music Player", textPortAlt = "    Menu    ";
+String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = "Night Mode";
 //
 void setupPort() {}//end setup
 void drawPort() { 
@@ -15,6 +15,7 @@ void keyPressedPort() {
 void mousePressedPort() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   { musicPlayer();}
+  if (Port) { mousePressedPortONOFF(); }
 }//end mousePressedPort()
 //
 void drawPortONOFF() {
@@ -25,10 +26,20 @@ void drawPortONOFF() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   {fill(hoverOver);} else {fill(black);}
   music();//Population subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, textPort, pauseWidth, pauseHeight*6.7, appWidth/6, pauseHeight);
+  textDraw( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
+  if ( mouseX>=musicX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
+  {fill(hoverOver);} else {fill(black);}
+  nightModeButton();//Population subProgram
+  textDraw( height, purpInk, CENTER, CENTER, Font, textPortNM, nightX1, nightY1, nightWidth, nightHeight);
 }//end drawPortONOFF
-void keyPressedPortONOFF() {}//end keyPressedPortONOFF
-void mousePressedPortONOFF() {}//end mousePressedPortONOFF
+void keyPressedPortONOFF() {
+  if ( mouseX>=musicX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
+  { nightMode(); }//end nightmode mousePressed
+}//end keyPressedPortONOFF
+void mousePressedPortONOFF() {
+  if ( mouseX>=nightX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
+  { nightMode();}
+}//end mousePressedPortONOFF
 void nightMode() {
   if (nit == false){ nit = true; } else { nit = false; }//turing on and off
   if (nit == true){
