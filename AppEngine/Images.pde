@@ -6,7 +6,7 @@ Boolean imageCenter=false, imageBottomRight=false; //changes the orientation of 
 Boolean trippleself = false;
 //Files image
 //String fileNameKamodo = "41586_2015_Article_BF528452a_Figg_HTML.jpg";//Kamodo
-String fileNameTripple = "TripleSelf.jpg";//trippleself
+String fileNameTripple = "tripleself.jpg";//trippleself
 int pictureWidth = 500;//Kamodo 703, trippleself 500
 int pictureHeight = 639;//Kamodo 512, trippleself 639
 //
