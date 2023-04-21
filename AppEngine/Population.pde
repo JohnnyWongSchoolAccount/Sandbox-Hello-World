@@ -41,6 +41,8 @@ float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto skip button t
 float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto skip button triangle
 //MusicPlayer
 float musicX1, musicY1, musicWidth, musicHeight; //music button rect
+//night mode
+float nightX1, nightY1, nightWidth, nightHeight; //night button rect
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
 color black= #CCC1FF; //The Button color CCC1FF
@@ -242,6 +244,11 @@ void population() {
   musicY1 = pauseHeight*6.7;
   musicWidth = appWidth/6;
   musicHeight = pauseHeight;
+  //night mode
+  nightX1 = pauseWidth;
+  nightY1 = pauseWidth + (pauseWidth);
+  nightWidth = appWidth/6;
+  nightHeight = pauseHeight;
   //images
   imageBackgroundX = appWidth * 0;
   imageBackgroundY = appHeight * 0;
@@ -339,6 +346,9 @@ void drawAutoPlayTButton() {
 void music() {
   rect(musicX1, musicY1, musicWidth, musicHeight);
 }//end music
+void nightModeButton() {
+  rect(nightX1, nightY1, nightWidth, nightHeight);
+}//night mode
 //end Music Player Buttons
 //IMAGES
 void drawImagesPort() {
