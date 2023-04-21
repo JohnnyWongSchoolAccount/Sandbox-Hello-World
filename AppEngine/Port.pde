@@ -19,6 +19,8 @@ void mousePressedPort() {
 //
 void drawPortONOFF() {
   background(#3B3B3B);
+  timeline(int(pauseWidth), 0, 0, 0);
+  if (autoPlayOn) {autoPlayMusic();}
   stroke(purp); strokeWeight(4);
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   {fill(hoverOver);} else {fill(black);}
@@ -30,12 +32,14 @@ void mousePressedPortONOFF() {}//end mousePressedPortONOFF
 void nightMode() {
   if (nit == false){ nit = true; } else { nit = false; }//turing on and off
   if (nit == true){
+    tint(64, 64, 40); //RGB: Night Mode
     black= #FFC300; //The Button color CCC1FF
     purp= #FFFDD0; //The outline color FFFBE3
     background=#3B3B3B; //The background color 9EA9F0
     hoverOver = #9B9B9B; //hover over color FF0000 8D9EFF
     toggleOn = #FFF799; //toggle on color 00FF4A D6E5FA
   } if (nit == false){
+    tint(255, 128); //Gray Scale, day use: used 1/2 tint for white (128/255=1/2)
     black= #CCC1FF; //The Button color CCC1FF
     purp= #FFFBE3; //The outline color FFFBE3
     background=#9EA9F0; //The background color 9EA9F0
