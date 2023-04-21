@@ -50,6 +50,7 @@ color hoverOver = #8D9EFF; //hover over color FF0000
 color toggleOn = #D6E5FA; //toggle on color 00FF4A
 //images
 float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
+float trippleSelfX, trippleSelfY, trippleSelfWidth, trippleSelfHeight;
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
@@ -236,7 +237,7 @@ void population() {
   autotX32 = startingX + (startingX/1.1);
   autotY32 = startingY + (startingY/2);
   //end auto-skip
-  //music pauseWidth, pauseHeight/7, appWidth/6, pauseHeight
+  //music
   musicX1 = pauseWidth;
   musicY1 = pauseHeight*6.7;
   musicWidth = appWidth/6;
@@ -246,6 +247,12 @@ void population() {
   imageBackgroundY = appHeight * 0;
   imageBackgroundWidth = appWidth - 1;//computer ERROR if pixel is not - border is not present
   imageBackgroundHeight =appHeight - 1;//in pixels~
+  //trippleSelf
+  trippleSelfX = startingX;
+  trippleSelfY = startingY + (startingY/9);//image size in aspect ratio
+  trippleSelfWidth = startingX - (startingX/4);//image postion on the X axis
+  trippleSelfHeight = startingY - (startingY/1.5);//image postion on the Y axis
+  //imageBackgroundX + (pauseWidth)/ imageBackgroundX + (pauseWidth) for top rigth
   //button hitbox variable
   BOXW = startingX/8;
 }//end population
@@ -332,12 +339,12 @@ void drawAutoPlayTButton() {
 void music() {
   rect(musicX1, musicY1, musicWidth, musicHeight);
 }//end music
-void drawImages() {
+//end Music Player Buttons
+//IMAGES
+void drawImagesPort() {
+  //background image no empty
   //image( picture, imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
   //aspect ratio
-  //println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
-  //image( picture, pictureXAdj, pictureYAdj, pictureWidthAdj, pictureHeightAdj );
-  //rect(imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight);
-}//end drawImages
-//end Music Player Buttons
+  image( picture, pictureXAdj, pictureYAdj, pictureWidthAdj, pictureHeightAdj );
+}//end images
 //end population SubProgram
