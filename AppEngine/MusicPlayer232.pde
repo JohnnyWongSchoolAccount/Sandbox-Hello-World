@@ -5,7 +5,7 @@ AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; //the songs/SFX
 int currentSong = 0; //current song
-boolean autoPlayOn = false; //setting defult - auto-play
+boolean autoPlayOn = true; //setting defult - auto-play
 boolean wentBack = false; //setting defult - auto-play ERROR catch
 boolean pauseAutoStop = false;//setting defult - auto-play ERROR catch
 boolean nit = false;//setting defult - night mode
@@ -55,7 +55,7 @@ void hoverOverMusicButtons() {
   autoPlayMusic();
   drawhitboxes();
   drawTextMusic(0,0,":");//text subProgram
-  timeline(10, 0, 0, 0);
+  timeline(int(pauseWidth), 0, 0, 0 );
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   {
@@ -319,7 +319,7 @@ void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   fill(purp); stroke(purp);
   rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
   fill(hoverOver); stroke(hoverOver);
-  rect(WidthTL, HeightTL, progress*appWidth, - appHeight);
+  rect(WidthTL, HeightTL, progress * appWidth, - appHeight);
 }//end timeline
 //DEBUGGING
 void debugging() { //debugging in consol 
@@ -327,8 +327,9 @@ void debugging() { //debugging in consol
   println( "end of Song:", songs[currentSong].length() );//songs length
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Current song:", currentSong );// song being played
-  println( "musicPlayer:", ONOFF_MUSICPLAYER );// song being played
-  println( "port:", Port );// song being played
+  println( "musicPlayerONOFF:", ONOFF_MUSICPLAYER );// song being played
+  println( "Port:", Port );// port on or off
+  //println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
 }//end debugging */
 void drawhitboxes() { //debugging
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
