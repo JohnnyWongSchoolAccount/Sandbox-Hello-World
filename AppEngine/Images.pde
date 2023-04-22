@@ -10,8 +10,8 @@ String fileNameTriple = "tripleself.jpg";//tripleself
 int pictureWidth = 500;//Kamodo 703, tripleself 500
 int pictureHeight = 639;//Kamodo 512, tripleself 639
 //
-void setupImage() { if (Port) { setupImageONOFFPort(0, 0, 0, 0);} }//end setupImage()
-void drawImage() { if (Port) { drawImagesPort(); } }//end drawImage()
+void setupImage() { if (port) { setupImageONOFFPort(0, 0, 0, 0);} }//end setupImage()
+void drawImage() { if (port) { drawImagesPort(); } }//end drawImage()
 void keyPressedImage() {}//end keyPressedImage()
 void mousePressedImage() {}//end mousePressedImage()
 //
