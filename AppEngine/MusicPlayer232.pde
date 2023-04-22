@@ -328,7 +328,7 @@ void debugging() { //debugging in consol
   println( "Muted:", songs[currentSong].isMuted() );//whether the song is muted or not
   println( "Current song:", currentSong );// song being played
   println( "musicPlayerONOFF:", ONOFF_MUSICPLAYER );// song being played
-  println( "Port:", Port );// port on or off
+  println( "Port:", port );// port on or off
   //println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
 }//end debugging() */
 void drawhitboxes() { //debugging
