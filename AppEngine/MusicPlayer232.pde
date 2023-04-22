@@ -28,25 +28,25 @@ void setupMusic() {
 //
 void drawMusic() { 
   debugging();//debugging in consol
-  if (ONOFF_MUSICPLAYER){ hoverOverMusicButtons(); }
+  if (ONOFF_MUSICPLAYER){ drawMusicONOFF(); }
 }//end drawMusic()
 void mousePressedMusic(){ 
-  if (ONOFF_MUSICPLAYER) { mousePressedMusicButtons(); } 
-}//end mousePressedMusic
+  if (ONOFF_MUSICPLAYER) { mousePressedMusicONOFF(); } 
+}//end mousePressedMusic()
 void keyPressedMusic() {//keybinds
-  if (ONOFF_MUSICPLAYER) { keyPressedMusicButtons(); }
-}//end keyPressedMusic
+  if (ONOFF_MUSICPLAYER) { keyPressedMusicONOFF(); }
+}//end keyPressedMusic()
 //
-void concatenationOfMusicFiles(){
+void concatenationOfMusicFiles() {
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
   groove = "Music_groove.mp3"; //song
   eureka = "Eureka.mp3";//song
   carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
   woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
-}//end concatenation
+}//end concatenationOfMusicFiles()
 //all the mouse pressed/Hoverover features for music player
-void hoverOverMusicButtons() {
+void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
   background( background );//background color
   strokeJoin( ROUND ); //the outlines of the shapes
@@ -108,7 +108,7 @@ void hoverOverMusicButtons() {
   if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
   drawLoopTButton();//Popululation subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1/1.3, loopWidth, loopHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1/1.3, loopWidth, loopHeight);
   //loop infinite button
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
@@ -116,7 +116,7 @@ void hoverOverMusicButtons() {
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
   drawLoopTButtonInf();//Popululation subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, text2, loopiX1, loopiY1/1.3, loopWidth, loopHeight );
+  drawText( height, purpInk, CENTER, CENTER, Font, text2, loopiX1, loopiY1/1.3, loopWidth, loopHeight );
   //shuffle button
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
@@ -128,13 +128,13 @@ void hoverOverMusicButtons() {
   if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
   { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
   drawAutoPlayTButton();//Popululation subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
+  drawText( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   {fill(hoverOver);} else {fill(black);}
   music();//Population subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, textPortAlt, pauseWidth, pauseHeight*6.7, appWidth/6, pauseHeight);
-}//end hoverOverMusicButtons
-void mousePressedMusicButtons() {
+  drawText( height, purpInk, CENTER, CENTER, Font, textPortAlt, pauseWidth, pauseHeight*6.7, appWidth/6, pauseHeight);
+}//end drawMusicONOFF()
+void mousePressedMusicONOFF() {
   //pause button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
   { pausePlay(); }
@@ -165,8 +165,8 @@ void mousePressedMusicButtons() {
   { Shuffle(0); }
   if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
   { autoPlay(); }
-}//end mousePressedMusicButtons
-void keyPressedMusicButtons() {
+}//end mousePressedMusicONOFF()
+void keyPressedMusicONOFF() {
   //pause-play button
   if ( key == 'P' || key == 'p' ) { pausePlay(); }//end pause-play button keybind
   //rewind button
@@ -189,7 +189,7 @@ void keyPressedMusicButtons() {
   if (key == 'W' || key == 'w') { Shuffle(0); }//end shuffle keybind
   //Autoplay button
   if ( key == 'A' || key == 'a' ) { autoPlay(); }//end Autoplay Button keybind
-}//end keyPressedMusicButtons
+}//end keyPressedMusicONOFF()
 // all the music button funcitons ;)
 void pausePlay() {//pause-play button
   if ( songs[currentSong].isPlaying() ) {//if song was playing then pauses the song
@@ -208,27 +208,27 @@ void pausePlay() {//pause-play button
       pauseAutoStop = false;
     }
   }//end pause button
-}//end pause-play
+}//end pausePlay()
 void rewind(int rewindV) {//rewind button - rewindV = -3000
   songs[currentSong].skip(rewindV);//paramiters in milliseconds -> goes back 3 seconds
   //if the song is at the very beginning the reverse button will skip the the previous song paused
   if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
     previous();
     songs[currentSong].pause();
-  }
-}//end rewind
+  }//end rewind button
+}//end rewind()
 void forward( int forwardV ) { //forward button - forwardV = 3000
   if ( songs[currentSong].length()-songs[currentSong].position()>=forwardV+1  ){
     songs[currentSong].skip(forwardV);//paramiters in milliseconds -> skips song 3 seconds
-  }//end forward 
-}//end forward button
+  }//end forward button
+}//end forward()
 void mute() { //mute button
   if ( songs[currentSong].isMuted() ) {//button works when song is not playing
     songs[currentSong].unmute();//switches off .mute()
   } else {//if song is not muted
     songs[currentSong].mute();//mutes song
   }//end mute button
-}//end mute
+}//end mute()
 void Stop() {//Stop
   if (autoPlayOn == true) {//ERROR catch -> when auto play was on if the song != playing it would switch the song preventing stop from working
     autoPlayOn = false;
@@ -243,12 +243,12 @@ void loop1(int loop1, int loop12) {//loop1
   songs[currentSong].loop(loop1);
   } else {//loop the song at the end of the track -> so that delay() != used
     songs[currentSong].loop(loop12);//loops song 1 time
-  }//end loop 1 button
-}//end loop1
+  }//end loop1 button
+}//end loop1()
 void loopInf(int loopInf) {//loop inf
   songs[currentSong].pause();//substitute for delay() does not break the rest of code
   songs[currentSong].loop(loopInf);
-}//end loopInf
+}//end loopInf()
 void previous() {//previous
   if ( currentSong <= songs.length - songs.length ) { //ERROR catch:
     songs[currentSong].pause();//stops songs from playing ontop of eachother
@@ -264,7 +264,7 @@ void previous() {//previous
     currentSong--;//plays the previous song
     repapla();//.rewind(), .pause(), .play() -> plays desired song
   }//end previous button
-}//end previous
+}//end previous()
 void next() {//next
   if ( currentSong == songs.length - 1 ) { //ERROR catch:
     songs[currentSong].pause();//so that songs do not play on top of eachother
@@ -280,7 +280,7 @@ void next() {//next
     currentSong++;//switches the song
     repapla();//.rewind(), .pause(), .play() -> plays desired song
   }//end next button
-}//end next
+}//end next()
 void Shuffle(float rand) { //shuffle button
   rand = random(songs.length);//picks a random #
   if ( rand >= songs.length ) { //ERROR catch
@@ -297,7 +297,7 @@ void autoPlay() {//autoPlay -> turning autoplay on or off
   } else {//if autoplay is on turns the boolean off
     autoPlayOn = false;//turns autoplay off
   }//end autoplay button
-}//end autoPlay
+}//end autoPlay()
 void autoPlayMusic() { //auto-Play button -> automatically plays through the playlist
   if ( autoPlayOn ) {//empty if -> does nothing 
     if ( songs[currentSong].isPlaying() ) {//empty if -> does nothing
@@ -305,13 +305,13 @@ void autoPlayMusic() { //auto-Play button -> automatically plays through the pla
       next();
     }
   }//end autoPlayOn button
-}//end autoPlayMusic 
+}//end autoPlayMusic()
 void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
   songs[currentSong].play();
   songs[currentSong].unmute();
-}//end repapla
+}//end repapla()
 void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   duration = songs[currentSong].length();
   time = songs[currentSong].position();
@@ -320,7 +320,7 @@ void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
   fill(hoverOver); stroke(hoverOver);
   rect(WidthTL, HeightTL, progress * appWidth, - appHeight);
-}//end timeline
+}//end timeline()
 //DEBUGGING
 void debugging() { //debugging in consol 
   println( "Current Song Position:", songs[currentSong].position() );//songs position
@@ -330,7 +330,7 @@ void debugging() { //debugging in consol
   println( "musicPlayerONOFF:", ONOFF_MUSICPLAYER );// song being played
   println( "Port:", Port );// port on or off
   //println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
-}//end debugging */
+}//end debugging() */
 void drawhitboxes() { //debugging
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
   //rect(skipbX2, skipbY3, pauseHeight, BOXW);   //rewind button
@@ -343,5 +343,5 @@ void drawhitboxes() { //debugging
   //rect(loopiX1, loopiY1, pauseHeight, pauseHeight);  //loop Infinite button
   //rect(shuffleX3, shuffleY12, pauseHeight, pauseHeight);  //shuffle
   //rect(autoX1, autoY1, pauseHeight, pauseHeight);  //auto-play
-}//end drawhitboxes
+}//end drawhitboxes()
 //end MusicPlayer232 subProgram
