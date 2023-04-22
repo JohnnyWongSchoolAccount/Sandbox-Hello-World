@@ -7,15 +7,15 @@ float pauseScaleWidth, pauseScaleHeight;
 //play button
 float playX1, playY1, playX2, playY2, playX3, playY3;// triangle
 //forward/rewind buttons
-float skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3; //skipF button triangle
-float skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32; //skipF button behind triangle
-float skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3; //skipB button triangle
-float skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32; //skipB button behind triangle
+float forwardX1, forwardY1, forwardX2, forwardY2, forwardX3, forwardY3; //F button triangle
+float forwardX12, forwardY12, forwardX22, forwardY22, forwardX32, forwardY32; //F button behind triangle
+float rewindX1, rewindY1, rewindX2, rewindY2, rewindX3, rewindY3; //B button triangle
+float rewindX12, rewindY12, rewindX22, rewindY22, rewindX32, rewindY32; //B button behind triangle
 //previous/next buttons
-float skipX1, skipY1, skipX2, skipY2, skipX3, skipY3; //skip button triangle
-float skipBarX1, skipBarY1, skipBarWidth, skipBarHeight; //skipbutton bar rect
-float skipX12, skipY12, skipX22, skipY22, skipX32, skipY32; //skip button triangle
-float skipBarX2, skipBarY2;//skipbutton bar 2 rect
+float previousX1, previousY1, previousX2, previousY2, previousX3, previousY3; // button triangle
+float previousBarX1, previousBarY1, previousBarWidth, previousBarHeight; //button bar rect
+float nextX1, nextY1, nextX2, nextY2, nextX3, nextY3; // button triangle
+float nextBarX2, nextBarY2;//button bar 2 rect
 //mute button
 float mutetX1, mutetY1, mutetX2, mutetY2, mutetX3, mutetY3; // triangle
 float muteX, muteY, muteWidth, muteHeight; // rect
@@ -34,11 +34,11 @@ float looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3; //loop button 
 //suffle button
 float shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3; //shuffle button triangle top
 float shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32;//shuffle button triangle bottom
-//auto-skip button
-float autoX1, autoY1, autoWidth, autoHeight; //auto skip button rect
-float autoX2, autoY2, autoWidth2, autoHeight2; //auto skip button 2 rect
-float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto skip button triangle
-float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto skip button triangle
+//auto- button
+float autoX1, autoY1, autoWidth, autoHeight; //auto  button rect
+float autoX2, autoY2, autoWidth2, autoHeight2; //auto  button 2 rect
+float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto  button triangle
+float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto  button triangle
 //MusicPlayer
 float musicX1, musicY1, musicWidth, musicHeight; //music button rect
 //night mode
@@ -81,56 +81,56 @@ void population() {
   playY3 = startingY - (startingY/8.0);//width
   //end pause-play button
   //rewind button - triangle
-  skipbX1 = startingX - (pauseX1/5.0); 
-  skipbY1 = startingY + (startingY/11.0);//width
-  skipbX2 = startingX - (pauseX1/3.5);
-  skipbY2 = startingY;
-  skipbX3 = skipbX1;
-  skipbY3 = startingY - (startingY/11.0);//width
+  rewindX1 = startingX - (pauseX1/5.0); 
+  rewindY1 = startingY + (startingY/11.0);//width
+  rewindX2 = startingX - (pauseX1/3.5);
+  rewindY2 = startingY;
+  rewindX3 = rewindX1;
+  rewindY3 = startingY - (startingY/11.0);//width
   //triangle
-  skipbX12 = startingX - (pauseX1/8.5); 
-  skipbY12 = startingY + (startingY/11.0);//width
-  skipbX22 = startingX - (pauseX1/5.0);
-  skipbY22 = startingY;
-  skipbX32 = skipbX12;
-  skipbY32 = startingY - (startingY/11.0);//width
+  rewindX12 = startingX - (pauseX1/8.5); 
+  rewindY12 = startingY + (startingY/11.0);//width
+  rewindX22 = startingX - (pauseX1/5.0);
+  rewindY22 = startingY;
+  rewindX32 = rewindX12;
+  rewindY32 = startingY - (startingY/11.0);//width
   //end forward/rewind button
   //forward button - triangle
-  skipfX1 = startingX + (pauseX1/5.0); 
-  skipfY1 = startingY + (startingY/11.0);//width
-  skipfX2 = startingX + (pauseX1/3.5);
-  skipfY2 = startingY;
-  skipfX3 = skipfX1;
-  skipfY3 = startingY - (startingY/11.0);//width
+  forwardX1 = startingX + (pauseX1/5.0); 
+  forwardY1 = startingY + (startingY/11.0);//width
+  forwardX2 = startingX + (pauseX1/3.5);
+  forwardY2 = startingY;
+  forwardX3 = forwardX1;
+  forwardY3 = startingY - (startingY/11.0);//width
   //triangle
-  skipfX12 = startingX + (pauseX1/8.5); 
-  skipfY12 = startingY + (startingY/11.0);//width
-  skipfX22 = startingX + (pauseX1/5.0);
-  skipfY22 = startingY;
-  skipfX32 = skipfX12;
-  skipfY32 = startingY - (startingY/11.0);//width
+  forwardX12 = startingX + (pauseX1/8.5); 
+  forwardY12 = startingY + (startingY/11.0);//width
+  forwardX22 = startingX + (pauseX1/5.0);
+  forwardY22 = startingY;
+  forwardX32 = forwardX12;
+  forwardY32 = startingY - (startingY/11.0);//width
   //previous button ;) - triangle
-  skipX1 = startingX - ( pauseX1 / 3.0 ); //position on the X-axis
-  skipY1 = startingY + ( pauseX1 / 15.0 ); //position of the bottom corner point Y-axis
-  skipX2 = startingX - ( pauseX1 * 1 / 2.3 );
-  skipY2 = startingY;
-  skipX3 = skipX1;
-  skipY3 = pauseY1;
+  previousX1 = startingX - ( pauseX1 / 3.0 ); //position on the X-axis
+  previousY1 = startingY + ( pauseX1 / 15.0 ); //position of the bottom corner point Y-axis
+  previousX2 = startingX - ( pauseX1 * 1 / 2.3 );
+  previousY2 = startingY;
+  previousX3 = previousX1;
+  previousY3 = pauseY1;
   // previous bar - rectangle
-  skipBarHeight = startingY*1/4.0;
-  skipBarWidth = startingX*1/35.0;
-  skipBarX1 = startingX - (pauseX1/2.1);
-  skipBarY1 = startingY - (pauseHeight/2.0) ;
+  previousBarHeight = startingY*1/4.0;
+  previousBarWidth = startingX*1/35.0;
+  previousBarX1 = startingX - (pauseX1/2.1);
+  previousBarY1 = startingY - (pauseHeight/2.0) ;
   //next button - triangle
-  skipX12 = startingX + (pauseX1/3.0); 
-  skipY12 = startingY + (startingY/8.0);
-  skipX22 = startingX + (pauseX1*1/2.3);
-  skipY22 = startingY;
-  skipX32 = skipX12;
-  skipY32 = pauseY1;
+  nextX1 = startingX + (pauseX1/3.0); 
+  nextY1 = startingY + (startingY/8.0);
+  nextX2 = startingX + (pauseX1*1/2.3);
+  nextY2 = startingY;
+  nextX3 = nextX1;
+  nextY3 = pauseY1;
   //rectangle
-  skipBarX2 = startingX + (pauseX1/2.25); //x-axis
-  skipBarY2 = startingY - (pauseHeight/2.0); //y-axis
+  nextBarX2 = startingX + (pauseX1/2.25); //x-axis
+  nextBarY2 = startingY - (pauseHeight/2.0); //y-axis
   //end previouse/next button
   //mute button - triangle
   mutetX1 = startingX - (pauseX1/1.8); //position on the X-axis
@@ -214,7 +214,7 @@ void population() {
   shuffleX32 = startingX - (startingY/8);
   shuffleY32 = startingY + (startingY/2.5);
   //end shuffle button
-  //auto-skip button
+  //auto- button
   autoX1 = startingX + (pauseX1/1.2);//position on the X-axis  
   autoY1 = startingY + (startingY/4); //position on the Y-axis
   autoWidth = pauseHeight; //width of the loop button
@@ -238,7 +238,7 @@ void population() {
   autotY22 = startingY + (startingY/2.5);
   autotX32 = startingX + (startingX/1.1);
   autotY32 = startingY + (startingY/2);
-  //end auto-skip
+  //end auto-
   //music
   musicX1 = pauseWidth;
   musicY1 = pauseHeight*6.7;
@@ -276,24 +276,24 @@ void drawPBPBcoverer() {
   stroke(background); fill(background);//covers undesired shape
   rect(pauseX1, pauseY1, BOXW, pauseHeight);
 }//end drawPBPBcoverer()
-void drawSkipBButton() {
-  triangle(skipbX12, skipbY12, skipbX22, skipbY22, skipbX32, skipbY32); // right side
-  triangle(skipbX1, skipbY1, skipbX2, skipbY2, skipbX3, skipbY3); // right side
+void drawBButton() {
+  triangle(rewindX12, rewindY12, rewindX22, rewindY22, rewindX32, rewindY32); // right side
+  triangle(rewindX1, rewindY1, rewindX2, rewindY2, rewindX3, rewindY3); // right side
   fill(resetcolorDayMode);
-}//end drawSkipBButton()
-void drawSkipFButton() {
-  triangle(skipfX12, skipfY12, skipfX22, skipfY22, skipfX32, skipfY32); // left side
-  triangle(skipfX1, skipfY1, skipfX2, skipfY2, skipfX3, skipfY3); // left side
+}//end drawBButton()
+void drawFButton() {
+  triangle(forwardX12, forwardY12, forwardX22, forwardY22, forwardX32, forwardY32); // left side
+  triangle(forwardX1, forwardY1, forwardX2, forwardY2, forwardX3, forwardY3); // left side
   fill(resetcolorDayMode);
-}//end drawSkipFButton()
+}//end drawFButton()
 void drawPreviousButton() {
-  triangle( skipX1, skipY1, skipX2, skipY2, skipX3, skipY3 );//triange skip1
-  rect( skipBarX1, skipBarY1, skipBarWidth, skipBarHeight, 22 );//bar skip1
+  triangle( previousX1, previousY1, previousX2, previousY2, previousX3, previousY3 );//triange 1
+  rect( previousBarX1, previousBarY1, previousBarWidth, previousBarHeight, 22 );//bar 1
   fill(resetcolorDayMode);
 }//end drawPreviousButton()
 void drawNextButton() {
-  triangle( skipX12, skipY12, skipX22, skipY22, skipX32, skipY32 );//triange skip2
-  rect( skipBarX2, skipBarY2, skipBarWidth, skipBarHeight, 22 );//bar skip2
+  triangle( nextX1, nextY1, nextX2, nextY2, nextX3, nextY3 );//triange 2
+  rect( nextBarX2, nextBarY2, previousBarWidth, previousBarHeight, 22 );//bar 2
   fill(resetcolorDayMode);
 }//end drawNextButton()
 void drawMuteButton() {
