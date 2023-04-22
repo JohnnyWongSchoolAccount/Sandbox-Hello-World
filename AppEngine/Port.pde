@@ -1,10 +1,10 @@
 //Global Variables
-boolean Port = true;
-String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = "Night Mode";
+boolean port = true;
+String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = " Night Mode ";
 //
 void setupPort() {}//end setup
 void drawPort() { 
-  if (Port == true) { drawPortONOFF(); }
+  if (port) { drawPortONOFF(); }
 }//end drawPort()
 void keyPressedPort() {
   //nightMode
@@ -15,7 +15,7 @@ void keyPressedPort() {
 void mousePressedPort() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   { musicPlayer();}
-  if (Port) { mousePressedPortONOFF(); }
+  if (port) { mousePressedPortONOFF(); }
 }//end mousePressedPort()
 //
 void drawPortONOFF() {
@@ -26,23 +26,23 @@ void drawPortONOFF() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   {fill(hoverOver);} else {fill(black);}
   music();//Population subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
   if ( mouseX>=musicX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
   {fill(hoverOver);} else {fill(black);}
   nightModeButton();//Population subProgram
-  textDraw( height, purpInk, CENTER, CENTER, Font, textPortNM, nightX1, nightY1, nightWidth, nightHeight);
-}//end drawPortONOFF
+  drawText( height, purpInk, CENTER, CENTER, Font, textPortNM, nightX1, nightY1, nightWidth, nightHeight);
+}//end drawPortONOFF()
 void keyPressedPortONOFF() {
   if ( mouseX>=musicX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
   { nightMode(); }//end nightmode mousePressed
-}//end keyPressedPortONOFF
+}//end keyPressedPortONOFF()
 void mousePressedPortONOFF() {
   if ( mouseX>=nightX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
   { nightMode();}
-}//end mousePressedPortONOFF
+}//end mousePressedPortONOFF()
 void nightMode() {
   if (nit == false){ nit = true; } else { nit = false; }//turing on and off
-  if (nit == true){
+  if (nit){
     tint(64, 64, 40); //RGB: Night Mode
     black= #FFC300; //The Button color CCC1FF
     purp= #FFFDD0; //The outline color FFFBE3
@@ -58,14 +58,14 @@ void nightMode() {
     toggleOn = #D6E5FA; //toggle on color 00FF4A D6E5FA
   }
   background(background);
-}//end nightMode
+}//end nightMode()
 void musicPlayer() {
   if (ONOFF_MUSICPLAYER == false){
     ONOFF_MUSICPLAYER = true;
-    Port = false;
+    port = false;
   } else {
     ONOFF_MUSICPLAYER = false; 
-    Port = true;
+    port = true;
   }
 }//end musicPlayerPort */
 //end AppEngine Program
