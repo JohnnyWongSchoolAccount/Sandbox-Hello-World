@@ -78,19 +78,19 @@ void drawMusicONOFF() {
       drawPlayButton();//Popululation subProgram
   }
   //rewind button
-  if ( mouseX>=skipbX2 && mouseX<=skipbX2+pauseHeight && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  if ( mouseX>=rewindX2 && mouseX<=rewindX2+pauseHeight && mouseY>=rewindY3 && mouseY<=rewindY3+BOXW )
   { fill(hoverOver); } else { fill(black); }
-  drawSkipBButton();//Popululation subProgram
+  drawBButton();//Popululation subProgram
   //forward buton
-  if ( mouseX>=skipfX32 && mouseX<=skipfX32+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
+  if ( mouseX>=forwardX32 && mouseX<=forwardX32+pauseHeight && mouseY>=forwardY3 && mouseY<=forwardY3+BOXW )
   { fill(hoverOver); } else { fill(black); }
-  drawSkipFButton();//Popululation subProgram
+  drawFButton();//Popululation subProgram
   //previous button
-  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight ) 
+  if ( mouseX>=previousBarX1 && mouseX<=previousBarX1+pauseHeight && mouseY>=previousY3 && mouseY<=previousY3+pauseHeight ) 
   {fill(hoverOver);} else {fill(black);}
   drawPreviousButton();//Popululation subProgram
   //next button
-  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight ) 
+  if ( mouseX>=nextX1 && mouseX<=nextX1+pauseHeight && mouseY>=nextY3 && mouseY<=nextY3+pauseHeight ) 
   {fill(hoverOver);} else {fill(black);}
   drawNextButton();//Popululation subProgram
   //mute button
@@ -139,16 +139,16 @@ void mousePressedMusicONOFF() {
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
   { pausePlay(); }
   //rewind button
-  if ( mouseX>=skipbX2 && mouseX<=skipbX1+BOXW && mouseY>=skipbY3 && mouseY<=skipbY3+BOXW )
+  if ( mouseX>=rewindX2 && mouseX<=rewindX1+BOXW && mouseY>=rewindY3 && mouseY<=rewindY3+BOXW )
   { rewind(-3000); }
   //forward button
-  if ( mouseX>=skipfX32 && mouseX<=skipfX1+pauseHeight && mouseY>=skipfY3 && mouseY<=skipfY3+BOXW )
+  if ( mouseX>=forwardX32 && mouseX<=forwardX1+pauseHeight && mouseY>=forwardY3 && mouseY<=forwardY3+BOXW )
   { forward(3000); }
   //previous track button
-  if ( mouseX>=skipBarX1 && mouseX<=skipBarX1+pauseHeight && mouseY>=skipY3 && mouseY<=skipY3+pauseHeight )
+  if ( mouseX>=previousBarX1 && mouseX<=previousBarX1+pauseHeight && mouseY>=previousY3 && mouseY<=previousY3+pauseHeight )
   { previous(); }
   //next track button
-  if ( mouseX>=skipX12 && mouseX<=skipX12+pauseHeight && mouseY>=skipY32 && mouseY<=skipY32+pauseHeight )
+  if ( mouseX>=nextX1 && mouseX<=nextX1+pauseHeight && mouseY>=nextY3 && mouseY<=nextY3+pauseHeight )
   { next(); }
   //mute button
   if ( mouseX>=muteX && mouseX<=muteX+pauseHeight && mouseY>=muteY2 && mouseY<=muteY2+pauseHeight )
@@ -211,7 +211,7 @@ void pausePlay() {//pause-play button
 }//end pausePlay()
 void rewind(int rewindV) {//rewind button - rewindV = -3000
   songs[currentSong].skip(rewindV);//paramiters in milliseconds -> goes back 3 seconds
-  //if the song is at the very beginning the reverse button will skip the the previous song paused
+  //if the song is at the very beginning the reverse button will  the the previous song paused
   if ( songs[currentSong].position() == songs.length - songs.length ) {//intention is zero
     previous();
     songs[currentSong].pause();
@@ -219,7 +219,7 @@ void rewind(int rewindV) {//rewind button - rewindV = -3000
 }//end rewind()
 void forward( int forwardV ) { //forward button - forwardV = 3000
   if ( songs[currentSong].length()-songs[currentSong].position()>=forwardV+1  ){
-    songs[currentSong].skip(forwardV);//paramiters in milliseconds -> skips song 3 seconds
+    songs[currentSong].skip(forwardV);//paramiters in milliseconds -> s song 3 seconds
   }//end forward button
 }//end forward()
 void mute() { //mute button
@@ -301,7 +301,7 @@ void autoPlay() {//autoPlay -> turning autoplay on or off
 void autoPlayMusic() { //auto-Play button -> automatically plays through the playlist
   if ( autoPlayOn ) {//empty if -> does nothing 
     if ( songs[currentSong].isPlaying() ) {//empty if -> does nothing
-    } else {//if song != playing then exicutes skipping the song -> so delay() is not used 
+    } else {//if song != playing then exicutes ping the song -> so delay() is not used 
       next();
     }
   }//end autoPlayOn button
@@ -333,10 +333,10 @@ void debugging() { //debugging in consol
 }//end debugging() */
 void drawhitboxes() { //debugging
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
-  //rect(skipbX2, skipbY3, pauseHeight, BOXW);   //rewind button
-  //rect(skipfX32, skipfY3, pauseHeight, BOXW);   //forward button
-  //rect(skipBarX1, skipY3, pauseHeight, pauseHeight);  //previous track button
-  //rect(skipX12, skipY32, pauseHeight, pauseHeight);  //next track button
+  //rect(rewindX2, rewindY3, pauseHeight, BOXW);   //rewind button
+  //rect(forwardX32, fY3, pauseHeight, BOXW);   //forward button
+  //rect(BarX1, Y3, pauseHeight, pauseHeight);  //previous track button
+  //rect(X12, Y32, pauseHeight, pauseHeight);  //next track button
   //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
   //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
   //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
