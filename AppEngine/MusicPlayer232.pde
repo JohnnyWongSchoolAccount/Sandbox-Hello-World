@@ -24,6 +24,8 @@ void setupMusic() {
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
+  strokeWeight(4);
+  strokeJoin( ROUND ); //the outlines of the shapes
 }//end setupMusic()
 //
 void drawMusic() { 
@@ -40,7 +42,7 @@ void keyPressedMusic() {//keybinds
 void concatenationOfMusicFiles() {
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
-  groove = "Music_groove.mp3"; //song
+  groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
   eureka = "Eureka.mp3";//song
   carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
   woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
@@ -49,8 +51,6 @@ void concatenationOfMusicFiles() {
 void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
   background( background );//background color
-  strokeJoin( ROUND ); //the outlines of the shapes
-  strokeWeight(4);
   population();//Popululation subProgram
   autoPlayMusic();
   drawhitboxes();
@@ -334,9 +334,9 @@ void debugging() { //debugging in consol
 void drawhitboxes() { //debugging
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
   //rect(rewindX2, rewindY3, pauseHeight, BOXW);   //rewind button
-  //rect(forwardX32, fY3, pauseHeight, BOXW);   //forward button
-  //rect(BarX1, Y3, pauseHeight, pauseHeight);  //previous track button
-  //rect(X12, Y32, pauseHeight, pauseHeight);  //next track button
+  //rect(forwardX32, forwardY3, pauseHeight, BOXW);   //forward button
+  //rect(previousBarX1, previousY3, pauseHeight, pauseHeight);  //previous track button
+  //rect(nextX1, nextY3, pauseHeight, pauseHeight);  //next track button
   //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
   //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
   //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
