@@ -13,9 +13,11 @@ void setup() {
   setupMusic();//MusicPlayer232 subProgram
   setupText();//Text subProgram
   setupImage();//Images subProgram
+  setupWeather();//weather subProgram
   setupPort();//Port subProgram
 }//end setup()
 void draw() { 
+  drawWeather();//weather subProgram
   drawMusic();//MusicPlayer232 subProgram
   drawPort();//Text subProgram
   drawImage();//Images subProgram
