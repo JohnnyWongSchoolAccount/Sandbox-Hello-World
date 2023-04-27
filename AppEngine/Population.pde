@@ -43,6 +43,8 @@ float autotX12, autotY12, autotX22, autotY22, autotX32, autotY32; //auto  button
 float musicX1, musicY1, musicWidth, musicHeight; //music button rect
 //night mode
 float nightX1, nightY1, nightWidth, nightHeight; //night button rect
+//weather app
+float weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight; //weather app rect
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
 color black= #CCC1FF; //The Button color CCC1FF
@@ -249,6 +251,31 @@ void population() {
   nightY1 = pauseWidth + (pauseWidth);
   nightWidth = appWidth/6;
   nightHeight = pauseHeight;
+  //weather app
+  weatherAppX1 = musicWidth + (pauseWidth*2);
+  weatherAppY1 = pauseHeight*6.7;
+  weatherAppWidth = appWidth/6;
+  weatherAppHeight = pauseHeight;
+  //weather Location
+  locationWeatherX = pauseWidth;
+  locationWeatherY = pauseWidth + (pauseWidth);
+  locationWeatherWidth = startingX - 2*(startingX/4);
+  locationWeatherHeight = startingY - 3*(startingY/4);
+  //weather temp
+  tempWeatherX = locationWeatherX;
+  tempWeatherY = (locationWeatherY*3);
+  tempWeatherWidth = startingY - 3*(startingY/5);
+  tempWeatherHeight = startingY - 3*(startingY/5);
+  //weather image
+  WeatherX = 6*(tempWeatherX/4) + (startingY - 3*(startingY/5));
+  WeatherY = (locationWeatherY*3);
+  WeatherWidth = startingY - 3*(startingY/5);
+  WeatherHeight = startingY - 3*(startingY/5);
+  //weather feels like
+  feelsWeatherX = locationWeatherX;
+  feelsWeatherY = 6.5*(tempWeatherHeight/3);
+  feelsWeatherWidth = startingX - 2*(startingX/4);
+  feelsWeatherHeight = startingY - 6*(startingY/7);
   //images
   imageBackgroundX = appWidth * 0;
   imageBackgroundY = appHeight * 0;
@@ -349,7 +376,10 @@ void music() {
 void nightModeButton() {
   rect(nightX1, nightY1, nightWidth, nightHeight);
 }//end nightModeButton()
-//end Music Player Buttons
+//weather
+void weatherButton() {
+  rect(weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
+}//end weatherButton
 //IMAGES
 void drawImagesPort() {
   //background image no empty
