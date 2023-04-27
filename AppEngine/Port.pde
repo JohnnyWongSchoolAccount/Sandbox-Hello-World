@@ -1,6 +1,6 @@
 //Global Variables
 boolean port = true;
-String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = " Night Mode ";
+String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = " Night Mode ", textPortWeather = " Weather ";
 //
 void setupPort() {}//end setup
 void drawPort() { 
@@ -10,12 +10,16 @@ void keyPressedPort() {
   //nightMode
   if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
   //musicPlayer
-  if ( key == 'N' || key == 'n' ) { musicPlayer(); }//end musicPlayer Button keybind
+  if ( key == 'N' || key == 'n' ) { musicPlayer(); }//end musicPlayer Button keybind  
+  //weather
+  if ( key == 'b' || key == 'B' ) { weather(); }//end weather Button keybind
 }//end keyPressedPort()
 void mousePressedPort() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
-  { musicPlayer();}
-  if (port) { mousePressedPortONOFF(); }
+  musicPlayer();
+  if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
+  { weather(); }
+  if (port) {mousePressedPortONOFF();}
 }//end mousePressedPort()
 //
 void drawPortONOFF() {
@@ -31,6 +35,10 @@ void drawPortONOFF() {
   {fill(hoverOver);} else {fill(black);}
   nightModeButton();//Population subProgram
   drawText( height, purpInk, CENTER, CENTER, Font, textPortNM, nightX1, nightY1, nightWidth, nightHeight);
+  if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
+  {fill(hoverOver);} else {fill(black);}
+  weatherButton();
+  drawText( height, purpInk, CENTER, CENTER, Font, textPortWeather, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
 }//end drawPortONOFF()
 void keyPressedPortONOFF() {
   if ( mouseX>=musicX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
@@ -61,11 +69,24 @@ void nightMode() {
 }//end nightMode()
 void musicPlayer() {
   if (ONOFF_MUSICPLAYER == false){
-    ONOFF_MUSICPLAYER = true;
+    ONOFF_WEATHER = false;
     port = false;
+    ONOFF_MUSICPLAYER = true;
   } else {
+    ONOFF_WEATHER = false; 
     ONOFF_MUSICPLAYER = false; 
     port = true;
   }
 }//end musicPlayerPort */
+void weather() {
+  if (ONOFF_WEATHER == false){
+    ONOFF_MUSICPLAYER = false;
+    ONOFF_WEATHER = true;
+    port = false;
+  } else {
+    ONOFF_MUSICPLAYER = false;
+    ONOFF_WEATHER = false; 
+    port = true;
+  }
+}//end weather
 //end AppEngine Program
