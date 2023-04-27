@@ -14,6 +14,8 @@ void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
   background(background);
   population();
+  timeline(int(pauseWidth), 0, 0, 0 );
+  stroke(purp); strokeWeight(4);
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
   {fill(hoverOver);} else {fill(black);}
   weatherButton();
