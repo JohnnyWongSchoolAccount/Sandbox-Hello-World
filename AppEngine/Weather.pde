@@ -13,6 +13,7 @@ void mousePressedWeather() {}//end mousePressedWeather()
 void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
   background(background);
+  autoPlayMusic();
   population();
   timeline(int(pauseWidth), 0, 0, 0 );
   stroke(purp); strokeWeight(4);
