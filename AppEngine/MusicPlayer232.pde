@@ -24,8 +24,6 @@ void setupMusic() {
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
-  strokeWeight(4);
-  strokeJoin( ROUND ); //the outlines of the shapes
 }//end setupMusic()
 //
 void drawMusic() { 
@@ -42,7 +40,7 @@ void keyPressedMusic() {//keybinds
 void concatenationOfMusicFiles() {
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
-  groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
+  groove = "Music_groove.mp3"; //song
   eureka = "Eureka.mp3";//song
   carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
   woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
@@ -51,6 +49,8 @@ void concatenationOfMusicFiles() {
 void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
   background( background );//background color
+  strokeJoin( ROUND ); //the outlines of the shapes
+  strokeWeight(4);
   population();//Popululation subProgram
   autoPlayMusic();
   drawhitboxes();
@@ -133,6 +133,10 @@ void drawMusicONOFF() {
   {fill(hoverOver);} else {fill(black);}
   music();//Population subProgram
   drawText( height, purpInk, CENTER, CENTER, Font, textPortAlt, pauseWidth, pauseHeight*6.7, appWidth/6, pauseHeight);
+  if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
+  {fill(hoverOver);} else {fill(black);}
+  weatherButton();
+  drawText( height, purpInk, CENTER, CENTER, Font, textPortWeather, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
 }//end drawMusicONOFF()
 void mousePressedMusicONOFF() {
   //pause button
@@ -310,7 +314,6 @@ void repapla() {//.rewind(), .pause(), .play()
   songs[currentSong].rewind();
   songs[currentSong].pause();
   songs[currentSong].play();
-  songs[currentSong].unmute();
 }//end repapla()
 void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   duration = songs[currentSong].length();
@@ -329,14 +332,15 @@ void debugging() { //debugging in consol
   println( "Current song:", currentSong );// song being played
   println( "musicPlayerONOFF:", ONOFF_MUSICPLAYER );// song being played
   println( "Port:", port );// port on or off
+  println( "weather", ONOFF_WEATHER);
   //println( pictureWidthAdj, pictureHeightAdj ); //View Human Error on variables, zero values
 }//end debugging() */
 void drawhitboxes() { //debugging
   //rect(pauseX1, pauseY1, BOXW, pauseHeight);  //pause-play button
   //rect(rewindX2, rewindY3, pauseHeight, BOXW);   //rewind button
-  //rect(forwardX32, forwardY3, pauseHeight, BOXW);   //forward button
-  //rect(previousBarX1, previousY3, pauseHeight, pauseHeight);  //previous track button
-  //rect(nextX1, nextY3, pauseHeight, pauseHeight);  //next track button
+  //rect(forwardX32, fY3, pauseHeight, BOXW);   //forward button
+  //rect(BarX1, Y3, pauseHeight, pauseHeight);  //previous track button
+  //rect(X12, Y32, pauseHeight, pauseHeight);  //next track button
   //rect(muteX, muteY2, pauseHeight, pauseHeight);  //mute button
   //rect(stopX, stopY, pauseHeight, pauseHeight);  //stop button
   //rect(loopX1, loopY1, pauseHeight, pauseHeight);  //loop button
