@@ -263,17 +263,17 @@ void population() {
   locationWeatherHeight = startingY - 3*(startingY/4);
   //weather temp
   tempWeatherX = locationWeatherX;
-  tempWeatherY = (locationWeatherY*3);
-  tempWeatherWidth = startingY - 3*(startingY/5);
+  tempWeatherY = locationWeatherY + locationWeatherHeight + (pauseWidth/2);
+  tempWeatherWidth = locationWeatherWidth/2;
   tempWeatherHeight = startingY - 3*(startingY/5);
   //weather image
-  WeatherX = 6*(tempWeatherX/4) + (startingY - 3*(startingY/5));
-  WeatherY = (locationWeatherY*3);
-  WeatherWidth = startingY - 3*(startingY/5);
+  WeatherX = 6*(tempWeatherX/4) + (startingY - 3*(startingY/5)) + (pauseWidth/2);
+  WeatherY = tempWeatherY;
+  WeatherWidth = tempWeatherWidth;
   WeatherHeight = startingY - 3*(startingY/5);
   //weather feels like
   feelsWeatherX = locationWeatherX;
-  feelsWeatherY = 6.5*(tempWeatherHeight/3);
+  feelsWeatherY = WeatherHeight + WeatherY + (pauseWidth/2);
   feelsWeatherWidth = startingX - 2*(startingX/4);
   feelsWeatherHeight = startingY - 6*(startingY/7);
   //images
