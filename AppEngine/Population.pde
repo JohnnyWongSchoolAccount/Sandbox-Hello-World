@@ -45,6 +45,14 @@ float musicX1, musicY1, musicWidth, musicHeight; //music button rect
 float nightX1, nightY1, nightWidth, nightHeight; //night button rect
 //weather app
 float weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight; //weather app rect
+//weather location
+float locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight;//location
+//weather temperature
+float tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight;//temperature
+//weather image
+float WeatherX, WeatherY, WeatherWidth, WeatherHeight;//weather
+//weather feels like
+float feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight;//feels like weather
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
 color black= #CCC1FF; //The Button color CCC1FF
@@ -380,7 +388,27 @@ void nightModeButton() {
 void weatherButton() {
   rect(weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
 }//end weatherButton
-//IMAGES
+void weatherLocationRect() {
+  fill(black);
+  rect(locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
+  fill(resetcolorDayMode);
+}//end weatherLocationRect
+void weatherTempRect() {
+  fill(black);
+  rect(tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
+  fill(resetcolorDayMode);
+}//end weatherLocationRect
+void weatherImageRect() {
+  fill(black);
+  rect(WeatherX, WeatherY, WeatherWidth, WeatherHeight);
+  fill(resetcolorDayMode);
+}//end weatherLocationRect
+void weatherFeelsLikeRect() {
+  fill(black);
+  rect(feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+  fill(resetcolorDayMode);
+}//end weatherLocationRect
+//IMAGES 
 void drawImagesPort() {
   //background image no empty
   //image( picture, imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
