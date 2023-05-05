@@ -282,7 +282,7 @@ void population() {
   //weather feels like
   feelsWeatherX = locationWeatherX;
   feelsWeatherY = WeatherHeight + WeatherY + (pauseWidth/2);
-  feelsWeatherWidth = locationWeatherWidth/1.5;
+  feelsWeatherWidth = locationWeatherWidth*0.8;
   feelsWeatherHeight = locationWeatherHeight/2;
   //images
   imageBackgroundX = appWidth * 0;
