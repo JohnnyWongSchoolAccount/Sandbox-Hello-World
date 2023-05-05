@@ -1,9 +1,5 @@
 //Global Variables
 boolean ONOFF_WEATHER = false;
-float locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight;//location
-float tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight;//temperature
-float WeatherX, WeatherY, WeatherWidth, WeatherHeight;//weather
-float feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight;//feels like weather
 //
 void setupWeather() {if (ONOFF_WEATHER) {setupWeatherONOFF();} }//end setupWeather()
 void drawWeather() { if (ONOFF_WEATHER) {drawWeatherONOFF();} }//end drawWeather()
@@ -17,6 +13,7 @@ void drawWeatherONOFF() {
   population();
   timeline(int(pauseWidth), 0, 0, 0 );
   stroke(purp); strokeWeight(4);
+  //
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
   {fill(hoverOver);} else {fill(black);}
   weatherButton();
@@ -25,9 +22,11 @@ void drawWeatherONOFF() {
   {fill(hoverOver);} else {fill(black);}
   music();
   drawText( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
-  rect(locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-  rect(tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
-  rect(WeatherX, WeatherY, WeatherWidth, WeatherHeight);
-  rect(feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+  //
+  weatherLocationRect();
+  drawText( height, purpInk, CENTER, CENTER, Font, textPort, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
+  weatherTempRect();
+  weatherImageRect();
+  weatherFeelsLikeRect();
 }//end drawWeatherONOFF()
 //end weather subProgram
