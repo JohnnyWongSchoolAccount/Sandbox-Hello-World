@@ -267,12 +267,12 @@ void population() {
   //weather Location
   locationWeatherX = pauseWidth;
   locationWeatherY = pauseWidth + (pauseWidth);
-  locationWeatherWidth = startingX - 2*(startingX/4);
+  locationWeatherWidth = (startingX - 2*(startingX/4))/2;
   locationWeatherHeight = startingY - 3*(startingY/4);
   //weather temp
   tempWeatherX = locationWeatherX;
   tempWeatherY = locationWeatherY + locationWeatherHeight + (pauseWidth/2);
-  tempWeatherWidth = locationWeatherWidth/2;
+  tempWeatherWidth = (startingX - 2*(startingX/4))/2;
   tempWeatherHeight = startingY - 3*(startingY/5);
   //weather image
   WeatherX = 6*(tempWeatherX/4) + (startingY - 3*(startingY/5)) + (pauseWidth/2);
@@ -282,8 +282,8 @@ void population() {
   //weather feels like
   feelsWeatherX = locationWeatherX;
   feelsWeatherY = WeatherHeight + WeatherY + (pauseWidth/2);
-  feelsWeatherWidth = startingX - 2*(startingX/4);
-  feelsWeatherHeight = startingY - 6*(startingY/7);
+  feelsWeatherWidth = locationWeatherWidth/1.5;
+  feelsWeatherHeight = locationWeatherHeight/2;
   //images
   imageBackgroundX = appWidth * 0;
   imageBackgroundY = appHeight * 0;
@@ -389,22 +389,22 @@ void weatherButton() {
   rect(weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
 }//end weatherButton
 void weatherLocationRect() {
-  fill(black);
+  fill(black); stroke(background);
   rect(locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
 void weatherTempRect() {
-  fill(black);
+  fill(black); stroke(background);
   rect(tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
 void weatherImageRect() {
-  fill(black);
+  fill(black); stroke(background);
   rect(WeatherX, WeatherY, WeatherWidth, WeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
 void weatherFeelsLikeRect() {
-  fill(black);
+  fill(black); stroke(background);
   rect(feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
