@@ -45,7 +45,6 @@ void concatenationOfMusicFiles() {
 //all the mouse pressed/Hoverover features for music player
 void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
-  println(background);
   strokeJoin( ROUND ); //the outlines of the shapes
   strokeWeight(4);
   population();//Popululation subProgram
