@@ -10,6 +10,9 @@ import ddf.minim.ugens.*;
 void setup() {
   size( 700 , 400 );//width and height
   //fullScreen();//display width and height
+  buildingURL();//BuildingURL subProgram
+  APIcall();//BuildingURL subProgram
+  unwrapToVariables();//UnwrapToVariables subProgram
   setupMusic();//MusicPlayer232 subProgram
   setupText();//Text subProgram
   setupImage();//Images subProgram
@@ -24,6 +27,7 @@ void draw() {
 }//end draw()
 void keyPressed() { 
   keyPressedMusic();//MusicPlayer232 subProgram
+  mousePressedWeather();//weather subProgram
   keyPressedPort();//Port subProgram
 }//end keyPressed()
 void mousePressed() { 
