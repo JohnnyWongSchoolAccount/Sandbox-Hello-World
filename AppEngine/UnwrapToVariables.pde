@@ -3,8 +3,8 @@ import java.util.Date;
 //Global Variables
 String mainWeatherAlberta, descriptionAlberta, iconAlberta, countryAlberta, nameAlberta;
 float tempAlbertaFloat, tempMinAlberta, tempMaxAlberta, feelsLikeAlbertaFloat;
-String feelsLikeAlberta = String.valueOf(feelsLikeAlbertaFloat);
-String tempAlberta = String.valueOf(tempAlbertaFloat);
+String feelsLikeAlberta;
+String tempAlberta;
 int sunriseAlberta, sunsetAlberta;
 Date apiCurrentDateCall; 
 //
@@ -21,9 +21,11 @@ void currentAlberta() {
   //
   JSONObject mainAlberta = jsonCurrentAlberta.getJSONObject("main"); //Unwrap {}
   tempAlbertaFloat = mainAlberta.getFloat("temp");
+  tempAlberta = String.valueOf(tempAlbertaFloat);
   tempMinAlberta = mainAlberta.getFloat("temp_min");
   tempMaxAlberta = mainAlberta.getFloat("temp_max");
   feelsLikeAlbertaFloat = mainAlberta.getFloat("feels_like"); // Get float value
+  feelsLikeAlberta= String.valueOf(feelsLikeAlbertaFloat);
   //
   long apiCallTimeAlberta = jsonCurrentAlberta.getInt("dt"); //int not enough memory, needs long (float & double)
   apiCurrentDateCall = humanDate(apiCallTimeAlberta);
