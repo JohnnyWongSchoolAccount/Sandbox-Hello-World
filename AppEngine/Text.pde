@@ -22,6 +22,9 @@ void predrawText( color ink, float appHeight, int alignHorizontal, int alignVert
   fill(ink);
   textAlign (alignHorizontal, alignVertical);
   textFont(Font, appHeight);
+  if(Font != null) { //Check if Font object is not null
+    textFont(Font, appHeight);
+  }
 }//end predrawText()
 //
 void textReset() { fill(resetInk); }//end textReset
@@ -43,4 +46,7 @@ void drawTextMusic(int minuites, int seconds, String divider) {
   //nf adds a zero to the left of the int
   drawText( height, purpInk, CENTER, CENTER, Font, texto+minuites+divider+nf(seconds,2), pauseWidth, pauseHeight/7, appWidth/6, pauseHeight);
 }//end drawText()
+void drawTextLocationWeather() {
+  drawText( height, purpInk, CENTER, CENTER, Font, texto, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
+}//end drawText() */
 //end Text SubProgram
