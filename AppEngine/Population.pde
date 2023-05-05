@@ -47,6 +47,8 @@ float nightX1, nightY1, nightWidth, nightHeight; //night button rect
 float weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight; //weather app rect
 //weather location
 float locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight;//location
+//weather country
+float countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight;//country
 //weather temperature
 float tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight;//temperature
 //weather image
@@ -269,6 +271,11 @@ void population() {
   locationWeatherY = pauseWidth + (pauseWidth);
   locationWeatherWidth = (startingX - 2*(startingX/4))/2;
   locationWeatherHeight = startingY - 3*(startingY/4);
+  //weather country
+  countryWeatherX = (locationWeatherX+locationWeatherWidth)+(pauseWidth/2);
+  countryWeatherY = locationWeatherY;
+  countryWeatherWidth = (locationWeatherWidth)/1.5;
+  countryWeatherHeight = locationWeatherHeight;
   //weather temp
   tempWeatherX = locationWeatherX;
   tempWeatherY = locationWeatherY + locationWeatherHeight + (pauseWidth/2);
@@ -282,7 +289,7 @@ void population() {
   //weather feels like
   feelsWeatherX = locationWeatherX;
   feelsWeatherY = WeatherHeight + WeatherY + (pauseWidth/2);
-  feelsWeatherWidth = locationWeatherWidth*0.8;
+  feelsWeatherWidth = locationWeatherWidth;
   feelsWeatherHeight = locationWeatherHeight/2;
   //images
   imageBackgroundX = appWidth * 0;
@@ -389,22 +396,27 @@ void weatherButton() {
   rect(weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
 }//end weatherButton
 void weatherLocationRect() {
-  fill(black); stroke(background);
+  fill(black); stroke(black);
   rect(locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
+void weatherCountryRect() {
+  fill(black); stroke(black);
+  rect(countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
+  fill(resetcolorDayMode);
+}//end weatherCountryRect
 void weatherTempRect() {
-  fill(black); stroke(background);
+  fill(black); stroke(black);
   rect(tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
 void weatherImageRect() {
-  fill(black); stroke(background);
+  fill(black); stroke(black);
   rect(WeatherX, WeatherY, WeatherWidth, WeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
 void weatherFeelsLikeRect() {
-  fill(black); stroke(background);
+  fill(black); stroke(black);
   rect(feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherLocationRect
