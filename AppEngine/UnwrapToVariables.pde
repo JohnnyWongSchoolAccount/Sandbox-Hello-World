@@ -1,8 +1,10 @@
 //Libraries and Dependancies
 import java.util.Date;
 //Global Variables
-String mainWeatherAlberta, descriptionAlberta, iconAlberta, countryAlberta, nameAlberta, feelsLikeAlberta;
-float tempAlberta, tempMinAlberta, tempMaxAlberta, feelsLikeAlbertaFloat;
+String mainWeatherAlberta, descriptionAlberta, iconAlberta, countryAlberta, nameAlberta;
+float tempAlbertaFloat, tempMinAlberta, tempMaxAlberta, feelsLikeAlbertaFloat;
+String feelsLikeAlberta = String.valueOf(feelsLikeAlbertaFloat);
+String tempAlberta = String.valueOf(tempAlbertaFloat);
 int sunriseAlberta, sunsetAlberta;
 Date apiCurrentDateCall; 
 //
@@ -18,7 +20,7 @@ void currentAlberta() {
   iconAlberta = allAlberta.getString("icon");
   //
   JSONObject mainAlberta = jsonCurrentAlberta.getJSONObject("main"); //Unwrap {}
-  tempAlberta = mainAlberta.getFloat("temp");
+  tempAlbertaFloat = mainAlberta.getFloat("temp");
   tempMinAlberta = mainAlberta.getFloat("temp_min");
   tempMaxAlberta = mainAlberta.getFloat("temp_max");
   feelsLikeAlbertaFloat = mainAlberta.getFloat("feels_like"); // Get float value
