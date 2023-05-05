@@ -4,11 +4,14 @@ boolean ONOFF_WEATHER = false;
 void setupWeather() {if (ONOFF_WEATHER) {setupWeatherONOFF();} }//end setupWeather()
 void drawWeather() { if (ONOFF_WEATHER) {drawWeatherONOFF();} }//end drawWeather()
 void keyPressedWeather() {}//end keyPressedWeather()
-void mousePressedWeather() {}//end mousePressedWeather()
+void mousePressedWeather() { if (ONOFF_WEATHER) {mousePressedWeatherONOFF();} }//end mousePressedWeather()
 //
+/*
+drawText( height, purpInk, CENTER, CENTER, Font, nameAlberta, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
+drawText( height, purpInk, CENTER, CENTER, Font, feelsLikeAlberta, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+*/
 void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
-  background(background);
   autoPlayMusic();
   population();
   timeline(int(pauseWidth), 0, 0, 0 );
@@ -22,11 +25,12 @@ void drawWeatherONOFF() {
   {fill(hoverOver);} else {fill(black);}
   music();
   drawText( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
-  //
+}//end drawWeatherONOFF()
+void mousePressedWeatherONOFF() {
+  background(background);
   weatherLocationRect();
-  drawText( height, purpInk, CENTER, CENTER, Font, textPort, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
   weatherTempRect();
   weatherImageRect();
   weatherFeelsLikeRect();
-}//end drawWeatherONOFF()
+}//end keyPressedWeatherONOFF()
 //end weather subProgram
