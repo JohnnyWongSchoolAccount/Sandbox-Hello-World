@@ -2,7 +2,7 @@
 import java.util.Date;
 //Global Variables
 String mainWeatherAlberta, descriptionAlberta, iconAlberta, countryAlberta, nameAlberta, feelsLikeAlberta;
-float tempAlberta, tempMinAlberta, tempMaxAlberta;
+float tempAlberta, tempMinAlberta, tempMaxAlberta, feelsLikeAlbertaFloat;
 int sunriseAlberta, sunsetAlberta;
 Date apiCurrentDateCall; 
 //
@@ -21,8 +21,7 @@ void currentAlberta() {
   tempAlberta = mainAlberta.getFloat("temp");
   tempMinAlberta = mainAlberta.getFloat("temp_min");
   tempMaxAlberta = mainAlberta.getFloat("temp_max");
-  float feelsLikeAlbertaFloat = mainAlberta.getFloat("feels_like"); // Get float value
-  String feelsLikeAlberta = String.valueOf(feelsLikeAlbertaFloat); // Convert float to string
+  feelsLikeAlbertaFloat = mainAlberta.getFloat("feels_like"); // Get float value
   //
   long apiCallTimeAlberta = jsonCurrentAlberta.getInt("dt"); //int not enough memory, needs long (float & double)
   apiCurrentDateCall = humanDate(apiCallTimeAlberta);
