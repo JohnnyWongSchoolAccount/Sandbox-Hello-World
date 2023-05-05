@@ -1,5 +1,7 @@
 //Global Variables
 boolean ONOFF_WEATHER = false;
+String textFeelsLikeWeather = "Feels Like: ";
+String textTempertureWeather = " °C";
 //
 void setupWeather() {if (ONOFF_WEATHER) {setupWeatherONOFF();} }//end setupWeather()
 void drawWeather() { if (ONOFF_WEATHER) {drawWeatherONOFF();} }//end drawWeather()
@@ -28,8 +30,10 @@ void drawWeatherONOFF() {
   weatherLocationRect();
   drawText( height, purpInk, CENTER, CENTER, Font, nameAlberta, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
   weatherTempRect();
+  drawText( height, purpInk, CENTER, CENTER, Font, tempAlberta+textTempertureWeather, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
   weatherImageRect();
   weatherFeelsLikeRect();
+  drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeAlberta, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
 }//end drawWeatherONOFF()
 void mousePressedWeatherONOFF() { background(background); }//end keyPressedWeatherONOFF()
 //end weather subProgram
