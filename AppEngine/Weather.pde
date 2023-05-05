@@ -25,12 +25,11 @@ void drawWeatherONOFF() {
   {fill(hoverOver);} else {fill(black);}
   music();
   drawText( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
-}//end drawWeatherONOFF()
-void mousePressedWeatherONOFF() {
-  background(background);
   weatherLocationRect();
+  drawText( height, purpInk, CENTER, CENTER, Font, nameAlberta, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
   weatherTempRect();
   weatherImageRect();
   weatherFeelsLikeRect();
-}//end keyPressedWeatherONOFF()
+}//end drawWeatherONOFF()
+void mousePressedWeatherONOFF() { background(background); }//end keyPressedWeatherONOFF()
 //end weather subProgram
