@@ -1,13 +1,13 @@
 //Libraries and Dependancies
 import java.util.Date;
 //Global Variables
-//Alberta
-String mainWeatherAlberta, descriptionAlberta, iconAlberta, countryAlberta, nameAlberta;
-float tempAlbertaFloat, tempMinAlberta, tempMaxAlberta, feelsLikeAlbertaFloat;
-String feelsLikeAlberta;
-String tempAlberta;
+//Batman
+String mainWeatherBatman, descriptionBatman, iconBatman, countryBatman, nameBatman;
+float tempBatmanFloat, tempMinBatman, tempMaxBatman, feelsLikeBatmanFloat;
+String feelsLikeBatman;
+String tempBatman;
 String currentAPICallTime;
-int sunriseAlberta, sunsetAlberta;
+int sunriseBatman, sunsetBatman;
 //Guangzhou
 String mainWeatherGuangzhou, descriptionGuangzhou, iconGuangzhou, countryGuangzhou, nameGuangzhou;
 float tempGuangzhouFloat, tempMinGuangzhou, tempMaxGuangzhou, feelsLikeGuangzhouFloat;
@@ -26,30 +26,30 @@ Date humanDate(long unixTime) {
   Date dateHuman = new Date(unixTime*1000); //convert from milliseconds
   return dateHuman;
 }
-void currentAlberta() {
-  JSONArray weatherAlberta = jsonCurrentAlberta.getJSONArray("weather"); //Unwrapping
-  JSONObject allAlberta = weatherAlberta.getJSONObject(0); //Unwrap {}
-  mainWeatherAlberta = allAlberta.getString("main");
-  descriptionAlberta = allAlberta.getString("description");
-  iconAlberta = allAlberta.getString("icon");
+void currentBatman() {
+  JSONArray weatherBatman = jsonCurrentBatman.getJSONArray("weather"); //Unwrapping
+  JSONObject allBatman = weatherBatman.getJSONObject(0); //Unwrap {}
+  mainWeatherBatman = allBatman.getString("main");
+  descriptionBatman = allBatman.getString("description");
+  iconBatman = allBatman.getString("icon");
   //
-  JSONObject mainAlberta = jsonCurrentAlberta.getJSONObject("main"); //Unwrap {}
-  tempAlbertaFloat = mainAlberta.getFloat("temp");
-  tempAlberta = String.valueOf(tempAlbertaFloat);
-  tempMinAlberta = mainAlberta.getFloat("temp_min");
-  tempMaxAlberta = mainAlberta.getFloat("temp_max");
-  feelsLikeAlbertaFloat = mainAlberta.getFloat("feels_like"); // Get float value
-  feelsLikeAlberta= String.valueOf(feelsLikeAlbertaFloat);
+  JSONObject mainBatman = jsonCurrentBatman.getJSONObject("main"); //Unwrap {}
+  tempBatmanFloat = mainBatman.getFloat("temp");
+  tempBatman = String.valueOf(tempBatmanFloat);
+  tempMinBatman = mainBatman.getFloat("temp_min");
+  tempMaxBatman = mainBatman.getFloat("temp_max");
+  feelsLikeBatmanFloat = mainBatman.getFloat("feels_like"); // Get float value
+  feelsLikeBatman= String.valueOf(feelsLikeBatmanFloat);
   //
-  long apiCallTime = jsonCurrentAlberta.getInt("dt"); //int not enough memory, needs long (float & double)
+  long apiCallTime = jsonCurrentBatman.getInt("dt"); //int not enough memory, needs long (float & double)
   apiCurrentDateCall = humanDate(apiCallTime);
   currentAPICallTime = String.valueOf(apiCurrentDateCall);
   //
-  JSONObject sysAlberta = jsonCurrentAlberta.getJSONObject("sys"); //Unwrap {}
-  countryAlberta = sysAlberta.getString("country");
-  sunriseAlberta = sysAlberta.getInt("sunrise");
-  sunsetAlberta = sysAlberta.getInt("sunset");
-  nameAlberta = jsonCurrentAlberta.getString("name");
+  JSONObject sysBatman = jsonCurrentBatman.getJSONObject("sys"); //Unwrap {}
+  countryBatman = sysBatman.getString("country");
+  sunriseBatman = sysBatman.getInt("sunrise");
+  sunsetBatman = sysBatman.getInt("sunset");
+  nameBatman = jsonCurrentBatman.getString("name");
 }
 void currentGuangzhou() {
   JSONArray weatherGuangzhou = jsonCurrentGuangzhou.getJSONArray("weather"); //Unwrapping
@@ -102,7 +102,7 @@ void currentWashington() {
   nameWashington = jsonCurrentWashington.getString("name");
 }
 void unwrapToVariables() {
-  currentAlberta();
+  currentBatman();
   currentGuangzhou();
   currentWashington();
 }//end unwrapToVariables */
