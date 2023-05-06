@@ -1,6 +1,6 @@
 //Global Variables
 boolean ONOFF_WEATHER = false;
-boolean Alberta = true;
+boolean Batman = true;
 boolean Guangzhou = false;
 boolean Washington = false;
 String textFeelsLikeWeather = "Feels Like: ";
@@ -13,8 +13,8 @@ void keyPressedWeather() {}//end keyPressedWeather()
 void mousePressedWeather() { if (ONOFF_WEATHER) {mousePressedWeatherONOFF();} }//end mousePressedWeather()
 //
 /*
-drawText( height, purpInk, CENTER, CENTER, Font, nameAlberta, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-drawText( height, purpInk, CENTER, CENTER, Font, feelsLikeAlberta, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+drawText( height, purpInk, CENTER, CENTER, Font, nameBatman, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
+drawText( height, purpInk, CENTER, CENTER, Font, feelsLikeBatman, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
 */
 void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
@@ -37,18 +37,18 @@ void drawWeatherONOFF() {
   weatherChangeRect();
   drawText( height, purpInk, CENTER, CENTER, Font, textChangeWeather, changeWeatherX, changeWeatherY, changeWeatherWidth, changeWeatherHeight);
   //
-  if (Alberta) {
+  if (Batman) {
     weatherLocationRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, nameAlberta, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
+    drawText( height, purpInk, CENTER, CENTER, Font, nameBatman, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
     weatherDateTimeRect();
     drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);
     weatherCountryRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryAlberta, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
+    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryBatman, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
     weatherTempRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, tempAlberta+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
+    drawText( height, purpInk, CENTER, CENTER, Font, tempBatman+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
     weatherImageRect();
     weatherFeelsLikeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeAlberta+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeBatman+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
   }
   if (Guangzhou) {
     weatherLocationRect();
@@ -82,16 +82,16 @@ void mousePressedWeatherONOFF() {
   { weatherChange(); }
 }//end keyPressedWeatherONOFF()
 void weatherChange() {
-  if (Alberta) {
-    Alberta = false;
+  if (Batman) {
+    Batman = false;
     Guangzhou = true;
     Washington = false;
   } else if (Guangzhou) {
-    Alberta = false;
+    Batman = false;
     Guangzhou = false;
     Washington = true;
   } else {
-    Alberta = true;
+    Batman = true;
     Guangzhou = false;
     Washington = false;
   }
