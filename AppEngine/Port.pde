@@ -1,11 +1,16 @@
 //Global Variables
 boolean port = true;
 String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = " Night Mode ", textPortWeather = " Weather ";
+String textQuit = "     Quit     ";
 //
 void setupPort() {}//end setup
 void drawPort() { 
   if (port) { drawPortONOFF(); }
-}//end drawPort()
+  if ( mouseX>=quitX && mouseX<=quitX+quitWidth && mouseY>=quitY && mouseY<=quitY+quitHeight )
+  {fill(#00FF4A); stroke(#00FF4A);} else {fill(#FF0000); stroke(#FF0000);}
+  quitRect();
+  drawText( height, purpInk, CENTER, CENTER, Font, textQuit, quitX, quitY, quitWidth, quitHeight);
+}//end drawPort()quitX, quitY, quitWidth, quitHeight
 void keyPressedPort() {
   //nightMode
   if ( key == 'Q' || key == 'q' ) { nightMode(); }//end nightMode Button keybind
@@ -13,12 +18,16 @@ void keyPressedPort() {
   if ( key == 'N' || key == 'n' ) { musicPlayer(); }//end musicPlayer Button keybind  
   //weather
   if ( key == 'b' || key == 'B' ) { weather(); }//end weather Button keybind
+  //quit button
+  if ( key == 'z' || key == 'Z' ) { quitFunction(); }//end quit button keybind
 }//end keyPressedPort()
 void mousePressedPort() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   musicPlayer();
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
   { weather(); }
+  if ( mouseX>=quitX && mouseX<=quitX+quitWidth && mouseY>=quitY && mouseY<=quitY+quitHeight )
+  { quitFunction(); }
   if (port) {mousePressedPortONOFF();}
 }//end mousePressedPort()
 //
@@ -67,6 +76,12 @@ void nightMode() {
   }
   background(background);
 }//end nightMode()
+void quitFunction() {
+  soundEffects[1].rewind();
+  soundEffects[1].play();
+  delay(3000);
+  exit();
+}//end quitfuction
 void musicPlayer() {
   if (ONOFF_MUSICPLAYER == false){
     ONOFF_WEATHER = false;
