@@ -24,7 +24,6 @@ void setupMusic() {
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   // ERROR: CANVAS is bigger than display
   // ERROR: stating display geometry (i.e. landscape, portrait)
-  background( #9EA9F0 );//background color
 }//end setupMusic()
 //
 void drawMusic() { 
@@ -45,6 +44,7 @@ void concatenationOfMusicFiles() {
 //all the mouse pressed/Hoverover features for music player
 void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
+  background(background);
   strokeJoin( ROUND ); //the outlines of the shapes
   strokeWeight(4);
   population();//Popululation subProgram
@@ -135,7 +135,6 @@ void drawMusicONOFF() {
   drawText( height, purpInk, CENTER, CENTER, Font, textPortWeather, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
 }//end drawMusicONOFF()
 void mousePressedMusicONOFF() {
-  background( background );//background color
   //pause button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight )
   { pausePlay(); }
