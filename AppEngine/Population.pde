@@ -59,6 +59,10 @@ float tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight;//temperat
 float WeatherX, WeatherY, WeatherWidth, WeatherHeight;//weather
 //weather feels like
 float feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight;//feels like weather
+//weather Description
+float weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight;//weather Description
+//weather Wind
+float weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight;//weather Wind
 //quit button
 float quitX, quitY, quitWidth, quitHeight;
 //colors
@@ -307,6 +311,16 @@ void population() {
   feelsWeatherY = WeatherHeight + WeatherY + (pauseWidth/2);
   feelsWeatherWidth = locationWeatherWidth;
   feelsWeatherHeight = locationWeatherHeight/2;
+  //weather description
+  weatherDescriptionX = (feelsWeatherX+feelsWeatherWidth)+(pauseWidth/2);
+  weatherDescriptionY = feelsWeatherY;
+  weatherDescriptionWidth = feelsWeatherWidth;
+  weatherDescriptionHeight = feelsWeatherHeight;
+  //weather wind
+  weatherWindX = feelsWeatherX;
+  weatherWindY = (feelsWeatherY+feelsWeatherHeight)+(pauseWidth/2);
+  weatherWindWidth = weatherDescriptionWidth;
+  weatherWindHeight = weatherDescriptionHeight;
   //quit button
   quitX = appWidth-pauseHeight;
   quitY = 0;
@@ -450,6 +464,16 @@ void weatherFeelsLikeRect() {
   rect(feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherFeelsLikeRect
+void weatherDescriptionRect() {
+  fill(black); stroke(black);
+  rect(weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
+  fill(resetcolorDayMode);
+}//end weatherMainRect
+void weatherWindRect() {
+  fill(black); stroke(black);
+  rect( weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
+  fill(resetcolorDayMode);
+}//end weatherMainRect
 void quitRect() {
   rect(quitX, quitY, quitWidth, quitHeight);
   drawText( height, purpInk, CENTER, CENTER, Font, textQuit, quitX, quitY, quitWidth, quitHeight);
