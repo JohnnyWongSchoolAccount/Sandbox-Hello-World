@@ -4,8 +4,8 @@ boolean Batman = true;
 boolean Guangzhou = false;
 boolean Washington = false;
 String textFeelsLikeWeather = "Feels Like: ";
-String textCelsius = " °C", textcomma = ",", textSpace = "  ";
-String textChangeWeather = " Location ";
+String textCelsius = " °C", textcomma = ",", textSpace = "  ", textPeriod = ".", textDegree = "°", textmpers = "m/s";
+String textChangeWeather = " Location ", textWind = "Wind: ";
 //
 void setupWeather() {if (ONOFF_WEATHER) {setupWeatherONOFF();} }//end setupWeather()
 void drawWeather() { if (ONOFF_WEATHER) {drawWeatherONOFF();} }//end drawWeather()
@@ -21,7 +21,6 @@ void drawWeatherONOFF() {
   background(background);
   autoPlayMusic();
   population();
-  timeline(int(pauseWidth), 0, 0, 0 );
   stroke(purp); strokeWeight(4);
   //
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
@@ -49,6 +48,10 @@ void drawWeatherONOFF() {
     weatherImageRect();
     weatherFeelsLikeRect();
     drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeBatman+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+    weatherDescriptionRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionBatman+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
+    weatherWindRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedBatman+textmpers+windDegreeBatman+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
   }
   if (Guangzhou) {
     weatherLocationRect();
@@ -62,6 +65,10 @@ void drawWeatherONOFF() {
     weatherImageRect();
     weatherFeelsLikeRect();
     drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeGuangzhou+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+    weatherDescriptionRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionGuangzhou+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
+    weatherWindRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedGuangzhou+textmpers+windDegreeGuangzhou+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);  
   }
   if (Washington) {
     weatherLocationRect();
@@ -75,6 +82,10 @@ void drawWeatherONOFF() {
     weatherImageRect();
     weatherFeelsLikeRect();
     drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeWashington+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
+    weatherDescriptionRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionWashington+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
+    weatherWindRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedWashington+textmpers+windDegreeWashington+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
   }
 }//end drawWeatherONOFF()
 void mousePressedWeatherONOFF() { 
