@@ -1,7 +1,7 @@
 /*this code is a work in progress */
 //Gobal variables
 Minim minim; //creates an object to access all functions
-AudioPlayer[] songs = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
+AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 AudioPlayer[] soundEffects = new AudioPlayer[2]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
 String pathway, groove, beatYourCompetition, carDoor, woodDoor, eureka; //the songs/SFX
 int currentSong = 0; //current song
@@ -19,7 +19,7 @@ void setupMusic() {
   concatenationOfMusicFiles();
   songs[0] = minim.loadFile( pathway + groove ); //song
   songs[1] = minim.loadFile( pathway + beatYourCompetition ); //song
-  //songs[2] = minim.loadFile( pathway + eureka ); //song
+  songs[2] = minim.loadFile( pathway + eureka ); //song
   soundEffects[0] = minim.loadFile( pathway + carDoor ); //SFX
   soundEffects[1] = minim.loadFile( pathway + woodDoor ); //SFX
   // ERROR: CANVAS is bigger than display
@@ -38,8 +38,8 @@ void concatenationOfMusicFiles() {
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
   groove = "Music_groove.mp3"; //song
   eureka = "Eureka.mp3";//song
-  carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
-  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series"; //SFX
+  carDoor = "AppEngine_data_FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
+  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenationOfMusicFiles()
 //all the mouse pressed/Hoverover features for music player
 void drawMusicONOFF() {
@@ -316,9 +316,9 @@ void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   time = songs[currentSong].position();
   float progress = time/duration;
   fill(purp); stroke(purp);
-  rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight);
+  rect(WidthTL, HeightTL, HeightTL * appWidth, - appHeight- pauseHeight);
   fill(hoverOver); stroke(hoverOver);
-  rect(WidthTL, HeightTL, progress * appWidth, - appHeight);
+  rect(WidthTL, HeightTL, progress * (appWidth-pauseHeight), - appHeight-pauseHeight);
 }//end timeline()
 //DEBUGGING
 void debugging() { //debugging in consol 
