@@ -51,7 +51,6 @@ void drawMusicONOFF() {
   autoPlayMusic();
   drawhitboxes();
   drawTextMusic(0,0,":");//text subProgram
-  timeline(int(pauseWidth), 0, 0, 0 );
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   {
