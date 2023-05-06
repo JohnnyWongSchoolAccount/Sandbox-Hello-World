@@ -15,7 +15,6 @@ void keyPressedPort() {
   if ( key == 'b' || key == 'B' ) { weather(); }//end weather Button keybind
 }//end keyPressedPort()
 void mousePressedPort() {
-  background( background );
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   musicPlayer();
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
@@ -24,6 +23,7 @@ void mousePressedPort() {
 }//end mousePressedPort()
 //
 void drawPortONOFF() {
+  background(background);
   timeline(int(pauseWidth), 0, 0, 0);
   if (autoPlayOn) {autoPlayMusic();}
   stroke(purp); strokeWeight(4);
