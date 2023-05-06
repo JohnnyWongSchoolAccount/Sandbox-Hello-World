@@ -35,6 +35,8 @@ void buildingURL() {
   URLForcastGuangzhou = baseURL_Forcast+guangzhouId+and+apiKey+and+mode+and+unitMetric;
   URLCurrentWashington = baseURL_Current+washingtonId+and+apiKey+and+mode+and+unitMetric;
   URLForcastWashington = baseURL_Forcast+washingtonId+and+apiKey+and+mode+and+unitMetric;
+  println(URLCurrentBatman);
+  println(URLCurrentGuangzhou);
 }//end buildingURL
 void APIcall() {
   jsonCurrentBatman = loadJSONObject(URLCurrentBatman);
