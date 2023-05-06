@@ -4,8 +4,9 @@ String textPort = "Music Player", textPortAlt = "    Menu    ", textPortNM = " N
 String textQuit = "     Quit     ";
 //
 void setupPort() {}//end setup
-void drawPort() { 
+void drawPort() {
   if (port) { drawPortONOFF(); }
+  timeline(int(pauseWidth), 0, 0, 0 );
   if ( mouseX>=quitX && mouseX<=quitX+quitWidth && mouseY>=quitY && mouseY<=quitY+quitHeight )
   {fill(#00FF4A); stroke(#00FF4A);} else {fill(#FF0000); stroke(#FF0000);}
   quitRect();
@@ -33,7 +34,6 @@ void mousePressedPort() {
 //
 void drawPortONOFF() {
   background(background);
-  timeline(int(pauseWidth), 0, 0, 0);
   if (autoPlayOn) {autoPlayMusic();}
   stroke(purp); strokeWeight(4);
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
@@ -78,8 +78,9 @@ void nightMode() {
 }//end nightMode()
 void quitFunction() {
   soundEffects[1].rewind();
+  soundEffects[1].skip(1750);
   soundEffects[1].play();
-  delay(3000);
+  delay(250);
   exit();
 }//end quitfuction
 void musicPlayer() {
