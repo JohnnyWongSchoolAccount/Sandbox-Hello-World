@@ -32,6 +32,7 @@ void keyPressed() {
 }//end keyPressed()
 void mousePressed() { 
   mousePressedMusic();//MusicPlayer232 subProgram
+  mousePressedWeather();//weather subProgram
   mousePressedPort();//Port subProgram
 }//end mousePressed()
 //end main Program
