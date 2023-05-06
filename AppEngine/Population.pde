@@ -59,6 +59,8 @@ float tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight;//temperat
 float WeatherX, WeatherY, WeatherWidth, WeatherHeight;//weather
 //weather feels like
 float feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight;//feels like weather
+//quit button
+float quitX, quitY, quitWidth, quitHeight;
 //colors
 color resetcolorNightMode=#000000, resetcolorDayMode=#FFFFFF; // Light/Dark mode colors
 color black= #CCC1FF; //The Button color CCC1FF
@@ -305,6 +307,11 @@ void population() {
   feelsWeatherY = WeatherHeight + WeatherY + (pauseWidth/2);
   feelsWeatherWidth = locationWeatherWidth;
   feelsWeatherHeight = locationWeatherHeight/2;
+  //quit button
+  quitX = appWidth-pauseHeight;
+  quitY = 0;
+  quitWidth = pauseHeight;
+  quitHeight = pauseWidth;
   //images
   imageBackgroundX = appWidth * 0;
   imageBackgroundY = appHeight * 0;
@@ -443,6 +450,10 @@ void weatherFeelsLikeRect() {
   rect(feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherFeelsLikeRect
+void quitRect() {
+  rect(quitX, quitY, quitWidth, quitHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textQuit, quitX, quitY, quitWidth, quitHeight);
+}//end quitRect
 //IMAGES 
 void drawImagesPort() {
   //background image no empty
