@@ -12,7 +12,6 @@ void setup() {
   //fullScreen();//display width and height
   buildingURL();//BuildingURL subProgram
   APIcall();//BuildingURL subProgram
-  unwrapToVariables();//UnwrapToVariables subProgram
   setupMusic();//MusicPlayer232 subProgram
   setupText();//Text subProgram
   setupImage();//Images subProgram
