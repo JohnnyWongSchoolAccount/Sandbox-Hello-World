@@ -292,7 +292,7 @@ void population() {
   changeWeatherWidth = (locationWeatherWidth/2)+(pauseWidth/2);
   changeWeatherHeight = locationWeatherHeight;
   //weather date time
-  dateTimeWeatherX = appWidth-dateTimeWeatherWidth-pauseWidth;
+  dateTimeWeatherX = (appWidth-dateTimeWeatherWidth)-pauseWidth;
   dateTimeWeatherY = countryWeatherY;
   dateTimeWeatherWidth = (locationWeatherWidth)*3;
   dateTimeWeatherHeight = locationWeatherHeight;
@@ -392,6 +392,7 @@ void drawLoopButton() {
 }//end drawLoopButton()
 void drawLoopTButton() {
   triangle(looptX1, looptY1, looptX2, looptY2, looptX3, looptY3); // triangle
+  drawText( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1/1.3, loopWidth, loopHeight);
   fill(resetcolorDayMode);
 }//end drawLoopTButton()
 void drawLoopButtonInf() {
@@ -400,8 +401,9 @@ void drawLoopButtonInf() {
   rect(loopiX2, loopiY2, loopiWidth2, loopiHeight2, 13); // inside rect
   fill(resetcolorDayMode);
 }//end drawLoopButtonInf()
-void drawLoopTButtonInf() {
+void drawLoopTButtonInf(String textLoopInf) {
   triangle(looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3); // triangle
+  drawText( height, purpInk, CENTER, CENTER, Font, textLoopInf, loopiX1, loopiY1/1.3, loopWidth, loopHeight );
   fill(resetcolorDayMode);
 }//end drawLoopTButtonInf()
 void drawShuffleButton() {
@@ -415,16 +417,22 @@ void drawAutoPlayButton() {
   rect(autoX2, autoY2, autoWidth2, autoHeight2, 13); // inside rect
   fill(resetcolorDayMode);
 }//end drawAutoPlayButton()
-void drawAutoPlayTButton() {
+void drawAutoPlayTButton(String textAutoPlay) {
   triangle(autotX1, autotY1, autotX2, autotY2, autotX3, autotY3); // triangle
   triangle(autotX12, autotY12, autotX22, autotY22, autotX32, autotY32); // triangle
+  drawText( height, purpInk, CENTER, CENTER, Font, textAutoPlay, autoX1, autoY1/1.18, autoWidth, autoHeight );
   fill(resetcolorDayMode);
 }//end drawAutoPlayTButton()
 void music() {
   rect(musicX1, musicY1, musicWidth, musicHeight);
 }//end music()
-void nightModeButton() {
+void nightModeButton(String textNM, String textDM) {
   rect(nightX1, nightY1, nightWidth, nightHeight);
+  if (nit == false) {
+    drawText( height, purpInk, CENTER, CENTER, Font, textNM, nightX1, nightY1, nightWidth, nightHeight);
+  } else {
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textDM+textSpace, nightX1, nightY1, nightWidth, nightHeight);
+  }
 }//end nightModeButton()
 //weather
 void weatherButton() {
@@ -440,8 +448,9 @@ void weatherCountryRect() {
   rect(countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherCountryRect 
-void weatherChangeRect() {
+void weatherChangeRect(String textChangeWeather) {
   rect(changeWeatherX, changeWeatherY, changeWeatherWidth, changeWeatherHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textChangeWeather+textSpace, changeWeatherX, changeWeatherY, changeWeatherWidth, changeWeatherHeight);
   fill(resetcolorDayMode);
 }//end weatherChangeRect
 void weatherDateTimeRect() {
@@ -468,15 +477,15 @@ void weatherDescriptionRect() {
   fill(black); stroke(black);
   rect(weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
   fill(resetcolorDayMode);
-}//end weatherMainRect
+}//end weatherDescriptionRect
 void weatherWindRect() {
   fill(black); stroke(black);
   rect( weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
   fill(resetcolorDayMode);
-}//end weatherMainRect
-void quitRect() {
+}//end weatherWindRect
+void quitRect(String textQuit) {
   rect(quitX, quitY, quitWidth, quitHeight);
-  drawText( height, purpInk, CENTER, CENTER, Font, textQuit, quitX, quitY, quitWidth, quitHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textSpace+textQuit+textSpace+textSpace+textSpace, quitX, quitY, quitWidth, quitHeight);
 }//end quitRect
 //IMAGES 
 void drawImagesPort() {
