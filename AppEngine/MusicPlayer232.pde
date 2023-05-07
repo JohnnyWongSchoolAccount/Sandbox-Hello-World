@@ -44,13 +44,11 @@ void concatenationOfMusicFiles() {
 //all the mouse pressed/Hoverover features for music player
 void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
-  background(background);
-  strokeJoin( ROUND ); //the outlines of the shapes
-  strokeWeight(4);
-  population();//Popululation subProgram
+  startPage();
   autoPlayMusic();
   drawhitboxes();
-  drawTextMusic(0,0,":");//text subProgram
+  drawTextMusic(0,0,":", "Time - ");//text subProgram
+  UIpageText("Music Player", "Menu", "Weather");
   //pause-play button
   if ( mouseX>=pauseX1 && mouseX<=pauseX1+BOXW && mouseY>=pauseY1 && mouseY<=pauseY1+pauseHeight)
   {
@@ -103,15 +101,13 @@ void drawMusicONOFF() {
   if ( mouseX>=loopX1 && mouseX<=loopX1+pauseHeight && mouseY>=loopY1 && mouseY<=loopY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
   drawLoopTButton();//Popululation subProgram
-  drawText( height, purpInk, CENTER, CENTER, Font, text, loopX1, loopY1/1.3, loopWidth, loopHeight);
   //loop infinite button
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
   drawLoopButtonInf();//Popululation subProgram
   if ( mouseX>=loopiX1 && mouseX<=loopiX1+pauseHeight && mouseY>=loopiY1 && mouseY<=loopiY1+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
-  drawLoopTButtonInf();//Popululation subProgram
-  drawText( height, purpInk, CENTER, CENTER, Font, text2, loopiX1, loopiY1/1.3, loopWidth, loopHeight );
+  drawLoopTButtonInf("InfiniteLoop");//Popululation subProgram
   //shuffle button
   if ( mouseX>=shuffleX3 && mouseX<=shuffleX3+pauseHeight && mouseY>=shuffleY12 && mouseY<=shuffleY12+pauseHeight )
   { fill(hoverOver); } else {fill(black);}
@@ -122,16 +118,7 @@ void drawMusicONOFF() {
   drawAutoPlayButton();//Popululation subProgram
   if ( mouseX>=autoX1 && mouseX<=autoX1+pauseHeight && mouseY>=autoY1 && mouseY<=autoY1+pauseHeight )
   { fill(hoverOver); } else if ( autoPlayOn == true ) {fill(toggleOn);} else {fill(black);}
-  drawAutoPlayTButton();//Popululation subProgram
-  drawText( height, purpInk, CENTER, CENTER, Font, text3, autoX1, autoY1/1.18, autoWidth, autoHeight );
-  if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
-  {fill(hoverOver);} else {fill(black);}
-  music();//Population subProgram
-  drawText( height, purpInk, CENTER, CENTER, Font, textPortAlt, pauseWidth, pauseHeight*6.7, appWidth/6, pauseHeight);
-  if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
-  {fill(hoverOver);} else {fill(black);}
-  weatherButton();
-  drawText( height, purpInk, CENTER, CENTER, Font, textPortWeather, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
+  drawAutoPlayTButton("AutoPlay");//Popululation subProgram
 }//end drawMusicONOFF()
 void mousePressedMusicONOFF() {
   //pause button
@@ -319,6 +306,15 @@ void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   fill(hoverOver); stroke(hoverOver);
   rect(WidthTL, HeightTL, progress * (appWidth-pauseHeight), - appHeight-pauseHeight);
 }//end timeline()
+void drawTextMusic(int minuites, int seconds, String divider, String texto) {
+  //% means divide by both 1000 and 60 when 60 is needed
+  seconds = (songs[currentSong].position()/1000) % 60;
+  minuites = (songs[currentSong].position()/(1000*60)) % 60;
+  fill(background); stroke(background);
+  rect(pauseWidth, pauseHeight/3, appWidth/6, pauseHeight);
+  //nf adds a zero to the left of the int
+  drawText( height, purpInk, CENTER, CENTER, Font, texto+minuites+divider+nf(seconds,2), pauseWidth, pauseHeight/7, appWidth/6, pauseHeight);
+}//end drawText()
 //DEBUGGING
 void debugging() { //debugging in consol 
   println( "Current Song Position:", songs[currentSong].position() );//songs position
