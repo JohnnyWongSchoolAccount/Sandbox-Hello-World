@@ -1,8 +1,8 @@
 //Global Variables
 boolean ONOFF_WEATHER = false;
-boolean Batman = true;
+boolean Batman = false;
 boolean Guangzhou = false;
-boolean Washington = false;
+boolean Washington = true;
 String textFeelsLikeWeather = "Feels Like: ", textWind = "Wind: ";
 String textCelsius = " °C", textcomma = ",", textSpace = "  ", textPeriod = ".", textDegree = "°", textmpers = "m/s";
 //
