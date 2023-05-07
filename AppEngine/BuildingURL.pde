@@ -22,28 +22,26 @@ void buildingURL() {
   String baseURL_Forcast = domain + baseURL_data + folderForecast;
   //
   String apiKey = "APPID=8b5471ce80e6d985c39c2f39759fa6cd";//delete when public
-  String BatmanId = "id=321836";
-  String guangzhouId = "id=1809858";
-  String washingtonId = "id=5815135";
+  String BatmanId = "id=321836";//Batman
+  String guangzhouId = "id=1809858";//guangzhou
+  String washingtonId = "id=5815135";//Washington
   String mode = "mode=json";
   String unitMetric = "units=metric";
   String and = "&";
   //concatination of the URL
-  URLCurrentBatman = baseURL_Current+BatmanId+and+apiKey+and+mode+and+unitMetric;
-  URLForcastBatman = baseURL_Forcast+BatmanId+and+apiKey+and+mode+and+unitMetric;
-  URLCurrentGuangzhou = baseURL_Current+guangzhouId+and+apiKey+and+mode+and+unitMetric;
-  URLForcastGuangzhou = baseURL_Forcast+guangzhouId+and+apiKey+and+mode+and+unitMetric;
-  URLCurrentWashington = baseURL_Current+washingtonId+and+apiKey+and+mode+and+unitMetric;
-  URLForcastWashington = baseURL_Forcast+washingtonId+and+apiKey+and+mode+and+unitMetric;
-  println(URLCurrentBatman);
-  println(URLCurrentGuangzhou);
+  URLCurrentBatman = baseURL_Current+BatmanId+and+apiKey+and+mode+and+unitMetric;//Batman
+  URLForcastBatman = baseURL_Forcast+BatmanId+and+apiKey+and+mode+and+unitMetric;//Batman
+  URLCurrentGuangzhou = baseURL_Current+guangzhouId+and+apiKey+and+mode+and+unitMetric;//guangzhou
+  URLForcastGuangzhou = baseURL_Forcast+guangzhouId+and+apiKey+and+mode+and+unitMetric;//guangzhou
+  URLCurrentWashington = baseURL_Current+washingtonId+and+apiKey+and+mode+and+unitMetric;//Washington
+  URLForcastWashington = baseURL_Forcast+washingtonId+and+apiKey+and+mode+and+unitMetric;//Washington
 }//end buildingURL
 void APIcall() {
-  jsonCurrentBatman = loadJSONObject(URLCurrentBatman);
-  jsonForcastBatman = loadJSONObject(URLForcastBatman);
-  jsonCurrentGuangzhou = loadJSONObject(URLCurrentGuangzhou);
-  jsonForcastGuangzhou = loadJSONObject(URLForcastGuangzhou);
-  jsonCurrentWashington = loadJSONObject(URLCurrentWashington);
-  jsonForcastWashington = loadJSONObject(URLForcastWashington);
-}
+  jsonCurrentBatman = loadJSONObject(URLCurrentBatman);//Batman
+  jsonForcastBatman = loadJSONObject(URLForcastBatman);//Batman
+  jsonCurrentGuangzhou = loadJSONObject(URLCurrentGuangzhou);//guangzhou
+  jsonForcastGuangzhou = loadJSONObject(URLForcastGuangzhou);//guangzhou
+  jsonCurrentWashington = loadJSONObject(URLCurrentWashington);//Washington
+  jsonForcastWashington = loadJSONObject(URLForcastWashington);//washington
+}//end APIcall
 //end BuildingURL subProgram
