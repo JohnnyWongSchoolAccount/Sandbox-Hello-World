@@ -28,7 +28,7 @@ Date apiCurrentDateCall;
 Date humanDate(long unixTime) {
   Date dateHuman = new Date(unixTime*1000); //convert from milliseconds
   return dateHuman;
-}
+}//end Date converter
 void currentBatman() {
   JSONArray weatherBatman = jsonCurrentBatman.getJSONArray("weather"); //Unwrapping
   JSONObject allBatman = weatherBatman.getJSONObject(0); //Unwrap {}
@@ -59,7 +59,7 @@ void currentBatman() {
   sunriseBatman = sysBatman.getInt("sunrise");
   sunsetBatman = sysBatman.getInt("sunset");
   nameBatman = jsonCurrentBatman.getString("name");
-}
+}//end currentBatman()
 void currentGuangzhou() {
   JSONArray weatherGuangzhou = jsonCurrentGuangzhou.getJSONArray("weather"); //Unwrapping
   JSONObject allGuangzhou = weatherGuangzhou.getJSONObject(0); //Unwrap {}
@@ -81,16 +81,12 @@ void currentGuangzhou() {
   windDegreeGuangzhouFloat = windGuangzhou.getFloat("deg");
   windDegreeGuangzhou = String.valueOf(windDegreeGuangzhouFloat);
   //
-  long apiCallTime = jsonCurrentGuangzhou.getInt("dt"); //int not enough memory, needs long (float & double)
-  apiCurrentDateCall = humanDate(apiCallTime);
-  currentAPICallTime = String.valueOf(apiCurrentDateCall);
-  //
   JSONObject sysGuangzhou = jsonCurrentGuangzhou.getJSONObject("sys"); //Unwrap {}
   countryGuangzhou = sysGuangzhou.getString("country");
   sunriseGuangzhou = sysGuangzhou.getInt("sunrise");
   sunsetGuangzhou = sysGuangzhou.getInt("sunset");
   nameGuangzhou = jsonCurrentGuangzhou.getString("name");
-}
+}//end currentGuangzhou()
 void currentWashington() {
   JSONArray weatherWashington = jsonCurrentWashington.getJSONArray("weather"); //Unwrapping
   JSONObject allWashington = weatherWashington.getJSONObject(0); //Unwrap {}
@@ -112,16 +108,12 @@ void currentWashington() {
   windDegreeWashingtonFloat = windWashington.getFloat("deg");
   windDegreeWashington = String.valueOf(windDegreeWashingtonFloat);
   //
-  long apiCallTime = jsonCurrentWashington.getInt("dt"); //int not enough memory, needs long (float & double)
-  apiCurrentDateCall = humanDate(apiCallTime);
-  currentAPICallTime = String.valueOf(apiCurrentDateCall);
-  //
   JSONObject sysWashington = jsonCurrentWashington.getJSONObject("sys"); //Unwrap {}
   countryWashington = sysWashington.getString("country");
   sunriseWashington = sysWashington.getInt("sunrise");
   sunsetWashington = sysWashington.getInt("sunset");
   nameWashington = jsonCurrentWashington.getString("name");
-}
+}//end currentWashington()
 void unwrapToVariables() {
   currentBatman();
   currentGuangzhou();
