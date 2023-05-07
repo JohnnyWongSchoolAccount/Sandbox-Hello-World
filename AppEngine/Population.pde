@@ -75,6 +75,7 @@ color toggleOn = #D6E5FA; //toggle on color 00FF4A
 //images
 float imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight;
 float tripleSelfX, tripleSelfY, tripleSelfWidth, tripleSelfHeight;
+float weatherkidsX, weatherkidsY, weatherkidsWidth, weatherkidsHeight;
 //
 void population() {
   appWidth = width; //display width = x in the size line of code
@@ -336,8 +337,13 @@ void population() {
   tripleSelfY = startingY + (startingY/9);//image size in aspect ratio
   tripleSelfWidth = startingX - (startingX/4);//image postion on the X axis
   tripleSelfHeight = startingY - (startingY/1.5);//image postion on the Y axis
-  //imageBackgroundX + (pauseWidth)/ imageBackgroundX + (pauseWidth) for top rigth
-  //button hitbox variable
+  //imageBackgroundX + (pauseWidth)/ imageBackgroundX + (pauseWidth) for top right
+  //weather kids
+  weatherkidsX = startingX;
+  weatherkidsY = startingY + (startingY/9);//image size in aspect ratio
+  weatherkidsWidth = startingX - (startingX/4);//image postion on the X axis
+  weatherkidsHeight = startingY - (startingY/1.5);//image postion on the Y axis
+  //button hitbox variable weatherkidsX, weatherkidsY, weatherkidsWidth, weatherkidsHeight
   BOXW = startingX/8;
 }//end population
 void drawPauseButton() {
@@ -494,4 +500,7 @@ void drawImagesPort() {
   //aspect ratio
   image( picture, pictureXAdj, pictureYAdj, pictureWidthAdj, pictureHeightAdj );
 }//end drawImagesPort()
+void drawImagesWeather() {
+  image( picture1, pictureXAdj1+(pictureWidthAdj1*2)+(pauseWidth*1.5), pictureYAdj1+(dateTimeWeatherHeight)+(pauseWidth*3), pictureWidthAdj1, pictureHeightAdj1 );
+}//end drawImagesWeather
 //end population SubProgram
