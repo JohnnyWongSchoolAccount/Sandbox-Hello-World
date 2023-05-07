@@ -2,8 +2,7 @@
 PFont Font;
 color ink, purpInk=purp, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
-String text = "SingleLoop", text2 = "InfiniteLoop", text3 = "Autoplay";//button text
-String texto = "Time - ";
+String text = "SingleLoop";//button text
 //
 void setupText() {
   Font = createFont ("Calibri", 32); 
@@ -36,17 +35,4 @@ float textCalculator( float size, String text, float loopWidth ) {
   }
   return size;
 }//end textCalculator
-//
-void drawTextMusic(int minuites, int seconds, String divider) {
-  //% means divide by both 1000 and 60 when 60 is needed
-  seconds = (songs[currentSong].position()/1000) % 60;
-  minuites = (songs[currentSong].position()/(1000*60)) % 60;
-  fill(background); stroke(background);
-  rect(pauseWidth, pauseHeight/3, appWidth/6, pauseHeight);
-  //nf adds a zero to the left of the int
-  drawText( height, purpInk, CENTER, CENTER, Font, texto+minuites+divider+nf(seconds,2), pauseWidth, pauseHeight/7, appWidth/6, pauseHeight);
-}//end drawText()
-void drawTextLocationWeather() {
-  drawText( height, purpInk, CENTER, CENTER, Font, texto, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-}//end drawText() */
 //end Text SubProgram
