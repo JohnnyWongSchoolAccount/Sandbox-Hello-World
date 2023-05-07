@@ -3,90 +3,51 @@ boolean ONOFF_WEATHER = false;
 boolean Batman = true;
 boolean Guangzhou = false;
 boolean Washington = false;
-String textFeelsLikeWeather = "Feels Like: ";
+String textFeelsLikeWeather = "Feels Like: ", textWind = "Wind: ";
 String textCelsius = " °C", textcomma = ",", textSpace = "  ", textPeriod = ".", textDegree = "°", textmpers = "m/s";
-String textChangeWeather = " Location ", textWind = "Wind: ";
 //
 void setupWeather() {if (ONOFF_WEATHER) {setupWeatherONOFF();} }//end setupWeather()
 void drawWeather() { if (ONOFF_WEATHER) {drawWeatherONOFF();} }//end drawWeather()
 void keyPressedWeather() {}//end keyPressedWeather()
 void mousePressedWeather() { if (ONOFF_WEATHER) {mousePressedWeatherONOFF();} }//end mousePressedWeather()
 //
-/*
-drawText( height, purpInk, CENTER, CENTER, Font, nameBatman, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-drawText( height, purpInk, CENTER, CENTER, Font, feelsLikeBatman, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
-*/
 void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
-  background(background);
-  autoPlayMusic();
-  population();
-  stroke(purp); strokeWeight(4);
-  //
-  if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
-  {fill(hoverOver);} else {fill(black);}
-  weatherButton();
-  drawText( height, purpInk, CENTER, CENTER, Font, textPortAlt, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
-  if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
-  {fill(hoverOver);} else {fill(black);}
-  music();
-  drawText( height, purpInk, CENTER, CENTER, Font, textPort, musicX1, musicY1, musicWidth, musicHeight);
+  startPage();
   if ( mouseX>=changeWeatherX && mouseX<=changeWeatherX+changeWeatherWidth && mouseY>=changeWeatherY && mouseY<=changeWeatherY+changeWeatherHeight )
   {fill(hoverOver);} else {fill(black);}
-  weatherChangeRect();
-  drawText( height, purpInk, CENTER, CENTER, Font, textChangeWeather, changeWeatherX, changeWeatherY, changeWeatherWidth, changeWeatherHeight);
+  weatherChangeRect("Location");
   //
   if (Batman) {
-    weatherLocationRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, nameBatman, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-    weatherDateTimeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);
-    weatherCountryRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryBatman, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
-    weatherTempRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, tempBatman+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
-    weatherImageRect();
-    weatherFeelsLikeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeBatman+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
-    weatherDescriptionRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionBatman+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
-    weatherWindRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedBatman+textmpers+windDegreeBatman+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
-  }
+    weatherRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, nameBatman, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);//location name
+    drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);//Date and time
+    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryBatman, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);//country
+    drawText( height, purpInk, CENTER, CENTER, Font, tempBatman+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);//temperature
+    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeBatman+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);//feels like
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionBatman+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);//description
+    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedBatman+textmpers+windDegreeBatman+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);//wind speed and direction
+  }//end batman if
   if (Guangzhou) {
-    weatherLocationRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, nameGuangzhou, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-    weatherDateTimeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);
-    weatherCountryRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryGuangzhou, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
-    weatherTempRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, tempGuangzhou+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
-    weatherImageRect();
-    weatherFeelsLikeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeGuangzhou+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
-    weatherDescriptionRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionGuangzhou+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
-    weatherWindRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedGuangzhou+textmpers+windDegreeGuangzhou+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);  
-  }
+    weatherRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, nameGuangzhou, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);//location name
+    drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);//Date and time
+    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryGuangzhou, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);//country
+    drawText( height, purpInk, CENTER, CENTER, Font, tempGuangzhou+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);//temperature
+    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeGuangzhou+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);//feels like
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionGuangzhou+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);//description
+    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedGuangzhou+textmpers+windDegreeGuangzhou+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);//wind speed and direction
+  }//end Guangzhou if
   if (Washington) {
-    weatherLocationRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, nameWashington, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);
-    weatherDateTimeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);
-    weatherCountryRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryWashington, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);
-    weatherTempRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, tempWashington+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);
-    weatherImageRect();
-    weatherFeelsLikeRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeWashington+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);
-    weatherDescriptionRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionWashington+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);
-    weatherWindRect();
-    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedWashington+textmpers+windDegreeWashington+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
-  }
+    weatherRect();
+    drawText( height, purpInk, CENTER, CENTER, Font, nameWashington, locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight);//location name
+    drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);//Date and time
+    drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryWashington, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);//country
+    drawText( height, purpInk, CENTER, CENTER, Font, tempWashington+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);//temperature
+    drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeWashington+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);//feels like
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionWashington+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);//description
+    drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedWashington+textmpers+windDegreeWashington+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);//wind speed and direction
+  }//end Washington if
 }//end drawWeatherONOFF()
 void mousePressedWeatherONOFF() { 
   if ( mouseX>=changeWeatherX && mouseX<=changeWeatherX+changeWeatherWidth && mouseY>=changeWeatherY && mouseY<=changeWeatherY+changeWeatherHeight )
@@ -107,4 +68,14 @@ void weatherChange() {
     Washington = false;
   }
 }//end weatherChange
+void weatherRect() {
+  weatherLocationRect();//location name
+  weatherDateTimeRect();//Date and time
+  weatherCountryRect();//country
+  weatherTempRect();//temperature
+  weatherImageRect();//weather image
+  weatherFeelsLikeRect();//feels like
+  weatherDescriptionRect();//description
+  weatherWindRect();//wind speed and direction
+}//end weatherRect()
 //end weather subProgram
