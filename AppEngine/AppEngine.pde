@@ -1,4 +1,4 @@
-//Library
+//Libraries and Dependancies
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
