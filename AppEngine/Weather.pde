@@ -24,7 +24,7 @@ void drawWeatherONOFF() {
     drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);//Date and time
     drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryBatman, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);//country
     drawText( height, purpInk, CENTER, CENTER, Font, tempBatman+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);//temperature
-    imageURLBuilding(iconBatman);
+    imageBuildingURL(iconBatman);
     drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeBatman+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);//feels like
     drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionBatman+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);//description
     drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedBatman+textmpers+windDegreeBatman+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);//wind speed and direction
@@ -35,7 +35,7 @@ void drawWeatherONOFF() {
     drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);//Date and time
     drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryGuangzhou, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);//country
     drawText( height, purpInk, CENTER, CENTER, Font, tempGuangzhou+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);//temperature
-    imageURLBuilding(iconGuangzhou);
+    imageBuildingURL(iconGuangzhou);
     drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeGuangzhou+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);//feels like
     drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionGuangzhou+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);//description
     drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedGuangzhou+textmpers+windDegreeGuangzhou+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);//wind speed and direction
@@ -46,7 +46,7 @@ void drawWeatherONOFF() {
     drawText( height, purpInk, CENTER, CENTER, Font, currentAPICallTime, dateTimeWeatherX, dateTimeWeatherY, dateTimeWeatherWidth, dateTimeWeatherHeight);//Date and time
     drawText( height, purpInk, CENTER, CENTER, Font, textcomma+countryWashington, countryWeatherX, countryWeatherY, countryWeatherWidth, countryWeatherHeight);//country
     drawText( height, purpInk, CENTER, CENTER, Font, tempWashington+textCelsius, tempWeatherX, tempWeatherY, tempWeatherWidth, tempWeatherHeight);//temperature
-    imageURLBuilding(iconWashington);
+    imageBuildingURL(iconWashington);
     drawText( height, purpInk, CENTER, CENTER, Font, textFeelsLikeWeather+feelsLikeWashington+textCelsius, feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight);//feels like
     drawText( height, purpInk, CENTER, CENTER, Font, textSpace+descriptionWashington+textSpace, weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight);//description
     drawText( height, purpInk, CENTER, CENTER, Font, textWind+windSpeedWashington+textmpers+windDegreeWashington+textDegree, weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);//wind speed and direction
