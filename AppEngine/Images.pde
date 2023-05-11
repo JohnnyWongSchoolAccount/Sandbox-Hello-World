@@ -9,7 +9,6 @@ boolean imageCenter=false, imageBottomRight=false; //changes the orientation of 
 boolean tripleself = false;
 boolean weatherkids = false;
 //Files image
-//String fileNameKamodo = "41586_2015_Article_BF528452a_Figg_HTML.jpg";//Kamodo
 String fileNameTriple = "tripleself.jpg";//tripleself
 String fileNameWeather = "original-2421301-2.jpg";//weather kids
 int pictureWidth = 500;//Kamodo 703, tripleself 500
@@ -114,6 +113,6 @@ void setupImageONOFFWeather( int smallDimension, int largeDimension, float image
       if (weatherkids){ pictureXAdj1 = weatherkidsWidth; pictureYAdj1 = weatherkidsHeight;
       } else { pictureXAdj1 = imageBackgroundX; pictureYAdj1 = imageBackgroundY; }
     }
-  } //*/
+  }
 }//end setupImageONOFF() 
 //end Images subProgram
