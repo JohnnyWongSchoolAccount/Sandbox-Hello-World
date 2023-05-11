@@ -497,7 +497,7 @@ void quitRect(String textQuit) {
 void drawImagesWeather() {
   image( picture1, pictureXAdj1+(pictureWidthAdj1*2)+(pauseWidth*1.5), pictureYAdj1+(dateTimeWeatherHeight)+(pauseWidth*3), pictureWidthAdj1, pictureHeightAdj1 );
 }//end drawImagesWeather
-void drawImagesWeather() {
+void drawImagesPort() {
   //background image no empty
   //image( picture, imageBackgroundX, imageBackgroundY, imageBackgroundWidth, imageBackgroundHeight );
   //aspect ratio
