@@ -36,7 +36,7 @@ void buildingURL() {
   URLCurrentWashington = baseURL_Current+washingtonId+and+apiKey+and+mode+and+unitMetric;//Washington
   URLForcastWashington = baseURL_Forcast+washingtonId+and+apiKey+and+mode+and+unitMetric;//Washington
 }//end buildingURL
-void imageURLBuilding(String icon) {
+void imageBuildingURL(String icon) {
   String baseURL = "https://openweathermap.org";
   String forwardSlash = "/";
   String imgFolder = "img";
