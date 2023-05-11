@@ -21,7 +21,7 @@ void buildingURL() {
   String baseURL_Current = domain + baseURL_data + folderWeather;
   String baseURL_Forcast = domain + baseURL_data + folderForecast;
   //
-  String apiKey = "APPID=";//delete when public
+  String apiKey = "APPID=8b5471ce80e6d985c39c2f39759fa6cd";//delete when public
   String BatmanId = "id=321836";//Batman
   String guangzhouId = "id=1809858";//guangzhou
   String washingtonId = "id=5815135";//Washington
@@ -36,6 +36,19 @@ void buildingURL() {
   URLCurrentWashington = baseURL_Current+washingtonId+and+apiKey+and+mode+and+unitMetric;//Washington
   URLForcastWashington = baseURL_Forcast+washingtonId+and+apiKey+and+mode+and+unitMetric;//Washington
 }//end buildingURL
+void imageURLBuilding(String icon) {
+  String baseURL = "https://openweathermap.org";
+  String forwardSlash = "/";
+  String imgFolder = "img";
+  String weatherIconFolder = "wn";
+  String atSymbol = "@";
+  String size = "2x";
+  String fileExtension = ".png";
+  //
+  String imageURL = baseURL+forwardSlash+imgFolder+forwardSlash+weatherIconFolder+forwardSlash+icon+atSymbol+size+fileExtension;
+  PImage weatherImage = loadImage (imageURL);
+  image(weatherImage, WeatherX, WeatherY, WeatherWidth, WeatherHeight);
+} //end image URL Building
 void APIcall() {
   jsonCurrentBatman = loadJSONObject(URLCurrentBatman);//Batman
   jsonForcastBatman = loadJSONObject(URLForcastBatman);//Batman
