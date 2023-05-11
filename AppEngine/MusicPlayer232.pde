@@ -1,4 +1,3 @@
-/*this code is a work in progress */
 //Gobal variables
 Minim minim; //creates an object to access all functions
 AudioPlayer[] songs = new AudioPlayer[3]; //creates "Play List" variable holding extensions WAV,AIFF,AU,SND,and MP3
@@ -36,10 +35,10 @@ void keyPressedMusic() { if (ONOFF_MUSICPLAYER) { keyPressedMusicONOFF(); } }//e
 void concatenationOfMusicFiles() {
   pathway = "data/";
   beatYourCompetition = "Beat_Your_Competition.mp3"; //song
-  groove = "Music_groove.mp3"; //song
+  groove = "FreeWare Music_MusicDownload_groove.mp3"; //song
   eureka = "Eureka.mp3";//song
-  carDoor = "AppEngine_data_FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
-  woodDoor = "Sound Effects_Wood_Door_Open_and_Close_Series.mp3"; //SFX
+  carDoor = "FreeWare Music_SoundEffect_Car_Door_Closing.mp3"; //SFX
+  woodDoor = "FreeWare Music_SoundEffect_Wood_Door_Open_and_Close_Series.mp3"; //SFX
 }//end concatenationOfMusicFiles()
 //all the mouse pressed/Hoverover features for music player
 void drawMusicONOFF() {
