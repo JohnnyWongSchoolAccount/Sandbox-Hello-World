@@ -1,4 +1,7 @@
-  # Buttons and Their Functions - Music Player
+# INFO
+- The AppEngine directory has all the finalized or most recent versions of code seen any of the prototyping programs
+- pauseButton, imagesPrototyping, textPrototyping and WeatherAppEngine2 are directories for prototype programs now implimented in AppEngine
+# Buttons and Their Functions - Music Player
 - Play-Pause:
   - keybinds = P, p
   - The Play-Pause button will play the track when paused
