@@ -2,7 +2,7 @@
 - The AppEngine directory has all the finalized or most recent versions of code seen any of the prototyping programs
 - pauseButton, imagesPrototyping, textPrototyping and WeatherAppEngine2 are directories for prototype programs now implimented in AppEngine
 # Buttons and Their Functions
-Menu
+//Menu//
 - Night Mode:
   - keybinds = Q, q
   - changes the color pallet for less eye strain
