@@ -1,7 +1,24 @@
 # INFO
 - The AppEngine directory has all the finalized or most recent versions of code seen any of the prototyping programs
 - pauseButton, imagesPrototyping, textPrototyping and WeatherAppEngine2 are directories for prototype programs now implimented in AppEngine
-# Buttons and Their Functions - Music Player
+# Buttons and Their Functions
+//Menu//
+- Night Mode:
+  - keybinds = Q, q
+  - changes the color pallet for less eye strain
+  - if pressed again the color pallet will revert back to day mode colors
+- Music Player
+  - keybinds = N, n
+  - the button shows the user the music player tab
+  - if pressed again the button will switch the user back to the menu
+- Weather
+  - keybinds = B, b
+  - the button shows the user to the weather tab
+  - if pressed again the button will switch the user back to the menu
+- Quit / exit button
+  - keybinds = Z, z
+  - The button will exit the program after a sound effect plays
+//Music Player//
 - Play-Pause:
   - keybinds = P, p
   - The Play-Pause button will play the track when paused
