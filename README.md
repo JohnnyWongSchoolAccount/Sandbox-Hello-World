@@ -19,7 +19,6 @@
   - keybinds = Z, z
   - The button will exit the program after a sound effect plays
 //Music Player//
-
 - Play-Pause:
   - keybinds = P, p
   - The Play-Pause button will play the track when paused
