@@ -19,6 +19,7 @@ void mousePressedImage() {}//end mousePressedImage()
 //
 void setupImageONOFF( String fileName, int pictureWidth, int pictureHeight, int smallDimension, int largeDimension, float imageHeigthRatio, float imageWidthRatio ) {
   tint(255, 128); //Gray Scale, day use: used 1/2 tint for white (128/255=1/2)
+  if (nit) {tint(64, 64, 40); } //RGB: Night Mode
   picture = loadImage(pathway+fileName);
   picture1 = loadImage(pathway+fileName);
   if ( pictureWidth >= pictureHeight ) { //TRUE for Landscape or Square
