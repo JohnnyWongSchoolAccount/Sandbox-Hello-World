@@ -309,11 +309,11 @@ void drawTextMusic(int minuites, int seconds, String divider, String texto) {
   //% means divide by both 1000 and 60 when 60 is needed
   seconds = (songs[currentSong].position()/1000) % 60;
   minuites = (songs[currentSong].position()/(1000*60)) % 60;
-  fill(background); stroke(background);
-  rect(pauseWidth, pauseHeight/3, appWidth/6, pauseHeight);
+  fill(black); stroke(black);
+  nightModeButton(";)", ":)");
   //nf adds a zero to the left of the int
-  drawText( height, purpInk, CENTER, CENTER, Font, texto+minuites+divider+nf(seconds,2), pauseWidth, pauseHeight/7, appWidth/6, pauseHeight);
-}//end drawText()
+  drawText( height, purpInk, CENTER, CENTER, Font, texto+minuites+divider+nf(seconds,2),nightX1, nightY1, nightWidth, nightHeight);
+}//end drawText()  pauseWidth, pauseHeight/7, appWidth/6, pauseHeight
 //DEBUGGING
 void debugging() { //debugging in consol 
   println( "Current Song Position:", songs[currentSong].position() );//songs position
