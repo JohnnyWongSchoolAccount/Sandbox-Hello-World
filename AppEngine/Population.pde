@@ -495,7 +495,7 @@ void quitRect(String textQuit) {
 }//end quitRect
 //IMAGES 
 void drawImagesWeather() {
-  image( picture1, pictureXAdj1+(pictureWidthAdj1*2)+(pauseWidth*1.5), pictureYAdj1+(dateTimeWeatherHeight)+(pauseWidth*3), pictureWidthAdj1, pictureHeightAdj1 );
+  image( picture1, pictureXAdj+(pictureWidthAdj*2)+(pauseWidth*1.5), pictureYAdj+(dateTimeWeatherHeight)+(pauseWidth*3), pictureWidthAdj, pictureHeightAdj );
 }//end drawImagesWeather
 void drawImagesPort() {
   //background image no empty
