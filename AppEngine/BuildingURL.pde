@@ -21,7 +21,7 @@ void buildingURL() {
   String baseURL_Current = domain + baseURL_data + folderWeather;
   String baseURL_Forcast = domain + baseURL_data + folderForecast;
   //
-  String apiKey = "APPID=8b5471ce80e6d985c39c2f39759fa6cd";//delete when public
+  String apiKey = "APPID=";//delete when public
   String BatmanId = "id=321836";//Batman
   String guangzhouId = "id=1809858";//guangzhou
   String washingtonId = "id=5815135";//Washington
