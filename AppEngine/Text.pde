@@ -2,6 +2,7 @@
 PFont Font;
 color ink, purpInk=purp, resetInk=#FFFFFF; //Not Nightmode Friendly
 int alignHorizontal, alignVertical; //Display or CANVAS Values
+String  textcomma = ",", textSpace = "  ", textPeriod = ".";
 String text = "SingleLoop";//button text
 //
 void setupText() {
