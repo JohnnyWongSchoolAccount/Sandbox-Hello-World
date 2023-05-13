@@ -3,8 +3,6 @@ boolean ONOFF_WEATHER = false;
 boolean Batman = false;
 boolean Guangzhou = false;
 boolean Washington = true;
-String textFeelsLikeWeather = "Feels Like: ", textWind = "Wind: ";
-String textCelsius = " °C", textcomma = ",", textSpace = "  ", textPeriod = ".", textDegree = "°", textmpers = "m/s";
 //
 void setupWeather() {if (ONOFF_WEATHER) {setupWeatherONOFF();} }//end setupWeather()
 void drawWeather() { if (ONOFF_WEATHER) {drawWeatherONOFF();} }//end drawWeather()
@@ -13,6 +11,8 @@ void mousePressedWeather() { if (ONOFF_WEATHER) {mousePressedWeatherONOFF();} }/
 //
 void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
+  String textFeelsLikeWeather = "Feels Like: ", textWind = "Wind: ";
+  String textCelsius = " °C", textDegree = "°", textmpers = "m/s";
   startPage();
   if ( mouseX>=changeWeatherX && mouseX<=changeWeatherX+changeWeatherWidth && mouseY>=changeWeatherY && mouseY<=changeWeatherY+changeWeatherHeight )
   {fill(hoverOver);} else {fill(black);}
