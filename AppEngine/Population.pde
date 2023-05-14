@@ -293,7 +293,7 @@ void population() {
   changeWeatherWidth = (locationWeatherWidth/2)+(pauseWidth/2);
   changeWeatherHeight = locationWeatherHeight;
   //weather date time
-  dateTimeWeatherX = (appWidth-dateTimeWeatherWidth)-pauseWidth;
+  dateTimeWeatherX = (appWidth)-pauseWidth-((locationWeatherWidth)*3);
   dateTimeWeatherY = countryWeatherY;
   dateTimeWeatherWidth = (locationWeatherWidth)*3;
   dateTimeWeatherHeight = locationWeatherHeight;
