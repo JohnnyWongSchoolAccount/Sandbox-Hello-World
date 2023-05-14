@@ -83,17 +83,13 @@ void startPage() {
   population();
   UImousePressed();
 }//end startPage
-void UIpageText(String textPort, String textPortAlt, String textPortWeather) {
+void UIpageText(String textMusic, String textMenu, String textWeather) {
   if (ONOFF_MUSICPLAYER) {
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textPortAlt+textSpace+textSpace, musicX1, musicY1, musicWidth, musicHeight);
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textPortWeather+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
-  } else if (ONOFF_WEATHER) {
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textPort+textSpace, musicX1, musicY1, musicWidth, musicHeight);
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textPortAlt+textSpace+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
-  } else {
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textPort+textSpace, musicX1, musicY1, musicWidth, musicHeight);
-    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textPortWeather+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
-  }
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textMenu+textSpace+textSpace, musicX1, musicY1, musicWidth, musicHeight);
+  } else {drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textMusic+textSpace, musicX1, musicY1, musicWidth, musicHeight);}
+  if (ONOFF_WEATHER) {
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textMenu+textSpace+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
+  } else {drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textWeather+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);}
 }//end UIpageText
 void musicPlayer() {
   if (ONOFF_MUSICPLAYER == false){
