@@ -43,7 +43,7 @@ void concatenationOfMusicFiles() {
 //all the mouse pressed/Hoverover features for music player
 void drawMusicONOFF() {
   //MUSIC BUTTON / MOUSE PRESSED AND HOVER OVER */
-  startPage();
+  startPage((int(pauseWidth/3.5)));
   autoPlayMusic();
   drawhitboxes();
   drawTextMusic(0,0,":", "Time - ");//text subProgram
