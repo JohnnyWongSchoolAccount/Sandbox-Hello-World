@@ -65,6 +65,9 @@ float feelsWeatherX, feelsWeatherY, feelsWeatherWidth, feelsWeatherHeight;//feel
 float weatherDescriptionX, weatherDescriptionY, weatherDescriptionWidth, weatherDescriptionHeight;//weather Description
 //weather Wind
 float weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight;//weather Wind
+//tic tac toe board
+float TTTX1, TTTY1, TTTWidth, TTTHeight;
+float TTTX11, TTTX12, TTTY11, TTTY12;
 //quit button
 float quitX, quitY, quitWidth, quitHeight;
 //colors
@@ -329,6 +332,15 @@ void population() {
   weatherWindY = (feelsWeatherY+feelsWeatherHeight)+(pauseWidth/2);
   weatherWindWidth = weatherDescriptionWidth;
   weatherWindHeight = weatherDescriptionHeight;
+  //tic tac toe board
+  TTTX1 = (appWidth/2)-(pauseWidth*2);
+  TTTY1 = (appHeight/2)-(pauseWidth*2)-(pauseWidth);
+  TTTWidth = ((pauseWidth*2)*2);
+  TTTHeight = TTTWidth;
+  TTTX11 = (TTTX1)+TTTWidth+(pauseWidth/2);
+  TTTX12 = (TTTX1)-TTTWidth-(pauseWidth/2);
+  TTTY11 = (TTTY1)+TTTHeight+(pauseWidth/2);
+  TTTY12 = (TTTY1)-TTTHeight-(pauseWidth/2);
   //quit button
   quitX = appWidth-pauseHeight;
   quitY = 0;
@@ -499,6 +511,15 @@ void weatherWindRect() {
   rect( weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight);
   fill(resetcolorDayMode);
 }//end weatherWindRect
+void TTTMiddle() {rect(TTTX1, TTTY1, TTTWidth, TTTHeight);}//middle
+void TTTMiddleTop() {rect(TTTX1, TTTY11, TTTWidth, TTTWidth);}//middle top
+void TTTMiddleBottom() {rect(TTTX1, TTTY12, TTTWidth, TTTWidth);}//middle bottom
+void TTTLeft() {rect(TTTX11, TTTY1, TTTWidth, TTTWidth);}//left side
+void TTTLeftTopCorner() {rect(TTTX11, TTTY11, TTTWidth, TTTWidth);}//left top corner
+void TTTLeftBottomCorner() {rect(TTTX11, TTTY12, TTTWidth, TTTWidth);}//left bottom corner
+void TTTRight() {rect(TTTX12, TTTY1, TTTWidth, TTTWidth);}//right side
+void TTTRightTopCorner() {rect(TTTX12, TTTY11, TTTWidth, TTTWidth);}//right top corner
+void TTTRightBottomCorner() {rect(TTTX12, TTTY12, TTTWidth, TTTWidth);}//right bottom corner
 void quitRect(String textQuit) {
   rect(quitX, quitY, quitWidth, quitHeight);
   drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textSpace+textQuit+textSpace+textSpace+textSpace, quitX, quitY, quitWidth, quitHeight);
