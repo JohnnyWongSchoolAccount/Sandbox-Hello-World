@@ -13,7 +13,7 @@ void setupWeatherONOFF() {}//end setupWeatherONOFF()
 void drawWeatherONOFF() {
   String textFeelsLikeWeather = "Feels Like: ", textWind = "Wind: ";
   String textCelsius = " °C", textDegree = "°", textmpers = "m/s";
-  startPage();
+  startPage((int(pauseWidth/3.5)));
   if ( mouseX>=changeWeatherX && mouseX<=changeWeatherX+changeWeatherWidth && mouseY>=changeWeatherY && mouseY<=changeWeatherY+changeWeatherHeight )
   {fill(hoverOver);} else {fill(black);}
   weatherChangeRect("Location");
