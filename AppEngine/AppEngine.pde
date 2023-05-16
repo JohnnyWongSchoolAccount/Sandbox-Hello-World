@@ -8,7 +8,7 @@ import ddf.minim.ugens.*;
 //Global Variables
 //
 void setup() {
-  size( 700 , 400 );//width and height
+  size( 700, 400 );//width and height
   //fullScreen();//display width and height
   buildingURL();//BuildingURL subProgram
   APIcall();//BuildingURL subProgram
@@ -20,6 +20,7 @@ void setup() {
 void draw() { 
   drawWeather();//weather subProgram
   drawMusic();//MusicPlayer232 subProgram
+  drawTicTacToe();//TicTacToe subProgram
   drawPort();//Port subProgram
   drawImage();//Images subProgram
 }//end draw()
