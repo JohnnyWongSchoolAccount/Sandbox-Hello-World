@@ -5,7 +5,7 @@ void setupPort() {}//end setup
 void drawPort() {
   if (port) { drawPortONOFF(); }
   timeline(int(pauseWidth), 0, 0, 0 );
-  UIpageText("Music Player", "Menu", "Weather");
+  UIpageText("Music Player", "Menu", "Weather", "TicTacToe");
   if ( mouseX>=quitX && mouseX<=quitX+quitWidth && mouseY>=quitY && mouseY<=quitY+quitHeight )
   {fill(#00FF4A); stroke(#00FF4A);} else {fill(#FF0000); stroke(#FF0000);}
   quitRect("Quit");
@@ -17,6 +17,8 @@ void keyPressedPort() {
   if ( key == 'N' || key == 'n' ) { musicPlayer(); }//end musicPlayer Button keybind  
   //weather
   if ( key == 'b' || key == 'B' ) { weather(); }//end weather Button keybind
+  //ticTacToe
+  if ( key == 'v' || key == 'V' ) { ticTacToe(); }//end ticTacToe button keybind
   //quit button
   if ( key == 'z' || key == 'Z' ) { quitFunction(1750, 250); }//end quit button keybind
 }//end keyPressedPort()
@@ -24,14 +26,16 @@ void mousePressedPort() {
   if ( mouseX>=musicX1 && mouseX<=musicX1+musicWidth && mouseY>=musicY1 && mouseY<=musicY1+musicHeight )
   musicPlayer();
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
-  { weather(); }
+  weather();
+  if ( mouseX>=ticTacToeX1 && mouseX<=ticTacToeX1+ticTacToeWidth && mouseY>=ticTacToeY1 && mouseY<=ticTacToeY1+ticTacToeHeight )
+  ticTacToe(); 
   if ( mouseX>=quitX && mouseX<=quitX+quitWidth && mouseY>=quitY && mouseY<=quitY+quitHeight )
   { quitFunction(1750, 250); }
   if (port) {mousePressedPortONOFF();}
 }//end mousePressedPort()
 //
 void drawPortONOFF() {
-  startPage();
+  startPage((int(pauseWidth/3.5)));
   if ( mouseX>=musicX1 && mouseX<=nightX1+nightWidth && mouseY>=nightY1 && mouseY<=nightY1+nightHeight )
   {fill(hoverOver);} else {fill(black);}
   nightModeButton(" Night Mode ", " Day Mode ");//Population subProgram
@@ -74,29 +78,37 @@ void UImousePressed() {
   if ( mouseX>=weatherAppX1 && mouseX<=weatherAppX1+weatherAppWidth && mouseY>=weatherAppY1 && mouseY<=weatherAppY1+weatherAppHeight )
   {fill(hoverOver);} else {fill(black);}
   weatherButton();
-}//end UImousePressed
-void startPage() {
+  if ( mouseX>=ticTacToeX1 && mouseX<=ticTacToeX1+ticTacToeWidth && mouseY>=ticTacToeY1 && mouseY<=ticTacToeY1+ticTacToeHeight )
+  {fill(hoverOver);} else {fill(black);}
+  ticTacToeRect();
+}//end UImousePressed ticTacToeX1, ticTacToeY1, ticTacToeWidth, ticTacToeHeight
+void startPage(int srokeWeightNumber) {
   background(background);
-  stroke(purp); strokeWeight(4);
+  stroke(purp); strokeWeight(srokeWeightNumber);
   strokeJoin( ROUND ); //the outlines of the shapes
   autoPlayMusic();
   population();
   UImousePressed();
 }//end startPage
-void UIpageText(String textMusic, String textMenu, String textWeather) {
+void UIpageText(String textMusic, String textMenu, String textWeather, String textTicTacToe) {
   if (ONOFF_MUSICPLAYER) {
     drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textMenu+textSpace+textSpace, musicX1, musicY1, musicWidth, musicHeight);
   } else {drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textMusic+textSpace, musicX1, musicY1, musicWidth, musicHeight);}
   if (ONOFF_WEATHER) {
     drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textMenu+textSpace+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);
   } else {drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textWeather+textSpace, weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight);}
+  if (ONOFF_TICTACTOE) {
+    drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textMenu+textSpace+textSpace, ticTacToeX1, ticTacToeY1, ticTacToeWidth, ticTacToeHeight);
+  } else {drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textTicTacToe+textSpace, ticTacToeX1, ticTacToeY1, ticTacToeWidth, ticTacToeHeight);}
 }//end UIpageText
 void musicPlayer() {
   if (ONOFF_MUSICPLAYER == false){
+    ONOFF_TICTACTOE = false;
     ONOFF_WEATHER = false;
     port = false;
     ONOFF_MUSICPLAYER = true;
   } else {
+    ONOFF_TICTACTOE = false;
     ONOFF_WEATHER = false; 
     ONOFF_MUSICPLAYER = false; 
     port = true;
@@ -104,14 +116,29 @@ void musicPlayer() {
 }//end musicPlayerPort */
 void weather() {
   if (ONOFF_WEATHER == false){
+    ONOFF_TICTACTOE = false;
     ONOFF_MUSICPLAYER = false;
+    unwrapToVariables();//unwrapToVaraiables subProgram
     ONOFF_WEATHER = true;
     port = false;
-    unwrapToVariables();//UnwrapToVariables subProgram
   } else {
+    ONOFF_TICTACTOE = false;
     ONOFF_MUSICPLAYER = false;
     ONOFF_WEATHER = false; 
     port = true;
   }
 }//end weather
-//end AppEngine Program
+void ticTacToe() {
+  if (ONOFF_TICTACTOE == false){
+    ONOFF_TICTACTOE = true;
+    ONOFF_MUSICPLAYER = false;
+    ONOFF_WEATHER = false;
+    port = false;
+  } else {
+    ONOFF_TICTACTOE = false;
+    ONOFF_MUSICPLAYER = false;
+    ONOFF_WEATHER = false; 
+    port = true;
+  }
+}//end weather
+//end port subProgram
