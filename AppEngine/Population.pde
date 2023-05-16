@@ -45,6 +45,8 @@ float musicX1, musicY1, musicWidth, musicHeight; //music button rect
 float nightX1, nightY1, nightWidth, nightHeight; //night button rect
 //weather app
 float weatherAppX1, weatherAppY1, weatherAppWidth, weatherAppHeight; //weather app rect
+//ticTacToe app rect
+float ticTacToeX1, ticTacToeY1, ticTacToeWidth, ticTacToeHeight; //music button rect
 //weather location
 float locationWeatherX, locationWeatherY, locationWeatherWidth, locationWeatherHeight;//location
 //weather country
@@ -273,10 +275,15 @@ void population() {
   nightWidth = appWidth/6;
   nightHeight = pauseHeight;
   //weather app
-  weatherAppX1 = musicWidth + (pauseWidth*2);
+  weatherAppX1 = (musicX1+musicWidth) + (pauseWidth);
   weatherAppY1 = pauseHeight*6.7;
   weatherAppWidth = appWidth/6;
   weatherAppHeight = pauseHeight;
+  //ticTacToe Rect
+  ticTacToeX1 = (weatherAppX1+weatherAppWidth) + (pauseWidth);
+  ticTacToeY1 = weatherAppY1;
+  ticTacToeWidth = weatherAppWidth;
+  ticTacToeHeight = weatherAppHeight;
   //weather Location
   locationWeatherX = pauseWidth;
   locationWeatherY = pauseWidth + (pauseWidth);
@@ -303,7 +310,7 @@ void population() {
   tempWeatherWidth = (startingX - 2*(startingX/4))/2;
   tempWeatherHeight = startingY - 3*(startingY/5);
   //weather image
-  WeatherX = 6*(tempWeatherX/4) + (startingY - 3*(startingY/5)) + (pauseWidth/2);
+  WeatherX = (tempWeatherX+tempWeatherWidth)+(pauseWidth/2);
   WeatherY = tempWeatherY;
   WeatherWidth = tempWeatherWidth;
   WeatherHeight = startingY - 3*(startingY/5);
@@ -431,7 +438,10 @@ void drawAutoPlayTButton(String textAutoPlay) {
 }//end drawAutoPlayTButton()
 void music() {
   rect(musicX1, musicY1, musicWidth, musicHeight);
-}//end music()
+}//end music
+void ticTacToeRect() {
+  rect(ticTacToeX1, ticTacToeY1, ticTacToeWidth, ticTacToeHeight);
+}//end ticTacToeRect
 void nightModeButton(String textNM, String textDM) {
   rect(nightX1, nightY1, nightWidth, nightHeight);
   if (nit == false) {
