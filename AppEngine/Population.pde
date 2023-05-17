@@ -34,7 +34,7 @@ float looptiX1, looptiY1, looptiX2, looptiY2, looptiX3, looptiY3; //loop button 
 //suffle button
 float shuffleX1, shuffleY1, shuffleX2, shuffleY2, shuffleX3, shuffleY3; //shuffle button triangle top
 float shuffleX12, shuffleY12, shuffleX22, shuffleY22, shuffleX32, shuffleY32;//shuffle button triangle bottom
-//auto- button
+//auto-play button
 float autoX1, autoY1, autoWidth, autoHeight; //auto  button rect
 float autoX2, autoY2, autoWidth2, autoHeight2; //auto  button 2 rect
 float autotX1, autotY1, autotX2, autotY2, autotX3, autotY3; //auto  button triangle
@@ -68,6 +68,14 @@ float weatherWindX, weatherWindY, weatherWindWidth, weatherWindHeight;//weather 
 //tic tac toe board
 float TTTX1, TTTY1, TTTWidth, TTTHeight;
 float TTTX11, TTTX12, TTTY11, TTTY12;
+//tic tac toe Mode change
+float TTTModeX, TTTModeY, TTTModeWidth, TTTModeHeight;
+//tic tac toe reset
+float TTTResetX, TTTResetY, TTTResetWidth, TTTResetHeight;
+//tic tac toe X
+float TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight;
+//tic tac toe O
+float TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight;
 //quit button
 float quitX, quitY, quitWidth, quitHeight;
 //colors
@@ -85,7 +93,6 @@ float weatherkidsX, weatherkidsY, weatherkidsWidth, weatherkidsHeight;
 void population() {
   appWidth = width; //display width = x in the size line of code
   appHeight = height; //display height = y in the size line of code
-  //
   //population visual data
   float startingX = appWidth*1.0/2.0;
   float startingY = appHeight*1.0/2.0;
@@ -107,7 +114,6 @@ void population() {
   playY2 = startingY;
   playX3 = playX1;
   playY3 = startingY - (startingY/8.0);//width
-  //end pause-play button
   //rewind button - triangle
   rewindX1 = startingX - (pauseX1/5.0); 
   rewindY1 = startingY + (startingY/11.0);//width
@@ -122,7 +128,6 @@ void population() {
   rewindY22 = startingY;
   rewindX32 = rewindX12;
   rewindY32 = startingY - (startingY/11.0);//width
-  //end forward/rewind button
   //forward button - triangle
   forwardX1 = startingX + (pauseX1/5.0); 
   forwardY1 = startingY + (startingY/11.0);//width
@@ -184,13 +189,11 @@ void population() {
   mutetY22 = pauseHeight;
   mutetX32 = mutetX12;
   mutetY32 = startingY;//width
-  //end mute button
   //stop button stuff ;) underneath
   stopX = startingX - ( pauseX1 );//position on the X-axis   
   stopY = pauseY1; //position on the Y-axis
   stopWidth = pauseHeight; //width of the stop button
   stopHeight = pauseHeight; //height of the stop button
-  //end stop button stuff
   //loop button - rectangle
   loopX1 = startingX + (pauseX1/1.2);//position on the X-axis  
   loopY1 = pauseY1; //position on the Y-axis
@@ -208,7 +211,6 @@ void population() {
   looptY2 = startingY;
   looptX3 = startingX + (startingX/1.2);
   looptY3 = startingY;
-  //end loop button
   //loop-Infinite button
   loopiX1 = startingX + (startingX/1.7);//position on the X-axis  
   loopiY1 = pauseY1; //position on the Y-axis
@@ -226,7 +228,6 @@ void population() {
   looptiY2 = startingY;
   looptiX3 = startingX + (startingX/1.8);
   looptiY3 = startingY;
-  //end loop infinite button
   //shuffle button - triangle bottom
   shuffleX1 = startingX;
   shuffleY1 = startingY + (startingY/1.9);
@@ -241,8 +242,7 @@ void population() {
   shuffleY22 = startingY + (startingY/2.5);
   shuffleX32 = startingX - (startingY/8);
   shuffleY32 = startingY + (startingY/2.5);
-  //end shuffle button
-  //auto- button
+  //auto-play button
   autoX1 = startingX + (pauseX1/1.2);//position on the X-axis  
   autoY1 = startingY + (startingY/4); //position on the Y-axis
   autoWidth = pauseHeight; //width of the loop button
@@ -266,7 +266,6 @@ void population() {
   autotY22 = startingY + (startingY/2.5);
   autotX32 = startingX + (startingX/1.1);
   autotY32 = startingY + (startingY/2);
-  //end auto-
   //music
   musicX1 = pauseWidth;
   musicY1 = pauseHeight*6.7;
@@ -333,14 +332,34 @@ void population() {
   weatherWindWidth = weatherDescriptionWidth;
   weatherWindHeight = weatherDescriptionHeight;
   //tic tac toe board
-  TTTX1 = (appWidth/2)-(pauseWidth*2);
-  TTTY1 = (appHeight/2)-(pauseWidth*2)-(pauseWidth);
+  TTTX1 = (appWidth/2)-(pauseWidth*2);//coordinates middle
+  TTTY1 = (appHeight/2)-(pauseWidth*2)-(pauseWidth);//coordinates middle
   TTTWidth = ((pauseWidth*2)*2);
   TTTHeight = TTTWidth;
-  TTTX11 = (TTTX1)+TTTWidth+(pauseWidth/2);
-  TTTX12 = (TTTX1)-TTTWidth-(pauseWidth/2);
-  TTTY11 = (TTTY1)+TTTHeight+(pauseWidth/2);
-  TTTY12 = (TTTY1)-TTTHeight-(pauseWidth/2);
+  TTTX11 = (TTTX1)+TTTWidth+(pauseWidth/2);//coordinates bottom
+  TTTX12 = (TTTX1)-TTTWidth-(pauseWidth/2);//coordinates top
+  TTTY11 = (TTTY1)+TTTHeight+(pauseWidth/2);//coordinates right
+  TTTY12 = (TTTY1)-TTTHeight-(pauseWidth/2);//coordinates left
+  //tic tac toe mode
+  TTTModeX = (appWidth/2)-(TTTY11)+(pauseWidth/2);
+  TTTModeY = (TTTY12+TTTHeight)-(TTTHeight);
+  TTTModeWidth = TTTWidth*2;
+  TTTModeHeight = (TTTWidth/6)+(TTTWidth/2);
+  //tic tac toe reset
+  TTTResetX = (appWidth/2)-(TTTY11)+(pauseWidth/2);
+  TTTResetY = (TTTModeY+TTTModeHeight)+(pauseWidth/2);
+  TTTResetWidth = TTTWidth*2;
+  TTTResetHeight = TTTWidth/2;
+  //tic tac toe turn X
+  TTTturnXX = (appWidth/2)-(TTTY11)+(pauseWidth/2);
+  TTTturnXY = (TTTResetY+TTTResetHeight)+(pauseWidth/2);
+  TTTturnXWidth = TTTModeWidth;
+  TTTturnXHeight = TTTModeHeight;
+  //tic tac toe turn O
+  TTTturnOX = (appWidth/2)-(TTTY11)+(pauseWidth/2);
+  TTTturnOY = (TTTturnXY+TTTturnXHeight)+(pauseWidth/2);
+  TTTturnOWidth = TTTModeWidth;
+  TTTturnOHeight = TTTModeHeight;
   //quit button
   quitX = appWidth-pauseHeight;
   quitY = 0;
@@ -454,6 +473,26 @@ void music() {
 void ticTacToeRect() {
   rect(ticTacToeX1, ticTacToeY1, ticTacToeWidth, ticTacToeHeight);
 }//end ticTacToeRect
+void ticTacToeResetRect(String textReset) {
+  rect(TTTResetX, TTTResetY, TTTResetWidth, TTTResetHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textReset+textSpace+textSpace, TTTResetX, TTTResetY, TTTResetWidth, TTTResetHeight);
+}//end ticTacToeResetRect
+void ticTacToeDifficultyChangeRect(String textMode) {
+  rect(TTTModeX, TTTModeY, TTTModeWidth, TTTModeHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textSpace+textMode+textSpace+textSpace+textSpace, TTTModeX, TTTModeY, TTTModeWidth, TTTModeHeight);
+}//end ticTacToeDifficultyChangeRect
+void ticTacToeTurnX(String textX, String textNot) {
+  fill(black); stroke(black);
+  rect(TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
+  if (turnXO) drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
+  else drawText( height, purpInk, CENTER, CENTER, Font, textNot, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
+}//end ticTacToeTurnX
+void ticTacToeTurnO(String textO, String textNot) {
+  fill(black); stroke(black);
+  rect(TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);
+  if (turnXO == false) {drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);}
+  else {drawText( height, purpInk, CENTER, CENTER, Font, textNot, TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);}
+}//end ticTacToeTurnO
 void nightModeButton(String textNM, String textDM) {
   rect(nightX1, nightY1, nightWidth, nightHeight);
   if (nit == false) {
