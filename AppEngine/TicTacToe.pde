@@ -6,6 +6,7 @@ float stateLeft = 0, stateLeftTop = 0, stateLeftBottom = 0;
 float stateRight = 0, stateRightTop = 0, stateRightBottom = 0;
 //{turnXO = false = O} {turnXO = true = X}
 boolean turnXO = true;//"X"
+boolean dropDownTicTacToeModeMenu = false;
 //
 void setupTicTacToe() {}//end setupTicTacToe
 void drawTicTacToe() { if (ONOFF_TICTACTOE) drawTicTacToeONOFF(); }//end drawTicTacToe
@@ -14,15 +15,16 @@ void keyPressedTicTacToe() {}//end keyPressedTicTacToe
 //
 void drawTicTacToeONOFF() {
   startPage(int(pauseWidth/3.5));
-  ticTacToeTurnX("Its Xs turn", "Nope");
-  ticTacToeTurnO("Its Os turn", "Nope");
+  TTTDrawMode();
+  ticTacToeTurnX("Its Xs turn~", "      ;)      ");
+  ticTacToeTurnO("Its Os turn~", "      :)      ");
   stroke(purp);
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   { fill(hoverOver); } else { fill(black); }
   ticTacToeResetRect("Reset Board");
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
   { fill(hoverOver); } else { fill(black); }//TTTDiffX, TTTDiffY, TTTDiffWidth, TTTDiffHeight
-  ticTacToeDifficultyChangeRect("Mode");
+  ticTacToeModeChangeRect("Mode");
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
   TTTMiddle(" X ", " O ");
@@ -56,6 +58,8 @@ void mousePressedTicTacToeONOFF() {
   { if (turnXO) {turnX();} else {turnO();} }
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   TTTReset();
+  if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
+  if (dropDownTicTacToeModeMenu) {dropDownTicTacToeModeMenu = false;} else {dropDownTicTacToeModeMenu = true;}
 }//end mousePressedTicTacToeONOFF
 void turnX() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
@@ -109,4 +113,21 @@ void TTTReset() {
   stateRightTop = 0;
   stateRightBottom = 0;
 }//end TTTReset()
+void TTTDrawMode() {
+  if (dropDownTicTacToeModeMenu) {
+    if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
+    { fill(hoverOver); } else { fill(black); }
+    ticTacToePlayWidthFriendsRect("Play With Friends");
+    if ( mouseX>=TTTEasyX && mouseX<=TTTEasyX+TTTEasyWidth && mouseY>=TTTEasyY && mouseY<=TTTEasyY+TTTEasyHeight )
+    { fill(hoverOver); } else { fill(black); }
+    ticTacToeEasyAlgorithmRect("Easy Algorithm");
+    if ( mouseX>=TTTMediumX && mouseX<=TTTMediumX+TTTMediumWidth && mouseY>=TTTMediumY && mouseY<=TTTMediumY+TTTMediumHeight )
+    { fill(hoverOver); } else { fill(black); }
+    ticTacToeMediumAlgorithmRect("Medium Algorithm");
+    if ( mouseX>=TTTImpossibleX && mouseX<=TTTImpossibleX+TTTImposibleWidth && mouseY>=TTTImpossibleY && mouseY<=TTTImpossibleY+TTTimpossibleHeight )
+    { fill(hoverOver); } else { fill(black); }
+    ticTacToeImpossibleAlgorithmRect("Impossible Algorithm");
+  }
+}//end TTTDrawMode
+void TTTMousePressedMode() {}//end TTTMousePressedMode
 //end TicTacToe subProgram
