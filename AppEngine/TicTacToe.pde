@@ -7,6 +7,10 @@ float stateRight = 0, stateRightTop = 0, stateRightBottom = 0;
 //{turnXO = false = O} {turnXO = true = X}
 boolean turnXO = true;//"X"
 boolean dropDownTicTacToeModeMenu = false;
+boolean playWithFriends = true;
+boolean easyAlgorithm = false;
+boolean mediumAlgorithm = false;
+boolean impossibleAlgorithm = false;
 //
 void setupTicTacToe() {}//end setupTicTacToe
 void drawTicTacToe() { if (ONOFF_TICTACTOE) drawTicTacToeONOFF(); }//end drawTicTacToe
@@ -23,19 +27,19 @@ void drawTicTacToeONOFF() {
   { fill(hoverOver); } else { fill(black); }
   ticTacToeResetRect("Reset Board");
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
-  { fill(hoverOver); } else { fill(black); }//TTTDiffX, TTTDiffY, TTTDiffWidth, TTTDiffHeight
+  { fill(hoverOver); } else if (dropDownTicTacToeModeMenu) {fill(toggleOn);} else { fill(black); }//TTTDiffX, TTTDiffY, TTTDiffWidth, TTTDiffHeight
   ticTacToeModeChangeRect("Mode");
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
   TTTMiddle(" X ", " O ");
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black); }
+  { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
   TTTMiddleTop(" X ", " O ");
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black); }
+  { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
   TTTMiddleBottom(" X ", " O ");
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black);}
+  { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black);}
   TTTLeft(" X ", " O ");
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
   { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black);}
@@ -60,6 +64,7 @@ void mousePressedTicTacToeONOFF() {
   TTTReset();
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
   if (dropDownTicTacToeModeMenu) {dropDownTicTacToeModeMenu = false;} else {dropDownTicTacToeModeMenu = true;}
+  if (dropDownTicTacToeModeMenu) TTTMousePressedMode();
 }//end mousePressedTicTacToeONOFF
 void turnX() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
@@ -116,18 +121,31 @@ void TTTReset() {
 void TTTDrawMode() {
   if (dropDownTicTacToeModeMenu) {
     if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
-    { fill(hoverOver); } else { fill(black); }
+    { fill(hoverOver); } else if (playWithFriends) {fill(toggleOn);} else { fill(black); }
     ticTacToePlayWidthFriendsRect("Play With Friends");
     if ( mouseX>=TTTEasyX && mouseX<=TTTEasyX+TTTEasyWidth && mouseY>=TTTEasyY && mouseY<=TTTEasyY+TTTEasyHeight )
-    { fill(hoverOver); } else { fill(black); }
+    { fill(hoverOver); } else if (easyAlgorithm) {fill(toggleOn);} else { fill(black); }
     ticTacToeEasyAlgorithmRect("Easy Algorithm");
     if ( mouseX>=TTTMediumX && mouseX<=TTTMediumX+TTTMediumWidth && mouseY>=TTTMediumY && mouseY<=TTTMediumY+TTTMediumHeight )
-    { fill(hoverOver); } else { fill(black); }
+    { fill(hoverOver); } else if (mediumAlgorithm) {fill(toggleOn);} else { fill(black); }
     ticTacToeMediumAlgorithmRect("Medium Algorithm");
     if ( mouseX>=TTTImpossibleX && mouseX<=TTTImpossibleX+TTTImposibleWidth && mouseY>=TTTImpossibleY && mouseY<=TTTImpossibleY+TTTimpossibleHeight )
-    { fill(hoverOver); } else { fill(black); }
+    { fill(hoverOver); } else if (impossibleAlgorithm) {fill(toggleOn);} else { fill(black); }
     ticTacToeImpossibleAlgorithmRect("Impossible Algorithm");
   }
 }//end TTTDrawMode
-void TTTMousePressedMode() {}//end TTTMousePressedMode
+void TTTMousePressedMode() {
+  if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
+  if (playWithFriends) { 
+  } else { playWithFriends = true; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = false; }
+  if ( mouseX>=TTTEasyX && mouseX<=TTTEasyX+TTTEasyWidth && mouseY>=TTTEasyY && mouseY<=TTTEasyY+TTTEasyHeight )
+  if (easyAlgorithm) {easyAlgorithm = false; playWithFriends = true;}
+  else { playWithFriends = false; easyAlgorithm = true; mediumAlgorithm = false; impossibleAlgorithm = false; }
+  if ( mouseX>=TTTMediumX && mouseX<=TTTMediumX+TTTMediumWidth && mouseY>=TTTMediumY && mouseY<=TTTMediumY+TTTMediumHeight )
+  if (mediumAlgorithm) {mediumAlgorithm = false; playWithFriends = true;}
+  else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = true; impossibleAlgorithm = false; }
+  if ( mouseX>=TTTImpossibleX && mouseX<=TTTImpossibleX+TTTImposibleWidth && mouseY>=TTTImpossibleY && mouseY<=TTTImpossibleY+TTTimpossibleHeight )
+  if (impossibleAlgorithm) {impossibleAlgorithm = false; playWithFriends = true;}
+  else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; }
+}//end TTTMousePressedMode
 //end TicTacToe subProgram
