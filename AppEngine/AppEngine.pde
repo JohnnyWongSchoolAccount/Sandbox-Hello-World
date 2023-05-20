@@ -13,6 +13,7 @@ void setup() {
   buildingURL();//BuildingURL subProgram
   APIcall();//BuildingURL subProgram
   setupMusic();//MusicPlayer232 subProgram
+  setupTicTacToe();//tictactoe subProgram
   setupText();//Text subProgram
   setupWeather();//weather subProgram
   setupPort();//Port subProgram
