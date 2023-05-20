@@ -21,8 +21,8 @@ void keyPressedTicTacToe() {}//end keyPressedTicTacToe
 void drawTicTacToeONOFF() {
   startPage(int(pauseWidth/3.5));
   TTTDrawMode();
-  ticTacToeTurnX("Its Xs turn~", "      ;)      ");
-  ticTacToeTurnO("Its Os turn~", "      :)      ");
+  ticTacToeTurnX("Its Xs turn~", ";)", "Winner O");
+  ticTacToeTurnO("Its Os turn~", ":)", "Winner X");
   if (checkTie() || checkWinX() || checkWinO()) gameOn = false;
   stroke(purp);
   println("tie game:", checkTie());
