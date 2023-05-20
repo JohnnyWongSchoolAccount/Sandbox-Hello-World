@@ -1,5 +1,4 @@
 //Global Variables
-//
 void drawPauseButton() {
   rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 22 ); //right rectangle
   rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 22 ); //left rectangle
@@ -148,56 +147,56 @@ void weatherWindRect() {
 }//end weatherWindRect
 void TTTMiddle(String textX, String textO) {
   rect(TTTX1, TTTY1, TTTWidth, TTTHeight);
-  if (stateMiddle == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX1, TTTY1, TTTWidth, TTTHeight);
-  } else if (stateMiddle == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX1, TTTY1, TTTWidth, TTTHeight);
+  if (cell[0][0] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX1, TTTY1, TTTWidth, TTTHeight);
+  } else if (cell[0][0] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX1, TTTY1, TTTWidth, TTTHeight);
   } else {}
 }//middle
 void TTTMiddleTop(String textX, String textO) {
   rect(TTTX1, TTTY11, TTTWidth, TTTWidth);
-  if (stateMiddleTop == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX1, TTTY11, TTTWidth, TTTWidth);
-  } else if (stateMiddleTop == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX1, TTTY11, TTTWidth, TTTWidth);
+  if (cell[0][1] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX1, TTTY11, TTTWidth, TTTWidth);
+  } else if (cell[0][1] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX1, TTTY11, TTTWidth, TTTWidth);
   } else {}
 }//middle top
 void TTTMiddleBottom(String textX, String textO) {
   rect(TTTX1, TTTY12, TTTWidth, TTTWidth);
-  if (stateMiddleBottom == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX1, TTTY12, TTTWidth, TTTHeight);
-  } else if (stateMiddleBottom == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX1, TTTY12, TTTWidth, TTTHeight);
+  if (cell[0][2] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX1, TTTY12, TTTWidth, TTTHeight);
+  } else if (cell[0][2] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX1, TTTY12, TTTWidth, TTTHeight);
   } else {}
 }//middle bottom
 void TTTLeft(String textX, String textO) {
   rect(TTTX11, TTTY1, TTTWidth, TTTWidth);
-  if (stateLeft == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX,TTTX11, TTTY1, TTTWidth, TTTWidth);
-  } else if (stateLeft == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX11, TTTY1, TTTWidth, TTTWidth);
+  if (cell[1][0] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX,TTTX11, TTTY1, TTTWidth, TTTWidth);
+  } else if (cell[1][0] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX11, TTTY1, TTTWidth, TTTWidth);
   } else {}
 }//left side
 void TTTLeftTopCorner(String textX, String textO) {
   rect(TTTX11, TTTY11, TTTWidth, TTTWidth);
-  if (stateLeftTop == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX11, TTTY11, TTTWidth, TTTWidth);
-  } else if (stateLeftTop == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX11, TTTY11, TTTWidth, TTTWidth);
+  if (cell[1][1] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX11, TTTY11, TTTWidth, TTTWidth);
+  } else if (cell[1][1] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX11, TTTY11, TTTWidth, TTTWidth);
   } else {}
 }//left top corner
 void TTTLeftBottomCorner(String textX, String textO) {
   rect(TTTX11, TTTY12, TTTWidth, TTTWidth);
-  if (stateLeftBottom == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX11, TTTY12, TTTWidth, TTTWidth);
-  } else if (stateLeftBottom == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX11, TTTY12, TTTWidth, TTTWidth);
+  if (cell[1][2] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX11, TTTY12, TTTWidth, TTTWidth);
+  } else if (cell[1][2] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX11, TTTY12, TTTWidth, TTTWidth);
   } else {}
 }//left bottom corner
 void TTTRight(String textX, String textO) {
   rect(TTTX12, TTTY1, TTTWidth, TTTWidth);
-  if (stateRight == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX12, TTTY1, TTTWidth, TTTWidth);
-  } else if (stateRight == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX12, TTTY1, TTTWidth, TTTWidth);
+  if (cell[2][0] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX12, TTTY1, TTTWidth, TTTWidth);
+  } else if (cell[2][0] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX12, TTTY1, TTTWidth, TTTWidth);
   } else {}
 }//right side
 void TTTRightTopCorner(String textX, String textO) {
   rect(TTTX12, TTTY11, TTTWidth, TTTWidth);
-  if (stateRightTop == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX12, TTTY11, TTTWidth, TTTWidth);
-  } else if (stateRightTop == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO,TTTX12, TTTY11, TTTWidth, TTTWidth);
+  if (cell[2][1] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX12, TTTY11, TTTWidth, TTTWidth);
+  } else if (cell[2][1] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO,TTTX12, TTTY11, TTTWidth, TTTWidth);
   } else {}
 }//right top corner
 void TTTRightBottomCorner(String textX, String textO) {
   rect(TTTX12, TTTY12, TTTWidth, TTTWidth);
-  if (stateRightBottom == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX12, TTTY12, TTTWidth, TTTWidth);
-  } else if (stateRightBottom == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX12, TTTY12, TTTWidth, TTTWidth);
+  if (cell[2][2] == 1){ drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTX12, TTTY12, TTTWidth, TTTWidth);
+  } else if (cell[2][2] == 2){drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTX12, TTTY12, TTTWidth, TTTWidth);
   } else {}
 }//right bottom corner
 void ticTacToeResetRect(String textReset) {
