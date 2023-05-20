@@ -6,6 +6,7 @@ float stateLeft = 0, stateLeftTop = 0, stateLeftBottom = 0;
 float stateRight = 0, stateRightTop = 0, stateRightBottom = 0;
 //{turnXO = false = O} {turnXO = true = X}
 boolean turnXO = true;//"X"
+boolean gameOn;
 boolean dropDownTicTacToeModeMenu = false;
 boolean playWithFriends = true;
 boolean easyAlgorithm = false;
@@ -22,7 +23,12 @@ void drawTicTacToeONOFF() {
   TTTDrawMode();
   ticTacToeTurnX("Its Xs turn~", "      ;)      ");
   ticTacToeTurnO("Its Os turn~", "      :)      ");
+  if (checkTie() || checkWinX() || checkWinO()) gameOn = false;
   stroke(purp);
+  println("tie game:", checkTie());
+  println("Xs game:", checkWinX());
+  println("Os game:", checkWinO());
+  println("gameOn:", gameOn);
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   { fill(hoverOver); } else { fill(black); }
   ticTacToeResetRect("Reset Board");
@@ -58,8 +64,9 @@ void drawTicTacToeONOFF() {
   TTTRightBottomCorner(" X ", " O ");
 }//end drawTicTacToeONOFF
 void mousePressedTicTacToeONOFF() {
+  if (gameOn) {
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+(TTTWidth*3.3) && mouseY>=TTTY12 && mouseY<=TTTY12+(TTTHeight*3.3) )
-  { if (turnXO) {turnX();} else {turnO();} }
+  { if (turnXO) {turnX();} else {turnO();} } }
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   TTTReset();
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
@@ -108,6 +115,7 @@ void turnO() {
 }//end turnO
 void TTTReset() {
   turnXO = true;//"X"
+  gameOn = true;
   stateMiddle = 0;
   stateMiddleTop = 0;
   stateMiddleBottom = 0;
@@ -148,4 +156,62 @@ void TTTMousePressedMode() {
   if (impossibleAlgorithm) {impossibleAlgorithm = false; playWithFriends = true;}
   else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; }
 }//end TTTMousePressedMode
+boolean checkWinX() {
+  // Check rows
+  if (stateMiddle == stateMiddleTop && stateMiddleBottom == stateMiddleTop && stateMiddleBottom == 1)
+    return true;
+  if (stateLeft == stateLeftTop && stateLeftBottom == stateLeftTop && stateLeftBottom ==1)
+    return true;
+  if (stateRight == stateRightTop && stateRightBottom== stateRightTop && stateRightBottom == 1)
+    return true;
+  // Check columns
+  if (stateMiddle == stateLeft && stateRight== stateLeft && stateRight== 1)
+    return true;
+  if (stateMiddleTop == stateLeftTop && stateRightTop== stateLeftTop && stateRightTop == 1)
+    return true;
+  if (stateMiddleBottom == stateLeftBottom && stateRightBottom== stateLeftBottom && stateRightBottom == 1)
+    return true;
+  // Check diagonals
+  if (stateMiddle == stateLeftTop && stateRightBottom  == stateLeftTop && stateRightBottom == 1)
+    return true;
+  if (stateMiddle == stateRightTop && stateLeftBottom== stateRightTop && stateLeftBottom == 1)
+    return true;
+  return false;//defult false
+}//end checkWinX
+boolean checkWinO() {
+  // Check rows
+  if (stateMiddle == stateMiddleTop && stateMiddleBottom== stateMiddleTop && stateMiddleBottom == 2)
+    return true;
+  if (stateLeft == stateLeftTop && stateLeftBottom== stateLeftTop && stateLeftBottom  ==2)
+    return true;
+  if (stateRight == stateRightTop && stateRightBottom == stateRightTop && stateRightBottom == 2)
+    return true;
+  // Check columns
+  if (stateMiddle == stateLeft && stateRight == stateLeft && stateRight== 2)
+    return true;
+  if (stateMiddleTop == stateLeftTop && stateRightTop== stateLeftTop && stateRightTop == 2)
+    return true;
+  if (stateMiddleBottom == stateLeftBottom && stateRightBottom== stateLeftBottom && stateRightBottom == 2)
+    return true;
+  // Check diagonals
+  if (stateMiddle == stateLeftTop && stateRightBottom== stateLeftTop && stateRightBottom == 2)
+    return true;
+  if (stateMiddle == stateRightTop && stateLeftBottom == stateRightTop && stateLeftBottom == 2)
+    return true;
+  return false;//defult false
+}//end checkWinX
+boolean checkTie() {
+  if (checkWinO() || checkWinX()) {
+  } else {
+    if (stateMiddle != 0 &&
+    stateMiddleTop != 0 &&
+    stateMiddleBottom != 0 &&
+    stateLeft != 0 &&
+    stateLeftTop != 0 &&
+    stateLeftBottom != 0 &&
+    stateRight != 0 &&
+    stateRightTop != 0 &&
+    stateRightBottom != 0) return true; 
+  } return false;
+}//end checkTie
 //end TicTacToe subProgram
