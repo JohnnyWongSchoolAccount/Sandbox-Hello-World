@@ -1,9 +1,7 @@
 //Global Variables
 boolean ONOFF_TICTACTOE = false;
 //{0 = 'noting'}, { 1 = 'X'}, { 2 = 'O'} STATE
-float stateMiddle = 0, stateMiddleTop = 0, stateMiddleBottom = 0;
-float stateLeft = 0, stateLeftTop = 0, stateLeftBottom = 0;
-float stateRight = 0, stateRightTop = 0, stateRightBottom = 0;
+int cell[][] = new int[3][3];
 //{turnXO = false = O} {turnXO = true = X}
 boolean turnXO = true;//"X"
 boolean gameOn;
@@ -75,57 +73,57 @@ void mousePressedTicTacToeONOFF() {
 }//end mousePressedTicTacToeONOFF
 void turnX() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  stateMiddle = 1; turnXO = false;//"O"
+  cell[0][0] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  stateMiddleTop = 1; turnXO = false;//"O"
+  cell[0][1] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  stateMiddleBottom = 1; turnXO = false;//"O"
+  cell[0][2] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  stateLeft = 1; turnXO = false;//"O"
+  cell[1][0] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  stateLeftTop = 1; turnXO = false;//"O"
+  cell[1][1] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  stateLeftBottom = 1; turnXO = false;//"O"
+  cell[1][2] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  stateRight = 1; turnXO = false;//"O"
+  cell[2][0] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  stateRightTop = 1; turnXO = false;//"O"
+  cell[2][1] = 1; turnXO = false;//"O"
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  stateRightBottom = 1; turnXO = false;//"O"
+  cell[2][2] = 1; turnXO = false;//"O"
 }//end turnX
 void turnO() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  stateMiddle = 2; turnXO = true;//"X"
+  cell[0][0] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  stateMiddleTop = 2; turnXO = true;//"X"
+  cell[0][1] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  stateMiddleBottom = 2; turnXO = true;//"X"
+  cell[0][2] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  stateLeft = 2; turnXO = true;//"X"
+  cell[1][0] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  stateLeftTop = 2; turnXO = true;//"X"
+  cell[1][1] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  stateLeftBottom = 2; turnXO = true;//"X"
+  cell[1][2] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  stateRight = 2; turnXO = true;//"X"
+  cell[2][0] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  stateRightTop = 2; turnXO = true;//"X"
+  cell[2][1] = 2; turnXO = true;//"X"
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  stateRightBottom = 2; turnXO = true;//"X"
+  cell[2][2] = 2; turnXO = true;//"X"
 }//end turnO
 void TTTReset() {
-  turnXO = true;//"X"
+  turnXO = true;  //"X"
   gameOn = true;
-  stateMiddle = 0;
-  stateMiddleTop = 0;
-  stateMiddleBottom = 0;
-  stateLeft = 0;
-  stateLeftTop = 0;
-  stateLeftBottom = 0;
-  stateRight = 0;
-  stateRightTop = 0;
-  stateRightBottom = 0;
-}//end TTTReset()
+  cell[0][0] = 0;
+  cell[0][1] = 0;
+  cell[0][2] = 0;
+  cell[1][0] = 0;
+  cell[1][1] = 0;
+  cell[1][2] = 0;
+  cell[2][0] = 0;
+  cell[2][1] = 0;
+  cell[2][2] = 0;
+}//end TTTReset
 void TTTDrawMode() {
   if (dropDownTicTacToeModeMenu) {
     if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
@@ -158,60 +156,60 @@ void TTTMousePressedMode() {
 }//end TTTMousePressedMode
 boolean checkWinX() {
   // Check rows
-  if (stateMiddle == stateMiddleTop && stateMiddleBottom == stateMiddleTop && stateMiddleBottom == 1)
+  if (cell[0][0] == cell[0][1] && cell[0][2] == cell[0][1] && cell[0][2] == 1)
     return true;
-  if (stateLeft == stateLeftTop && stateLeftBottom == stateLeftTop && stateLeftBottom ==1)
+  if (cell[1][0] == cell[1][1] && cell[1][2] == cell[1][1] && cell[1][2] ==1)
     return true;
-  if (stateRight == stateRightTop && stateRightBottom== stateRightTop && stateRightBottom == 1)
+  if (cell[2][0] == cell[2][1] && cell[2][2]== cell[2][1] && cell[2][2] == 1)
     return true;
   // Check columns
-  if (stateMiddle == stateLeft && stateRight== stateLeft && stateRight== 1)
+  if (cell[0][0] == cell[1][0] && cell[2][0]== cell[1][0] && cell[2][0]== 1)
     return true;
-  if (stateMiddleTop == stateLeftTop && stateRightTop== stateLeftTop && stateRightTop == 1)
+  if (cell[0][1] == cell[1][1] && cell[2][1]== cell[1][1] && cell[2][1] == 1)
     return true;
-  if (stateMiddleBottom == stateLeftBottom && stateRightBottom== stateLeftBottom && stateRightBottom == 1)
+  if (cell[0][2] == cell[1][2] && cell[2][2]== cell[1][2] && cell[2][2] == 1)
     return true;
   // Check diagonals
-  if (stateMiddle == stateLeftTop && stateRightBottom  == stateLeftTop && stateRightBottom == 1)
+  if (cell[0][0] == cell[1][1] && cell[2][2]  == cell[1][1] && cell[2][2] == 1)
     return true;
-  if (stateMiddle == stateRightTop && stateLeftBottom== stateRightTop && stateLeftBottom == 1)
+  if (cell[0][0] == cell[2][1] && cell[1][2]== cell[2][1] && cell[1][2] == 1)
     return true;
   return false;//defult false
 }//end checkWinX
 boolean checkWinO() {
   // Check rows
-  if (stateMiddle == stateMiddleTop && stateMiddleBottom== stateMiddleTop && stateMiddleBottom == 2)
+  if (cell[0][0] == cell[0][1] && cell[0][2]== cell[0][1] && cell[0][2] == 2)
     return true;
-  if (stateLeft == stateLeftTop && stateLeftBottom== stateLeftTop && stateLeftBottom  ==2)
+  if (cell[1][0] == cell[1][1] && cell[1][2]== cell[1][1] && cell[1][2]  ==2)
     return true;
-  if (stateRight == stateRightTop && stateRightBottom == stateRightTop && stateRightBottom == 2)
+  if (cell[2][0] == cell[2][1] && cell[2][2] == cell[2][1] && cell[2][2] == 2)
     return true;
   // Check columns
-  if (stateMiddle == stateLeft && stateRight == stateLeft && stateRight== 2)
+  if (cell[0][0] == cell[1][0] && cell[2][0] == cell[1][0] && cell[2][0]== 2)
     return true;
-  if (stateMiddleTop == stateLeftTop && stateRightTop== stateLeftTop && stateRightTop == 2)
+  if (cell[0][1] == cell[1][1] && cell[2][1]== cell[1][1] && cell[2][1] == 2)
     return true;
-  if (stateMiddleBottom == stateLeftBottom && stateRightBottom== stateLeftBottom && stateRightBottom == 2)
+  if (cell[0][2] == cell[1][2] && cell[2][2]== cell[1][2] && cell[2][2] == 2)
     return true;
   // Check diagonals
-  if (stateMiddle == stateLeftTop && stateRightBottom== stateLeftTop && stateRightBottom == 2)
+  if (cell[0][0] == cell[1][1] && cell[2][2]== cell[1][1] && cell[2][2] == 2)
     return true;
-  if (stateMiddle == stateRightTop && stateLeftBottom == stateRightTop && stateLeftBottom == 2)
+  if (cell[0][0] == cell[2][1] && cell[1][2] == cell[2][1] && cell[1][2] == 2)
     return true;
   return false;//defult false
 }//end checkWinX
 boolean checkTie() {
   if (checkWinO() || checkWinX()) {
   } else {
-    if (stateMiddle != 0 &&
-    stateMiddleTop != 0 &&
-    stateMiddleBottom != 0 &&
-    stateLeft != 0 &&
-    stateLeftTop != 0 &&
-    stateLeftBottom != 0 &&
-    stateRight != 0 &&
-    stateRightTop != 0 &&
-    stateRightBottom != 0) return true; 
+    if (cell[0][0] != 0 &&
+    cell[0][1] != 0 &&
+    cell[0][2] != 0 &&
+    cell[1][0] != 0 &&
+    cell[1][1] != 0 &&
+    cell[1][2] != 0 &&
+    cell[2][0] != 0 &&
+    cell[2][1] != 0 &&
+    cell[2][2] != 0) return true; 
   } return false;
 }//end checkTie
 //end TicTacToe subProgram
