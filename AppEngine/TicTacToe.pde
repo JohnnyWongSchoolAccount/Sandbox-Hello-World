@@ -19,8 +19,8 @@ void keyPressedTicTacToe() {}//end keyPressedTicTacToe
 void drawTicTacToeONOFF() {
   startPage(int(pauseWidth/3.5));
   TTTDrawMode();
-  ticTacToeTurnX("Its Xs turn~", ";)", "Winner O");
-  ticTacToeTurnO("Its Os turn~", ":)", "Winner X");
+  ticTacToeTurnX("Its Xs turn~", ";)", "Winner O", "Tie Game");
+  ticTacToeTurnO("Its Os turn~", ":)", "Winner X", "Tie Game");
   if (checkTie() || checkWinX() || checkWinO()) gameOn = false;
   stroke(purp);
   println("tie game:", checkTie());
@@ -71,45 +71,69 @@ void mousePressedTicTacToeONOFF() {
   if (dropDownTicTacToeModeMenu) {dropDownTicTacToeModeMenu = false;} else {dropDownTicTacToeModeMenu = true;}
   if (dropDownTicTacToeModeMenu) TTTMousePressedMode();
 }//end mousePressedTicTacToeONOFF
+void claimCell(int row, int col) {
+  if (cell[row][col] == 0) {
+    if (turnXO) {
+      cell[row][col] = 1; // Claimed by X
+      turnXO = false; // Switch turn to O
+    } else {
+      cell[row][col] = 2; // Claimed by O
+      turnXO = true; // Switch turn to X
+    }
+  }
+}//end claimCell
+void claimedCells() {
+  println("Claimed Cells:");
+  for (int i = 0; i < 3; i++) {//interperates the columns
+    for (int j = 0; j < 3; j++) {//interperates the rows
+      if (cell[i][j] == 1) {
+        println("Cell[" + i + "][" + j + "]: X");
+      } else if (cell[i][j] == 2) {
+        println("Cell[" + i + "][" + j + "]: O");
+      }
+    }
+  }
+}//end ClaimedCells
 void turnX() {
-  if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  cell[0][0] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  cell[0][1] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  cell[0][2] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  cell[1][0] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  cell[1][1] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  cell[1][2] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  cell[2][0] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  cell[2][1] = 1; turnXO = false;//"O"
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  cell[2][2] = 1; turnXO = false;//"O"
-}//end turnX
+  if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY1 && mouseY <= TTTY1 + TTTHeight)
+    claimCell(0, 0);
+  if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY11 && mouseY <= TTTY11 + TTTHeight)
+    claimCell(0, 1);
+  if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
+    claimCell(0, 2);
+  if (mouseX >= TTTX11 && mouseX <= TTTX11 + TTTWidth && mouseY >= TTTY1 && mouseY <= TTTY1 + TTTHeight)
+    claimCell(1, 0);
+  if (mouseX >= TTTX11 && mouseX <= TTTX11 + TTTWidth && mouseY >= TTTY11 && mouseY <= TTTY11 + TTTHeight)
+    claimCell(1, 1);
+  if (mouseX >= TTTX11 && mouseX <= TTTX11 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
+    claimCell(1, 2);
+  if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY1 && mouseY <= TTTY1 + TTTHeight)
+    claimCell(2, 0);
+  if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY11 && mouseY <= TTTY11 + TTTHeight)
+    claimCell(2, 1);
+  if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
+    claimCell(2, 2);
+  easyAlgorithm(0);
+}
 void turnO() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  cell[0][0] = 2; turnXO = true;//"X"
+  claimCell(0, 0);
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  cell[0][1] = 2; turnXO = true;//"X"
+  claimCell(0, 1);
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  cell[0][2] = 2; turnXO = true;//"X"
+  claimCell(0, 2);
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  cell[1][0] = 2; turnXO = true;//"X"
+  claimCell(1, 0);
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  cell[1][1] = 2; turnXO = true;//"X"
+  claimCell(1, 1);
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  cell[1][2] = 2; turnXO = true;//"X"
+  claimCell(1, 2);
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  cell[2][0] = 2; turnXO = true;//"X"
+  claimCell(2, 0);
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  cell[2][1] = 2; turnXO = true;//"X"
+  claimCell(2, 1);
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  cell[2][2] = 2; turnXO = true;//"X"
+  claimCell(2, 2);
 }//end turnO
 void TTTReset() {
   turnXO = true;  //"X"
@@ -212,4 +236,28 @@ boolean checkTie() {
     cell[2][2] != 0) return true; 
   } return false;
 }//end checkTie
+void easyAlgorithm(float rand) {
+  if (easyAlgorithm) {
+    if (turnXO == false) {
+      rand = random(1,9);
+      for (int i = 0; i < 3; i++) {//nested loop
+        for (int j = 0; j < 3; j++) {//i interperates the columns j for rows
+          while (rand == cell[i][j]) {
+            rand = random(1,9);
+          }
+        }
+      }
+      if (int(rand) == 1) claimCell(0, 0);
+      if (int(rand) == 2) claimCell(0, 1);
+      if (int(rand) == 3) claimCell(0, 2);
+      if (int(rand) == 4) claimCell(1, 0);
+      if (int(rand) == 5) claimCell(1, 1);
+      if (int(rand) == 6) claimCell(1, 2);
+      if (int(rand) == 7) claimCell(2, 0);
+      if (int(rand) == 8) claimCell(2, 1);
+      if (int(rand) == 9) claimCell(2, 2);
+      turnXO = true; //X
+    }
+  } else {}//empty if
+}//end easyAlgorithm
 //end TicTacToe subProgram
