@@ -35,31 +35,31 @@ void drawTicTacToeONOFF() {
   ticTacToeModeChangeRect("Mode");
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
-  TTTMiddle(" X ", " O ");
+  TTTMiddle(" X ", " O ");//cell[0][0]
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
-  TTTMiddleTop(" X ", " O ");
+  TTTMiddleTop(" X ", " O ");//cell[0][1]
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black); }
-  TTTMiddleBottom(" X ", " O ");
+  TTTMiddleBottom(" X ", " O ");//cell[0][2]
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black);}
-  TTTLeft(" X ", " O ");
+  TTTLeft(" X ", " O ");//cell[1][0]
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
   { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black);}
-  TTTLeftTopCorner(" X ", " O ");
+  TTTLeftTopCorner(" X ", " O ");//cell[1][1]
   if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
   { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black);}
-  TTTLeftBottomCorner(" X ", " O ");
+  TTTLeftBottomCorner(" X ", " O ");//cell[1][2]
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
   { fill(hoverOver); stroke(hoverOver);  } else { fill(black); stroke(black);}
-  TTTRight(" X ", " O ");
+  TTTRight(" X ", " O ");//cell[2][0]
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black);}
-  TTTRightTopCorner(" X ", " O ");
+  TTTRightTopCorner(" X ", " O ");//cell[2][1]
   if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
   { fill(hoverOver); stroke(hoverOver); } else { fill(black); stroke(black);}
-  TTTRightBottomCorner(" X ", " O ");
+  TTTRightBottomCorner(" X ", " O ");//cell[2][2]
 }//end drawTicTacToeONOFF
 void mousePressedTicTacToeONOFF() {
   if (gameOn) { if (turnXO) {turnX();} else {turnO();} }
@@ -72,10 +72,10 @@ void mousePressedTicTacToeONOFF() {
 void claimCell(int row, int colemn) {
   if (cell[row][colemn] == 0) {
     if (turnXO) {
-      cell[row][colemn] = 1; // Claimed X
+      cell[row][colemn] = 1; //X
       turnXO = false; //O
     } else {
-      cell[row][colemn] = 2; //claimed O
+      cell[row][colemn] = 2; //O
       turnXO = true; //X
     }
   }
