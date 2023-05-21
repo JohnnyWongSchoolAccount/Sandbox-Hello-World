@@ -224,7 +224,6 @@ boolean checkTie() {
 }//end checkTie
 void easyAlgorithm() {
   if (!turnXO && easyAlgorithm) {
-    // Check for any empty cell and claim it
     for (int i = 0; i < 3; i++) {//nested loop
       for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
         if (cell[i][j] == 0) {//the algorithm searches through the claimed cells 
