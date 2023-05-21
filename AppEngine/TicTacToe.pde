@@ -66,7 +66,7 @@ void mousePressedTicTacToeONOFF() {
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   TTTReset();
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
-  if (dropDownTicTacToeModeMenu) {dropDownTicTacToeModeMenu = false;} else {dropDownTicTacToeModeMenu = true;}
+  if (dropDownTicTacToeModeMenu) dropDownTicTacToeModeMenu = false; else dropDownTicTacToeModeMenu = true;
   if (dropDownTicTacToeModeMenu) TTTMousePressedMode();
 }//end mousePressedTicTacToeONOFF
 void claimCell(int row, int colemn) {
@@ -82,7 +82,7 @@ void claimCell(int row, int colemn) {
 }//end claimCell
 void turnX() {
   if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY1 && mouseY <= TTTY1 + TTTHeight)
-    claimCell(0, 0);
+    claimCell(0, 0);//middle
   if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY11 && mouseY <= TTTY11 + TTTHeight)
     claimCell(0, 1);
   if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
@@ -99,7 +99,8 @@ void turnX() {
     claimCell(2, 1);
   if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
     claimCell(2, 2);
-  easyAlgorithm();
+  if (easyAlgorithm) easyAlgorithm();
+  if (mediumAlgorithm) mediumAlgorithm();
 }
 void turnO() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
@@ -122,17 +123,12 @@ void turnO() {
   claimCell(2, 2);
 }//end turnO
 void TTTReset() {
-  turnXO = true;  //"X"
-  gameOn = true;
-  cell[0][0] = 0;
-  cell[0][1] = 0;
-  cell[0][2] = 0;
-  cell[1][0] = 0;
-  cell[1][1] = 0;
-  cell[1][2] = 0;
-  cell[2][0] = 0;
-  cell[2][1] = 0;
-  cell[2][2] = 0;
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      cell[i][j] = 0;
+    }
+  }
+  turnXO = true; gameOn = true;
 }//end TTTReset
 void TTTDrawMode() {
   if (dropDownTicTacToeModeMenu) {
@@ -164,74 +160,56 @@ void TTTMousePressedMode() {
   if (impossibleAlgorithm) {impossibleAlgorithm = false; playWithFriends = true; TTTReset();}
   else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; TTTReset(); }
 }//end TTTMousePressedMode
-boolean checkWinX() {
-  // Check rows
-  if (cell[0][0] == cell[0][1] && cell[0][2] == cell[0][1] && cell[0][2] == 1)
-    return true;
-  if (cell[1][0] == cell[1][1] && cell[1][2] == cell[1][1] && cell[1][2] ==1)
-    return true;
-  if (cell[2][0] == cell[2][1] && cell[2][2]== cell[2][1] && cell[2][2] == 1)
-    return true;
-  // Check columns
-  if (cell[0][0] == cell[1][0] && cell[2][0]== cell[1][0] && cell[2][0]== 1)
-    return true;
-  if (cell[0][1] == cell[1][1] && cell[2][1]== cell[1][1] && cell[2][1] == 1)
-    return true;
-  if (cell[0][2] == cell[1][2] && cell[2][2]== cell[1][2] && cell[2][2] == 1)
-    return true;
-  // Check diagonals
-  if (cell[0][0] == cell[1][1] && cell[2][2]  == cell[1][1] && cell[2][2] == 1)
-    return true;
-  if (cell[0][0] == cell[2][1] && cell[1][2]== cell[2][1] && cell[1][2] == 1)
-    return true;
-  return false;//defult false
-}//end checkWinX
-boolean checkWinO() {
-  // Check rows
-  if (cell[0][0] == cell[0][1] && cell[0][2]== cell[0][1] && cell[0][2] == 2)
-    return true;
-  if (cell[1][0] == cell[1][1] && cell[1][2]== cell[1][1] && cell[1][2]  ==2)
-    return true;
-  if (cell[2][0] == cell[2][1] && cell[2][2] == cell[2][1] && cell[2][2] == 2)
-    return true;
-  // Check columns
-  if (cell[0][0] == cell[1][0] && cell[2][0] == cell[1][0] && cell[2][0]== 2)
-    return true;
-  if (cell[0][1] == cell[1][1] && cell[2][1]== cell[1][1] && cell[2][1] == 2)
-    return true;
-  if (cell[0][2] == cell[1][2] && cell[2][2]== cell[1][2] && cell[2][2] == 2)
-    return true;
-  // Check diagonals
-  if (cell[0][0] == cell[1][1] && cell[2][2]== cell[1][1] && cell[2][2] == 2)
-    return true;
-  if (cell[0][0] == cell[2][1] && cell[1][2] == cell[2][1] && cell[1][2] == 2)
-    return true;
-  return false;//defult false
-}//end checkWinX
+boolean checkWinX() { return checkWin(1); }//end checkWinX
+boolean checkWinO() { return checkWin(2); }//end checkWinO
+boolean checkWin(int XO) {
+  if (cell[1][0] == XO && cell[1][1] == XO && cell[1][2] == XO) return true;//columns
+  if (cell[2][0] == XO && cell[2][1] == XO && cell[2][2] == XO) return true;//columns
+  if (cell[0][0] == XO && cell[0][1] == XO && cell[0][2] == XO) return true;//columns
+  if (cell[0][0] == XO && cell[1][0] == XO && cell[2][0] == XO) return true;//rows
+  if (cell[0][1] == XO && cell[1][1] == XO && cell[2][1] == XO) return true;//rows
+  if (cell[0][2] == XO && cell[1][2] == XO && cell[2][2] == XO) return true;//rows
+  if (cell[0][0] == XO && cell[1][1] == XO && cell[2][2] == XO) return true;//diagonals
+  if (cell[0][0] == XO && cell[2][1] == XO && cell[1][2] == XO) return true;//diagonals
+  return false;//default
+}//end checkWinXO
 boolean checkTie() {
-  if (checkWinO() || checkWinX()) {
-  } else {
-    if (cell[0][0] != 0 &&
-    cell[0][1] != 0 &&
-    cell[0][2] != 0 &&
-    cell[1][0] != 0 &&
-    cell[1][1] != 0 &&
-    cell[1][2] != 0 &&
-    cell[2][0] != 0 &&
-    cell[2][1] != 0 &&
-    cell[2][2] != 0) return true; 
-  } return false;
-}//end checkTie
+  for (int i = 0; i < 3;i++) {//checks rows
+    for (int j = 0; j < 3; j++) {//checks columns
+      if (cell[i][j] == 0) return false;//default
+    }
+  }
+  return true;
+}
 void easyAlgorithm() {
-  if (!turnXO && easyAlgorithm) {
+  if (turnXO == false) {
     for (int i = 0; i < 3; i++) {//nested loop
       for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
-        if (cell[i][j] == 0) {//the algorithm searches through the claimed cells 
+        if (cell[i][j] == 0) {//check for unclaimed cells
+          boolean done = false;//random move
+          while (!done) {
+            int i1 = int(random(3));//random row
+            int j1 = int(random(3));//random colem
+            if (cell[i1][j1] == 0) {
+              claimCell(i1, j1);//picks the cell
+              done = true;
+            }
+          } return;//ends turn
+        }
+      }
+    }
+  }
+}//end easyAlgorithm
+void mediumAlgorithm() {
+  if (turnXO == false) {
+    for (int i = 0; i < 3; i++) {//nested loop
+      for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
+        if (cell[i][j] == 0) {//the algorithm searches for uncliamed cells
           claimCell(i, j);
           return;//claims a unclaimed cell
         }
       }
     }
   }
-}//end easyAlgorithm
+}//end mediumAlgorithm
 //end TicTacToe subProgram
