@@ -174,12 +174,15 @@ boolean checkWin(int XO) {
   return false;//default
 }//end checkWinXO
 boolean checkTie() {
-  for (int i = 0; i < 3;i++) {//checks rows
-    for (int j = 0; j < 3; j++) {//checks columns
-      if (cell[i][j] == 0) return false;//default
-    }
+  if (checkWinX() || checkWinO()) {
+    return false;//defalt
+  } else {
+    for (int i = 0; i < 3;i++) {//checks rows
+      for (int j = 0; j < 3; j++) {//checks columns
+        if (cell[i][j] == 0) return false;//default
+      }
+    } return true;
   }
-  return true;
 }
 void easyAlgorithm() {
   if (turnXO == false) {
