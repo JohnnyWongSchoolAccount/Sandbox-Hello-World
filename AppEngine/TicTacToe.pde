@@ -62,38 +62,24 @@ void drawTicTacToeONOFF() {
   TTTRightBottomCorner(" X ", " O ");
 }//end drawTicTacToeONOFF
 void mousePressedTicTacToeONOFF() {
-  if (gameOn) {
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+(TTTWidth*3.3) && mouseY>=TTTY12 && mouseY<=TTTY12+(TTTHeight*3.3) )
-  { if (turnXO) {turnX();} else {turnO();} } }
+  if (gameOn) { if (turnXO) {turnX();} else {turnO();} }
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   TTTReset();
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
   if (dropDownTicTacToeModeMenu) {dropDownTicTacToeModeMenu = false;} else {dropDownTicTacToeModeMenu = true;}
   if (dropDownTicTacToeModeMenu) TTTMousePressedMode();
 }//end mousePressedTicTacToeONOFF
-void claimCell(int row, int col) {
-  if (cell[row][col] == 0) {
+void claimCell(int row, int colemn) {
+  if (cell[row][colemn] == 0) {
     if (turnXO) {
-      cell[row][col] = 1; // Claimed by X
-      turnXO = false; // Switch turn to O
+      cell[row][colemn] = 1; // Claimed X
+      turnXO = false; //O
     } else {
-      cell[row][col] = 2; // Claimed by O
-      turnXO = true; // Switch turn to X
+      cell[row][colemn] = 2; //claimed O
+      turnXO = true; //X
     }
   }
 }//end claimCell
-void claimedCells() {
-  println("Claimed Cells:");
-  for (int i = 0; i < 3; i++) {//interperates the columns
-    for (int j = 0; j < 3; j++) {//interperates the rows
-      if (cell[i][j] == 1) {
-        println("Cell[" + i + "][" + j + "]: X");
-      } else if (cell[i][j] == 2) {
-        println("Cell[" + i + "][" + j + "]: O");
-      }
-    }
-  }
-}//end ClaimedCells
 void turnX() {
   if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY1 && mouseY <= TTTY1 + TTTHeight)
     claimCell(0, 0);
@@ -113,7 +99,7 @@ void turnX() {
     claimCell(2, 1);
   if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
     claimCell(2, 2);
-  easyAlgorithm(0);
+  easyAlgorithm();
 }
 void turnO() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
@@ -236,28 +222,17 @@ boolean checkTie() {
     cell[2][2] != 0) return true; 
   } return false;
 }//end checkTie
-void easyAlgorithm(float rand) {
-  if (easyAlgorithm) {
-    if (turnXO == false) {
-      rand = random(1,9);
-      for (int i = 0; i < 3; i++) {//nested loop
-        for (int j = 0; j < 3; j++) {//i interperates the columns j for rows
-          while (rand == cell[i][j]) {
-            rand = random(1,9);
-          }
+void easyAlgorithm() {
+  if (!turnXO && easyAlgorithm) {
+    // Check for any empty cell and claim it
+    for (int i = 0; i < 3; i++) {//nested loop
+      for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
+        if (cell[i][j] == 0) {//the algorithm searches through the claimed cells 
+          claimCell(i, j);
+          return;//claims a unclaimed cell randomly
         }
       }
-      if (int(rand) == 1) claimCell(0, 0);
-      if (int(rand) == 2) claimCell(0, 1);
-      if (int(rand) == 3) claimCell(0, 2);
-      if (int(rand) == 4) claimCell(1, 0);
-      if (int(rand) == 5) claimCell(1, 1);
-      if (int(rand) == 6) claimCell(1, 2);
-      if (int(rand) == 7) claimCell(2, 0);
-      if (int(rand) == 8) claimCell(2, 1);
-      if (int(rand) == 9) claimCell(2, 2);
-      turnXO = true; //X
     }
-  } else {}//empty if
+  }
 }//end easyAlgorithm
 //end TicTacToe subProgram
