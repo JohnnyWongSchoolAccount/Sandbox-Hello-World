@@ -153,16 +153,16 @@ void TTTDrawMode() {
 void TTTMousePressedMode() {
   if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
   if (playWithFriends) { 
-  } else { playWithFriends = true; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = false; }
+  } else { playWithFriends = true; TTTReset(); easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = false; }
   if ( mouseX>=TTTEasyX && mouseX<=TTTEasyX+TTTEasyWidth && mouseY>=TTTEasyY && mouseY<=TTTEasyY+TTTEasyHeight )
-  if (easyAlgorithm) {easyAlgorithm = false; playWithFriends = true;}
-  else { playWithFriends = false; easyAlgorithm = true; mediumAlgorithm = false; impossibleAlgorithm = false; }
+  if (easyAlgorithm) {easyAlgorithm = false; playWithFriends = true; TTTReset();}
+  else { playWithFriends = false; easyAlgorithm = true; TTTReset(); mediumAlgorithm = false; impossibleAlgorithm = false; }
   if ( mouseX>=TTTMediumX && mouseX<=TTTMediumX+TTTMediumWidth && mouseY>=TTTMediumY && mouseY<=TTTMediumY+TTTMediumHeight )
-  if (mediumAlgorithm) {mediumAlgorithm = false; playWithFriends = true;}
-  else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = true; impossibleAlgorithm = false; }
+  if (mediumAlgorithm) {mediumAlgorithm = false; playWithFriends = true; TTTReset();}
+  else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = true; TTTReset(); impossibleAlgorithm = false; }
   if ( mouseX>=TTTImpossibleX && mouseX<=TTTImpossibleX+TTTImposibleWidth && mouseY>=TTTImpossibleY && mouseY<=TTTImpossibleY+TTTimpossibleHeight )
-  if (impossibleAlgorithm) {impossibleAlgorithm = false; playWithFriends = true;}
-  else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; }
+  if (impossibleAlgorithm) {impossibleAlgorithm = false; playWithFriends = true; TTTReset();}
+  else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; TTTReset(); }
 }//end TTTMousePressedMode
 boolean checkWinX() {
   // Check rows
@@ -229,7 +229,7 @@ void easyAlgorithm() {
       for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
         if (cell[i][j] == 0) {//the algorithm searches through the claimed cells 
           claimCell(i, j);
-          return;//claims a unclaimed cell randomly
+          return;//claims a unclaimed cell
         }
       }
     }
