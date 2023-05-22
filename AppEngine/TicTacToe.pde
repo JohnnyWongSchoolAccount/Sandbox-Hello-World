@@ -194,7 +194,7 @@ void mediumAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
     for (int i = 0; i < 3; i++) {//rows
       for (int j = 0; j < 3; j++) {//columns
         if (cell[i][j] == 0) {//check for empty cells
-          cellEmpty++;//claim if row almost filled
+          cellEmpty++;
           rowEmpty = i;
           columnEmpty = j;
           claimCell(i, j);//claims winning cell
