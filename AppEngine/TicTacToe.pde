@@ -281,10 +281,11 @@ void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
     }
     for (int i = 0; i < 3; i++) {//nested loop
       for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
-        claimCell(0, 0);
+        if (cell[0][0] != 0) {
+          randomMoveAlgorithm();
+        } else claimCell(0, 0);
       }
     }
-    randomMoveAlgorithm();
   }
-}//end mediumAlgorithm
+}//end impossibleAlgorithm
 //end TicTacToe subProgram
