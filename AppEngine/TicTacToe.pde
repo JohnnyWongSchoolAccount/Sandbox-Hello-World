@@ -100,7 +100,7 @@ void turnX() {
   if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
     claimCell(2, 2);
   if (easyAlgorithm) easyAlgorithm();
-  if (mediumAlgorithm) mediumAlgorithm();
+  if (mediumAlgorithm) mediumAlgorithm(0, -1, -1);
 }
 void turnO() {
   if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
@@ -186,13 +186,52 @@ boolean checkTie() {
 }
 void easyAlgorithm() {
   if (turnXO == false) {
+    randomMoveAlgorithm();
+  }
+}//end easyAlgorithm
+void mediumAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
+  if (turnXO == false) {
+    for (int i = 0; i < 3; i++) {//rows
+      for (int j = 0; j < 3; j++) {//columns
+        if (cell[i][j] == 0) {//check for empty cells
+          cellEmpty++;//claim if row almost filled
+          rowEmpty = i;
+          columnEmpty = j;
+          claimCell(i, j);//claims winning cell
+          if (checkWinO()) {
+            turnXO = true;//X
+            return;//claims when winning cell found
+          } cell[i][j] = 0;//resets test
+        }
+      }
+    }
+    for (int r = 0; r < 3; r++) {//rows
+      for (int c = 0; c < 3; c++) {//columns
+        if (cell[r][c] == 0) {
+          cellEmpty++;
+          rowEmpty = r;
+          columnEmpty = c;
+          cell[r][c] = 1;//test
+          if (checkWinX()) {
+            cell[r][c] = 2;//block X
+            turnXO = true;//X
+            return;
+          } cell[r][c] = 0;//reset test
+        }
+      }
+    }
+    randomMoveAlgorithm();
+  }
+}//end mediumAlgorithm
+void randomMoveAlgorithm() {
+  if (turnXO == false) {
     for (int i = 0; i < 3; i++) {//nested loop
       for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
         if (cell[i][j] == 0) {//check for unclaimed cells
           boolean done = false;//random move
           while (!done) {
             int i1 = int(random(3));//random row
-            int j1 = int(random(3));//random colem
+            int j1 = int(random(3));//random column
             if (cell[i1][j1] == 0) {
               claimCell(i1, j1);//picks the cell
               done = true;
@@ -202,17 +241,5 @@ void easyAlgorithm() {
       }
     }
   }
-}//end easyAlgorithm
-void mediumAlgorithm() {
-  if (turnXO == false) {
-    for (int i = 0; i < 3; i++) {//nested loop
-      for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
-        if (cell[i][j] == 0) {//the algorithm searches for uncliamed cells
-          claimCell(i, j);
-          return;//claims a unclaimed cell
-        }
-      }
-    }
-  }
-}//end mediumAlgorithm
+}//end randomMoveAlgorithm
 //end TicTacToe subProgram
