@@ -248,7 +248,7 @@ void randomMoveAlgorithm() {
     }
   }
 }//end randomMoveAlgorithm
-void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
+void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) { // work in progress
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {//rows
       for (int j = 0; j < 3; j++) {//columns
@@ -282,10 +282,12 @@ void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
     for (int i = 0; i < 3; i++) {//nested loop
       for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
         if (cell[0][0] != 0) {
-          randomMoveAlgorithm();
-        } else claimCell(0, 0);
+          if (cell[2][1] != 0) {
+            randomMoveAlgorithm(); return;
+          } else claimCell(2, 1); return;
+        } else claimCell(0, 0); return;
       }
-    }
+    } randomMoveAlgorithm(); return;
   }
-}//end impossibleAlgorithm
+}//end mediumAlgorithm
 //end TicTacToe subProgram
