@@ -62,7 +62,7 @@ void drawTicTacToeONOFF() {
   TTTRightBottomCorner(" X ", " O ");//cell[2][2]
 }//end drawTicTacToeONOFF
 void mousePressedTicTacToeONOFF() {
-  if (gameOn) { if (turnXO) {turnX();} else {turnO();} }
+  if (gameOn) turn();
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   TTTReset();
   if ( mouseX>=TTTModeX && mouseX<=TTTModeX+TTTModeWidth && mouseY>=TTTModeY && mouseY<=TTTModeY+TTTModeHeight )
@@ -80,7 +80,7 @@ void claimCell(int row, int colemn) {
     }
   }
 }//end claimCell
-void turnX() {
+void turn() {
   if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY1 && mouseY <= TTTY1 + TTTHeight)
     claimCell(0, 0);//middle
   if (mouseX >= TTTX1 && mouseX <= TTTX1 + TTTWidth && mouseY >= TTTY11 && mouseY <= TTTY11 + TTTHeight)
@@ -103,26 +103,6 @@ void turnX() {
   if (mediumAlgorithm) mediumAlgorithm(0, -1, -1);
   if (impossibleAlgorithm) impossibleAlgorithm(0, -1, -1);
 }
-void turnO() {
-  if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  claimCell(0, 0);
-  if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  claimCell(0, 1);
-  if ( mouseX>=TTTX1 && mouseX<=TTTX1+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  claimCell(0, 2);
-  if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  claimCell(1, 0);
-  if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  claimCell(1, 1);
-  if ( mouseX>=TTTX11 && mouseX<=TTTX11+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  claimCell(1, 2);
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY1 && mouseY<=TTTY1+TTTHeight )
-  claimCell(2, 0);
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY11 && mouseY<=TTTY11+TTTHeight )
-  claimCell(2, 1);
-  if ( mouseX>=TTTX12 && mouseX<=TTTX12+TTTWidth && mouseY>=TTTY12 && mouseY<=TTTY12+TTTHeight )
-  claimCell(2, 2);
-}//end turnO
 void TTTReset() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
