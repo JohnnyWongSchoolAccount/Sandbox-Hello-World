@@ -201,11 +201,6 @@ void mediumAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
         }
       }
     }
-    for (int i = 0; i < 3; i++) {//nested loop
-      for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
-        claimCell(0, 0);
-      }
-    }
     randomMoveAlgorithm();
   }
 }//end mediumAlgorithm
@@ -228,7 +223,29 @@ void randomMoveAlgorithm() {
     }
   }
 }//end randomMoveAlgorithm
-void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) { // work in progress
+void sideCellAlgorithm() {
+  int[] sideCellsRow = {0, 1, 2}; // Indices of the side cells in the cell array
+  int[] sideCellsColumn = {0, 1, 2};
+  // Randomly select a side cell
+  int randomIndexRow = int(random(sideCellsRow.length));
+  int randomIndexColumn = int(random(sideCellsColumn.length));
+  int selectedCellRow = sideCellsRow[randomIndexRow];
+  int selectedCellColumn = sideCellsColumn[randomIndexColumn];
+  if (selectedCellRow != 0) {
+    claimCell(selectedCellRow, 0); return;
+  } else claimCell(0, selectedCellColumn); return;
+}//end sideCellAlgorithm
+void cornerCellAlgorithm() {
+  int[] cornerCellsRow = {1, 2}; // Indices of the side cells in the cell array
+  int[] cornerCellsColumn = {1, 2};
+  // Randomly select a side cell
+  int randomIndexRow = int(random(cornerCellsRow.length));
+  int randomIndexColumn = int(random(cornerCellsColumn.length));
+  int selectedCellRow = cornerCellsRow[randomIndexRow];
+  int selectedCellColumn = cornerCellsColumn[randomIndexColumn];
+  claimCell(selectedCellRow, selectedCellColumn);
+}//end sideCellAlgorithm
+void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {//rows
       for (int j = 0; j < 3; j++) {//columns
@@ -236,8 +253,9 @@ void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) { // work
           cellEmpty++;//find
           rowEmpty = i;
           columnEmpty = j;
-          claimCell(i, j);//claims winning cell
+          cell[i][j] = 2;
           if (checkWinO()) {
+            claimCell(i, j);//claims winning cell
             turnXO = true;//X
             return;//claims when winning cell found
           } cell[i][j] = 0;//resets test
@@ -258,16 +276,12 @@ void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) { // work
           } cell[r][c] = 0;//reset test
         }
       }
-    }
-    for (int i = 0; i < 3; i++) {//nested loop
-      for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
-        if (cell[0][0] != 0) {
-          if (cell[2][1] != 0) {
-            randomMoveAlgorithm(); return;
-          } else claimCell(2, 1); return;
-        } else claimCell(0, 0); return;
-      }
-    } randomMoveAlgorithm(); return;
+    } 
+  if (cell[0][0] == 0) { claimCell(0, 0); }
+  else if (cell[2][2] == 0 && cell[1][1] == 0 && cell[1][2] == 0 && cell[2][1] == 0) 
+  { cornerCellAlgorithm(); }
+  else if (cell[0][1] == 0 && cell[1][0] == 0 && cell[0][2] == 0 && cell[2][0] == 0) 
+  { sideCellAlgorithm(); } else randomMoveAlgorithm();
   }
-}//end mediumAlgorithm
+}//end impossibleAlgorithm
 //end TicTacToe subProgram
