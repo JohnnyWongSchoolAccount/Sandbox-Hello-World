@@ -99,9 +99,12 @@ void turn() {
     claimCell(2, 1);
   if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
     claimCell(2, 2);
-  if (easyAlgorithm) easyAlgorithm();
-  if (mediumAlgorithm) mediumAlgorithm(0, -1, -1);
-  if (impossibleAlgorithm) impossibleAlgorithm(0, -1, -1);
+  if (checkWinX() || checkWinO()) { //empty if
+  } else {
+    if (easyAlgorithm) easyAlgorithm();
+    if (mediumAlgorithm) mediumAlgorithm(0, -1, -1);
+    if (impossibleAlgorithm) impossibleAlgorithm(0, -1, -1);
+  }
 }
 void TTTReset() {
   for (int i = 0; i < 3; i++) {
@@ -224,14 +227,15 @@ void randomMoveAlgorithm() {
   }
 }//end randomMoveAlgorithm
 void sideCellAlgorithm() {
-  int[] sideCellsRow = {0, 1, 2}; // Indices of the side cells in the cell array
-  int[] sideCellsColumn = {0, 1, 2};
+  int[] sideCellsRow = {1, 2}; // Indices of the side cells in the cell array
+  int[] sideCellsColumn = {1, 2};
   // Randomly select a side cell
   int randomIndexRow = int(random(sideCellsRow.length));
   int randomIndexColumn = int(random(sideCellsColumn.length));
   int selectedCellRow = sideCellsRow[randomIndexRow];
   int selectedCellColumn = sideCellsColumn[randomIndexColumn];
-  if (selectedCellRow != 0) {
+  float rand = int(random(1,2));
+  if (rand != 1) {
     claimCell(selectedCellRow, 0); return;
   } else claimCell(0, selectedCellColumn); return;
 }//end sideCellAlgorithm
@@ -277,11 +281,10 @@ void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
         }
       }
     } 
-  if (cell[0][0] == 0) { claimCell(0, 0); }
-  else if (cell[2][2] == 0 && cell[1][1] == 0 && cell[1][2] == 0 && cell[2][1] == 0) 
-  { cornerCellAlgorithm(); }
-  else if (cell[0][1] == 0 && cell[1][0] == 0 && cell[0][2] == 0 && cell[2][0] == 0) 
-  { sideCellAlgorithm(); } else randomMoveAlgorithm();
+    if (cell[0][0] == 0) { claimCell(0, 0); }
+    else if (cell[0][0] == 1) cornerCellAlgorithm();
+    else if (cell[0][0] == 2) sideCellAlgorithm(); 
+    else randomMoveAlgorithm();
   }
 }//end impossibleAlgorithm
 //end TicTacToe subProgram
