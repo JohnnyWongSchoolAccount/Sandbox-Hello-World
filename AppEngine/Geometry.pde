@@ -223,21 +223,19 @@ void ticTacToeImpossibleAlgorithmRect(String textImpossible) {
   rect(TTTImpossibleX, TTTImpossibleY, TTTImposibleWidth, TTTimpossibleHeight);
   drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textImpossible+textSpace, TTTImpossibleX, TTTImpossibleY, TTTImposibleWidth, TTTimpossibleHeight);
 }//end ticTacToeEasyAlgorithmRect
-void ticTacToeTurnX(String textX, String textNot, String textWinner, String textTie) {
+void ticTacToeTurn(String textX, String textO,String textWinnerX, String textWinnerO, String textTie) {
   fill(black); stroke(black);
   rect(TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
-  if (checkWinO()) drawText( height, purpInk, CENTER, CENTER, Font, textWinner, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
+  if (checkWinO()) drawText( height, purpInk, CENTER, CENTER, Font, textWinnerO, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
+  else if (checkWinX()) drawText( height, purpInk, CENTER, CENTER, Font, textWinnerX, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
   else if (checkTie()) drawText( height, purpInk, CENTER, CENTER, Font, textTie, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
   else if (turnXO) drawText( height, purpInk, CENTER, CENTER, Font, textX, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
-  else drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textSpace+textSpace+textNot+textSpace+textSpace+textSpace+textSpace, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
+  else drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
 }//end ticTacToeTurnX
-void ticTacToeTurnO(String textO, String textNot, String textWinner, String textTie) {
+void ticTacToeScoreBoard(String textLine) {
   fill(black); stroke(black);
   rect(TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);
-  if (checkWinX()) drawText( height, purpInk, CENTER, CENTER, Font, textWinner, TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);
-  else if (checkTie()) drawText( height, purpInk, CENTER, CENTER, Font, textTie, TTTturnXX, TTTturnXY, TTTturnXWidth, TTTturnXHeight);
-  else if (turnXO == false) drawText( height, purpInk, CENTER, CENTER, Font, textO, TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);
-  else drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textSpace+textSpace+textNot+textSpace+textSpace+textSpace+textSpace, TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);
+  drawText( height, purpInk, CENTER, CENTER, Font, textSpace+textSpace+textScoreO+textLine+textScoreX+textSpace+textSpace, TTTturnOX, TTTturnOY, TTTturnOWidth, TTTturnOHeight);
 }//end ticTacToeTurnO
 void quitRect(String textQuit) {
   rect(quitX, quitY, quitWidth, quitHeight);
