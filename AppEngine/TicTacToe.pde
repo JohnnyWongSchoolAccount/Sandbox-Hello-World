@@ -234,7 +234,7 @@ void sideCellAlgorithm() {
   int randomIndexColumn = int(random(sideCellsColumn.length));
   int selectedCellRow = sideCellsRow[randomIndexRow];
   int selectedCellColumn = sideCellsColumn[randomIndexColumn];
-  float rand = int(random(1,2));
+  float rand = int(random(3));
   if (rand != 1) {
     claimCell(selectedCellRow, 0); return;
   } else claimCell(0, selectedCellColumn); return;
@@ -284,7 +284,7 @@ void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
     if (cell[0][0] == 0) { claimCell(0, 0); }
     else if (cell[0][0] == 1) cornerCellAlgorithm();
     else if (cell[0][0] == 2) sideCellAlgorithm(); 
-    else randomMoveAlgorithm();
+    randomMoveAlgorithm();
   }
 }//end impossibleAlgorithm
 //end TicTacToe subProgram
