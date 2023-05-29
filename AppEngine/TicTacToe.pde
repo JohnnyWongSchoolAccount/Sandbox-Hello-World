@@ -102,8 +102,8 @@ void turn() {
   if (checkWinX() || checkWinO()) { //empty if
   } else {
     if (easyAlgorithm) easyAlgorithm();
-    if (mediumAlgorithm) mediumAlgorithm(0, -1, -1);
-    if (impossibleAlgorithm) impossibleAlgorithm(0, -1, -1);
+    if (mediumAlgorithm) mediumAlgorithm();
+    if (impossibleAlgorithm) impossibleAlgorithm();
   }
 }
 void TTTReset() {
@@ -173,34 +173,31 @@ void easyAlgorithm() {
     randomMoveAlgorithm();
   }
 }//end easyAlgorithm
-void mediumAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
+void mediumAlgorithm() {
   if (turnXO == false) {
-    for (int i = 0; i < 3; i++) {//rows
-      for (int j = 0; j < 3; j++) {//columns
-        if (cell[i][j] == 0) {//check for empty cells
-          cellEmpty++;//find
-          rowEmpty = i;
-          columnEmpty = j;
-          claimCell(i, j);//claims winning cell
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (cell[i][j] == 0) {
+          cell[i][j] = 2;
           if (checkWinO()) {
-            turnXO = true;//X
-            return;//claims when winning cell found
-          } cell[i][j] = 0;//resets test
+            claimCell(i, j);
+            turnXO = true;
+            return;
+          }
+          cell[i][j] = 0;
         }
       }
     }
-    for (int r = 0; r < 3; r++) {//rows
-      for (int c = 0; c < 3; c++) {//columns
-        if (cell[r][c] == 0) {
-          cellEmpty++;
-          rowEmpty = r;
-          columnEmpty = c;
-          cell[r][c] = 1;//test
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (cell[i][j] == 0) {
+          cell[i][j] = 1;
           if (checkWinX()) {
-            cell[r][c] = 2;//block X
+            cell[i][j] = 2;
             turnXO = true;
             return;
-          } cell[r][c] = 0;//reset test
+          }
+          cell[i][j] = 0;
         }
       }
     }
@@ -249,39 +246,35 @@ void cornerCellAlgorithm() {
   int selectedCellColumn = cornerCellsColumn[randomIndexColumn];
   claimCell(selectedCellRow, selectedCellColumn);
 }//end sideCellAlgorithm
-void impossibleAlgorithm(int cellEmpty, int rowEmpty, int columnEmpty) {
+void impossibleAlgorithm() {
   if (turnXO == false) {
-    for (int i = 0; i < 3; i++) {//rows
-      for (int j = 0; j < 3; j++) {//columns
-        if (cell[i][j] == 0) {//check for empty cells
-          cellEmpty++;//find
-          rowEmpty = i;
-          columnEmpty = j;
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (cell[i][j] == 0) {
           cell[i][j] = 2;
           if (checkWinO()) {
-            claimCell(i, j);//claims winning cell
-            turnXO = true;//X
-            return;//claims when winning cell found
-          } cell[i][j] = 0;//resets test
+            claimCell(i, j);
+            turnXO = true;
+            return;
+          }
+          cell[i][j] = 0;
         }
       }
     }
-    for (int r = 0; r < 3; r++) {//rows
-      for (int c = 0; c < 3; c++) {//columns
-        if (cell[r][c] == 0) {
-          cellEmpty++;
-          rowEmpty = r;
-          columnEmpty = c;
-          cell[r][c] = 1;//test
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (cell[i][j] == 0) {
+          cell[i][j] = 1;
           if (checkWinX()) {
-            cell[r][c] = 2;//block X
+            cell[i][j] = 2;
             turnXO = true;
             return;
-          } cell[r][c] = 0;//reset test
+          }
+          cell[i][j] = 0;
         }
       }
-    } 
-    if (cell[0][0] == 0) { claimCell(0, 0); }
+    }
+    if (cell[0][0] == 0) claimCell(0, 0);
     else if (cell[0][0] == 1) cornerCellAlgorithm();
     else if (cell[0][0] == 2) sideCellAlgorithm(); 
     randomMoveAlgorithm();
