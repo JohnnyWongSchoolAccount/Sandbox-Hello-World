@@ -246,7 +246,7 @@ void cornerCellAlgorithm() {
   int selectedCellColumn = cornerCellsColumn[randomIndexColumn];
   claimCell(selectedCellRow, selectedCellColumn);
 }//end sideCellAlgorithm
-void impossibleAlgorithm() {
+void impossibleAlgorithm() { //should scrap learn minimax
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
