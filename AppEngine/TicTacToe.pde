@@ -3,6 +3,8 @@ boolean ONOFF_TICTACTOE = false;
 //{0 = 'noting'}, { 1 = 'X'}, { 2 = 'O'} STATE
 int cell[][] = new int[3][3];
 //{turnXO = false = O} {turnXO = true = X}
+int scoreX = 0, scoreO = 0;
+String textScoreX = "0", textScoreO = "0";
 boolean turnXO = true;//"X"
 boolean gameOn;
 boolean dropDownTicTacToeModeMenu = false;
@@ -19,14 +21,15 @@ void keyPressedTicTacToe() {}//end keyPressedTicTacToe
 void drawTicTacToeONOFF() {
   startPage(int(pauseWidth/3.5));
   TTTDrawMode();
-  ticTacToeTurnX("Its Xs turn~", ";)", "Winner O", "Tie Game");
-  ticTacToeTurnO("Its Os turn~", ":)", "Winner X", "Tie Game");
-  if (checkTie() || checkWinX() || checkWinO()) gameOn = false;
+  ticTacToeTurn("Its Xs turn~", "Its Os turn~", "Winner X", "Winner O", "Tie Game");
+  ticTacToeScoreBoard(" - ");
+  if (checkTie() || checkWinX() || checkWinO()) { scoreKeeper(); gameOn = false;}
   stroke(purp);
   println("tie game:", checkTie());
   println("Xs game:", checkWinX());
   println("Os game:", checkWinO());
   println("gameOn:", gameOn);
+  println("Score X - O:", scoreX, "-", scoreO);
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   { fill(hoverOver); } else { fill(black); }
   ticTacToeResetRect("Reset Board");
@@ -118,7 +121,7 @@ void TTTDrawMode() {
   if (dropDownTicTacToeModeMenu) {
     if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
     { fill(hoverOver); } else if (playWithFriends) {fill(toggleOn);} else { fill(black); }
-    ticTacToePlayWidthFriendsRect("Play With Friends");
+    ticTacToePlayWidthFriendsRect("Play With Friends"); 
     if ( mouseX>=TTTEasyX && mouseX<=TTTEasyX+TTTEasyWidth && mouseY>=TTTEasyY && mouseY<=TTTEasyY+TTTEasyHeight )
     { fill(hoverOver); } else if (easyAlgorithm) {fill(toggleOn);} else { fill(black); }
     ticTacToeEasyAlgorithmRect("Easy Algorithm");
@@ -132,20 +135,32 @@ void TTTDrawMode() {
 }//end TTTDrawMode
 void TTTMousePressedMode() {
   if ( mouseX>=TTTPlayWithFriendsX && mouseX<=TTTPlayWithFriendsX+TTTPlayWithFriendsWidth && mouseY>=TTTPlayWithFriendsY && mouseY<=TTTPlayWithFriendsY+TTTPlayWithFriendsHeight )
-  if (playWithFriends) { 
-  } else { playWithFriends = true; TTTReset(); easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = false; }
+  { scoreX = 0; scoreO = 0; textScoreX = "0"; textScoreO = "0";
+    if (playWithFriends) {}
+    else { playWithFriends = true; TTTReset(); easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = false;}
+  }//playWithFriendsMousPressed
   if ( mouseX>=TTTEasyX && mouseX<=TTTEasyX+TTTEasyWidth && mouseY>=TTTEasyY && mouseY<=TTTEasyY+TTTEasyHeight )
-  if (easyAlgorithm) {easyAlgorithm = false; playWithFriends = true; TTTReset();}
-  else { playWithFriends = false; easyAlgorithm = true; TTTReset(); mediumAlgorithm = false; impossibleAlgorithm = false; }
+  { scoreX = 0; scoreO = 0; textScoreX = "0"; textScoreO = "0";
+    if (easyAlgorithm) {easyAlgorithm = false; playWithFriends = true; TTTReset();}
+    else { playWithFriends = false; easyAlgorithm = true; TTTReset(); mediumAlgorithm = false; impossibleAlgorithm = false; }
+  }
   if ( mouseX>=TTTMediumX && mouseX<=TTTMediumX+TTTMediumWidth && mouseY>=TTTMediumY && mouseY<=TTTMediumY+TTTMediumHeight )
+  { scoreX = 0; scoreO = 0; textScoreX = "0"; textScoreO = "0";
   if (mediumAlgorithm) {mediumAlgorithm = false; playWithFriends = true; TTTReset();}
   else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = true; TTTReset(); impossibleAlgorithm = false; }
+  }
   if ( mouseX>=TTTImpossibleX && mouseX<=TTTImpossibleX+TTTImposibleWidth && mouseY>=TTTImpossibleY && mouseY<=TTTImpossibleY+TTTimpossibleHeight )
+  { scoreX = 0; scoreO = 0; textScoreX = "0"; textScoreO = "0";
   if (impossibleAlgorithm) {impossibleAlgorithm = false; playWithFriends = true; TTTReset();}
   else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; TTTReset(); }
+  }
 }//end TTTMousePressedMode
-boolean checkWinX() { return checkWin(1); }//end checkWinX
-boolean checkWinO() { return checkWin(2); }//end checkWinO
+boolean checkWinX() { 
+  return checkWin(1); 
+}//end checkWinX
+boolean checkWinO() { 
+  return checkWin(2); 
+}//end checkWinO
 boolean checkWin(int XO) {
   if (cell[1][0] == XO && cell[1][1] == XO && cell[1][2] == XO) return true;//columns
   if (cell[2][0] == XO && cell[2][1] == XO && cell[2][2] == XO) return true;//columns
@@ -157,6 +172,14 @@ boolean checkWin(int XO) {
   if (cell[0][0] == XO && cell[2][1] == XO && cell[1][2] == XO) return true;//diagonals
   return false;//default
 }//end checkWinXO
+void scoreKeeper() {
+  if (gameOn) {
+    if (checkWinO()) scoreO++;
+    if (checkWinX()) scoreX++;
+    textScoreO = String.valueOf(scoreO);
+    textScoreX = String.valueOf(scoreX);
+  } else {}
+}//scoreKeeper
 boolean checkTie() {
   if (checkWinX() || checkWinO()) {
     return false;//defalt
