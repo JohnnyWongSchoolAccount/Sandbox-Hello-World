@@ -106,7 +106,7 @@ void turn() {
   } else {
     if (easyAlgorithm) easyAlgorithm();
     if (mediumAlgorithm) mediumAlgorithm();
-    if (impossibleAlgorithm) impossibleAlgorithm();
+    if (impossibleAlgorithm) impossibleAlgorithm(-22, -1, -1);
   }
 }
 void TTTReset() {
@@ -193,7 +193,7 @@ boolean checkTie() {
 }
 void easyAlgorithm() {
   if (turnXO == false) {
-    randomMoveAlgorithm();
+    randomAlgorithm();
   }
 }//end easyAlgorithm
 void mediumAlgorithm() {
@@ -224,28 +224,22 @@ void mediumAlgorithm() {
         }
       }
     }
-    randomMoveAlgorithm();
+    randomAlgorithm();
   }
 }//end mediumAlgorithm
-void randomMoveAlgorithm() {
+void randomAlgorithm() {
   if (turnXO == false) {
-    for (int i = 0; i < 3; i++) {//nested loop
-      for (int j = 0; j < 3; j++) {//i and j recognizes rows and columns
-        if (cell[i][j] == 0) {//check for unclaimed cells
-          boolean done = false;//random move
-          while (!done) {
-            int i1 = int(random(3));//random row
-            int j1 = int(random(3));//random column
-            if (cell[i1][j1] == 0) {
-              claimCell(i1, j1);//picks the cell
-              done = true;
-            }
-          } return;//ends turn
-        }
-      }
-    }
+    boolean done = false;
+      while (done == false) {
+        int i = int(random(3));
+        int j = int(random(3));
+        if (cell[i][j] == 0) {
+          claimCell(i, j);
+          done = true;
+       }
+    } return;
   }
-}//end randomMoveAlgorithm
+}//end randomAlgorithm
 void sideCellAlgorithm() {
   int[] sideCellsRow = {1, 2}; // Indices of the side cells in the cell array
   int[] sideCellsColumn = {1, 2};
