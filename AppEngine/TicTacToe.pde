@@ -106,7 +106,7 @@ void turn() {
     if (mediumAlgorithm) mediumAlgorithm();
     if (impossibleAlgorithm) impossibleAlgorithm();
   }
-}
+}//end turn
 void TTTReset() {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
@@ -153,12 +153,6 @@ void TTTMousePressedMode() {
   else { playWithFriends = false; easyAlgorithm = false; mediumAlgorithm = false; impossibleAlgorithm = true; TTTReset(); }
   }
 }//end TTTMousePressedMode
-boolean checkWinX() { 
-  return checkWin(1); 
-}//end checkWinX
-boolean checkWinO() { 
-  return checkWin(2); 
-}//end checkWinO
 boolean checkWin(int XO) {
   if (cell[1][0] == XO && cell[1][1] == XO && cell[1][2] == XO) return true;//columns
   if (cell[2][0] == XO && cell[2][1] == XO && cell[2][2] == XO) return true;//columns
@@ -170,14 +164,12 @@ boolean checkWin(int XO) {
   if (cell[0][0] == XO && cell[2][1] == XO && cell[1][2] == XO) return true;//diagonals
   return false;//default
 }//end checkWinXO
-void scoreKeeper() {
-  if (gameOn) {
-    if (checkWinO()) scoreO++;
-    if (checkWinX()) scoreX++;
-    textScoreO = String.valueOf(scoreO);
-    textScoreX = String.valueOf(scoreX);
-  } else {}
-}//scoreKeeper 
+boolean checkWinX() { 
+  return checkWin(1); 
+}//end checkWinX
+boolean checkWinO() { 
+  return checkWin(2); 
+}//end checkWinO
 boolean checkTie() {
   if (checkWinX() || checkWinO()) {
     return false;//defalt
@@ -188,7 +180,15 @@ boolean checkTie() {
       }
     } return true;
   }
-}
+}//end checkTie
+void scoreKeeper() {
+  if (gameOn) {
+    if (checkWinO()) scoreO++;
+    if (checkWinX()) scoreX++;
+    textScoreO = String.valueOf(scoreO);
+    textScoreX = String.valueOf(scoreX);
+  } else {}
+}//scoreKeeper 
 void randomAlgorithm() {
   if (turnXO == false) {
     boolean done = false;
@@ -258,26 +258,26 @@ void mediumAlgorithm() {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (cell[i][j] == 0) {
-          cell[i][j] = 2;
+          cell[i][j] = 2;//test
           if (checkWinO()) {
-            claimCell(i, j);
+            claimCell(i, j);//cliam win condition
             turnXO = true;
-            return;
+            return; 
           }
-          cell[i][j] = 0;
+          cell[i][j] = 0;//reset
         }
       }
     }
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (cell[i][j] == 0) {
-          cell[i][j] = 1;
-          if (checkWinX()) {
+          cell[i][j] = 1;//test
+          if (checkWinX()) {//block X Win condition
             cell[i][j] = 2;
             turnXO = true;
             return;
           }
-          cell[i][j] = 0;
+          cell[i][j] = 0;//reset
         }
       }
     }
