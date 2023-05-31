@@ -4,9 +4,10 @@ boolean ONOFF_TICTACTOE = false;
 int cell[][] = new int[3][3];
 //{turnXO = false = O} {turnXO = true = X}
 int scoreX = 0, scoreO = 0;
+int depth = 0;
 String textScoreX = "0", textScoreO = "0";
 boolean turnXO = true;//"X"
-boolean gameOn;
+boolean gameOn = true;
 boolean dropDownTicTacToeModeMenu = false;
 boolean playWithFriends = true;
 boolean easyAlgorithm = false;
@@ -25,12 +26,6 @@ void drawTicTacToeONOFF() {
   ticTacToeScoreBoard(" - ");
   if (checkTie() || checkWinX() || checkWinO()) { scoreKeeper(); gameOn = false;}
   stroke(purp);
-  /*println("tie game:", checkTie());
-  println("Xs game:", checkWinX());
-  println("Os game:", checkWinO());
-  println("gameOn:", gameOn);*/
-  println(turnPlayed);
-  println(depth);
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   { fill(hoverOver); } else { fill(black); }
   ticTacToeResetRect("Reset Board");
@@ -74,7 +69,7 @@ void mousePressedTicTacToeONOFF() {
   if (dropDownTicTacToeModeMenu) TTTMousePressedMode();
 }//end mousePressedTicTacToeONOFF
 void claimCell(int row, int colemn) {
-  if (cell[row][colemn] == 0) {
+  if (cell[row][colemn] == 0) {//claim only when empty
     if (turnXO) {
       cell[row][colemn] = 1; //X
       turnXO = false; //O
@@ -253,6 +248,11 @@ void cornerCellAlgorithm() {
     }
   } return;
 }//end sideCellAlgorithm
+void easyAlgorithm() {
+  if (turnXO == false) {
+    randomAlgorithm();
+  }
+}//end easyAlgorithm
 void mediumAlgorithm() {
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {
@@ -284,65 +284,56 @@ void mediumAlgorithm() {
     randomAlgorithm();
   }
 }//end mediumAlgorithm
-void easyAlgorithm() {
-  if (turnXO == false) {
-    randomAlgorithm();
-  }
-}//end easyAlgorithm
-boolean turnPlayed = false;
-int depth = 0;
 void impossibleAlgorithm() {
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (cell[i][j] == 0) {
-          cell[i][j] = 2;
+          cell[i][j] = 2;//test
           if (checkWinO()) {
-            claimCell(i, j);
+            claimCell(i, j);//cliam win condition
             turnXO = true;
             return; 
           }
-          cell[i][j] = 0;
+          cell[i][j] = 0;//reset
         }
       }
     }
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (cell[i][j] == 0) {
-          cell[i][j] = 1;
-          if (checkWinX()) {
+          cell[i][j] = 1;//test
+          if (checkWinX()) {//block X Win condition
             cell[i][j] = 2;
             turnXO = true;
             return;
           }
-          cell[i][j] = 0;
+          cell[i][j] = 0;//reset
         }
       }
     }
-    if (turnPlayed == false) {
-      if (cell[0][0] == 2) {
-        if (depth == 3) {
-          if (cell[1][0] == 1 || cell[2][0] == 1 || cell[0][2] == 1 || cell[0][1] == 1) {
-            blockSmallTriangleAlgorithm();
-            return;
-          }
-          if (cell[1][1] == 1 || cell[2][2] == 1 || cell[1][2] == 1 || cell[2][1] == 1) {
-            sideCellAlgorithm(); 
-            return;
-          }
-          cornerCellAlgorithm(); return;
+    if (cell[0][0] == 2) { //if turn is not played
+      if (depth == 3) {
+        if (cell[1][0] == 1 || cell[2][0] == 1 || cell[0][2] == 1 || cell[0][1] == 1) {
+          blockSmallTriangleAlgorithm();
+          return;
         }
+        if (cell[1][1] == 1 || cell[2][2] == 1 || cell[1][2] == 1 || cell[2][1] == 1) {
+          sideCellAlgorithm(); 
+          return;
+        }
+        cornerCellAlgorithm(); return;
       }
-      if (cell[0][0] == 0) {
-        claimCell(0, 0); 
-        return;
-      } else if (cell[1][1] == 0 || cell[2][2] == 0 || cell[1][2] == 0 || cell[2][1] == 0 ) {
-        cornerCellAlgorithm(); 
-        return;
-      } else {
-        randomAlgorithm(); 
-        return;
-      }
+    }
+    if (cell[0][0] == 0) {
+      claimCell(0, 0); 
+      return;
+    } else if (cell[1][1] == 0 || cell[2][2] == 0 || cell[1][2] == 0 || cell[2][1] == 0 ) {
+      cornerCellAlgorithm(); 
+      return;
+    } else {
+      randomAlgorithm(); 
+      return;
     }
   }
 }//end impossibleAlgorithm
