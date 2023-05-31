@@ -1,5 +1,5 @@
 //Global Variables
-boolean ONOFF_TICTACTOE = true;//setting default - tictactoe OFF
+boolean ONOFF_TICTACTOE = false;//setting default - tictactoe OFF
 //{0 = 'noting'}, { 1 = 'X'}, { 2 = 'O'} STATES
 int cell[][] = new int[3][3];//2D array
 //{turnXO = false = O} {turnXO = true = X}
@@ -20,16 +20,7 @@ void mousePressedTicTacToe(){ if (ONOFF_TICTACTOE) mousePressedTicTacToeONOFF();
 void keyPressedTicTacToe() {}//end keyPressedTicTacToe
 //
 void drawTicTacToeONOFF() {
-  background(background);
-  stroke(purp); strokeWeight(4);
-  strokeJoin( ROUND ); //the outlines of the shapes
-  population();
-  /*println("Game On:", gameOn);
-  println("ScoreBoard X - O:", scoreX, "-", scoreO );
-  println("depth:", depth);
-  println("playWithFrieds:", playWithFriends);
-  println("WinnerX:", checkWinX());
-  println("WinnerO:", checkWinO());*/
+  startPage(int(pauseWidth/3.5));
   TTTDrawMode();
   ticTacToeTurn("Its Xs turn~", "Its Os turn~", "Winner X", "Winner O", "Tie Game");
   ticTacToeScoreBoard(" - ");
