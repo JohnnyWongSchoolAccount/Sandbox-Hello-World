@@ -1,18 +1,18 @@
 //Global Variables
-boolean ONOFF_TICTACTOE = false;
+boolean ONOFF_TICTACTOE = false;//setting default - tictactoe OFF
 //{0 = 'noting'}, { 1 = 'X'}, { 2 = 'O'} STATES
-int cell[][] = new int[3][3];
+int cell[][] = new int[3][3];//2D array
 //{turnXO = false = O} {turnXO = true = X}
-int scoreX = 0, scoreO = 0;
-int depth = 0;
-String textScoreX = "0", textScoreO = "0";
+int scoreX = 0, scoreO = 0;//scoreboard
+int depth = 0;//the turns played - > game tree depth
+String textScoreX = "0", textScoreO = "0";//scoreboard
 boolean turnXO = true;//"X"
-boolean gameOn = true;
-boolean dropDownTicTacToeModeMenu = false;
-boolean playWithFriends = true;
-boolean easyAlgorithm = false;
-boolean mediumAlgorithm = false;
-boolean impossibleAlgorithm = false;
+boolean gameOn = true;//if the game can be played or not
+boolean dropDownTicTacToeModeMenu = false;//drop down menu for modes
+boolean playWithFriends = true;//no algorithm on by default
+boolean easyAlgorithm = false;//easy algorithm
+boolean mediumAlgorithm = false;//medium algorithm
+boolean impossibleAlgorithm = false;//impossible algorithm
 //
 void setupTicTacToe() {}//end setupTicTacToe
 void drawTicTacToe() { if (ONOFF_TICTACTOE) drawTicTacToeONOFF(); }//end drawTicTacToe
