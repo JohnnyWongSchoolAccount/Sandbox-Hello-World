@@ -1,6 +1,8 @@
 # INFO
 - The AppEngine directory has all the finalized or most recent versions of code seen any of the prototyping programs
 - pauseButton, imagesPrototyping, textPrototyping and WeatherAppEngine2 are directories for prototype programs now implimented in AppEngine
+- tic tac toe project https://github.com/JohnnyWongSchoolAccount/Sandbox-TicTacToe-Game
+- weather app project https://github.com/JohnnyWongSchoolAccount/Sandbox-Weather-App
 # Buttons and Their Functions
 //Menu//
 - Night Mode:
