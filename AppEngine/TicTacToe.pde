@@ -25,11 +25,12 @@ void drawTicTacToeONOFF() {
   ticTacToeScoreBoard(" - ");
   if (checkTie() || checkWinX() || checkWinO()) { scoreKeeper(); gameOn = false;}
   stroke(purp);
-  println("tie game:", checkTie());
+  /*println("tie game:", checkTie());
   println("Xs game:", checkWinX());
   println("Os game:", checkWinO());
-  println("gameOn:", gameOn);
-  println("Score X - O:", scoreX, "-", scoreO);
+  println("gameOn:", gameOn);*/
+  println(turnPlayed);
+  println(depth);
   if ( mouseX>=TTTResetX && mouseX<=TTTResetX+TTTResetWidth && mouseY>=TTTResetY && mouseY<=TTTResetY+TTTResetHeight )
   { fill(hoverOver); } else { fill(black); }
   ticTacToeResetRect("Reset Board");
@@ -77,9 +78,11 @@ void claimCell(int row, int colemn) {
     if (turnXO) {
       cell[row][colemn] = 1; //X
       turnXO = false; //O
+      depth++;
     } else {
       cell[row][colemn] = 2; //O
       turnXO = true; //X
+      depth++;
     }
   }
 }//end claimCell
@@ -102,11 +105,11 @@ void turn() {
     claimCell(2, 1);
   if (mouseX >= TTTX12 && mouseX <= TTTX12 + TTTWidth && mouseY >= TTTY12 && mouseY <= TTTY12 + TTTHeight)
     claimCell(2, 2);
-  if (checkWinX() || checkWinO()) { //empty if
+  if (checkWinX() || checkWinO() || checkTie()) { //empty if
   } else {
     if (easyAlgorithm) easyAlgorithm();
     if (mediumAlgorithm) mediumAlgorithm();
-    if (impossibleAlgorithm) impossibleAlgorithm(-22, -1, -1);
+    if (impossibleAlgorithm) impossibleAlgorithm();
   }
 }
 void TTTReset() {
@@ -115,7 +118,7 @@ void TTTReset() {
       cell[i][j] = 0;
     }
   }
-  turnXO = true; gameOn = true;
+  turnXO = true; gameOn = true; depth = 0;
 }//end TTTReset
 void TTTDrawMode() {
   if (dropDownTicTacToeModeMenu) {
@@ -179,7 +182,7 @@ void scoreKeeper() {
     textScoreO = String.valueOf(scoreO);
     textScoreX = String.valueOf(scoreX);
   } else {}
-}//scoreKeeper
+}//scoreKeeper 
 boolean checkTie() {
   if (checkWinX() || checkWinO()) {
     return false;//defalt
@@ -191,11 +194,65 @@ boolean checkTie() {
     } return true;
   }
 }
-void easyAlgorithm() {
+void randomAlgorithm() {
   if (turnXO == false) {
-    randomAlgorithm();
+    boolean done = false;
+    while (done == false) {
+      int i = int(random(3));
+      int j = int(random(3));
+      if (cell[i][j] == 0) {
+        claimCell(i, j);//claim cell
+        done = true;
+     }
+   } return;
+ }
+}//end randomAlgorithm
+void blockSmallTriangleAlgorithm() {
+  if (cell[1][0] == 1 && cell[0][2] == 1) claimCell(1, 2);
+  else if (cell[1][0] == 1 && cell[0][1] == 1) claimCell(1, 1);
+  else if (cell[0][1] == 1 && cell[2][0] == 1) claimCell(2, 1);
+  else if (cell[2][0] == 1 && cell[0][2] == 1) claimCell(2, 2);
+  else cornerCellAlgorithm();
+}//end blockSmallTriangleAlgorithm
+void sideCellAlgorithm() {
+  int[] sideCellsRow = {1, 2}; // Indices of the side cells in the cell array
+  int[] sideCellsColumn = {1, 2};
+  boolean done = false;
+  while (done == false) {
+    // Randomly select a side cell
+    int randomIndexRow = int(random(sideCellsRow.length));
+    int randomIndexColumn = int(random(sideCellsColumn.length));
+    int selectedCellRow = sideCellsRow[randomIndexRow];
+    int selectedCellColumn = sideCellsColumn[randomIndexColumn];
+    if (cell[selectedCellRow][0] == 0 || cell[0][selectedCellColumn] == 0) {
+      if (cell[selectedCellRow][0] == 0) {
+        claimCell(selectedCellRow, 0);
+        done = true;
+        return;
+      }
+      if (cell[0][selectedCellColumn] == 0) {
+        claimCell(0, selectedCellColumn); 
+        done = true;
+        return;
+      }
+    }
   }
-}//end easyAlgorithm
+}//end sideCellAlgorithm
+void cornerCellAlgorithm() {
+  int[] cornerCellsRow = {1, 2}; // Indices of the side cells in the cell array
+  int[] cornerCellsColumn = {1, 2};
+  boolean done = false;
+  while (done == false) {
+    int randomIndexRow = int(random(cornerCellsRow.length));
+    int randomIndexColumn = int(random(cornerCellsColumn.length));
+    int selectedCellRow = cornerCellsRow[randomIndexRow];
+    int selectedCellColumn = cornerCellsColumn[randomIndexColumn];
+    if (cell[selectedCellRow][selectedCellColumn] == 0) {
+      claimCell(selectedCellRow, selectedCellColumn);
+      done = true;
+    }
+  } return;
+}//end sideCellAlgorithm
 void mediumAlgorithm() {
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {
@@ -227,43 +284,14 @@ void mediumAlgorithm() {
     randomAlgorithm();
   }
 }//end mediumAlgorithm
-void randomAlgorithm() {
+void easyAlgorithm() {
   if (turnXO == false) {
-    boolean done = false;
-      while (done == false) {
-        int i = int(random(3));
-        int j = int(random(3));
-        if (cell[i][j] == 0) {
-          claimCell(i, j);
-          done = true;
-       }
-    } return;
+    randomAlgorithm();
   }
-}//end randomAlgorithm
-void sideCellAlgorithm() {
-  int[] sideCellsRow = {1, 2}; // Indices of the side cells in the cell array
-  int[] sideCellsColumn = {1, 2};
-  // Randomly select a side cell
-  int randomIndexRow = int(random(sideCellsRow.length));
-  int randomIndexColumn = int(random(sideCellsColumn.length));
-  int selectedCellRow = sideCellsRow[randomIndexRow];
-  int selectedCellColumn = sideCellsColumn[randomIndexColumn];
-  float rand = int(random(3));
-  if (rand != 1) {
-    claimCell(selectedCellRow, 0); return;
-  } else claimCell(0, selectedCellColumn); return;
-}//end sideCellAlgorithm
-void cornerCellAlgorithm() {
-  int[] cornerCellsRow = {1, 2}; // Indices of the side cells in the cell array
-  int[] cornerCellsColumn = {1, 2};
-  // Randomly select a side cell
-  int randomIndexRow = int(random(cornerCellsRow.length));
-  int randomIndexColumn = int(random(cornerCellsColumn.length));
-  int selectedCellRow = cornerCellsRow[randomIndexRow];
-  int selectedCellColumn = cornerCellsColumn[randomIndexColumn];
-  claimCell(selectedCellRow, selectedCellColumn);
-}//end sideCellAlgorithm
-void impossibleAlgorithm() { //should scrap learn minimax
+}//end easyAlgorithm
+boolean turnPlayed = false;
+int depth = 0;
+void impossibleAlgorithm() {
   if (turnXO == false) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
@@ -272,7 +300,7 @@ void impossibleAlgorithm() { //should scrap learn minimax
           if (checkWinO()) {
             claimCell(i, j);
             turnXO = true;
-            return;
+            return; 
           }
           cell[i][j] = 0;
         }
@@ -291,10 +319,31 @@ void impossibleAlgorithm() { //should scrap learn minimax
         }
       }
     }
-    if (cell[0][0] == 0) claimCell(0, 0);
-    else if (cell[0][0] == 1) cornerCellAlgorithm();
-    else if (cell[0][0] == 2) sideCellAlgorithm(); 
-    randomMoveAlgorithm();
+    if (turnPlayed == false) {
+      if (cell[0][0] == 2) {
+        if (depth == 3) {
+          if (cell[1][0] == 1 || cell[2][0] == 1 || cell[0][2] == 1 || cell[0][1] == 1) {
+            blockSmallTriangleAlgorithm();
+            return;
+          }
+          if (cell[1][1] == 1 || cell[2][2] == 1 || cell[1][2] == 1 || cell[2][1] == 1) {
+            sideCellAlgorithm(); 
+            return;
+          }
+          cornerCellAlgorithm(); return;
+        }
+      }
+      if (cell[0][0] == 0) {
+        claimCell(0, 0); 
+        return;
+      } else if (cell[1][1] == 0 || cell[2][2] == 0 || cell[1][2] == 0 || cell[2][1] == 0 ) {
+        cornerCellAlgorithm(); 
+        return;
+      } else {
+        randomAlgorithm(); 
+        return;
+      }
+    }
   }
 }//end impossibleAlgorithm
 //end TicTacToe subProgram
