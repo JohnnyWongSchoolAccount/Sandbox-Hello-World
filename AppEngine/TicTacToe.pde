@@ -209,7 +209,7 @@ void blockSmallTriangleAlgorithm() {
   else if (cell[1][0] == 1 && cell[0][1] == 1) claimCell(1, 1);//left up
   else if (cell[0][1] == 1 && cell[2][0] == 1) claimCell(2, 1);//right up
   else if (cell[2][0] == 1 && cell[0][2] == 1) claimCell(2, 2);//right down
-  else cornerCellAlgorithm();
+  else sideCellAlgorithm();
 }//end blockSmallTriangleAlgorithm
 void sideCellAlgorithm() {
   int[] sideCellsRow = {1, 2}; //left and right
@@ -323,7 +323,7 @@ void impossibleAlgorithm() {
           sideCellAlgorithm(); 
           return;
         }
-        cornerCellAlgorithm(); return;
+        sideCellAlgorithm(); return;
       }
     }
     if (cell[0][0] == 0) {
