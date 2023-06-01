@@ -320,10 +320,19 @@ void impossibleAlgorithm() {
           return;
         }
         if (cell[1][1] == 1 || cell[2][2] == 1 || cell[1][2] == 1 || cell[2][1] == 1) {
-          sideCellAlgorithm(); 
+          if (cell[1][0] == 1 || cell[2][0] == 1 || cell[0][2] == 1 || cell[0][1] == 1) {
+          } else sideCellAlgorithm(); 
+          return;
+        } 
+        sideCellAlgorithm(); return;
+      }
+    }
+    if (cell[0][0] == 2) { 
+      if (depth == 5) {
+        if (cell[1][0] == 1 || cell[2][0] == 1 || cell[0][2] == 1 || cell[0][1] == 1) {
+          blockSmallTriangleAlgorithm();
           return;
         }
-        sideCellAlgorithm(); return;
       }
     }
     if (cell[0][0] == 0) {
