@@ -305,7 +305,7 @@ void timeline(int HeightTL, int WidthTL, float time, float duration ) {
   rect(WidthTL, HeightTL, progress * (appWidth-pauseHeight), - appHeight-pauseHeight);
 }//end timeline()
 void drawTextMusic(int minuites, int seconds, String divider, String texto) {
-  //% means divide by both 1000 and 60 when 60 is needed
+  //
   seconds = (songs[currentSong].position()/1000) % 60;
   minuites = (songs[currentSong].position()/(1000*60)) % 60;
   fill(black); stroke(black);
