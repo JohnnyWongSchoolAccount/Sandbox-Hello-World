@@ -327,14 +327,6 @@ void impossibleAlgorithm() {
         sideCellAlgorithm(); return;
       }
     }
-    if (cell[0][0] == 2) { 
-      if (depth == 5) {
-        if (cell[1][0] == 1 || cell[2][0] == 1 || cell[0][2] == 1 || cell[0][1] == 1) {
-          blockSmallTriangleAlgorithm();
-          return;
-        }
-      }
-    }
     if (cell[0][0] == 0) {
       claimCell(0, 0); 
       return;
