@@ -353,7 +353,7 @@ void population() {
   TTTPlayWithFriendsX = (TTTModeX-TTTModeWidth)-(pauseWidth/2);
   TTTPlayWithFriendsY = TTTModeY;
   TTTPlayWithFriendsWidth = TTTModeWidth;
-  TTTPlayWithFriendsHeight = TTTModeHeight;
+  TTTPlayWithFriendsHeight = (TTTHeight*3+(3*(pauseWidth/2)))/4.7;
   //tic tac toe easy algorithem
   TTTEasyX = (TTTModeX-TTTModeWidth)-(pauseWidth/2);
   TTTEasyY = (TTTPlayWithFriendsY+TTTPlayWithFriendsHeight) + (pauseWidth/2);
